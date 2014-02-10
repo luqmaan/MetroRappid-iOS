@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CMMainViewController.h
 //  CapMetro
 //
 //  Created by Luq on 2/9/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface CMMainViewController : UIViewController
+
+@property NSString *username;
 
 @end

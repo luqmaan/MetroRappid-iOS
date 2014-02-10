@@ -16,6 +16,8 @@ Data
 
 Arrivals for route at stop - POST http://www.capmetro.org/planner/s_nextbus2.asp with querystring
 
+Querystring params:
+
 ```
     stopid:5868
     route:801
@@ -24,6 +26,7 @@ Arrivals for route at stop - POST http://www.capmetro.org/planner/s_nextbus2.asp
     opt:2
     min:1
 ```
+Response:
 
 ```
 {

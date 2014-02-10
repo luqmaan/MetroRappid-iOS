@@ -1,1086 +1,558 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>31349DB35E48444C880A4972</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods-CapMetro.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>6210B8A4BFD84DD19523080F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-CapMetro.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Pods-CapMetro.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA3318A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA4518A80D410026337D</string>
-				<string>8CC6AA6418A80D410026337D</string>
-				<string>8CC6AA3E18A80D410026337D</string>
-				<string>8CC6AA3D18A80D410026337D</string>
-				<string>6210B8A4BFD84DD19523080F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA3418A80D410026337D</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastUpgradeCheck</key>
-				<string>0500</string>
-				<key>ORGANIZATIONNAME</key>
-				<string>Luq</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>8CC6AA5C18A80D410026337D</key>
-					<dict>
-						<key>TestTargetID</key>
-						<string>8CC6AA3B18A80D410026337D</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>8CC6AA3718A80D410026337D</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-				<string>Base</string>
-			</array>
-			<key>mainGroup</key>
-			<string>8CC6AA3318A80D410026337D</string>
-			<key>productRefGroup</key>
-			<string>8CC6AA3D18A80D410026337D</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>8CC6AA3B18A80D410026337D</string>
-				<string>8CC6AA5C18A80D410026337D</string>
-			</array>
-		</dict>
-		<key>8CC6AA3718A80D410026337D</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>8CC6AA6C18A80D410026337D</string>
-				<string>8CC6AA6D18A80D410026337D</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>8CC6AA3818A80D410026337D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>8CC6AA5618A80D410026337D</string>
-				<string>8CC6AA5018A80D410026337D</string>
-				<string>8CC6AA4C18A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>8CC6AA3918A80D410026337D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>8CC6AA4218A80D410026337D</string>
-				<string>8CC6AA4418A80D410026337D</string>
-				<string>8CC6AA4018A80D410026337D</string>
-				<string>E7A7C7E86C4B49099BA493A5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>8CC6AA3A18A80D410026337D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>8CC6AA5818A80D410026337D</string>
-				<string>8CC6AA4A18A80D410026337D</string>
-				<string>8CC6AA5318A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>8CC6AA3B18A80D410026337D</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>8CC6AA6E18A80D410026337D</string>
-			<key>buildPhases</key>
-			<array>
-				<string>B8A85A85CFE348C6A7CC4D01</string>
-				<string>8CC6AA3818A80D410026337D</string>
-				<string>8CC6AA3918A80D410026337D</string>
-				<string>8CC6AA3A18A80D410026337D</string>
-				<string>9961B348430F4F0392C4AF6C</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>CapMetro</string>
-			<key>productName</key>
-			<string>CapMetro</string>
-			<key>productReference</key>
-			<string>8CC6AA3C18A80D410026337D</string>
-			<key>productType</key>
-			<string>com.apple.product-type.application</string>
-		</dict>
-		<key>8CC6AA3C18A80D410026337D</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.application</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>CapMetro.app</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>8CC6AA3D18A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA3C18A80D410026337D</string>
-				<string>8CC6AA5D18A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA3E18A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA3F18A80D410026337D</string>
-				<string>8CC6AA4118A80D410026337D</string>
-				<string>8CC6AA4318A80D410026337D</string>
-				<string>8CC6AA5E18A80D410026337D</string>
-				<string>31349DB35E48444C880A4972</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA3F18A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>8CC6AA4018A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA3F18A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA4118A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>CoreGraphics.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/CoreGraphics.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>8CC6AA4218A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA4118A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA4318A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>UIKit.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/UIKit.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>8CC6AA4418A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA4318A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA4518A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA4E18A80D410026337D</string>
-				<string>8CC6AA4F18A80D410026337D</string>
-				<string>8CC6AA5118A80D410026337D</string>
-				<string>8CC6AA5418A80D410026337D</string>
-				<string>8CC6AA5518A80D410026337D</string>
-				<string>8CC6AA5718A80D410026337D</string>
-				<string>8CC6AA4618A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>CapMetro</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA4618A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA4718A80D410026337D</string>
-				<string>8CC6AA4818A80D410026337D</string>
-				<string>8CC6AA4B18A80D410026337D</string>
-				<string>8CC6AA4D18A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA4718A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>CapMetro-Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA4818A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA4918A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA4918A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>en</string>
-			<key>path</key>
-			<string>en.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA4A18A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA4818A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA4B18A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>main.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA4C18A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA4B18A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA4D18A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CapMetro-Prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA4E18A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>AppDelegate.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA4F18A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>AppDelegate.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA5018A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA4F18A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA5118A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA5218A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA5218A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Base</string>
-			<key>path</key>
-			<string>Base.lproj/Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA5318A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA5118A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA5418A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>ViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA5518A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>ViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA5618A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA5518A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA5718A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.assetcatalog</string>
-			<key>path</key>
-			<string>Images.xcassets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA5818A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA5718A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA5918A80D410026337D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>8CC6AA6B18A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>8CC6AA5A18A80D410026337D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>8CC6AA5F18A80D410026337D</string>
-				<string>8CC6AA6118A80D410026337D</string>
-				<string>8CC6AA6018A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>8CC6AA5B18A80D410026337D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>8CC6AA6918A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>8CC6AA5C18A80D410026337D</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>8CC6AA7118A80D410026337D</string>
-			<key>buildPhases</key>
-			<array>
-				<string>8CC6AA5918A80D410026337D</string>
-				<string>8CC6AA5A18A80D410026337D</string>
-				<string>8CC6AA5B18A80D410026337D</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>8CC6AA6318A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>CapMetroTests</string>
-			<key>productName</key>
-			<string>CapMetroTests</string>
-			<key>productReference</key>
-			<string>8CC6AA5D18A80D410026337D</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>8CC6AA5D18A80D410026337D</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>CapMetroTests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>8CC6AA5E18A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>XCTest.framework</string>
-			<key>path</key>
-			<string>Library/Frameworks/XCTest.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>8CC6AA5F18A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA5E18A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA6018A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA3F18A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA6118A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA4318A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA6218A80D410026337D</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>8CC6AA3418A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>8CC6AA3B18A80D410026337D</string>
-			<key>remoteInfo</key>
-			<string>CapMetro</string>
-		</dict>
-		<key>8CC6AA6318A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>8CC6AA3B18A80D410026337D</string>
-			<key>targetProxy</key>
-			<string>8CC6AA6218A80D410026337D</string>
-		</dict>
-		<key>8CC6AA6418A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA6A18A80D410026337D</string>
-				<string>8CC6AA6518A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>CapMetroTests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA6518A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA6618A80D410026337D</string>
-				<string>8CC6AA6718A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA6618A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>CapMetroTests-Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA6718A80D410026337D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CC6AA6818A80D410026337D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA6818A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>en</string>
-			<key>path</key>
-			<string>en.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA6918A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA6718A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA6A18A80D410026337D</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>CapMetroTests.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8CC6AA6B18A80D410026337D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8CC6AA6A18A80D410026337D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8CC6AA6C18A80D410026337D</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>8CC6AA6D18A80D410026337D</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>8CC6AA6E18A80D410026337D</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>8CC6AA6F18A80D410026337D</string>
-				<string>8CC6AA7018A80D410026337D</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>8CC6AA6F18A80D410026337D</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>6210B8A4BFD84DD19523080F</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
-				<string>LaunchImage</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>CapMetro/CapMetro-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>CapMetro/CapMetro-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>app</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>8CC6AA7018A80D410026337D</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>6210B8A4BFD84DD19523080F</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
-				<string>LaunchImage</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>CapMetro/CapMetro-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>CapMetro/CapMetro-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>app</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>8CC6AA7118A80D410026337D</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>8CC6AA7218A80D410026337D</string>
-				<string>8CC6AA7318A80D410026337D</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>8CC6AA7218A80D410026337D</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>BUNDLE_LOADER</key>
-				<string>$(BUILT_PRODUCTS_DIR)/CapMetro.app/CapMetro</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>CapMetro/CapMetro-Prefix.pch</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>INFOPLIST_FILE</key>
-				<string>CapMetroTests/CapMetroTests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUNDLE_LOADER)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>8CC6AA7318A80D410026337D</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>BUNDLE_LOADER</key>
-				<string>$(BUILT_PRODUCTS_DIR)/CapMetro.app/CapMetro</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>CapMetro/CapMetro-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>CapMetroTests/CapMetroTests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUNDLE_LOADER)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>9961B348430F4F0392C4AF6C</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Pods-CapMetro-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>B8A85A85CFE348C6A7CC4D01</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>E7A7C7E86C4B49099BA493A5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>31349DB35E48444C880A4972</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>8CC6AA3418A80D410026337D</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8CC6AA4018A80D410026337D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA3F18A80D410026337D /* Foundation.framework */; };
+		8CC6AA4218A80D410026337D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA4118A80D410026337D /* CoreGraphics.framework */; };
+		8CC6AA4418A80D410026337D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA4318A80D410026337D /* UIKit.framework */; };
+		8CC6AA4A18A80D410026337D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6AA4818A80D410026337D /* InfoPlist.strings */; };
+		8CC6AA4C18A80D410026337D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AA4B18A80D410026337D /* main.m */; };
+		8CC6AA5018A80D410026337D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AA4F18A80D410026337D /* AppDelegate.m */; };
+		8CC6AA5318A80D410026337D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6AA5118A80D410026337D /* Main.storyboard */; };
+		8CC6AA5818A80D410026337D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6AA5718A80D410026337D /* Images.xcassets */; };
+		8CC6AA5F18A80D410026337D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA5E18A80D410026337D /* XCTest.framework */; };
+		8CC6AA6018A80D410026337D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA3F18A80D410026337D /* Foundation.framework */; };
+		8CC6AA6118A80D410026337D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA4318A80D410026337D /* UIKit.framework */; };
+		8CC6AA6918A80D410026337D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6AA6718A80D410026337D /* InfoPlist.strings */; };
+		8CC6AA6B18A80D410026337D /* CapMetroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AA6A18A80D410026337D /* CapMetroTests.m */; };
+		8CC6AAAA18A86EB40026337D /* CMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAA918A86EB40026337D /* CMMainViewController.m */; };
+		8CC6AAAB18A86EB40026337D /* CMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAA918A86EB40026337D /* CMMainViewController.m */; };
+		8CC6AAAD18A86F890026337D /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AAAC18A86F890026337D /* libReactiveCocoa-iOS.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8CC6AA6218A80D410026337D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC6AA3418A80D410026337D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CC6AA3B18A80D410026337D;
+			remoteInfo = CapMetro;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		31349DB35E48444C880A4972 /* libPods-CapMetro.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CapMetro.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6210B8A4BFD84DD19523080F /* Pods-CapMetro.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapMetro.xcconfig"; path = "Pods/Pods-CapMetro.xcconfig"; sourceTree = "<group>"; };
+		8CC6AA3C18A80D410026337D /* CapMetro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapMetro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CC6AA3F18A80D410026337D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8CC6AA4118A80D410026337D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8CC6AA4318A80D410026337D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8CC6AA4718A80D410026337D /* CapMetro-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CapMetro-Info.plist"; sourceTree = "<group>"; };
+		8CC6AA4918A80D410026337D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8CC6AA4B18A80D410026337D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8CC6AA4D18A80D410026337D /* CapMetro-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CapMetro-Prefix.pch"; sourceTree = "<group>"; };
+		8CC6AA4E18A80D410026337D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8CC6AA4F18A80D410026337D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8CC6AA5218A80D410026337D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8CC6AA5718A80D410026337D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8CC6AA5D18A80D410026337D /* CapMetroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapMetroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CC6AA5E18A80D410026337D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		8CC6AA6618A80D410026337D /* CapMetroTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CapMetroTests-Info.plist"; sourceTree = "<group>"; };
+		8CC6AA6818A80D410026337D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8CC6AA6A18A80D410026337D /* CapMetroTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CapMetroTests.m; sourceTree = "<group>"; };
+		8CC6AA9C18A868380026337D /* libReactiveCocoa-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libReactiveCocoa-iOS.a"; path = "ReactiveCocoa/ReactiveCocoaFramework/build/Debug-iphoneos/libReactiveCocoa-iOS.a"; sourceTree = "<group>"; };
+		8CC6AAA818A86EB40026337D /* CMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMainViewController.h; sourceTree = "<group>"; };
+		8CC6AAA918A86EB40026337D /* CMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMMainViewController.m; sourceTree = "<group>"; };
+		8CC6AAAC18A86F890026337D /* libReactiveCocoa-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libReactiveCocoa-iOS.a"; path = "ReactiveCocoa/ReactiveCocoaFramework/build/Debug-iphoneos/libReactiveCocoa-iOS.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8CC6AA3918A80D410026337D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CC6AAAD18A86F890026337D /* libReactiveCocoa-iOS.a in Frameworks */,
+				8CC6AA4218A80D410026337D /* CoreGraphics.framework in Frameworks */,
+				8CC6AA4418A80D410026337D /* UIKit.framework in Frameworks */,
+				8CC6AA4018A80D410026337D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC6AA5A18A80D410026337D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CC6AA5F18A80D410026337D /* XCTest.framework in Frameworks */,
+				8CC6AA6118A80D410026337D /* UIKit.framework in Frameworks */,
+				8CC6AA6018A80D410026337D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8CC6AA3318A80D410026337D = {
+			isa = PBXGroup;
+			children = (
+				8CC6AA4518A80D410026337D /* CapMetro */,
+				8CC6AA6418A80D410026337D /* CapMetroTests */,
+				8CC6AA3E18A80D410026337D /* Frameworks */,
+				8CC6AA3D18A80D410026337D /* Products */,
+				6210B8A4BFD84DD19523080F /* Pods-CapMetro.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		8CC6AA3D18A80D410026337D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CC6AA3C18A80D410026337D /* CapMetro.app */,
+				8CC6AA5D18A80D410026337D /* CapMetroTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CC6AA3E18A80D410026337D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8CC6AAAC18A86F890026337D /* libReactiveCocoa-iOS.a */,
+				8CC6AA9C18A868380026337D /* libReactiveCocoa-iOS.a */,
+				8CC6AA3F18A80D410026337D /* Foundation.framework */,
+				8CC6AA4118A80D410026337D /* CoreGraphics.framework */,
+				8CC6AA4318A80D410026337D /* UIKit.framework */,
+				8CC6AA5E18A80D410026337D /* XCTest.framework */,
+				31349DB35E48444C880A4972 /* libPods-CapMetro.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8CC6AA4518A80D410026337D /* CapMetro */ = {
+			isa = PBXGroup;
+			children = (
+				8CC6AA9F18A86E0E0026337D /* Models */,
+				8CC6AA9E18A86E060026337D /* ViewControllers */,
+				8CC6AA4E18A80D410026337D /* AppDelegate.h */,
+				8CC6AA4F18A80D410026337D /* AppDelegate.m */,
+				8CC6AA5118A80D410026337D /* Main.storyboard */,
+				8CC6AA5718A80D410026337D /* Images.xcassets */,
+				8CC6AA4618A80D410026337D /* Supporting Files */,
+			);
+			path = CapMetro;
+			sourceTree = "<group>";
+		};
+		8CC6AA4618A80D410026337D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8CC6AA4718A80D410026337D /* CapMetro-Info.plist */,
+				8CC6AA4818A80D410026337D /* InfoPlist.strings */,
+				8CC6AA4B18A80D410026337D /* main.m */,
+				8CC6AA4D18A80D410026337D /* CapMetro-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8CC6AA6418A80D410026337D /* CapMetroTests */ = {
+			isa = PBXGroup;
+			children = (
+				8CC6AA6A18A80D410026337D /* CapMetroTests.m */,
+				8CC6AA6518A80D410026337D /* Supporting Files */,
+			);
+			path = CapMetroTests;
+			sourceTree = "<group>";
+		};
+		8CC6AA6518A80D410026337D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8CC6AA6618A80D410026337D /* CapMetroTests-Info.plist */,
+				8CC6AA6718A80D410026337D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8CC6AA9E18A86E060026337D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8CC6AAA818A86EB40026337D /* CMMainViewController.h */,
+				8CC6AAA918A86EB40026337D /* CMMainViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8CC6AA9F18A86E0E0026337D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8CC6AA3B18A80D410026337D /* CapMetro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CC6AA6E18A80D410026337D /* Build configuration list for PBXNativeTarget "CapMetro" */;
+			buildPhases = (
+				B8A85A85CFE348C6A7CC4D01 /* Check Pods Manifest.lock */,
+				8CC6AA3818A80D410026337D /* Sources */,
+				8CC6AA3918A80D410026337D /* Frameworks */,
+				8CC6AA3A18A80D410026337D /* Resources */,
+				9961B348430F4F0392C4AF6C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CapMetro;
+			productName = CapMetro;
+			productReference = 8CC6AA3C18A80D410026337D /* CapMetro.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8CC6AA5C18A80D410026337D /* CapMetroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CC6AA7118A80D410026337D /* Build configuration list for PBXNativeTarget "CapMetroTests" */;
+			buildPhases = (
+				8CC6AA5918A80D410026337D /* Sources */,
+				8CC6AA5A18A80D410026337D /* Frameworks */,
+				8CC6AA5B18A80D410026337D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CC6AA6318A80D410026337D /* PBXTargetDependency */,
+			);
+			name = CapMetroTests;
+			productName = CapMetroTests;
+			productReference = 8CC6AA5D18A80D410026337D /* CapMetroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8CC6AA3418A80D410026337D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Luq;
+				TargetAttributes = {
+					8CC6AA5C18A80D410026337D = {
+						TestTargetID = 8CC6AA3B18A80D410026337D;
+					};
+				};
+			};
+			buildConfigurationList = 8CC6AA3718A80D410026337D /* Build configuration list for PBXProject "CapMetro" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8CC6AA3318A80D410026337D;
+			productRefGroup = 8CC6AA3D18A80D410026337D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8CC6AA3B18A80D410026337D /* CapMetro */,
+				8CC6AA5C18A80D410026337D /* CapMetroTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8CC6AA3A18A80D410026337D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CC6AA5818A80D410026337D /* Images.xcassets in Resources */,
+				8CC6AA4A18A80D410026337D /* InfoPlist.strings in Resources */,
+				8CC6AA5318A80D410026337D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC6AA5B18A80D410026337D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CC6AA6918A80D410026337D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9961B348430F4F0392C4AF6C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-CapMetro-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8A85A85CFE348C6A7CC4D01 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8CC6AA3818A80D410026337D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CC6AA5018A80D410026337D /* AppDelegate.m in Sources */,
+				8CC6AAAA18A86EB40026337D /* CMMainViewController.m in Sources */,
+				8CC6AA4C18A80D410026337D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC6AA5918A80D410026337D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CC6AA6B18A80D410026337D /* CapMetroTests.m in Sources */,
+				8CC6AAAB18A86EB40026337D /* CMMainViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8CC6AA6318A80D410026337D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CC6AA3B18A80D410026337D /* CapMetro */;
+			targetProxy = 8CC6AA6218A80D410026337D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8CC6AA4818A80D410026337D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8CC6AA4918A80D410026337D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8CC6AA5118A80D410026337D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8CC6AA5218A80D410026337D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8CC6AA6718A80D410026337D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8CC6AA6818A80D410026337D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8CC6AA6C18A80D410026337D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8CC6AA6D18A80D410026337D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8CC6AA6F18A80D410026337D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6210B8A4BFD84DD19523080F /* Pods-CapMetro.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CapMetro/CapMetro-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CapMetro/CapMetro-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8CC6AA7018A80D410026337D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6210B8A4BFD84DD19523080F /* Pods-CapMetro.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CapMetro/CapMetro-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CapMetro/CapMetro-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		8CC6AA7218A80D410026337D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CapMetro.app/CapMetro";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CapMetro/CapMetro-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CapMetroTests/CapMetroTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		8CC6AA7318A80D410026337D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CapMetro.app/CapMetro";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CapMetro/CapMetro-Prefix.pch";
+				INFOPLIST_FILE = "CapMetroTests/CapMetroTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8CC6AA3718A80D410026337D /* Build configuration list for PBXProject "CapMetro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CC6AA6C18A80D410026337D /* Debug */,
+				8CC6AA6D18A80D410026337D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CC6AA6E18A80D410026337D /* Build configuration list for PBXNativeTarget "CapMetro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CC6AA6F18A80D410026337D /* Debug */,
+				8CC6AA7018A80D410026337D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CC6AA7118A80D410026337D /* Build configuration list for PBXNativeTarget "CapMetroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CC6AA7218A80D410026337D /* Debug */,
+				8CC6AA7318A80D410026337D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8CC6AA3418A80D410026337D /* Project object */;
+}
