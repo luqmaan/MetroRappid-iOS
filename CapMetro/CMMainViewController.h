@@ -10,6 +10,4 @@
 
 @interface CMMainViewController : UIViewController
 
-@property NSString *username;
-
 @end

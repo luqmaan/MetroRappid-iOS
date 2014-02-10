@@ -23,6 +23,18 @@
 		8CC6AAAA18A86EB40026337D /* CMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAA918A86EB40026337D /* CMMainViewController.m */; };
 		8CC6AAAB18A86EB40026337D /* CMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAA918A86EB40026337D /* CMMainViewController.m */; };
 		8CC6AAAD18A86F890026337D /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AAAC18A86F890026337D /* libReactiveCocoa-iOS.a */; };
+		8CC6AAAF18A87ABF0026337D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AAAE18A87ABF0026337D /* MapKit.framework */; };
+		8CC6AAB518A87C490026337D /* GTFSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAB418A87C490026337D /* GTFSDB.m */; };
+		8CC6AAB618A87C490026337D /* GTFSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAB418A87C490026337D /* GTFSDB.m */; };
+		8CC6AAB918A880310026337D /* StopsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAB818A880310026337D /* StopsMapViewController.m */; };
+		8CC6AABA18A880310026337D /* StopsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAB818A880310026337D /* StopsMapViewController.m */; };
+		8CC6AAC118A887840026337D /* gtfs_austin.db in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6AAC018A887840026337D /* gtfs_austin.db */; };
+		8CC6AAC218A887840026337D /* gtfs_austin.db in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6AAC018A887840026337D /* gtfs_austin.db */; };
+		8CC6AAC618A88EFF0026337D /* StopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAC518A88EFF0026337D /* StopAnnotationView.m */; };
+		8CC6AAC718A88EFF0026337D /* StopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAC518A88EFF0026337D /* StopAnnotationView.m */; };
+		8CC6AACA18A88F0D0026337D /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAC918A88F0D0026337D /* StopAnnotation.m */; };
+		8CC6AACB18A88F0D0026337D /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAC918A88F0D0026337D /* StopAnnotation.m */; };
+		E0BB735F7CEB42B5A456003F /* libPods-CapMetro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31349DB35E48444C880A4972 /* libPods-CapMetro.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,10 +67,20 @@
 		8CC6AA6618A80D410026337D /* CapMetroTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CapMetroTests-Info.plist"; sourceTree = "<group>"; };
 		8CC6AA6818A80D410026337D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8CC6AA6A18A80D410026337D /* CapMetroTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CapMetroTests.m; sourceTree = "<group>"; };
-		8CC6AA9C18A868380026337D /* libReactiveCocoa-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libReactiveCocoa-iOS.a"; path = "ReactiveCocoa/ReactiveCocoaFramework/build/Debug-iphoneos/libReactiveCocoa-iOS.a"; sourceTree = "<group>"; };
+		8CC6AA9C18A868380026337D /* libReactiveCocoa-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libReactiveCocoa-iOS.a"; path = "ReactiveCocoa/ReactiveCocoaFramework/build/Debug-iphoneos/libReactiveCocoa-iOS.a"; sourceTree = "<group>"; };
 		8CC6AAA818A86EB40026337D /* CMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMainViewController.h; sourceTree = "<group>"; };
 		8CC6AAA918A86EB40026337D /* CMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMMainViewController.m; sourceTree = "<group>"; };
-		8CC6AAAC18A86F890026337D /* libReactiveCocoa-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libReactiveCocoa-iOS.a"; path = "ReactiveCocoa/ReactiveCocoaFramework/build/Debug-iphoneos/libReactiveCocoa-iOS.a"; sourceTree = "<group>"; };
+		8CC6AAAC18A86F890026337D /* libReactiveCocoa-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libReactiveCocoa-iOS.a"; path = "ReactiveCocoa/ReactiveCocoaFramework/build/Debug-iphoneos/libReactiveCocoa-iOS.a"; sourceTree = "<group>"; };
+		8CC6AAAE18A87ABF0026337D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8CC6AAB318A87C490026337D /* GTFSDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTFSDB.h; sourceTree = "<group>"; };
+		8CC6AAB418A87C490026337D /* GTFSDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTFSDB.m; sourceTree = "<group>"; };
+		8CC6AAB718A880310026337D /* StopsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopsMapViewController.h; sourceTree = "<group>"; };
+		8CC6AAB818A880310026337D /* StopsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopsMapViewController.m; sourceTree = "<group>"; };
+		8CC6AAC018A887840026337D /* gtfs_austin.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = gtfs_austin.db; path = Data/gtfs_austin.db; sourceTree = "<group>"; };
+		8CC6AAC418A88EFF0026337D /* StopAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotationView.h; sourceTree = "<group>"; };
+		8CC6AAC518A88EFF0026337D /* StopAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotationView.m; sourceTree = "<group>"; };
+		8CC6AAC818A88F0D0026337D /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
+		8CC6AAC918A88F0D0026337D /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +88,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CC6AAAF18A87ABF0026337D /* MapKit.framework in Frameworks */,
 				8CC6AAAD18A86F890026337D /* libReactiveCocoa-iOS.a in Frameworks */,
 				8CC6AA4218A80D410026337D /* CoreGraphics.framework in Frameworks */,
 				8CC6AA4418A80D410026337D /* UIKit.framework in Frameworks */,
 				8CC6AA4018A80D410026337D /* Foundation.framework in Frameworks */,
+				E0BB735F7CEB42B5A456003F /* libPods-CapMetro.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +133,7 @@
 		8CC6AA3E18A80D410026337D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8CC6AAAE18A87ABF0026337D /* MapKit.framework */,
 				8CC6AAAC18A86F890026337D /* libReactiveCocoa-iOS.a */,
 				8CC6AA9C18A868380026337D /* libReactiveCocoa-iOS.a */,
 				8CC6AA3F18A80D410026337D /* Foundation.framework */,
@@ -123,8 +148,10 @@
 		8CC6AA4518A80D410026337D /* CapMetro */ = {
 			isa = PBXGroup;
 			children = (
+				8CC6AAC318A88DF60026337D /* Views */,
+				8CC6AABE18A881910026337D /* Data */,
 				8CC6AA9F18A86E0E0026337D /* Models */,
-				8CC6AA9E18A86E060026337D /* ViewControllers */,
+				8CC6AA9E18A86E060026337D /* Controllers */,
 				8CC6AA4E18A80D410026337D /* AppDelegate.h */,
 				8CC6AA4F18A80D410026337D /* AppDelegate.m */,
 				8CC6AA5118A80D410026337D /* Main.storyboard */,
@@ -163,20 +190,43 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8CC6AA9E18A86E060026337D /* ViewControllers */ = {
+		8CC6AA9E18A86E060026337D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				8CC6AAA818A86EB40026337D /* CMMainViewController.h */,
 				8CC6AAA918A86EB40026337D /* CMMainViewController.m */,
+				8CC6AAB718A880310026337D /* StopsMapViewController.h */,
+				8CC6AAB818A880310026337D /* StopsMapViewController.m */,
 			);
-			name = ViewControllers;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		8CC6AA9F18A86E0E0026337D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8CC6AAB318A87C490026337D /* GTFSDB.h */,
+				8CC6AAB418A87C490026337D /* GTFSDB.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		8CC6AABE18A881910026337D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8CC6AAC018A887840026337D /* gtfs_austin.db */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		8CC6AAC318A88DF60026337D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8CC6AAC418A88EFF0026337D /* StopAnnotationView.h */,
+				8CC6AAC518A88EFF0026337D /* StopAnnotationView.m */,
+				8CC6AAC818A88F0D0026337D /* StopAnnotation.h */,
+				8CC6AAC918A88F0D0026337D /* StopAnnotation.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CC6AA5818A80D410026337D /* Images.xcassets in Resources */,
+				8CC6AAC118A887840026337D /* gtfs_austin.db in Resources */,
 				8CC6AA4A18A80D410026337D /* InfoPlist.strings in Resources */,
 				8CC6AA5318A80D410026337D /* Main.storyboard in Resources */,
 			);
@@ -268,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CC6AA6918A80D410026337D /* InfoPlist.strings in Resources */,
+				8CC6AAC218A887840026337D /* gtfs_austin.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,8 +364,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CC6AA5018A80D410026337D /* AppDelegate.m in Sources */,
+				8CC6AAB518A87C490026337D /* GTFSDB.m in Sources */,
 				8CC6AAAA18A86EB40026337D /* CMMainViewController.m in Sources */,
+				8CC6AACA18A88F0D0026337D /* StopAnnotation.m in Sources */,
 				8CC6AA4C18A80D410026337D /* main.m in Sources */,
+				8CC6AAB918A880310026337D /* StopsMapViewController.m in Sources */,
+				8CC6AAC618A88EFF0026337D /* StopAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +377,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CC6AAC718A88EFF0026337D /* StopAnnotationView.m in Sources */,
 				8CC6AA6B18A80D410026337D /* CapMetroTests.m in Sources */,
+				8CC6AACB18A88F0D0026337D /* StopAnnotation.m in Sources */,
+				8CC6AABA18A880310026337D /* StopsMapViewController.m in Sources */,
+				8CC6AAB618A87C490026337D /* GTFSDB.m in Sources */,
 				8CC6AAAB18A86EB40026337D /* CMMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,7 +512,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "CapMetro/CapMetro-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -474,7 +534,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "CapMetro/CapMetro-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
