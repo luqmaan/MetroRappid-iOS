@@ -38,6 +38,104 @@
             </objects>
             <point key="canvasLocation" x="817" y="-215"/>
         </scene>
+        <!--Nearby View Controller-->
+        <scene sceneID="mBo-dN-C5W">
+            <objects>
+                <tableViewController id="cZh-cL-NUE" customClass="NearbyViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="kfc-3h-y97">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="PBW-LH-ch3">
+                                <rect key="frame" x="0.0" y="86" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PBW-LH-ch3" id="xmE-cR-blx">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Republic Square Park" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eam-Df-zHN">
+                                            <rect key="frame" x="20" y="22" width="167" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1315" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8K-2Q-dhI">
+                                            <rect key="frame" x="261" y="22" width="39" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.88233996979999996" green="0.93089807840000005" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="65" id="uBR-PL-eyN">
+                                <rect key="frame" x="0.0" y="150" width="320" height="65"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uBR-PL-eyN" id="5U0-V3-8TS">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="801" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="HQi-qX-AhN">
+                                            <rect key="frame" x="20" y="11" width="33" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Republic Square Park" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cs3-Bq-21W">
+                                            <rect key="frame" x="20" y="32" width="167" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10m sched" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb7-Zn-1El">
+                                            <rect key="frame" x="214" y="11" width="86" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8m est" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRv-kF-G0A">
+                                            <rect key="frame" x="247" y="30" width="53" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Cs3-Bq-21W" firstAttribute="leading" secondItem="5U0-V3-8TS" secondAttribute="leading" constant="20" id="6it-h2-sN0"/>
+                                        <constraint firstItem="cb7-Zn-1El" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" constant="11" id="I08-8U-9bj"/>
+                                        <constraint firstItem="Cs3-Bq-21W" firstAttribute="top" secondItem="HQi-qX-AhN" secondAttribute="bottom" constant="-3" id="Jze-Em-rkG"/>
+                                        <constraint firstItem="HQi-qX-AhN" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" constant="11" id="MxO-LQ-j1X"/>
+                                        <constraint firstItem="HQi-qX-AhN" firstAttribute="leading" secondItem="5U0-V3-8TS" secondAttribute="leading" constant="20" id="Wq1-OZ-Ngd"/>
+                                        <constraint firstAttribute="trailing" secondItem="HRv-kF-G0A" secondAttribute="trailing" constant="20" id="ftO-mf-aYw"/>
+                                        <constraint firstItem="HRv-kF-G0A" firstAttribute="top" secondItem="cb7-Zn-1El" secondAttribute="bottom" constant="-2" id="mCZ-If-hRp"/>
+                                        <constraint firstAttribute="trailing" secondItem="cb7-Zn-1El" secondAttribute="trailing" constant="20" id="sGO-dS-a5c"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cZh-cL-NUE" id="B6x-TY-bYA"/>
+                            <outlet property="delegate" destination="cZh-cL-NUE" id="uze-BD-x1F"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="dcF-cQ-brf"/>
+                    <attributedString key="userComments">
+                        <fragment content="a = nearby stops. b = unique routes at a. c = set of fewest stops that contain all routes.">
+                            <attributes>
+                                <font key="NSFont" metaFont="toolTip"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="reG-EZ-BGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="817" y="495"/>
+        </scene>
         <!--Table View Controller - Routes-->
         <scene sceneID="PTw-LG-ZD6">
             <objects>
@@ -107,7 +205,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="aoX-UD-xgW" kind="relationship" relationship="rootViewController" id="6a8-yX-1ki"/>
+                        <segue destination="cZh-cL-NUE" kind="relationship" relationship="rootViewController" id="Ur5-rl-geY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9P-1y-MtG" userLabel="First Responder" sceneMemberID="firstResponder"/>

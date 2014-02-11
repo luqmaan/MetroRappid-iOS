@@ -230,4 +230,6 @@ GET http://www.capmetro.org/planner/s_nextbus2.asp?stopid=5868&output=xml&opt=2
 Progress
 --
 
-- Feb 9 2014 - Set up project, get nearby stops to appear in MapView. !()[https://www.dropbox.com/s/h9jicamdr8qotxx/nearbystops.png]
+- Set up project, get nearby stops to appear in MapView. ![nearby stops](https://www.dropbox.com/s/h9jicamdr8qotxx/nearbystops.png)
+- Add nearby routes view, all from GTFS query ![nearby routes](https://www.dropbox.com/s/7hirgsmnk11dir6/nearby_routes.png)
+- Contacted CapMetro regarding realtime data not working anymore.

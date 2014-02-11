@@ -159,5 +159,41 @@
     return [stops copy];
 }
 
+- (NSMutableArray *)routesForLocation:(CLLocation *)location withLimit:(int)limit
+{
+    // Distinct trips for stops nearby
+    NSString *query = [NSString stringWithFormat:
+        @"SELECT stop_id, stop_name, distance, t.trip_id, * "
+        "FROM ( "
+            @"SELECT trip_id, stop_name, stops.stop_id, stop_lat, stop_lon, distance(stop_lat, stop_lon, %f, %f) as \"distance\" "
+            "FROM stops, stop_times "
+            "WHERE stop_times.stop_id = stops.stop_id "
+            "GROUP BY trip_id "
+            "ORDER BY distance(stop_lat, stop_lon, %f, %f) "
+            "LIMIT %d "
+        ") AS t, trips "
+        "WHERE t.trip_id = trips.trip_id "
+        "GROUP BY route_id, t.stop_id "
+        "ORDER BY distance "
+        ,
+        location.coordinate.latitude,
+        location.coordinate.longitude,
+        location.coordinate.latitude,
+        location.coordinate.longitude,
+        limit];
+
+    NSLog(@"Executing query %@", query);
+    FMResultSet *rs = [self.database executeQuery:query];
+    
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    
+    while ([rs next]) {
+        [data addObject:[rs resultDictionary]];
+    }
+    
+    return data;
+}
+
+
 
 @end
