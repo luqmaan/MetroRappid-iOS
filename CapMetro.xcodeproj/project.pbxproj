@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8C1D919A18A9E40500AB498A /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D919918A9E40500AB498A /* NearbyViewController.m */; };
 		8C1D919B18A9E40500AB498A /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D919918A9E40500AB498A /* NearbyViewController.m */; };
+		8C8C885418AC55190049412A /* the-triangle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C8C885118AC55190049412A /* the-triangle.xml */; };
+		8C8C885518AC55190049412A /* 801-realtime.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C8C885318AC55190049412A /* 801-realtime.xml */; };
 		8CC6AA4018A80D410026337D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA3F18A80D410026337D /* Foundation.framework */; };
 		8CC6AA4218A80D410026337D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA4118A80D410026337D /* CoreGraphics.framework */; };
 		8CC6AA4418A80D410026337D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA4318A80D410026337D /* UIKit.framework */; };
@@ -54,6 +56,8 @@
 		6210B8A4BFD84DD19523080F /* Pods-CapMetro.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapMetro.xcconfig"; path = "Pods/Pods-CapMetro.xcconfig"; sourceTree = "<group>"; };
 		8C1D919818A9E40500AB498A /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
 		8C1D919918A9E40500AB498A /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
+		8C8C885118AC55190049412A /* the-triangle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "the-triangle.xml"; sourceTree = "<group>"; };
+		8C8C885318AC55190049412A /* 801-realtime.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "801-realtime.xml"; sourceTree = "<group>"; };
 		8CC6AA3C18A80D410026337D /* CapMetro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapMetro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC6AA3F18A80D410026337D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8CC6AA4118A80D410026337D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -114,6 +118,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C8C884F18AC4A170049412A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8C8C885018AC55190049412A /* planner */,
+				8C8C885218AC55190049412A /* s_nextbus2 */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		8C8C885018AC55190049412A /* planner */ = {
+			isa = PBXGroup;
+			children = (
+				8C8C885118AC55190049412A /* the-triangle.xml */,
+			);
+			path = planner;
+			sourceTree = "<group>";
+		};
+		8C8C885218AC55190049412A /* s_nextbus2 */ = {
+			isa = PBXGroup;
+			children = (
+				8C8C885318AC55190049412A /* 801-realtime.xml */,
+			);
+			path = s_nextbus2;
+			sourceTree = "<group>";
+		};
 		8CC6AA3318A80D410026337D = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +208,7 @@
 		8CC6AA6418A80D410026337D /* CapMetroTests */ = {
 			isa = PBXGroup;
 			children = (
+				8C8C884F18AC4A170049412A /* Data */,
 				8CC6AA6A18A80D410026337D /* CapMetroTests.m */,
 				8CC6AA6518A80D410026337D /* Supporting Files */,
 			);
@@ -324,7 +354,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C8C885518AC55190049412A /* 801-realtime.xml in Resources */,
 				8CC6AA6918A80D410026337D /* InfoPlist.strings in Resources */,
+				8C8C885418AC55190049412A /* the-triangle.xml in Resources */,
 				8CC6AAC218A887840026337D /* gtfs_austin.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
