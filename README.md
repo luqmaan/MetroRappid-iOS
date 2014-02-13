@@ -1,41 +1,11 @@
 An attempt at reverse engineering and speeding up the CapMetro app for my use case: view the MetroRapid realtime arrivals *quickly*.
 
-Notes
---
-
-- Planner http://www.capmetro.org/planner/
-- Arrivals http://www.capmetro.org/info/
-- GTFS http://www.gtfs-data-exchange.com/agency/capital-metro/
-- GTFS to SQLite https://code.google.com/p/googletransitdatafeed/wiki/TransitFeed
-
 Data
 --
 
-- Stops for location - Use GTFS data
-- Routes for stop - Use GTFS data
-- Arrivals for route at stop
-
-
-GET http://www.capmetro.org/planner/s_nextbus2.asp with querystring
-
-Querystring params:
-
-```
-    stopid:5868
-    route:801
-    dir:N
-    output:json
-    opt:2
-    min:1
-```
-Response:
-
-```
-
-```
-
-GET http://www.capmetro.org/planner/s_nextbus2.asp?stopid=5868&output=xml&opt=2
-
+- Nearby 801 stops - GTFS
+- Next bus - GET http://www.capmetro.org/planner/s_nextbus2.asp?stopid=5619&output=xml&opt=2&min=1&dir=N
+- Trip planner - GET http://www.capmetro.org/planner/s_plantrip.asp?loc1lat=30.268224&loc1lng=-97.743678&loc2lat=30.418367&loc2lng=-97.668597
 
 Progress
 --
