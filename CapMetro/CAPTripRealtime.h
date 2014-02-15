@@ -23,6 +23,6 @@
 @property NSString *lat; // FIXME: Use float
 @property NSString *lon; // FIXME: Expose via CLLocation *position;
 
-- (id)initWithNextBusAPI:(NSDictionary *)data;
+- (void)updateWithNextBusAPI:(NSDictionary *)data;
 
 @end

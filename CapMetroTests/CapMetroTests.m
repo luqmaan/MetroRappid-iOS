@@ -12,6 +12,8 @@
 #import "CAPNextBus.h"
 #import "CAPTrip.h"
 #import "CAPTripRealtime.h"
+#import "GTFSDB.h"
+#import "CAPStop.h"
 
 @interface CapMetroTests : XCTestCase
 
@@ -31,12 +33,25 @@
     [super tearDown];
 }
 
-- (void)testFindNearbyStopsAndTrips
+- (void)testFindNearbyStopsForRoute
 {
-    // TODO
+    GTFSDB *gtfs = [[GTFSDB alloc] init];
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
+
+    NSMutableArray *stops = [gtfs stopsForRoutes:@[@801, @1] nearLocation:loc withinRadius:2.0f];
+    NSLog(@"stops %@", stops);
+    
+    XCTAssertEqual((NSUInteger)38, stops.count);
+    CAPStop *routet1CongressStop = stops[0];
+    CAPStop *route801WooldrigeStop = stops[2];
+
+    XCTAssertTrue([@"200 CONGRESS/2ND" isEqualToString:routet1CongressStop.name]);
+    XCTAssertTrue([@"WOOLDRIDGE SQUARE STATION (NB)" isEqualToString:route801WooldrigeStop.name]);
+    XCTAssertTrue([@"1" isEqualToString:routet1CongressStop.routeId]);
+    XCTAssertTrue([@"801" isEqualToString:route801WooldrigeStop.routeId]);
 }
 
-- (void)testCAPNextBusCanCreateTripsWithRealtimeXML
+- (void)testCAPNextBusParseXMLWithRealtimeResponse
 {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"801-realtime" ofType:@"xml"];
@@ -45,7 +60,7 @@
     NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (error) { XCTFail(@"Reading XML failed %@", error); }
    
-    CAPNextBus *nextBus = [[CAPNextBus alloc] initWithStop:@"123"];
+    CAPNextBus *nextBus = [[CAPNextBus alloc] initWithStop:nil];
     [nextBus parseXML:xmlString];
     
     XCTAssertEqual((NSUInteger)12, nextBus.trips.count);

@@ -10,4 +10,15 @@
 
 @interface CAPStop : NSObject
 
+@property NSString *distance;
+@property NSString *routeId;
+@property NSString *desc;
+@property NSString *stopId;
+@property NSString *lat;
+@property NSString *lon;
+@property NSString *name;
+
+- (void)updateWithGTFS:(NSDictionary *)data;
+
+
 @end

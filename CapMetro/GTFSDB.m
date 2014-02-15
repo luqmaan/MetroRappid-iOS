@@ -98,6 +98,7 @@
 }
 
 // Adds a distance function to the database
+// Distance in kilometers
 - (void)addDistanceFunction
 {
     // See http://daveaddey.com/?p=71
@@ -194,6 +195,46 @@
     return data;
 }
 
+- (NSMutableArray *)stopsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers
+{
+    NSString *query = [NSString stringWithFormat:
+        @"SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.stop_id, stop_name, stop_desc, stop_lat, stop_lon, "
+        @"       distance(stop_lat, stop_lon, %f, %f) as \"distance\" "
+        @"FROM "
+        @"  stops, "
+        @"  (SELECT stop_id, route_id, unique_trips.trip_id "
+        @"   FROM "
+        @"     stop_times, "
+        @"     (SELECT trip_id, route_id "
+        @"      FROM trips "
+        @"      WHERE route_id IN (%@) "
+        @"      GROUP BY shape_id "
+        @"     ) AS unique_trips "
+        @"   WHERE stop_times.trip_id = unique_trips.trip_id "
+        @"   GROUP BY stop_id) AS unique_stops "
+        @"WHERE stops.stop_id = unique_stops.stop_id "
+        @"AND distance(stop_lat, stop_lon, %f, %f) < %f",
+            location.coordinate.latitude,
+            location.coordinate.longitude,
+            [routes componentsJoinedByString:@","],
+            location.coordinate.latitude,
+            location.coordinate.longitude,
+            kilometers
+        ];
+
+    NSLog(@"Executing query %@", query);
+    FMResultSet *rs = [self.database executeQuery:query];
+    
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    
+    while ([rs next]) {
+        CAPStop *stop = [[CAPStop alloc] init];
+        [stop updateWithGTFS:[rs resultDictionary]];
+        [data addObject:stop];
+    }
+    
+    return data;
+}
 
 
 @end

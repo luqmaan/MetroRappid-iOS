@@ -73,6 +73,7 @@
     NSLog(@"Nearby data %@", data);
     self.routes = data;
     [self.tableView reloadData];
+    [self.locationManager stopUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning

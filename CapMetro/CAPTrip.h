@@ -31,6 +31,7 @@
 @property NSString *stopId;
 
 @property CAPTripRealtime *realtime;
-- (id)initWithNextBusAPI:(NSDictionary *)data;
+
+- (void)updateWithNextBusAPI:(NSDictionary *)data;
 
 @end

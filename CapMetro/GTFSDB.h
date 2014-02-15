@@ -11,6 +11,7 @@
 #import <FMDB/FMDatabase.h>
 #import <FMDB/FMDatabaseAdditions.h>
 #import <FMDB/FMResultSet.h>
+#import "CAPStop.h"
 
 #define DEG2RAD(degrees) (degrees * 0.01745327) // degrees * pi over 180
 
@@ -26,5 +27,5 @@
 - (NSArray *)routesForStop:(NSNumber*)stopNumber;
 - (NSArray *)stopsForLocation:(CLLocation *)location andLimit:(int)limit;
 - (NSMutableArray *)routesForLocation:(CLLocation *)location withLimit:(int)limit;
-
+- (NSMutableArray *)stopsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers;
 @end

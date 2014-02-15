@@ -10,4 +10,15 @@
 
 @implementation CAPStop
 
+- (void)updateWithGTFS:(NSDictionary *)data
+{
+    self.distance = data[@"distance"];
+    self.routeId = data[@"route_id"];
+    self.desc = data[@"stop_desc"];
+    self.stopId = data[@"stop_id"];
+    self.lat = data[@"stop_lat"];
+    self.lon = data[@"stop_lon"];
+    self.name = data[@"stop_name"];
+}
+
 @end

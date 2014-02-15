@@ -17,12 +17,12 @@
 
 @implementation CAPNextBus
 
-- (id)initWithStop:(NSString *)stopId
+- (id)initWithStop:(CAPStop *)stop
 {
     self = [super init];
     if (self) {
         self.trips = [[NSMutableArray alloc] init];
-        self.stopId = stopId;
+        self.stop = stop;
         self.userAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25";
     }
     return self;
@@ -43,7 +43,7 @@
     
     NSDictionary *parameters = @{
         // @"routeid": 801,  // optional
-        @"stopid": self.stopId,
+        @"stopid": self.stop.stopId,
         @"opt": @"lol_at_ur_bugs__expose_the_real_api",  // number = json, everything else = xml
         @"output": @"xml",  // NOOP, used to work now use bad input to opt to force xml
     };
@@ -67,7 +67,9 @@
     NSArray *runs = data[@"Runs"][@"Run"];
     
     for (NSDictionary *run in runs) {
-        [self.trips addObject:[[CAPTrip alloc] initWithNextBusAPI:run]];
+        CAPTrip *trip = [[CAPTrip alloc] init];
+        [trip updateWithNextBusAPI:run];
+        [self.trips addObject:trip];
     }
     
     return self.trips;

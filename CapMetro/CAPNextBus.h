@@ -14,11 +14,10 @@
 @interface CAPNextBus : NSObject
 
 @property NSMutableArray *trips;
-@property id stop;
-@property NSString* stopId;
+@property CAPStop *stop;
 @property NSDictionary *nextBusData;
 
-- (id)initWithStop:(NSString *)stopId;
+- (id)initWithStop:(CAPStop *)stop;
 - (id)parseXML:(NSString *)xmlString;
 
 @end
