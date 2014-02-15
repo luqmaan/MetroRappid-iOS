@@ -9,6 +9,7 @@
 #import "NearbyViewController.h"
 #import "GTFSDB.h"
 #import "StopAnnotation.h"
+#import "CAPNextBus.h"
 
 @interface NearbyViewController ()
 
@@ -49,25 +50,25 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     if (nil == self.locationManager)
         self.locationManager = [[CLLocationManager alloc] init];
-    
+
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    
+
     // Set a movement threshold for new events.
     self.locationManager.distanceFilter = 500; // meters
-    
+
     [self.locationManager startUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *userLocation = [locations lastObject];
-    
+    CAPNextBus *nextBus = [[CAPNextBus alloc] initWithStop:@"5868"];
     NSMutableArray *data = [self.gtfs routesForLocation:userLocation withLimit:1000];
     NSLog(@"Nearby data %@", data);
     self.routes = data;
@@ -89,6 +90,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return 1;
     return self.routes.count;
 }
 
@@ -96,19 +98,19 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
-    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
-    UILabel *estTime = (UILabel *)[cell viewWithTag:3];
-    UILabel *schedTime = (UILabel *)[cell viewWithTag:4];
+//
+//    UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
+//    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
+//    UILabel *estTime = (UILabel *)[cell viewWithTag:3];
+//    UILabel *schedTime = (UILabel *)[cell viewWithTag:4];
+//
+//    NSDictionary *data = [self.routes objectAtIndex:indexPath.row];
+//
+//    routeNumber.text = data[@"route_id"];
+//    stopName.text = data[@"stop_name"];
+//    estTime.hidden = YES;
+//    schedTime.hidden = YES;
 
-    NSDictionary *data = [self.routes objectAtIndex:indexPath.row];
-    
-    routeNumber.text = data[@"route_id"];
-    stopName.text = data[@"stop_name"];
-    estTime.hidden = YES;
-    schedTime.hidden = YES;
-    
     return cell;
 }
 
@@ -128,10 +130,10 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 */
 
