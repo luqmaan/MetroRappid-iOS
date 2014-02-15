@@ -42,9 +42,10 @@
     manager.requestSerializer = requestSerializer;
     
     NSDictionary *parameters = @{
+        // @"routeid": 801,  // optional
         @"stopid": self.stopId,
-        @"output": @"xml",
-        @"opt": @2
+        @"opt": @"lol_at_ur_bugs__expose_the_real_api",  // number = json, everything else = xml
+        @"output": @"xml",  // NOOP, used to work now use bad input to opt to force xml
     };
     
     [manager GET:@"http://www.capmetro.org/planner/s_nextbus2.asp"
@@ -66,7 +67,6 @@
     NSArray *runs = data[@"Runs"][@"Run"];
     
     for (NSDictionary *run in runs) {
-        NSLog(@"run %@", run);
         [self.trips addObject:[[CAPTrip alloc] initWithNextBusAPI:run]];
     }
     
