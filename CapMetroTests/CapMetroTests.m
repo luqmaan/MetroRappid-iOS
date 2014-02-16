@@ -42,12 +42,12 @@
     NSLog(@"stops %@", stops);
     
     XCTAssertEqual((NSUInteger)38, stops.count);
-    CAPStop *routet1CongressStop = stops[0];
+    CAPStop *route1CongressStop = stops[0];
     CAPStop *route801WooldrigeStop = stops[2];
-
-    XCTAssertTrue([@"200 CONGRESS/2ND" isEqualToString:routet1CongressStop.name]);
-    XCTAssertTrue([@"WOOLDRIDGE SQUARE STATION (NB)" isEqualToString:route801WooldrigeStop.name]);
-    XCTAssertTrue([@"1" isEqualToString:routet1CongressStop.routeId]);
+    
+    XCTAssertTrue([@"200 Congress/2Nd" isEqualToString:route1CongressStop.name]);
+    XCTAssertTrue([@"Wooldridge Square Station (Nb)" isEqualToString:route801WooldrigeStop.name]);
+    XCTAssertTrue([@"1" isEqualToString:route1CongressStop.routeId]);
     XCTAssertTrue([@"801" isEqualToString:route801WooldrigeStop.routeId]);
 }
 

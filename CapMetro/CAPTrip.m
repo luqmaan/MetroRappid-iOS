@@ -12,7 +12,6 @@
 
 - (void)updateWithNextBusAPI:(NSDictionary *)data
 {
-    NSLog(@"Creating trip");
     self.route = data[@"Route"];
     self.publicRoute = data[@"Publicroute"];
     self.sign = data[@"Sign"];

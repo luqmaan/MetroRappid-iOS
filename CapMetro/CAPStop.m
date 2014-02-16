@@ -18,7 +18,7 @@
     self.stopId = data[@"stop_id"];
     self.lat = data[@"stop_lat"];
     self.lon = data[@"stop_lon"];
-    self.name = data[@"stop_name"];
+    self.name = [data[@"stop_name"] capitalizedString];
 }
 
 @end

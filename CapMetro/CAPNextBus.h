@@ -16,9 +16,12 @@
 @property NSMutableArray *trips;
 @property CAPStop *stop;
 @property NSDictionary *nextBusData;
+@property NSDate *lastUpdated;
+@property (nonatomic, copy) void (^callback)(void);
 
 - (id)initWithStop:(CAPStop *)stop;
 - (id)parseXML:(NSString *)xmlString;
+- (void)startUpdates;
 
 @end
 

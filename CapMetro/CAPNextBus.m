@@ -37,7 +37,7 @@
     [requestSerializer setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
     [requestSerializer setValue:@"application/xml" forHTTPHeaderField:@"Content-type"];
     // The next bus API foolishly thinks it is sending HTML back, not XML
-    responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/xml", @"text/html", nil];
+    responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/xml", @"application/xml", @"text/html", nil];
     manager.responseSerializer = responseSerializer;
     manager.requestSerializer = requestSerializer;
     
@@ -48,12 +48,17 @@
         @"output": @"xml",  // NOOP, used to work now use bad input to opt to force xml
     };
     
-    [manager GET:@"http://www.capmetro.org/planner/s_nextbus2.asp"
+    NSString *url = @"http://www.capmetro.org/planner/s_nextbus2.asp";
+    
+    url = @"http://localhost:1234/CapMetroTests/Data/s_nextbus2/801-realtime.xml";
+    
+    [manager GET:url
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSData *data = (NSData *)responseObject;
              NSString *xml = [NSString stringWithCString:[data bytes] encoding:NSISOLatin1StringEncoding];
              [self parseXML:xml];
+             self.lastUpdated = [NSDate date];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
@@ -70,6 +75,10 @@
         CAPTrip *trip = [[CAPTrip alloc] init];
         [trip updateWithNextBusAPI:run];
         [self.trips addObject:trip];
+    }
+    
+    if (self.callback) {
+        self.callback();
     }
     
     return self.trips;

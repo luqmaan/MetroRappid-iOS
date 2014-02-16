@@ -38,58 +38,63 @@
             </objects>
             <point key="canvasLocation" x="817" y="-215"/>
         </scene>
-        <!--Nearby View Controller-->
+        <!--Nearby View Controller - Nearby Stops-->
         <scene sceneID="mBo-dN-C5W">
             <objects>
                 <tableViewController id="cZh-cL-NUE" customClass="NearbyViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="kfc-3h-y97">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="137" sectionHeaderHeight="22" sectionFooterHeight="22" id="kfc-3h-y97">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="65" id="uBR-PL-eyN">
-                                <rect key="frame" x="0.0" y="86" width="320" height="65"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="137" id="uBR-PL-eyN">
+                                <rect key="frame" x="0.0" y="86" width="320" height="137"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uBR-PL-eyN" id="5U0-V3-8TS">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="801" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="HQi-qX-AhN">
-                                            <rect key="frame" x="20" y="11" width="33" height="24"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="801" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQi-qX-AhN">
+                                            <rect key="frame" x="20" y="11" width="280" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Republic Square Park" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cs3-Bq-21W">
-                                            <rect key="frame" x="20" y="32" width="167" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Republic Square Park" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Cs3-Bq-21W">
+                                            <rect key="frame" x="20" y="28" width="280" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10m sched" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb7-Zn-1El">
-                                            <rect key="frame" x="214" y="11" width="86" height="21"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tT-gv-nqb">
+                                            <rect key="frame" x="20" y="47" width="90" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8m est" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRv-kF-G0A">
-                                            <rect key="frame" x="247" y="30" width="53" height="21"/>
+                                            <state key="normal" title="Load Arrivals">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="loadArrivalsBtnPress:" destination="cZh-cL-NUE" eventType="touchUpInside" id="VQ7-7V-tng"/>
+                                            </connections>
+                                        </button>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="avg-Vo-2pm">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        </progressView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="avg-Vo-2pm" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" id="1gt-uo-0EQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="avg-Vo-2pm" secondAttribute="trailing" id="4Pk-0Q-QoK"/>
                                         <constraint firstItem="Cs3-Bq-21W" firstAttribute="leading" secondItem="5U0-V3-8TS" secondAttribute="leading" constant="20" id="6it-h2-sN0"/>
-                                        <constraint firstItem="cb7-Zn-1El" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" constant="11" id="I08-8U-9bj"/>
+                                        <constraint firstAttribute="trailing" secondItem="HQi-qX-AhN" secondAttribute="trailing" constant="20" id="IAw-mS-ANy"/>
                                         <constraint firstItem="Cs3-Bq-21W" firstAttribute="top" secondItem="HQi-qX-AhN" secondAttribute="bottom" constant="-3" id="Jze-Em-rkG"/>
                                         <constraint firstItem="HQi-qX-AhN" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" constant="11" id="MxO-LQ-j1X"/>
+                                        <constraint firstItem="4tT-gv-nqb" firstAttribute="leading" secondItem="5U0-V3-8TS" secondAttribute="leading" constant="20" id="TFS-lK-lIx"/>
                                         <constraint firstItem="HQi-qX-AhN" firstAttribute="leading" secondItem="5U0-V3-8TS" secondAttribute="leading" constant="20" id="Wq1-OZ-Ngd"/>
-                                        <constraint firstAttribute="trailing" secondItem="HRv-kF-G0A" secondAttribute="trailing" constant="20" id="ftO-mf-aYw"/>
-                                        <constraint firstItem="HRv-kF-G0A" firstAttribute="top" secondItem="cb7-Zn-1El" secondAttribute="bottom" constant="-2" id="mCZ-If-hRp"/>
-                                        <constraint firstAttribute="trailing" secondItem="cb7-Zn-1El" secondAttribute="trailing" constant="20" id="sGO-dS-a5c"/>
+                                        <constraint firstAttribute="trailing" secondItem="Cs3-Bq-21W" secondAttribute="trailing" constant="20" id="hCo-2U-pNL"/>
+                                        <constraint firstItem="4tT-gv-nqb" firstAttribute="top" secondItem="Cs3-Bq-21W" secondAttribute="bottom" constant="-1" id="ujv-Kx-uFi"/>
+                                        <constraint firstItem="avg-Vo-2pm" firstAttribute="leading" secondItem="5U0-V3-8TS" secondAttribute="leading" id="wbN-4v-GWn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -99,7 +104,14 @@
                             <outlet property="delegate" destination="cZh-cL-NUE" id="uze-BD-x1F"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="dcF-cQ-brf"/>
+                    <navigationItem key="navigationItem" title="Nearby Stops" id="dcF-cQ-brf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="bjY-dE-x0M">
+                            <connections>
+                                <action selector="refreshBtnPress:" destination="cZh-cL-NUE" id="GMa-0W-HfE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <attributedString key="userComments">
                         <fragment content="a = nearby stops. b = unique routes at a. c = set of fewest stops that contain all routes.">
                             <attributes>

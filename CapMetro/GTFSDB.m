@@ -198,14 +198,14 @@
 - (NSMutableArray *)stopsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers
 {
     NSString *query = [NSString stringWithFormat:
-        @"SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.stop_id, stop_name, stop_desc, stop_lat, stop_lon, "
+        @"SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, stop_desc, stop_lat, stop_lon, "
         @"       distance(stop_lat, stop_lon, %f, %f) as \"distance\" "
         @"FROM "
         @"  stops, "
-        @"  (SELECT stop_id, route_id, unique_trips.trip_id "
+        @"  (SELECT stop_id, route_id, unique_trips.trip_id, unique_trips.trip_headsign "
         @"   FROM "
         @"     stop_times, "
-        @"     (SELECT trip_id, route_id "
+        @"     (SELECT trip_id, route_id, trip_headsign "
         @"      FROM trips "
         @"      WHERE route_id IN (%@) "
         @"      GROUP BY shape_id "
