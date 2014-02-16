@@ -59,11 +59,13 @@
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     if (indexPath)
     {
-        CAPNextBus *stop = self.stops[indexPath.row];
-        stop.callback = ^void(){
+        CAPNextBus *nb = self.stops[indexPath.row];
+        NSLog(@"Loading arrivals for %@", nb.stop.name);
+        nb.callback = ^void(){
+            NSLog(@"nextBus callback called");
             [self.tableView reloadData];
         };
-        [stop startUpdates];
+        [nb startUpdates];
     }
 }
 
@@ -75,8 +77,6 @@
 
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-
-    // Set a movement threshold for new events.
     self.locationManager.distanceFilter = 500; // meters
 
     [self.locationManager startUpdatingLocation];
@@ -88,7 +88,6 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
                                              (unsigned long)NULL), ^(void) {
-
         NSMutableArray *data = [self.gtfs stopsForRoutes:@[@801, @803] nearLocation:userLocation withinRadius:2.0f];
         [self.stops removeAllObjects];
 
@@ -101,7 +100,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-
     });
 
     [self.locationManager stopUpdatingLocation];
@@ -126,33 +124,38 @@
 
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
+    UILabel *loadError = (UILabel *)[cell viewWithTag:11];
+    UILabel *mainTime, *oldTime;
 
     CAPNextBus *nextBus = [self.stops objectAtIndex:indexPath.row];
 
     routeNumber.text = nextBus.stop.name;
-    stopName.text = nextBus.stop.desc;
+    stopName.text = nextBus.stop.headsign;
     if (nextBus.lastUpdated) {
         if (nextBus.trips.count == 0) {
-        NSLog(@"last updated %@", nextBus.lastUpdated);
-            UILabel *info = [[UILabel alloc] init];
-            info.text = @"No upcoming arrivals";
-            info.layer.position = CGPointMake(cell.layer.position.x + 10.0f, cell.layer.position.y + 10.0f);
-            [cell addSubview:info];
+            loadError.text = @"No upcoming arrivals";
+            loadError.hidden = NO;
             return cell;
         }
+        
+        for (int i = 0; i < 5; i++) {
+            CAPTrip *trip = nextBus.trips[i];
+            if (!trip) break;
+
+            mainTime = (UILabel *)[cell viewWithTag:100 + i];
+            oldTime = (UILabel *)[cell viewWithTag:101 + i];
+            
+            if (trip.realtime.valid) {
+                oldTime.hidden = NO;
+                oldTime.text = trip.tripTime;
+            }
+            mainTime.text = trip.estimatedTime;
+            mainTime.hidden = NO;
+        }
+
     }
 
     return cell;
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-}
-*/
 
 @end

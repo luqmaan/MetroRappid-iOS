@@ -12,11 +12,14 @@
 
 @property NSString *distance;
 @property NSString *routeId;
-@property NSString *desc;
 @property NSString *stopId;
+@property NSString *tripId;
 @property NSString *lat;
 @property NSString *lon;
 @property NSString *name;
+@property NSString *headsign;
+@property NSString *desc;
+
 
 - (void)updateWithGTFS:(NSDictionary *)data;
 

@@ -10,7 +10,7 @@
 
 @interface CAPTripRealtime : NSObject
 
-@property NSString *valid; // FIXME: Use BOOL
+@property (nonatomic, assign) BOOL valid;
 @property NSString *adherence;
 @property NSString *estimatedTime;
 @property NSString *estimatedMinutes;

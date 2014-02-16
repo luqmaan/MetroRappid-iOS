@@ -46,7 +46,7 @@
     CAPStop *route801WooldrigeStop = stops[2];
     
     XCTAssertTrue([@"200 Congress/2Nd" isEqualToString:route1CongressStop.name]);
-    XCTAssertTrue([@"Wooldridge Square Station (Nb)" isEqualToString:route801WooldrigeStop.name]);
+    XCTAssertTrue([@"Wooldridge Square Station" isEqualToString:route801WooldrigeStop.name]);
     XCTAssertTrue([@"1" isEqualToString:route1CongressStop.routeId]);
     XCTAssertTrue([@"801" isEqualToString:route801WooldrigeStop.routeId]);
 }
@@ -71,7 +71,7 @@
     XCTAssertTrue([@"801" isEqualToString:trip1.route]);
     XCTAssertTrue([@"11:19 AM" isEqualToString:trip1.tripTime]);
     XCTAssertTrue([@"11:20 AM" isEqualToString:trip1.estimatedTime]);
-    XCTAssertTrue([@"Y" isEqualToString:trip1Realtime.valid]);
+    XCTAssertTrue(trip1Realtime.valid);
     XCTAssertTrue([@"11:20 AM" isEqualToString:trip1Realtime.estimatedTime]);
     XCTAssertTrue([@"5022" isEqualToString:trip1Realtime.vehicleId]);
 }

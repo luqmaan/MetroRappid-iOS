@@ -14,11 +14,21 @@
 {
     self.distance = data[@"distance"];
     self.routeId = data[@"route_id"];
-    self.desc = data[@"stop_desc"];
     self.stopId = data[@"stop_id"];
     self.lat = data[@"stop_lat"];
     self.lon = data[@"stop_lon"];
-    self.name = [data[@"stop_name"] capitalizedString];
+    self.name = [self formatString:data[@"stop_name"]];
+    self.desc = data[@"stop_desc"];
+    self.headsign = [data[@"trip_headsign"] capitalizedString];
+    NSLog(@"updating with dict %@", data);
+}
+
+- (NSString *)formatString:(NSString *)str {
+    str = [str stringByReplacingOccurrencesOfString:@"(NB)" withString:@""];
+    str = [str stringByReplacingOccurrencesOfString:@"(SB)" withString:@""];
+    str = [str stringByReplacingOccurrencesOfString:@"(EB)" withString:@""];
+    str = [str stringByReplacingOccurrencesOfString:@"(WB)" withString:@""];
+    return [str capitalizedString];
 }
 
 @end

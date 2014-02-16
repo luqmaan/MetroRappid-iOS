@@ -12,7 +12,7 @@
 
 - (void)updateWithNextBusAPI:(NSDictionary *)data
 {
-    self.valid = data[@"Valid"];
+    self.valid = [data[@"Valid"] boolValue];
     self.adherence = data[@"Adherence"];
     self.estimatedTime = data[@"Estimatedtime"];
     self.estimatedMinutes = data[@"Estimatedminutes"];
