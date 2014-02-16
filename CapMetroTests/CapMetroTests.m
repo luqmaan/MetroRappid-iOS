@@ -33,22 +33,48 @@
     [super tearDown];
 }
 
-- (void)testFindNearbyStopsForRoute
+- (void)testFindNearbyLocationsForMultipleRoutes
 {
     GTFSDB *gtfs = [[GTFSDB alloc] init];
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
 
-    NSMutableArray *stops = [gtfs stopsForRoutes:@[@801, @1] nearLocation:loc withinRadius:2.0f];
-    NSLog(@"stops %@", stops);
+    NSMutableArray *locations = [gtfs stopsForRoutes:@[@801, @1] nearLocation:loc withinRadius:1.0f];
+
+    for (CAPLocation *loc in locations) {
+        NSLog(@"%@", loc);
+    }
     
-    XCTAssertEqual((NSUInteger)38, stops.count);
-    CAPStop *route1CongressStop = stops[0];
-    CAPStop *route801WooldrigeStop = stops[2];
+    XCTAssertEqual((NSUInteger)21, locations.count);
+    CAPLocation *route1Congress5th = locations[0];
+    CAPLocation *route801RepublicSquare = locations[7];
+
+    XCTAssertTrue([@"425 Congress/5Th" isEqualToString:route1Congress5th.name]);
+    XCTAssertTrue([@"Republic Square Station" isEqualToString:route801RepublicSquare.name]);
+    XCTAssertTrue([@"1" isEqualToString:route1Congress5th.routeId]);
+    XCTAssertTrue([@"801" isEqualToString:route801RepublicSquare.routeId]);
+
+    XCTAssertEqual((NSUInteger)1, route1Congress5th.stops.count);
+    XCTAssertEqual((NSUInteger)2, route801RepublicSquare.stops.count);
+
+    CAPStop *stop1_1 = route1Congress5th.stops[0];
+    CAPStop *stop801_1 = route801RepublicSquare.stops[0];
+    CAPStop *stop801_2 = route801RepublicSquare.stops[1];
+
+    XCTAssertTrue([@"581" isEqualToString:stop1_1.stopId]);
+    XCTAssertTrue([@"5867" isEqualToString:stop801_1.stopId]);
+    XCTAssertTrue([@"5868" isEqualToString:stop801_2.stopId]);
+}
+
+- (void)testFindNearbyLocationsForUnidirectionalRoute
+{
+    GTFSDB *gtfs = [[GTFSDB alloc] init];
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
     
-    XCTAssertTrue([@"200 Congress/2Nd" isEqualToString:route1CongressStop.name]);
-    XCTAssertTrue([@"Wooldridge Square Station" isEqualToString:route801WooldrigeStop.name]);
-    XCTAssertTrue([@"1" isEqualToString:route1CongressStop.routeId]);
-    XCTAssertTrue([@"801" isEqualToString:route801WooldrigeStop.routeId]);
+    NSMutableArray *locations = [gtfs stopsForRoutes:@[@935] nearLocation:loc withinRadius:1.0f];
+    
+    for (CAPLocation *loc in locations) {
+        XCTAssertEqual((NSUInteger)1, loc.stops.count);
+    }
 }
 
 - (void)testCAPNextBusParseXMLWithRealtimeResponse

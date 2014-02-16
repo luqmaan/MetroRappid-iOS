@@ -225,13 +225,36 @@
     NSLog(@"Executing query %@", query);
     FMResultSet *rs = [self.database executeQuery:query];
     
-    NSMutableArray *data = [[NSMutableArray alloc] init];
+    // FIXME: There has to be a better way to determine if two stops are related.
+    //        Currently use if same route id and same stop name, they are related.
+    NSMutableDictionary *stopsDictWithLocationAsKey = [[NSMutableDictionary alloc] init];
     
     while ([rs next]) {
         CAPStop *stop = [[CAPStop alloc] init];
         [stop updateWithGTFS:[rs resultDictionary]];
-        [data addObject:stop];
+        
+        // Combine stops with the same name, but different directions
+        NSString *key = [NSString stringWithFormat:@"%@ %@", stop.name, stop.routeId];
+        
+        if (!stopsDictWithLocationAsKey[key]) {
+            stopsDictWithLocationAsKey[key] = [[CAPLocation alloc] init];
+        }
+        CAPLocation *location = stopsDictWithLocationAsKey[key];
+
+        [location updateWithStop:stop];
     }
+    
+    NSMutableArray *data = [NSMutableArray arrayWithArray:[stopsDictWithLocationAsKey allValues]];
+
+    // Sort by distance, since grouping by location messed the order up
+    [data sortUsingComparator:^NSComparisonResult(CAPStop* stop1, CAPStop* stop2) {
+        if (stop1.distance > stop2.distance)
+            return (NSComparisonResult)NSOrderedDescending;
+        else if (stop1.distance < stop2.distance)
+            return (NSComparisonResult)NSOrderedAscending;
+        
+        return (NSComparisonResult)NSOrderedSame;
+    }];
     
     return data;
 }
