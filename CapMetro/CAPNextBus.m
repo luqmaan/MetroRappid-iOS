@@ -44,7 +44,7 @@
     NSDictionary *parameters = @{
         // @"routeid": 801,  // optional
         @"stopid": self.stop.stopId,
-        @"opt": @"lol_at_ur_bugs__expose_the_real_api",  // number = json, everything else = xml
+        @"opt": @"lol_at_ur_bugs__plz_expose_the_real_api",  // number = json, everything else = xml
         @"output": @"xml",  // NOOP, used to work now use bad input to opt to force xml
     };
     
