@@ -27,5 +27,5 @@
 - (NSArray *)routesForStop:(NSNumber*)stopNumber;
 - (NSArray *)stopsForLocation:(CLLocation *)location andLimit:(int)limit;
 - (NSMutableArray *)routesForLocation:(CLLocation *)location withLimit:(int)limit;
-- (NSMutableArray *)stopsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers;
+- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers;
 @end

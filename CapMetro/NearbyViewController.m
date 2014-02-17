@@ -15,7 +15,7 @@
 
 @property GTFSDB* gtfs;
 @property CLLocationManager *locationManager;
-@property NSMutableArray *stops;
+@property NSMutableArray *locations;
 
 @end
 
@@ -24,7 +24,7 @@
 - (void)baseInit {
     NSLog(@"table view did load");
     self.gtfs = [[GTFSDB alloc] init];
-    self.stops = [[NSMutableArray alloc] init];
+    self.locations = [[NSMutableArray alloc] init];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -59,13 +59,26 @@
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     if (indexPath)
     {
-        CAPNextBus *nb = self.stops[indexPath.row];
-        NSLog(@"Loading arrivals for %@", nb.stop.name);
+        CAPNextBus *nb = self.locations[indexPath.row];
+        CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
+        NSLog(@"Loading arrivals for %@", activeStop.name);
         nb.callback = ^void(){
             NSLog(@"nextBus callback called");
             [self.tableView reloadData];
         };
         [nb startUpdates];
+    }
+}
+
+- (IBAction)nextStopPress:(id)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    if (indexPath)
+    {
+        NSLog(@"Next stop button pressed %@", indexPath);
+        CAPNextBus *nb = self.locations[indexPath.row];
+        [nb activateNextStop];
+        [self.tableView reloadData];
     }
 }
 
@@ -88,14 +101,14 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
                                              (unsigned long)NULL), ^(void) {
-        NSMutableArray *data = [self.gtfs stopsForRoutes:@[@801, @803] nearLocation:userLocation withinRadius:2.0f];
-        [self.stops removeAllObjects];
+        NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:userLocation withinRadius:2.0f];
+        [self.locations removeAllObjects];
 
-        for (CAPStop *stop in data) {
-            CAPNextBus *nb = [[CAPNextBus alloc] initWithStop:stop];
-            [self.stops addObject:nb];
+        for (CAPLocation *location in data) {
+            CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location];
+            [self.locations addObject:nb];
         }
-        NSLog(@"Got %lu stops", (unsigned long)self.stops.count);
+        NSLog(@"Got %lu locations", (unsigned long)self.locations.count);
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -114,7 +127,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.stops.count;
+    return self.locations.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,10 +140,13 @@
     UILabel *loadError = (UILabel *)[cell viewWithTag:11];
     UILabel *mainTime, *oldTime;
 
-    CAPNextBus *nextBus = [self.stops objectAtIndex:indexPath.row];
+    CAPNextBus *nextBus = [self.locations objectAtIndex:indexPath.row];
+    CAPLocation *location = nextBus.location;
+    CAPStop *activeStop = location.stops[nextBus.activeStopIndex];
 
-    routeNumber.text = nextBus.stop.name;
-    stopName.text = nextBus.stop.headsign;
+    routeNumber.text = location.name;
+    stopName.text = activeStop.headsign;
+
     if (nextBus.lastUpdated) {
         if (nextBus.trips.count == 0) {
             loadError.text = @"No upcoming arrivals";

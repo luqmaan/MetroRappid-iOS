@@ -195,7 +195,7 @@
     return data;
 }
 
-- (NSMutableArray *)stopsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers
+- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers
 {
     NSString *query = [NSString stringWithFormat:
         @"SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, stop_desc, stop_lat, stop_lon, "

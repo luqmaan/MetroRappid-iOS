@@ -33,12 +33,12 @@
     [super tearDown];
 }
 
-- (void)testFindNearbyLocationsForMultipleRoutes
+- (void)testGTFSDB_CanFindNearbyLocationsForMultipleRoutes
 {
     GTFSDB *gtfs = [[GTFSDB alloc] init];
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
 
-    NSMutableArray *locations = [gtfs stopsForRoutes:@[@801, @1] nearLocation:loc withinRadius:1.0f];
+    NSMutableArray *locations = [gtfs locationsForRoutes:@[@801, @1] nearLocation:loc withinRadius:1.0f];
 
     for (CAPLocation *loc in locations) {
         NSLog(@"%@", loc);
@@ -65,19 +65,19 @@
     XCTAssertTrue([@"5868" isEqualToString:stop801_2.stopId]);
 }
 
-- (void)testFindNearbyLocationsForUnidirectionalRoute
+- (void)testGTFSDB_CanFindNearbyLocationsForUnidirectionalRoute
 {
     GTFSDB *gtfs = [[GTFSDB alloc] init];
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
     
-    NSMutableArray *locations = [gtfs stopsForRoutes:@[@935] nearLocation:loc withinRadius:1.0f];
+    NSMutableArray *locations = [gtfs locationsForRoutes:@[@935] nearLocation:loc withinRadius:1.0f];
     
     for (CAPLocation *loc in locations) {
         XCTAssertEqual((NSUInteger)1, loc.stops.count);
     }
 }
 
-- (void)testCAPNextBusParseXMLWithRealtimeResponse
+- (void)testCAPNextBus_CanParseXMLWithRealtimeResponse
 {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"801-realtime" ofType:@"xml"];
@@ -86,7 +86,7 @@
     NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (error) { XCTFail(@"Reading XML failed %@", error); }
    
-    CAPNextBus *nextBus = [[CAPNextBus alloc] initWithStop:nil];
+    CAPNextBus *nextBus = [[CAPNextBus alloc] initWithLocation:nil];
     [nextBus parseXML:xmlString];
     
     XCTAssertEqual((NSUInteger)12, nextBus.trips.count);
