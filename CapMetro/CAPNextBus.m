@@ -21,7 +21,6 @@
 {
     self = [super init];
     if (self) {
-        self.trips = [[NSMutableArray alloc] init];
         self.location = location;
         self.activeStopIndex = 0;
         self.userAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25";
@@ -58,23 +57,25 @@
     };
     
     NSString *url = @"http://www.capmetro.org/planner/s_nextbus2.asp";
-    url = @"http://localhost:1234/CapMetroTests/Data/s_nextbus2/801-realtime.xml";
+//    url = @"http://localhost:1234/CapMetroTests/Data/s_nextbus2/801-realtime.xml";
     
     [manager GET:url
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSData *data = (NSData *)responseObject;
              NSString *xml = [NSString stringWithCString:[data bytes] encoding:NSISOLatin1StringEncoding];
-             [self parseXML:xml];
-             self.lastUpdated = [NSDate date];
+             [self parseXML:xml forStop:activeStop];
+             activeStop.lastUpdated = [NSDate date];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
          }];
 }
 
-- (id)parseXML:(NSString *)xmlString
+- (id)parseXML:(NSString *)xmlString forStop:(CAPStop *)stop
 {
+    // pass stop because activeStop may change before parseXML is called
+
     NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLString:xmlString];
     NSDictionary *data = xmlDict[@"soap:Body"][@"Nextbus2Response"];
     NSArray *runs = data[@"Runs"][@"Run"];
@@ -82,14 +83,14 @@
     for (NSDictionary *run in runs) {
         CAPTrip *trip = [[CAPTrip alloc] init];
         [trip updateWithNextBusAPI:run];
-        [self.trips addObject:trip];
+        [stop.trips addObject:trip];
     }
     
     if (self.callback) {
         self.callback();
     }
     
-    return self.trips;
+    return stop.trips;
 }
 
 @end

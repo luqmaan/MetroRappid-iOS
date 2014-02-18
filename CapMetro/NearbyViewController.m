@@ -78,6 +78,7 @@
         NSLog(@"Next stop button pressed %@", indexPath);
         CAPNextBus *nb = self.locations[indexPath.row];
         [nb activateNextStop];
+        [nb startUpdates];
         [self.tableView reloadData];
     }
 }
@@ -101,7 +102,7 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
                                              (unsigned long)NULL), ^(void) {
-        NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:userLocation withinRadius:2.0f];
+        NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:userLocation withinRadius:200.0f];
         [self.locations removeAllObjects];
 
         for (CAPLocation *location in data) {
@@ -138,7 +139,6 @@
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
     UILabel *loadError = (UILabel *)[cell viewWithTag:11];
-    UILabel *mainTime, *oldTime;
 
     CAPNextBus *nextBus = [self.locations objectAtIndex:indexPath.row];
     CAPLocation *location = nextBus.location;
@@ -147,17 +147,19 @@
     routeNumber.text = location.name;
     stopName.text = activeStop.headsign;
 
-    if (nextBus.lastUpdated) {
-        if (nextBus.trips.count == 0) {
+    if (activeStop.lastUpdated) {
+        if (activeStop.trips.count == 0) {
+            NSLog(@"No trips for %@", activeStop.trips);
             loadError.text = @"No upcoming arrivals";
             loadError.hidden = NO;
             return cell;
         }
         
         for (int i = 0; i < 5; i++) {
-            CAPTrip *trip = nextBus.trips[i];
+            CAPTrip *trip = activeStop.trips[i];
             if (!trip) break;
-
+            
+            UILabel *mainTime, *oldTime;
             mainTime = (UILabel *)[cell viewWithTag:100 + i];
             oldTime = (UILabel *)[cell viewWithTag:101 + i];
             
@@ -171,6 +173,7 @@
 
     }
 
+    NSLog(@"%d %d %@", (int)indexPath.section, (int)indexPath.row, activeStop.trips);
     return cell;
 }
 

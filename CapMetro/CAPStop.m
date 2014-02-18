@@ -10,6 +10,15 @@
 
 @implementation CAPStop
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.trips = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (void)updateWithGTFS:(NSDictionary *)data
 {
     self.distance = [data[@"distance"] floatValue];
@@ -34,7 +43,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Stop: %@ %@ - %@ %@>", self.routeId, self.name, self.headsign, self.stopId];
+    return [NSString stringWithFormat:@"<Stop: %@ %@ - %@ %@ with %d trips>", self.routeId, self.name, self.headsign, self.stopId, (int)self.trips.count];
 }
 
 @end

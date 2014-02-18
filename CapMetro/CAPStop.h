@@ -20,6 +20,9 @@
 @property NSString *name;
 @property NSString *headsign;
 @property NSString *desc;
+/** Array of CAPTrips */
+@property NSMutableArray *trips;
+@property NSDate *lastUpdated;
 
 - (void)updateWithGTFS:(NSDictionary *)data;
 
