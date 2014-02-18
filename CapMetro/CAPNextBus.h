@@ -17,7 +17,8 @@
 /** The index of the active stop inside of stops */
 @property (nonatomic, assign) int activeStopIndex;
 @property NSDictionary *nextBusData;
-@property (nonatomic, copy) void (^callback)(void);
+@property (nonatomic, copy) void (^completedCallback)(void);
+@property (nonatomic, copy) void (^progressCallback)(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead);
 
 - (id)initWithLocation:(CAPLocation *)location;
 - (id)parseXML:(NSString *)xmlString forStop:(CAPStop *)stop;

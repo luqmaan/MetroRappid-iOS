@@ -40,6 +40,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     AFHTTPRequestSerializer * requestSerializer = [AFHTTPRequestSerializer serializer];
     AFHTTPResponseSerializer * responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFHTTPRequestOperation *operation;
     
     [requestSerializer setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
     [requestSerializer setValue:@"application/xml" forHTTPHeaderField:@"Content-type"];
@@ -57,9 +58,9 @@
     };
     
     NSString *url = @"http://www.capmetro.org/planner/s_nextbus2.asp";
-    url = @"http://localhost:1234/CapMetroTests/Data/s_nextbus2/801-realtime.xml";
+//    url = @"http://localhost:1234/CapMetroTests/Data/s_nextbus2/801-realtime.xml";
     
-    [manager GET:url
+    operation = [manager GET:url
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSData *data = (NSData *)responseObject;
@@ -70,6 +71,7 @@
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
          }];
+    [operation setDownloadProgressBlock:self.progressCallback];
 }
 
 - (id)parseXML:(NSString *)xmlString forStop:(CAPStop *)stop
@@ -86,8 +88,8 @@
         [stop.trips addObject:trip];
     }
     
-    if (self.callback) {
-        self.callback();
+    if (self.completedCallback) {
+        self.completedCallback();
     }
     
     return stop.trips;

@@ -62,8 +62,18 @@
         CAPNextBus *nb = self.locations[indexPath.row];
         CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
         NSLog(@"Loading arrivals for %@", activeStop.name);
-        nb.callback = ^void(){
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
+        progressView.progress = 0.0f;
+        progressView.hidden = NO;
+        nb.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
+        {
+            progressView.progress = totalBytesExpectedToRead / totalBytesExpectedToRead;
+        };
+        
+        nb.completedCallback = ^void(){
             NSLog(@"nextBus callback called");
+            progressView.hidden = YES;
             [self.tableView reloadData];
         };
         [nb startUpdates];
@@ -78,7 +88,6 @@
         NSLog(@"Next stop button pressed %@", indexPath);
         CAPNextBus *nb = self.locations[indexPath.row];
         [nb activateNextStop];
-        [nb startUpdates];
         [self.tableView reloadData];
     }
 }
