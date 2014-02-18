@@ -29,7 +29,8 @@
     self.name = [self formatString:data[@"stop_name"]];
     self.desc = data[@"stop_desc"];
     self.headsign = [data[@"trip_headsign"] capitalizedString];
-    self.stopSequence = data[@"stop_sequence"];
+    self.stopSequence = [data[@"stop_sequence"] intValue];
+    self.directionId = [data[@"direction_id"] intValue];
 }
 
 - (NSString *)formatString:(NSString *)str

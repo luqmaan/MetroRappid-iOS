@@ -48,6 +48,7 @@
     CAPLocation *route1Congress5th = locations[0];
     CAPLocation *route801RepublicSquare = locations[7];
 
+    // FIXME: Add proper values
     XCTAssertTrue([@"425 Congress/5Th" isEqualToString:route1Congress5th.name]);
     XCTAssertTrue([@"Republic Square Station" isEqualToString:route801RepublicSquare.name]);
     XCTAssertTrue([@"1" isEqualToString:route1Congress5th.routeId]);

@@ -50,10 +50,6 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)refreshBtnPress:(id)sender {
-    [self.locationManager startUpdatingLocation];
-}
-
 - (IBAction)loadArrivalsBtnPress:(id)sender {
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
@@ -121,7 +117,21 @@
         NSLog(@"Got %lu locations", (unsigned long)self.locations.count);
 
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             [self.tableView reloadData];
+            
+            // Scroll to the nearest stop
+            NSIndexPath *nearestStopIndexPath;
+            int i = 0;
+            while (i < self.locations.count) {
+                CAPNextBus *nb = self.locations[i];
+                if (nb.location.distanceIndex == 0) {
+                    nearestStopIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                    break;
+                }
+                i++;
+            }
+            [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         });
     });
 
@@ -161,10 +171,17 @@
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
     UILabel *loadError = (UILabel *)[cell viewWithTag:11];
-
+    UIView *routeIndicator = (UIView *)[cell viewWithTag:21];
+    UIView *proximityIndicator = (UIView *)[cell viewWithTag:22];
+    
     routeNumber.text = location.name;
     stopName.text = activeStop.headsign;
-
+    
+    proximityIndicator.layer.cornerRadius = 6.0f;
+    proximityIndicator.layer.backgroundColor = [[UIColor whiteColor] CGColor];
+    proximityIndicator.layer.borderColor = [[UIColor grayColor] CGColor];
+    proximityIndicator.layer.borderWidth = 3.0f;
+    
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
         if (activeStop.trips.count == 0) {
             NSLog(@"No trips for %@", activeStop.trips);
@@ -174,8 +191,9 @@
         }
         
         for (int i = 0; i < 5; i++) {
+            if (i >= activeStop.trips.count) break;
+            
             CAPTrip *trip = activeStop.trips[i];
-            if (!trip) break;
             UILabel *mainTime, *oldTime;
             mainTime = (UILabel *)[cell viewWithTag:100 + i];
             oldTime = (UILabel *)[cell viewWithTag:101 + i];
@@ -190,8 +208,21 @@
 
     }
 
-    NSLog(@"%d %d %@", (int)indexPath.section, (int)indexPath.row, activeStop.trips);
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    CAPNextBus *nextBus = self.locations[indexPath.row];
+    CAPLocation *location = nextBus.location;
+    CAPStop *stop = location.stops[nextBus.activeStopIndex];
+    
+    NSLog(@"calculating height %@", stop.lastUpdated);
+    if (stop.lastUpdated) {
+        return 190.0f;
+    }
+    else return 120.0f;
 }
 
 @end

@@ -65,8 +65,8 @@
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSData *data = (NSData *)responseObject;
              NSString *xml = [NSString stringWithCString:[data bytes] encoding:NSISOLatin1StringEncoding];
-             [self parseXML:xml forStop:activeStop];
              activeStop.lastUpdated = [NSDate date];
+             [self parseXML:xml forStop:activeStop];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);

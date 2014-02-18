@@ -246,23 +246,57 @@
     
     NSMutableArray *data = [NSMutableArray arrayWithArray:[stopsDictWithLocationAsKey allValues]];
 
-    // Sort by distance, since grouping by location messed the order up
+    [self sortStopsByDirectionForLocations:data];
+    
+    // Add an indicator of closeness to the location
     [self sortLocationsByDistance:data];
+    int distanceIndex = 0;
+    for (CAPLocation *location in data) {
+        location.distanceIndex = distanceIndex;
+        distanceIndex++;
+    }
+
+    // Sort by stopSequence, North to South
+    [self sortLocations:data byStopSequenceInDirection:0];
     
     return data;
 }
 
-- (void)sortLocationsByDistance:(NSMutableArray *)stops
+- (void)sortStopsByDirectionForLocations:(NSMutableArray *)locations
 {
-    [stops sortUsingComparator:^NSComparisonResult(CAPLocation* stop1, CAPLocation* stop2) {
-        if (stop1.distance > stop2.distance)
+    // sort all location.stops by direction, so that they can be accessed with direction as index
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"directionId" ascending:YES];
+    for (CAPLocation *location in locations) {
+        [location.stops sortUsingDescriptors:@[sortDescriptor]];
+    }
+}
+    
+- (void)sortLocationsByDistance:(NSMutableArray *)locations
+{
+    [locations sortUsingComparator:^NSComparisonResult(CAPLocation* location1, CAPLocation* location2) {
+        if (location1.distance > location2.distance)
             return (NSComparisonResult)NSOrderedDescending;
-        else if (stop1.distance < stop2.distance)
+        else if (location1.distance < location2.distance)
             return (NSComparisonResult)NSOrderedAscending;
         
         return (NSComparisonResult)NSOrderedSame;
     }];
 }
 
+- (void)sortLocations:(NSMutableArray *)locations byStopSequenceInDirection:(int)direction
+{
+    // Make sure to call sortStopsByDirectionForLocations:(NSMutableArray *)locations first
+    [locations sortUsingComparator:^NSComparisonResult(CAPLocation* location1, CAPLocation* location2) {
+        CAPStop *stop1 = location1.stops[direction];
+        CAPStop *stop2 = location2.stops[direction];
+        
+        if (stop1.stopSequence > stop2.stopSequence)
+            return (NSComparisonResult)NSOrderedDescending;
+        else if (stop1.stopSequence < stop2.stopSequence)
+            return (NSComparisonResult)NSOrderedAscending;
+        
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+}
 
 @end

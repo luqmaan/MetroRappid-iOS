@@ -11,7 +11,6 @@
 
 @interface NearbyViewController : UITableViewController <CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
 
-- (IBAction)refreshBtnPress:(id)sender;
 - (IBAction)loadArrivalsBtnPress:(id)sender;
 - (IBAction)nextStopPress:(id)sender;
 

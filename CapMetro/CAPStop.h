@@ -20,7 +20,9 @@
 @property NSString *name;
 @property NSString *headsign;
 @property NSString *desc;
-@property NSString *stopSequence;
+@property (nonatomic, assign) int stopSequence;
+/** Always 0 or 1, for Austin */
+@property (nonatomic, assign) int directionId;
 /** Array of CAPTrips */
 @property NSMutableArray *trips;
 @property NSDate *lastUpdated;
@@ -42,6 +44,8 @@
 @property NSMutableArray *stopIds;
 @property NSString *name;
 @property NSString *routeId;
+/** Index as a number relative to other locations, 0 being closest. */
+@property (nonatomic, assign) int distanceIndex;
 @property (nonatomic, assign) float distance;
 
 @end
