@@ -57,7 +57,7 @@
     };
     
     NSString *url = @"http://www.capmetro.org/planner/s_nextbus2.asp";
-//    url = @"http://localhost:1234/CapMetroTests/Data/s_nextbus2/801-realtime.xml";
+    url = @"http://localhost:1234/CapMetroTests/Data/s_nextbus2/801-realtime.xml";
     
     [manager GET:url
       parameters:parameters

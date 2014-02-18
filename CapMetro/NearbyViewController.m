@@ -133,21 +133,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    
+    static NSString *CellIdentifier;
+
+    CAPNextBus *nextBus = [self.locations objectAtIndex:indexPath.row];
+    CAPLocation *location = nextBus.location;
+    CAPStop *activeStop = location.stops[nextBus.activeStopIndex];
+    
+    if (activeStop.lastUpdated) {
+        CellIdentifier = @"TripsCell";
+    }
+    else {
+        CellIdentifier = @"Cell";
+    }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
     UILabel *loadError = (UILabel *)[cell viewWithTag:11];
 
-    CAPNextBus *nextBus = [self.locations objectAtIndex:indexPath.row];
-    CAPLocation *location = nextBus.location;
-    CAPStop *activeStop = location.stops[nextBus.activeStopIndex];
-
     routeNumber.text = location.name;
     stopName.text = activeStop.headsign;
 
-    if (activeStop.lastUpdated) {
+    if ([CellIdentifier isEqualToString:@"TripsCell"]) {
         if (activeStop.trips.count == 0) {
             NSLog(@"No trips for %@", activeStop.trips);
             loadError.text = @"No upcoming arrivals";
@@ -158,7 +167,6 @@
         for (int i = 0; i < 5; i++) {
             CAPTrip *trip = activeStop.trips[i];
             if (!trip) break;
-            
             UILabel *mainTime, *oldTime;
             mainTime = (UILabel *)[cell viewWithTag:100 + i];
             oldTime = (UILabel *)[cell viewWithTag:101 + i];
