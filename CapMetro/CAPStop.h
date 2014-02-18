@@ -20,6 +20,7 @@
 @property NSString *name;
 @property NSString *headsign;
 @property NSString *desc;
+@property NSString *stopSequence;
 /** Array of CAPTrips */
 @property NSMutableArray *trips;
 @property NSDate *lastUpdated;

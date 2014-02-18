@@ -198,11 +198,11 @@
 - (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers
 {
     NSString *query = [NSString stringWithFormat:
-        @"SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, stop_desc, stop_lat, stop_lon, "
-        @"       distance(stop_lat, stop_lon, %f, %f) as \"distance\" "
+        @"SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, "
+        @"       stop_desc, stop_lat, stop_lon, unique_stops.stop_sequence, distance(stop_lat, stop_lon, %f, %f) as \"distance\" "
         @"FROM "
         @"  stops, "
-        @"  (SELECT stop_id, route_id, unique_trips.trip_id, unique_trips.trip_headsign "
+        @"  (SELECT stop_id, route_id, stop_sequence, unique_trips.trip_id, unique_trips.trip_headsign "
         @"   FROM "
         @"     stop_times, "
         @"     (SELECT trip_id, route_id, trip_headsign "
@@ -213,7 +213,7 @@
         @"   WHERE stop_times.trip_id = unique_trips.trip_id "
         @"   GROUP BY stop_id) AS unique_stops "
         @"WHERE stops.stop_id = unique_stops.stop_id "
-        @"AND distance(stop_lat, stop_lon, %f, %f) < %f",
+        @"AND distance(stop_lat, stop_lon, %f, %f) < %f ",
             location.coordinate.latitude,
             location.coordinate.longitude,
             [routes componentsJoinedByString:@","],
@@ -247,7 +247,14 @@
     NSMutableArray *data = [NSMutableArray arrayWithArray:[stopsDictWithLocationAsKey allValues]];
 
     // Sort by distance, since grouping by location messed the order up
-    [data sortUsingComparator:^NSComparisonResult(CAPStop* stop1, CAPStop* stop2) {
+    [self sortLocationsByDistance:data];
+    
+    return data;
+}
+
+- (void)sortLocationsByDistance:(NSMutableArray *)stops
+{
+    [stops sortUsingComparator:^NSComparisonResult(CAPLocation* stop1, CAPLocation* stop2) {
         if (stop1.distance > stop2.distance)
             return (NSComparisonResult)NSOrderedDescending;
         else if (stop1.distance < stop2.distance)
@@ -255,8 +262,6 @@
         
         return (NSComparisonResult)NSOrderedSame;
     }];
-    
-    return data;
 }
 
 

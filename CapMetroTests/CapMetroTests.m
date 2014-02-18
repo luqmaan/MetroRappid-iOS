@@ -60,6 +60,8 @@
     CAPStop *stop801_1 = route801RepublicSquare.stops[0];
     CAPStop *stop801_2 = route801RepublicSquare.stops[1];
 
+    NSLog(@"stop801 %@ %@", stop801_1, stop801_2);
+    
     XCTAssertTrue([@"581" isEqualToString:stop1_1.stopId]);
     XCTAssertTrue([@"5867" isEqualToString:stop801_1.stopId]);
     XCTAssertTrue([@"5868" isEqualToString:stop801_2.stopId]);
@@ -86,12 +88,13 @@
     NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (error) { XCTFail(@"Reading XML failed %@", error); }
    
-    CAPNextBus *nextBus = [[CAPNextBus alloc] initWithLocation:nil];
-    [nextBus parseXML:xmlString];
+    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil];
+    CAPStop *mockStop = [[CAPStop alloc] init];
+    [mockNextBus parseXML:xmlString forStop:mockStop];
     
-    XCTAssertEqual((NSUInteger)12, nextBus.trips.count);
+    XCTAssertEqual((NSUInteger)12, mockStop.trips.count);
 
-    CAPTrip *trip1 = nextBus.trips[0];
+    CAPTrip *trip1 = mockStop.trips[0];
     CAPTripRealtime *trip1Realtime = trip1.realtime;
     
     XCTAssertTrue([@"801" isEqualToString:trip1.route]);
