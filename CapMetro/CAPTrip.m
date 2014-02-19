@@ -34,4 +34,9 @@
     self.stopId = data[@"Stopid"];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<Trip: %@ scheduled: %@, estimated: %@, realtime: %@>", self.tripId, self.tripTime, self.estimatedTime, self.realtime.valid ? @"true" : @"false"];
+}
+
 @end

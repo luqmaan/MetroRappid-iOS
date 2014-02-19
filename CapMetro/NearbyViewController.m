@@ -16,6 +16,7 @@
 @property GTFSDB* gtfs;
 @property CLLocationManager *locationManager;
 @property NSMutableArray *locations;
+@property CAAnimationGroup *pulseAnimationGroup;
 
 @end
 
@@ -25,6 +26,23 @@
     NSLog(@"table view did load");
     self.gtfs = [[GTFSDB alloc] init];
     self.locations = [[NSMutableArray alloc] init];
+    
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
+    scaleAnimation.duration = 3.0;
+    scaleAnimation.fromValue = [NSNumber numberWithFloat:2.0];
+    scaleAnimation.toValue = [NSNumber numberWithFloat:15.0];
+    
+    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    opacityAnimation.duration = 0.4;
+    opacityAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    opacityAnimation.toValue = [NSNumber numberWithFloat:1.3];
+    
+    self.pulseAnimationGroup = [CAAnimationGroup animation];
+
+    self.pulseAnimationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    self.pulseAnimationGroup.autoreverses = YES;
+    self.pulseAnimationGroup.repeatCount = INFINITY;
+    self.pulseAnimationGroup.animations = @[scaleAnimation, opacityAnimation];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -55,24 +73,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     if (indexPath)
     {
-        CAPNextBus *nb = self.locations[indexPath.row];
-        CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
-        NSLog(@"Loading arrivals for %@", activeStop.name);
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
-        progressView.progress = 0.0f;
-        progressView.hidden = NO;
-        nb.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
-        {
-            progressView.progress = totalBytesExpectedToRead / totalBytesExpectedToRead;
-        };
-        
-        nb.completedCallback = ^void(){
-            NSLog(@"nextBus callback called");
-            progressView.hidden = YES;
-            [self.tableView reloadData];
-        };
-        [nb startUpdates];
+        [self loadArrivalsForCellAtIndexPath:indexPath];
     }
 }
 
@@ -86,6 +87,29 @@
         [nb activateNextStop];
         [self.tableView reloadData];
     }
+}
+
+- (void)loadArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    CAPNextBus *nb = self.locations[indexPath.row];
+    CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
+    NSLog(@"Loading arrivals for %@", activeStop.name);
+
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
+    progressView.progress = 0.0f;
+    progressView.hidden = NO;
+    nb.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
+    {
+        progressView.progress = totalBytesExpectedToRead / totalBytesExpectedToRead;
+    };
+    
+    nb.completedCallback = ^void(){
+        NSLog(@"nextBus callback called");
+        progressView.hidden = YES;
+        [self.tableView reloadData];
+    };
+    [nb startUpdates];
 }
 
 - (void)viewDidLoad
@@ -131,11 +155,11 @@
                 }
                 i++;
             }
+            [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
             [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         });
     });
 
-    [self.locationManager stopUpdatingLocation];
 }
 
 #pragma mark - Table view data source
@@ -184,6 +208,10 @@
     if (location.distanceIndex == 0) {
         proximityIndicator.layer.backgroundColor = [[UIColor colorWithHue:0.564 saturation:0.688 brightness:0.980 alpha:1] CGColor];
         proximityIndicator.layer.borderColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
+        NSLog(@"%@ %@", proximityIndicator.layer.animationKeys, [proximityIndicator.layer.animationKeys containsObject:@"pulse"] ? @"true" : @"false");
+        if (![proximityIndicator.layer.animationKeys containsObject:@"pulse"]) {
+            [proximityIndicator.layer addAnimation:self.pulseAnimationGroup forKey:@"pulse"];
+        }
     }
     
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
@@ -194,17 +222,21 @@
             return cell;
         }
         
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             if (i >= activeStop.trips.count) break;
             
             CAPTrip *trip = activeStop.trips[i];
             UILabel *mainTime, *oldTime;
-            mainTime = (UILabel *)[cell viewWithTag:100 + i];
-            oldTime = (UILabel *)[cell viewWithTag:101 + i];
+            mainTime = (UILabel *)[cell viewWithTag:100 + (i * 2)];
+            oldTime = (UILabel *)[cell viewWithTag:101 + (i * 2)];
             
             if (trip.realtime.valid) {
-                oldTime.hidden = NO;
-                oldTime.text = trip.tripTime;
+                mainTime.textColor = [UIColor colorWithHue:0.365 saturation:0.787 brightness:0.424 alpha:1];
+                if (![trip.estimatedTime isEqualToString:trip.tripTime]) {
+                    oldTime.hidden = NO;
+                    oldTime.text = trip.tripTime;
+
+                }
             }
             mainTime.text = trip.estimatedTime;
             mainTime.hidden = NO;
@@ -222,7 +254,6 @@
     CAPLocation *location = nextBus.location;
     CAPStop *stop = location.stops[nextBus.activeStopIndex];
     
-    NSLog(@"calculating height %@", stop.lastUpdated);
     if (stop.lastUpdated) {
         return 190.0f;
     }

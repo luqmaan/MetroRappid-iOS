@@ -87,7 +87,10 @@
         [trip updateWithNextBusAPI:run];
         [stop.trips addObject:trip];
     }
-    
+//    
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"tripTime" ascending:YES];
+//    [stop.trips sortedArrayWithOptions:<#(NSSortOptions)#> usingComparator:<#^NSComparisonResult(id obj1, id obj2)cmptr#>]
+
     if (self.completedCallback) {
         self.completedCallback();
     }
