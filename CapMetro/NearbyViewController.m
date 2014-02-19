@@ -178,9 +178,13 @@
     stopName.text = activeStop.headsign;
     
     proximityIndicator.layer.cornerRadius = 6.0f;
+    proximityIndicator.layer.borderWidth = 2.0f;
     proximityIndicator.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     proximityIndicator.layer.borderColor = [[UIColor grayColor] CGColor];
-    proximityIndicator.layer.borderWidth = 3.0f;
+    if (location.distanceIndex == 0) {
+        proximityIndicator.layer.backgroundColor = [[UIColor colorWithHue:0.564 saturation:0.688 brightness:0.980 alpha:1] CGColor];
+        proximityIndicator.layer.borderColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
+    }
     
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
         if (activeStop.trips.count == 0) {
