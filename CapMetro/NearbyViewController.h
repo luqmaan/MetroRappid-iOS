@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
 
-@interface NearbyViewController : UITableViewController <CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface NearbyViewController : UITableViewController
 
 - (IBAction)loadArrivalsBtnPress:(id)sender;
 - (IBAction)nextStopPress:(id)sender;

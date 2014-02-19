@@ -6,12 +6,14 @@
 //  Copyright (c) 2014 Luq. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
+
 #import "NearbyViewController.h"
 #import "GTFSDB.h"
 #import "StopAnnotation.h"
 #import "CAPNextBus.h"
 
-@interface NearbyViewController ()
+@interface NearbyViewController () <CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property GTFSDB* gtfs;
 @property CLLocationManager *locationManager;
@@ -23,7 +25,6 @@
 @implementation NearbyViewController
 
 - (void)baseInit {
-    NSLog(@"table view did load");
     self.gtfs = [[GTFSDB alloc] init];
     self.locations = [[NSMutableArray alloc] init];
     
@@ -33,9 +34,9 @@
     scaleAnimation.toValue = [NSNumber numberWithFloat:15.0];
     
     CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    opacityAnimation.duration = 0.4;
+    opacityAnimation.duration = 1.5;
     opacityAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-    opacityAnimation.toValue = [NSNumber numberWithFloat:1.3];
+    opacityAnimation.toValue = [NSNumber numberWithFloat:1.5];
     
     self.pulseAnimationGroup = [CAAnimationGroup animation];
 
@@ -68,6 +69,19 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    if (nil == self.locationManager)
+        self.locationManager = [[CLLocationManager alloc] init];
+    
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    self.locationManager.distanceFilter = 500; // meters
+    
+    [self.locationManager startUpdatingLocation];
+}
+
 - (IBAction)loadArrivalsBtnPress:(id)sender {
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
@@ -88,6 +102,8 @@
         [self.tableView reloadData];
     }
 }
+
+#pragma mark - Data
 
 - (void)loadArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -112,18 +128,7 @@
     [nb startUpdates];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    if (nil == self.locationManager)
-        self.locationManager = [[CLLocationManager alloc] init];
-
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    self.locationManager.distanceFilter = 500; // meters
-
-    [self.locationManager startUpdatingLocation];
-}
+#pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
@@ -162,7 +167,7 @@
 
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -246,6 +251,8 @@
 
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
