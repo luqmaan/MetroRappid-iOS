@@ -168,7 +168,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     static NSString *CellIdentifier;
     
     CAPNextBus *nextBus = [self.locations objectAtIndex:indexPath.row];
@@ -198,33 +197,27 @@
     proximityIndicator.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     proximityIndicator.layer.borderColor = [[UIColor grayColor] CGColor];
     
-    UISwipeGestureRecognizer *recognizerLeft;
-    recognizerLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwipeLeft:)];
-    recognizerLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-    [tableView addGestureRecognizer:recognizerLeft];
+    if (location.distanceIndex == 0) {
+        UIView *proximityIndicatorOuter = (UIView *)[cell viewWithTag:24];
+        
+        NSLog(@"Showing proximity indcator %@ %@", (proximityIndicatorOuter.hidden ? @"hidden" : @"visible"), proximityIndicatorOuter);
+        proximityIndicator.layer.borderColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
+        
+        
+        proximityIndicatorOuter.hidden = NO;
+        //            proximityIndicatorOuter.layer.borderColor = [[UIColor redColor] CGColor];
+        proximityIndicatorOuter.layer.backgroundColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
+        proximityIndicatorOuter.layer.cornerRadius = 6.0f;
+        
+        [proximityIndicatorOuter.layer addAnimation:self.pulseAnimationGroup forKey:@"pulse"];
+    }
 
     UISwipeGestureRecognizer *recognizerRight;
-    recognizerRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwipeRight:)];
-    recognizerRight.direction = UISwipeGestureRecognizerDirectionRight;
+    recognizerRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLocationDirection:)];
+    recognizerRight.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
     [tableView addGestureRecognizer:recognizerRight];
 
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
-
-        if (location.distanceIndex == 0) {
-            
-            UIView *proximityIndicatorOuter = (UIView *)[cell viewWithTag:24];
-            
-            NSLog(@"Showing proximity indcator %@ %@", (proximityIndicatorOuter.hidden ? @"hidden" : @"visible"), proximityIndicatorOuter);
-            proximityIndicator.layer.borderColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
-
-            
-            proximityIndicatorOuter.hidden = NO;
-//            proximityIndicatorOuter.layer.borderColor = [[UIColor redColor] CGColor];
-            proximityIndicatorOuter.layer.backgroundColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
-            proximityIndicatorOuter.layer.cornerRadius = 6.0f;
-
-            [proximityIndicatorOuter.layer addAnimation:self.pulseAnimationGroup forKey:@"pulse"];
-        }
         
         if (activeStop.trips.count == 0) {
             NSLog(@"No trips for %@", activeStop.trips);
@@ -273,9 +266,14 @@
     else return 90.0f;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    [self loadArrivalsForCellAtIndexPath:indexPath];
+}
+
 #pragma mark - UIGestureRecognizerDelegate
 
-- (void) cellSwipeLeft:(UISwipeGestureRecognizer *)gesture {
+- (void) swipeLocationDirection:(UISwipeGestureRecognizer *)gesture {
     CGPoint location = [gesture locationInView:self.tableView];
     
     NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
@@ -284,14 +282,6 @@
         [nb activateNextStop];
         [self.tableView reloadData];
         //        [self loadArrivalsForCellAtIndexPath:swipedIndexPath];
-    }
-}
-- (void) cellSwipeRight:(UISwipeGestureRecognizer *)gesture {
-    CGPoint location = [gesture locationInView:self.tableView];
-    
-    NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
-    if (swipedIndexPath) {
-        [self loadArrivalsForCellAtIndexPath:swipedIndexPath];
     }
 }
 
