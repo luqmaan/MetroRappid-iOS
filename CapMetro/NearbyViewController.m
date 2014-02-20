@@ -85,27 +85,6 @@
     [self.locationManager startUpdatingLocation];
 }
 
-- (IBAction)loadArrivalsBtnPress:(id)sender {
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    if (indexPath)
-    {
-        [self loadArrivalsForCellAtIndexPath:indexPath];
-    }
-}
-
-- (IBAction)nextStopPress:(id)sender {
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    if (indexPath)
-    {
-        NSLog(@"Next stop button pressed %@", indexPath);
-        CAPNextBus *nb = self.locations[indexPath.row];
-        [nb activateNextStop];
-        [self.tableView reloadData];
-    }
-}
-
 #pragma mark - Data
 
 - (void)loadArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
@@ -219,6 +198,16 @@
     proximityIndicator.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     proximityIndicator.layer.borderColor = [[UIColor grayColor] CGColor];
     
+    UISwipeGestureRecognizer *recognizerLeft;
+    recognizerLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwipeLeft:)];
+    recognizerLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [tableView addGestureRecognizer:recognizerLeft];
+
+    UISwipeGestureRecognizer *recognizerRight;
+    recognizerRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwipeRight:)];
+    recognizerRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [tableView addGestureRecognizer:recognizerRight];
+
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
 
         if (location.distanceIndex == 0) {
@@ -279,9 +268,31 @@
     CAPStop *stop = location.stops[nextBus.activeStopIndex];
     
     if (stop.lastUpdated) {
-        return 190.0f;
+        return 140.0f;
     }
-    else return 120.0f;
+    else return 90.0f;
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (void) cellSwipeLeft:(UISwipeGestureRecognizer *)gesture {
+    CGPoint location = [gesture locationInView:self.tableView];
+    
+    NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
+    if (swipedIndexPath) {
+        CAPNextBus *nb = self.locations[swipedIndexPath.row];
+        [nb activateNextStop];
+        [self.tableView reloadData];
+        //        [self loadArrivalsForCellAtIndexPath:swipedIndexPath];
+    }
+}
+- (void) cellSwipeRight:(UISwipeGestureRecognizer *)gesture {
+    CGPoint location = [gesture locationInView:self.tableView];
+    
+    NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
+    if (swipedIndexPath) {
+        [self loadArrivalsForCellAtIndexPath:swipedIndexPath];
+    }
 }
 
 @end
