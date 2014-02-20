@@ -195,32 +195,51 @@
     return data;
 }
 
+- (NSMutableArray *)distinctShapesForRoutes:(NSArray *)routes {
+    NSString *query = [NSString stringWithFormat:
+                       @"\n SELECT DISTINCT shape_id "
+                       @"\n FROM trips "
+                       @"\n WHERE route_id IN (%@) "
+                       ,[routes componentsJoinedByString:@","]
+                       ];
+    NSLog(@"Executing query %@", query);
+    FMResultSet *rs = [self.database executeQuery:query];
+    
+    NSMutableArray *shapes = [[NSMutableArray alloc] init];
+    while ([rs next]) {
+        NSDictionary *result = [rs resultDictionary];
+        [shapes addObject:result];
+    }
+
+    return shapes;
+}
+
 - (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers
 {
     NSString *query = [NSString stringWithFormat:
-        @"SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, "
-        @"       stop_desc, stop_lat, stop_lon, unique_stops.stop_sequence, distance(stop_lat, stop_lon, %f, %f) as \"distance\" "
-        @"FROM "
-        @"  stops, "
-        @"  (SELECT stop_id, route_id, stop_sequence, unique_trips.trip_id, unique_trips.trip_headsign "
-        @"   FROM "
-        @"     stop_times, "
-        @"     (SELECT trip_id, route_id, trip_headsign "
-        @"      FROM trips "
-        @"      WHERE route_id IN (%@) "
-        @"      GROUP BY shape_id "
-        @"     ) AS unique_trips "
-        @"   WHERE stop_times.trip_id = unique_trips.trip_id "
-        @"   GROUP BY stop_id) AS unique_stops "
-        @"WHERE stops.stop_id = unique_stops.stop_id "
-        @"AND distance(stop_lat, stop_lon, %f, %f) < %f ",
-            location.coordinate.latitude,
-            location.coordinate.longitude,
-            [routes componentsJoinedByString:@","],
-            location.coordinate.latitude,
-            location.coordinate.longitude,
-            kilometers
-        ];
+        @"\n SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, "
+        @"\n        stop_desc, stop_lat, stop_lon, unique_stops.stop_sequence, distance(stop_lat, stop_lon, %f, %f) as \"distance\" "
+        @"\n FROM "
+        @"\n   stops, "
+        @"\n   (SELECT stop_id, route_id, stop_sequence, unique_trips.trip_id, unique_trips.trip_headsign "
+        @"\n    FROM "
+        @"\n      stop_times, "
+        @"\n      (SELECT trip_id, route_id, trip_headsign "
+        @"\n       FROM trips "
+        @"\n       WHERE route_id IN (%@) "
+        @"\n       GROUP BY shape_id "
+        @"\n      ) AS unique_trips "
+        @"\n    WHERE stop_times.trip_id = unique_trips.trip_id "
+        @"\n    GROUP BY stop_id) AS unique_stops "
+        @"\n WHERE stops.stop_id = unique_stops.stop_id "
+        @"\n AND distance(stop_lat, stop_lon, %f, %f) < %f ",
+        location.coordinate.latitude,
+        location.coordinate.longitude,
+        [routes componentsJoinedByString:@", "],
+        location.coordinate.latitude,
+        location.coordinate.longitude,
+        kilometers
+    ];
 
     NSLog(@"Executing query %@", query);
     FMResultSet *rs = [self.database executeQuery:query];
@@ -257,44 +276,37 @@
     }
 
     // Sort by stopSequence, North to South
-    [self sortLocations:data byStopSequenceInDirection:0];
-    
+    [self sortLocationsByStopSequence:data];
+
     return data;
 }
 
 - (void)sortStopsByDirectionForLocations:(NSMutableArray *)locations
 {
-    // sort all location.stops by direction, so that they can be accessed with direction as index
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"directionId" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"directionId" ascending:NO];
     for (CAPLocation *location in locations) {
         [location.stops sortUsingDescriptors:@[sortDescriptor]];
     }
 }
-    
+
 - (void)sortLocationsByDistance:(NSMutableArray *)locations
 {
     [locations sortUsingComparator:^NSComparisonResult(CAPLocation* location1, CAPLocation* location2) {
-        if (location1.distance > location2.distance)
-            return (NSComparisonResult)NSOrderedDescending;
-        else if (location1.distance < location2.distance)
-            return (NSComparisonResult)NSOrderedAscending;
-        
+        if (location1.distance > location2.distance) return (NSComparisonResult)NSOrderedDescending;
+        else if (location1.distance < location2.distance) return (NSComparisonResult)NSOrderedAscending;
         return (NSComparisonResult)NSOrderedSame;
     }];
 }
 
-- (void)sortLocations:(NSMutableArray *)locations byStopSequenceInDirection:(int)direction
+- (void)sortLocationsByStopSequence:(NSMutableArray *)locations
 {
     // Make sure to call sortStopsByDirectionForLocations:(NSMutableArray *)locations first
     [locations sortUsingComparator:^NSComparisonResult(CAPLocation* location1, CAPLocation* location2) {
-        CAPStop *stop1 = location1.stops[direction];
-        CAPStop *stop2 = location2.stops[direction];
+        CAPStop *stop1 = location1.stops[0];
+        CAPStop *stop2 = location2.stops[0];
         
-        if (stop1.stopSequence > stop2.stopSequence)
-            return (NSComparisonResult)NSOrderedDescending;
-        else if (stop1.stopSequence < stop2.stopSequence)
-            return (NSComparisonResult)NSOrderedAscending;
-        
+        if (stop1.stopSequence > stop2.stopSequence) return (NSComparisonResult)NSOrderedDescending;
+        else if (stop1.stopSequence < stop2.stopSequence) return (NSComparisonResult)NSOrderedAscending;
         return (NSComparisonResult)NSOrderedSame;
     }];
 }

@@ -24,13 +24,25 @@
     self.distance = [data[@"distance"] floatValue];
     self.routeId = data[@"route_id"];
     self.stopId = data[@"stop_id"];
+    self.tripId = data[@"trip_id"];
+    self.shapeId = data[@"shape_id"];
     self.lat = data[@"stop_lat"];
     self.lon = data[@"stop_lon"];
     self.name = [self formatString:data[@"stop_name"]];
     self.desc = data[@"stop_desc"];
     self.headsign = [data[@"trip_headsign"] capitalizedString];
     self.stopSequence = [data[@"stop_sequence"] intValue];
-    self.directionId = [data[@"direction_id"] intValue];
+    if ([self.headsign isEqualToString:@"Northbound"]) {
+        self.directionId = 0;
+    }
+    else if ([self.headsign isEqualToString:@"Southbound"]) {
+        self.directionId = 1;
+    }
+    else {
+        NSLog(@"WTF Direction %@ %@", self.headsign, data[@"directionId"]);
+    }
+//    self.directionId = [data[@"direction_id"] intValue];
+    
 }
 
 - (NSString *)formatString:(NSString *)str
@@ -45,7 +57,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Stop: %@ %@ - %@ %@ with %d trips>", self.routeId, self.name, self.headsign, self.stopId, (int)self.trips.count];
+    return [NSString stringWithFormat:@"<Stop: %@ %@ - %d %@ %@ - tripId: %@ with %d trips, sequence: %d>", self.routeId, self.name, self.directionId, self.headsign, self.stopId, self.tripId, (int)self.trips.count, self.stopSequence];
 }
 
 @end

@@ -38,34 +38,50 @@
     GTFSDB *gtfs = [[GTFSDB alloc] init];
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
 
-    NSMutableArray *locations = [gtfs locationsForRoutes:@[@801, @1] nearLocation:loc withinRadius:1.0f];
-
-    for (CAPLocation *loc in locations) {
-        NSLog(@"%@", loc);
-    }
+    // FIXME: Add test to support to make sure this can support multiple routes
+    NSMutableArray *locations = [gtfs locationsForRoutes:@[@801] nearLocation:loc withinRadius:200.0f];
     
-    XCTAssertEqual((NSUInteger)21, locations.count);
-    CAPLocation *route1Congress5th = locations[0];
-    CAPLocation *route801RepublicSquare = locations[7];
+    XCTAssertEqual((NSUInteger)25, locations.count);
+    CAPLocation *route801TechRidge = locations[0];
+    CAPLocation *route801Chinatown = locations[1];
+    CAPLocation *route801RepublicSquare = locations[15];
+    CAPLocation *route801SouthParkMeadows = locations[24];
 
-    // FIXME: Add proper values
-    XCTAssertTrue([@"425 Congress/5Th" isEqualToString:route1Congress5th.name]);
+    XCTAssertTrue([@"Tech Ridge Bay I" isEqualToString:route801TechRidge.name]);
+    XCTAssertTrue([@"Chinatown Station" isEqualToString:route801Chinatown.name]);
     XCTAssertTrue([@"Republic Square Station" isEqualToString:route801RepublicSquare.name]);
-    XCTAssertTrue([@"1" isEqualToString:route1Congress5th.routeId]);
+    XCTAssertTrue([@"Southpark Meadows Station" isEqualToString:route801SouthParkMeadows.name]);
+
     XCTAssertTrue([@"801" isEqualToString:route801RepublicSquare.routeId]);
+    XCTAssertTrue([@"801" isEqualToString:route801Chinatown.routeId]);
+    XCTAssertTrue([@"801" isEqualToString:route801RepublicSquare.routeId]);
+    XCTAssertTrue([@"801" isEqualToString:route801SouthParkMeadows.routeId]);
 
-    XCTAssertEqual((NSUInteger)1, route1Congress5th.stops.count);
+    XCTAssertEqual((NSUInteger)1, route801TechRidge.stops.count);
+    XCTAssertEqual((NSUInteger)2, route801Chinatown.stops.count);
     XCTAssertEqual((NSUInteger)2, route801RepublicSquare.stops.count);
+    XCTAssertEqual((NSUInteger)1, route801SouthParkMeadows.stops.count);
 
-    CAPStop *stop1_1 = route1Congress5th.stops[0];
-    CAPStop *stop801_1 = route801RepublicSquare.stops[0];
-    CAPStop *stop801_2 = route801RepublicSquare.stops[1];
-
-    NSLog(@"stop801 %@ %@", stop801_1, stop801_2);
+    CAPStop *stop801TechRidge_S = route801TechRidge.stops[0];
+    CAPStop *stop801Chinatown_S = route801Chinatown.stops[0];
+    CAPStop *stop801Chinatown_N = route801Chinatown.stops[1];
+    CAPStop *stop801RepublicSquare_S = route801RepublicSquare.stops[0];
+    CAPStop *stop801RepublicSquare_N = route801RepublicSquare.stops[1];
+    CAPStop *stop801SouthParkMeadows_N = route801SouthParkMeadows.stops[0];
     
-    XCTAssertTrue([@"581" isEqualToString:stop1_1.stopId]);
-    XCTAssertTrue([@"5867" isEqualToString:stop801_1.stopId]);
-    XCTAssertTrue([@"5868" isEqualToString:stop801_2.stopId]);
+    XCTAssertTrue([@"Southbound" isEqualToString:stop801TechRidge_S.headsign]);
+    XCTAssertTrue([@"Northbound" isEqualToString:stop801Chinatown_N.headsign]);
+    XCTAssertTrue([@"Southbound" isEqualToString:stop801Chinatown_S.headsign]);
+    XCTAssertTrue([@"Northbound" isEqualToString:stop801RepublicSquare_N.headsign]);
+    XCTAssertTrue([@"Southbound" isEqualToString:stop801RepublicSquare_S.headsign]);
+    XCTAssertTrue([@"Southbound" isEqualToString:stop801SouthParkMeadows_N.headsign]);
+
+    XCTAssertTrue([@"5304" isEqualToString:stop801TechRidge_S.headsign]);
+    XCTAssertTrue([@"5857" isEqualToString:stop801Chinatown_N.headsign]);
+    XCTAssertTrue([@"4548" isEqualToString:stop801Chinatown_S.headsign]);
+    XCTAssertTrue([@"5867" isEqualToString:stop801RepublicSquare_N.headsign]);
+    XCTAssertTrue([@"5868" isEqualToString:stop801RepublicSquare_S.headsign]);
+    XCTAssertTrue([@"5873" isEqualToString:stop801SouthParkMeadows_N.headsign]);
 }
 
 - (void)testGTFSDB_CanFindNearbyLocationsForUnidirectionalRoute

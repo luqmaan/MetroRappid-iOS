@@ -76,8 +76,8 @@
         self.locationManager = [[CLLocationManager alloc] init];
     
     self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    self.locationManager.distanceFilter = 500; // meters
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    self.locationManager.distanceFilter = 100; // meters
     
     [self.locationManager startUpdatingLocation];
 }
@@ -107,6 +107,9 @@
 
 - (void)loadArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (!indexPath) {
+        return;
+    }
     CAPNextBus *nb = self.locations[indexPath.row];
     CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
     NSLog(@"Loading arrivals for %@", activeStop.name);
@@ -133,9 +136,13 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *userLocation = [locations lastObject];
+    NSLog(@"Got location %@", userLocation);
+    
+    if (userLocation.horizontalAccuracy > kCLLocationAccuracyHundredMeters) return;
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
+    [manager stopUpdatingLocation];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
         NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:userLocation withinRadius:200.0f];
         [self.locations removeAllObjects];
 
@@ -145,21 +152,19 @@
         }
         NSLog(@"Got %lu locations", (unsigned long)self.locations.count);
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self.tableView reloadData];
-            
-            // Scroll to the nearest stop
-            NSIndexPath *nearestStopIndexPath;
-            int i = 0;
-            while (i < self.locations.count) {
-                CAPNextBus *nb = self.locations[i];
-                if (nb.location.distanceIndex == 0) {
-                    nearestStopIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                    break;
-                }
-                i++;
+        NSIndexPath *nearestStopIndexPath;
+        int i = 0;
+        while (i < self.locations.count) {
+            CAPNextBus *nb = self.locations[i];
+            if (nb.location.distanceIndex == 0) {
+                nearestStopIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                break;
             }
+            i++;
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
             [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
             [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         });
@@ -183,7 +188,11 @@
 {
     
     static NSString *CellIdentifier;
-
+    if (self.locations.count == 0) {
+        CellIdentifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        return cell;
+    }
     CAPNextBus *nextBus = [self.locations objectAtIndex:indexPath.row];
     CAPLocation *location = nextBus.location;
     CAPStop *activeStop = location.stops[nextBus.activeStopIndex];

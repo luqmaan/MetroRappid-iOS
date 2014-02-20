@@ -15,6 +15,7 @@
 @property NSString *routeId;
 @property NSString *stopId;
 @property NSString *tripId;
+@property NSString *shapeId;
 @property NSString *lat;
 @property NSString *lon;
 @property NSString *name;
