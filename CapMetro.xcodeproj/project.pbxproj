@@ -19,6 +19,7 @@
 		8C8C885518AC55190049412A /* 801-realtime.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C8C885318AC55190049412A /* 801-realtime.xml */; };
 		8C8C886018AD21260049412A /* CAPNextBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8C885F18AD21260049412A /* CAPNextBus.m */; };
 		8C8C886118AD21260049412A /* CAPNextBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8C885F18AD21260049412A /* CAPNextBus.m */; };
+		8CADA55B18B5BD3D004629FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CADA55A18B5BD3D004629FD /* QuartzCore.framework */; };
 		8CC6AA4018A80D410026337D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA3F18A80D410026337D /* Foundation.framework */; };
 		8CC6AA4218A80D410026337D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA4118A80D410026337D /* CoreGraphics.framework */; };
 		8CC6AA4418A80D410026337D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA4318A80D410026337D /* UIKit.framework */; };
@@ -71,6 +72,7 @@
 		8C8C885318AC55190049412A /* 801-realtime.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "801-realtime.xml"; sourceTree = "<group>"; };
 		8C8C885E18AD21260049412A /* CAPNextBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPNextBus.h; sourceTree = "<group>"; };
 		8C8C885F18AD21260049412A /* CAPNextBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPNextBus.m; sourceTree = "<group>"; };
+		8CADA55A18B5BD3D004629FD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8CC6AA3C18A80D410026337D /* CapMetro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapMetro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC6AA3F18A80D410026337D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8CC6AA4118A80D410026337D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -118,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CADA55B18B5BD3D004629FD /* QuartzCore.framework in Frameworks */,
 				8CC6AA5F18A80D410026337D /* XCTest.framework in Frameworks */,
 				8CC6AA6118A80D410026337D /* UIKit.framework in Frameworks */,
 				8CC6AA6018A80D410026337D /* Foundation.framework in Frameworks */,
@@ -176,6 +179,7 @@
 		8CC6AA3E18A80D410026337D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8CADA55A18B5BD3D004629FD /* QuartzCore.framework */,
 				8CC6AAAE18A87ABF0026337D /* MapKit.framework */,
 				8CC6AAAC18A86F890026337D /* libReactiveCocoa-iOS.a */,
 				8CC6AA9C18A868380026337D /* libReactiveCocoa-iOS.a */,

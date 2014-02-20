@@ -7,6 +7,7 @@
 //
 
 #import <CoreLocation/CoreLocation.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "NearbyViewController.h"
 #import "GTFSDB.h"
@@ -27,23 +28,25 @@
 - (void)baseInit {
     self.gtfs = [[GTFSDB alloc] init];
     self.locations = [[NSMutableArray alloc] init];
+
+    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacityAnimation.duration = 0.3;
+    opacityAnimation.fromValue = [NSNumber numberWithFloat:0.1];
+    opacityAnimation.toValue = [NSNumber numberWithFloat:0.6];
     
-    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
-    scaleAnimation.duration = 3.0;
-    scaleAnimation.fromValue = [NSNumber numberWithFloat:2.0];
-    scaleAnimation.toValue = [NSNumber numberWithFloat:15.0];
-    
-    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    opacityAnimation.duration = 1.5;
-    opacityAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-    opacityAnimation.toValue = [NSNumber numberWithFloat:1.5];
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.duration = 0.9;
+    scaleAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    scaleAnimation.toValue = [NSNumber numberWithFloat:5.0];
     
     self.pulseAnimationGroup = [CAAnimationGroup animation];
-
-    self.pulseAnimationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
+    self.pulseAnimationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
     self.pulseAnimationGroup.autoreverses = YES;
     self.pulseAnimationGroup.repeatCount = INFINITY;
     self.pulseAnimationGroup.animations = @[scaleAnimation, opacityAnimation];
+    self.pulseAnimationGroup.fillMode = kCAFillModeForwards;
+
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -188,11 +191,7 @@
 {
     
     static NSString *CellIdentifier;
-    if (self.locations.count == 0) {
-        CellIdentifier = @"Cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        return cell;
-    }
+    
     CAPNextBus *nextBus = [self.locations objectAtIndex:indexPath.row];
     CAPLocation *location = nextBus.location;
     CAPStop *activeStop = location.stops[nextBus.activeStopIndex];
@@ -211,7 +210,7 @@
     UILabel *loadError = (UILabel *)[cell viewWithTag:11];
     UIView *routeIndicator = (UIView *)[cell viewWithTag:21];
     UIView *proximityIndicator = (UIView *)[cell viewWithTag:22];
-    
+
     routeNumber.text = location.name;
     stopName.text = activeStop.headsign;
     
@@ -219,23 +218,32 @@
     proximityIndicator.layer.borderWidth = 2.0f;
     proximityIndicator.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     proximityIndicator.layer.borderColor = [[UIColor grayColor] CGColor];
-    if (location.distanceIndex == 0) {
-        proximityIndicator.layer.backgroundColor = [[UIColor colorWithHue:0.564 saturation:0.688 brightness:0.980 alpha:1] CGColor];
-        proximityIndicator.layer.borderColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
-        NSLog(@"%@ %@", proximityIndicator.layer.animationKeys, [proximityIndicator.layer.animationKeys containsObject:@"pulse"] ? @"true" : @"false");
-        if (![proximityIndicator.layer.animationKeys containsObject:@"pulse"]) {
-            [proximityIndicator.layer addAnimation:self.pulseAnimationGroup forKey:@"pulse"];
-        }
-    }
     
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
+
+        if (location.distanceIndex == 0) {
+            
+            UIView *proximityIndicatorOuter = (UIView *)[cell viewWithTag:24];
+            
+            NSLog(@"Showing proximity indcator %@ %@", (proximityIndicatorOuter.hidden ? @"hidden" : @"visible"), proximityIndicatorOuter);
+            proximityIndicator.layer.borderColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
+
+            
+            proximityIndicatorOuter.hidden = NO;
+//            proximityIndicatorOuter.layer.borderColor = [[UIColor redColor] CGColor];
+            proximityIndicatorOuter.layer.backgroundColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
+            proximityIndicatorOuter.layer.cornerRadius = 6.0f;
+
+            [proximityIndicatorOuter.layer addAnimation:self.pulseAnimationGroup forKey:@"pulse"];
+        }
+        
         if (activeStop.trips.count == 0) {
             NSLog(@"No trips for %@", activeStop.trips);
             loadError.text = @"No upcoming arrivals";
             loadError.hidden = NO;
             return cell;
         }
-        
+
         for (int i = 0; i < 3; i++) {
             if (i >= activeStop.trips.count) break;
             
@@ -257,7 +265,7 @@
         }
 
     }
-
+    
     return cell;
 }
 
