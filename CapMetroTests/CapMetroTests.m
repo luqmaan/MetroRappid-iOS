@@ -76,12 +76,15 @@
     XCTAssertTrue([@"Southbound" isEqualToString:stop801RepublicSquare_S.headsign]);
     XCTAssertTrue([@"Southbound" isEqualToString:stop801SouthParkMeadows_N.headsign]);
 
-    XCTAssertTrue([@"5304" isEqualToString:stop801TechRidge_S.headsign]);
-    XCTAssertTrue([@"5857" isEqualToString:stop801Chinatown_N.headsign]);
-    XCTAssertTrue([@"4548" isEqualToString:stop801Chinatown_S.headsign]);
-    XCTAssertTrue([@"5867" isEqualToString:stop801RepublicSquare_N.headsign]);
-    XCTAssertTrue([@"5868" isEqualToString:stop801RepublicSquare_S.headsign]);
-    XCTAssertTrue([@"5873" isEqualToString:stop801SouthParkMeadows_N.headsign]);
+    NSLog(@"%@ %@", stop801Chinatown_N, stop801Chinatown_S);
+    NSLog(@"%@ %@", stop801RepublicSquare_N, stop801RepublicSquare_S);
+    
+    XCTAssertTrue([@"5304" isEqualToString:stop801TechRidge_S.stopId]);
+    XCTAssertTrue([@"4548" isEqualToString:stop801Chinatown_N.stopId]);
+    XCTAssertTrue([@"5857" isEqualToString:stop801Chinatown_S.stopId]);
+    XCTAssertTrue([@"5868" isEqualToString:stop801RepublicSquare_N.stopId]);
+    XCTAssertTrue([@"5867" isEqualToString:stop801RepublicSquare_S.stopId]);
+    XCTAssertTrue([@"5873" isEqualToString:stop801SouthParkMeadows_N.stopId]);
 }
 
 - (void)testGTFSDB_CanFindNearbyLocationsForUnidirectionalRoute
