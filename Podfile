@@ -8,6 +8,7 @@ link_with 'CapMetro', 'CapMetroTests'
 pod 'FMDB', '~> 2.2'
 pod 'AFNetworking', '~> 2.1'
 pod 'XMLDictionary', '~> 1.3'
+pod 'ProgressHUD', '~> 1.1'
 
 end
 

@@ -8,6 +8,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
+#import <ProgressHUD/ProgressHUD.h>
 
 #import "NearbyViewController.h"
 #import "GTFSDB.h"
@@ -20,15 +21,19 @@
 @property CLLocationManager *locationManager;
 @property NSMutableArray *locations;
 @property CAAnimationGroup *pulseAnimationGroup;
+@property CAAnimationGroup *labelAnimationGroup;
+@property ProgressHUD *progressHUD;
 
 @end
 
 @implementation NearbyViewController
 
 - (void)baseInit {
+    NSLog(@"Init NearbyViewController");
     self.gtfs = [[GTFSDB alloc] init];
+    
     self.locations = [[NSMutableArray alloc] init];
-
+    
     CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacityAnimation.duration = 0.3;
     opacityAnimation.fromValue = [NSNumber numberWithFloat:0.1];
@@ -46,7 +51,23 @@
     self.pulseAnimationGroup.repeatCount = INFINITY;
     self.pulseAnimationGroup.animations = @[scaleAnimation, opacityAnimation];
     self.pulseAnimationGroup.fillMode = kCAFillModeForwards;
+    
+    CABasicAnimation *timeOpacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    timeOpacityAnimation.duration = 0.8;
+    timeOpacityAnimation.fromValue = [NSNumber numberWithFloat:0.1];
+    timeOpacityAnimation.toValue = [NSNumber numberWithFloat:0.6];
+    
+    self.labelAnimationGroup = [CAAnimationGroup animation];
+    self.labelAnimationGroup.autoreverses = NO;
+    self.labelAnimationGroup.repeatCount = 1;
+    self.labelAnimationGroup.animations = @[timeOpacityAnimation];
 
+    
+    if (nil == self.locationManager) self.  locationManager = [[CLLocationManager alloc] init];
+    
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    self.locationManager.distanceFilter = 100; // meters
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -75,13 +96,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (nil == self.locationManager)
-        self.locationManager = [[CLLocationManager alloc] init];
-    
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    self.locationManager.distanceFilter = 100; // meters
-    
+//    self.navigationController.navigationBar.tintColor = [UIColor colorWithHue:0.997 saturation:1.000 brightness:0.773 alpha:1];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [ProgressHUD show:@"Locating"];
     [self.locationManager startUpdatingLocation];
 }
 
@@ -90,6 +110,7 @@
 - (void)loadArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!indexPath) {
+        [ProgressHUD showError:@"Can't load arrivals"];
         return;
     }
     CAPNextBus *nb = self.locations[indexPath.row];
@@ -98,7 +119,7 @@
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
-    progressView.progress = 0.0f;
+    progressView.progress = 0.1f;
     progressView.hidden = NO;
     nb.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
     {
@@ -120,13 +141,20 @@
     CLLocation *userLocation = [locations lastObject];
     NSLog(@"Got location %@", userLocation);
     
-    if (userLocation.horizontalAccuracy > kCLLocationAccuracyHundredMeters) return;
+    if (userLocation.horizontalAccuracy > kCLLocationAccuracyHundredMeters) {
+        NSLog(@"Too inaccurate, rejecting");
+        return;
+    };
 
-    [manager stopUpdatingLocation];
+    [ProgressHUD showSuccess:@"Found location"];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
+//        [ProgressHUD show:@"Fetching nearby stops"];
+
         NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:userLocation withinRadius:200.0f];
         [self.locations removeAllObjects];
+
+//        [ProgressHUD showSuccess:@""];
 
         for (CAPLocation *location in data) {
             CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location];
@@ -281,7 +309,9 @@
         CAPNextBus *nb = self.locations[swipedIndexPath.row];
         [nb activateNextStop];
         [self.tableView reloadData];
-        //        [self loadArrivalsForCellAtIndexPath:swipedIndexPath];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:swipedIndexPath];
+        UILabel *headsign = (UILabel *)[cell viewWithTag:2];
+        [headsign.layer addAnimation:self.labelAnimationGroup forKey:nil];
     }
 }
 

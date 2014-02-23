@@ -11,3 +11,8 @@ Data
 - Next bus - GET http://www.capmetro.org/planner/s_nextbus2.asp?stopid=5619&output=xml&opt=2&min=1&dir=N
 - Trip planner - GET http://www.capmetro.org/planner/s_plantrip.asp?loc1lat=30.268224&loc1lng=-97.743678&loc2lat=30.418367&loc2lng=-97.668597
 
+Ideas
+--
+
+- Use the vehicle lat and lon to draw the vehicle position on the map
+- Add a clock button and a map button. Clock reveales schedules, map reveals small mapview with vehicle locations and route.

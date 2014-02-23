@@ -10,7 +10,4 @@
 
 @interface NearbyViewController : UITableViewController
 
-- (IBAction)loadArrivalsBtnPress:(id)sender;
-- (IBAction)nextStopPress:(id)sender;
-
 @end
