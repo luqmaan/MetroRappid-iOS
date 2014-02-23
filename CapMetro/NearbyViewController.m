@@ -95,13 +95,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.navigationController.navigationBar.tintColor = [UIColor colorWithHue:0.997 saturation:1.000 brightness:0.773 alpha:1];
+    [self updateLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)appDidEnterForeground:(NSNotification *)notification
 {
-    [ProgressHUD show:@"Locating"];
-    [self.locationManager startUpdatingLocation];
+    [self updateLocation];
 }
 
 #pragma mark - Data
@@ -134,6 +134,12 @@
 }
 
 #pragma mark - CLLocationManagerDelegate
+
+- (void)updateLocation
+{
+    [ProgressHUD show:@"Locating"];
+    [self.locationManager startUpdatingLocation];
+}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
