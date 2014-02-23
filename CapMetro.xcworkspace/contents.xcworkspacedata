@@ -5,9 +5,6 @@
       location = "group:CapMetro.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ReactiveCocoa/ReactiveCocoaFramework/ReactiveCocoa.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
