@@ -33,7 +33,6 @@
 		8CC6AA6118A80D410026337D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AA4318A80D410026337D /* UIKit.framework */; };
 		8CC6AA6918A80D410026337D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6AA6718A80D410026337D /* InfoPlist.strings */; };
 		8CC6AA6B18A80D410026337D /* CapMetroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AA6A18A80D410026337D /* CapMetroTests.m */; };
-		8CC6AAAD18A86F890026337D /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AAAC18A86F890026337D /* libReactiveCocoa-iOS.a */; };
 		8CC6AAAF18A87ABF0026337D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC6AAAE18A87ABF0026337D /* MapKit.framework */; };
 		8CC6AAB518A87C490026337D /* GTFSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAB418A87C490026337D /* GTFSDB.m */; };
 		8CC6AAB618A87C490026337D /* GTFSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6AAB418A87C490026337D /* GTFSDB.m */; };
@@ -108,7 +107,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CC6AAAF18A87ABF0026337D /* MapKit.framework in Frameworks */,
-				8CC6AAAD18A86F890026337D /* libReactiveCocoa-iOS.a in Frameworks */,
 				8CC6AA4218A80D410026337D /* CoreGraphics.framework in Frameworks */,
 				8CC6AA4418A80D410026337D /* UIKit.framework in Frameworks */,
 				8CC6AA4018A80D410026337D /* Foundation.framework in Frameworks */,
