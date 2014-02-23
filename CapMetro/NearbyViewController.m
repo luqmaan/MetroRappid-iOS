@@ -22,7 +22,6 @@
 @property NSMutableArray *locations;
 @property CAAnimationGroup *pulseAnimationGroup;
 @property CAAnimationGroup *labelAnimationGroup;
-@property ProgressHUD *progressHUD;
 
 @end
 
@@ -145,16 +144,28 @@
         NSLog(@"Too inaccurate, rejecting");
         return;
     };
-
+    
+    [manager stopUpdatingLocation];
     [ProgressHUD showSuccess:@"Found location"];
 
+    BOOL __block waitingForGTFS = NO;
+    if (!self.gtfs.ready) {
+        waitingForGTFS = YES;
+        [ProgressHUD show:@"Loading Database"];
+    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
-//        [ProgressHUD show:@"Fetching nearby stops"];
+        while (!self.gtfs.ready);
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (waitingForGTFS == YES) {
+                waitingForGTFS = NO;
+                // Why does the ProgressHUD get dismissed before we get here? ;_;
+                [ProgressHUD showSuccess:nil];
+            }
+        });
 
         NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:userLocation withinRadius:200.0f];
         [self.locations removeAllObjects];
-
-//        [ProgressHUD showSuccess:@""];
 
         for (CAPLocation *location in data) {
             CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location];
@@ -228,12 +239,9 @@
     if (location.distanceIndex == 0) {
         UIView *proximityIndicatorOuter = (UIView *)[cell viewWithTag:24];
         
-        NSLog(@"Showing proximity indcator %@ %@", (proximityIndicatorOuter.hidden ? @"hidden" : @"visible"), proximityIndicatorOuter);
         proximityIndicator.layer.borderColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
         
-        
         proximityIndicatorOuter.hidden = NO;
-        //            proximityIndicatorOuter.layer.borderColor = [[UIColor redColor] CGColor];
         proximityIndicatorOuter.layer.backgroundColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
         proximityIndicatorOuter.layer.cornerRadius = 6.0f;
         

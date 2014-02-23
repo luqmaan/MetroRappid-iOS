@@ -19,6 +19,8 @@
 
 @interface GTFSDB : NSObject
 
+@property (nonatomic, assign) BOOL ready;
+
 - (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers;
 
 @end

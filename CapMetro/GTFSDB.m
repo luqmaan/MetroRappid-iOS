@@ -11,9 +11,10 @@
 @interface GTFSDB ()
 
 @property FMDatabaseQueue *queue;
-@property NSMutableArray *databaseNames;
+@property NSString *databaseName;
 @property NSString *documentsPath;
 @property NSString *databasePath;
+@property NSArray *versions;
 
 @end
 
@@ -24,39 +25,50 @@
     self = [super init];
     NSLog(@"Init GTFS");
     if (self) {
-        // Specify the tables names and database names.
-        self.databaseNames = [NSMutableArray arrayWithArray:@[@"gtfs_austin"]];
-
+        self.versions = @[@"1.0"];
+        self.ready = NO;
+        
+        self.databaseName = @"gtfs_austin";
         self.documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *regionDb = self.databaseNames[0];
-        NSString *dbPath = [self.documentsPath stringByAppendingPathComponent:regionDb];
-        self.databasePath = [NSString stringWithFormat:@"%@.db", dbPath];
-        self.queue = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
-    
-        // FIXME: Do the right thing. Only install db when needed. Then call setup started callback.
-        [self deleteAllDatabases];
-        [self copyDatabasesFromProjectToDocuments];
+        NSString *currentVersion = [self.versions lastObject];
+        self.databasePath = [self databasePathForVersion:currentVersion];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+            [self copyDatabasesFromProjectToDocuments];
 
-        [self addDistanceFunction];
-        NSLog(@"Database ready");
+            self.queue = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
+        
+            [self addDistanceFunction];
+        
+            self.ready = YES;
+            NSLog(@"Database ready");
+        });
     }
     return self;
 }
 
 #pragma mark - Setup
 
-- (void)deleteAllDatabases {
-    for (NSString *databaseName in self.databaseNames) {
-        NSLog(@"DELETE %@", databaseName);
-        // The destination path of the database
-        NSString *dbPath = [self.documentsPath stringByAppendingPathComponent:databaseName];
-        dbPath = [NSString stringWithFormat:@"%@.db", dbPath];
+- (NSString *)databasePathForVersion:(NSString *)version
+{
+    NSString *databaseFullName = [NSString stringWithFormat:@"%@_%@.db", version, self.databaseName];
+    NSString *databasePath = [self.documentsPath stringByAppendingPathComponent:databaseFullName];
+    NSLog(@"databasePath for version %@ : %@", version, databasePath);
+    return databasePath;
+}
+
+- (void)deleteExistingDatabases {
+    for (NSString *version in self.versions) {
+        if ([version isEqualToString:[self.versions lastObject]]) continue;
+        
+        NSString *dbPath = [self databasePathForVersion:version];
+        NSLog(@"DELETE %@", dbPath);
+
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSError *error;
         [fileManager removeItemAtPath:dbPath error:&error];
-        if (error) {
-            NSLog(@"Error removing database at path %@ : %@", dbPath, error);
-        }
+
+        if (error) NSLog(@"Error removing database at path %@ : %@", dbPath, error);
     }
 }
 
@@ -64,27 +76,25 @@
 // It isn't necessary to check if every cities data is up to date; the user only cares about their own city.
 - (void)copyDatabasesFromProjectToDocuments
 {
-    NSLog(@"Copying databases from project to documents, if needed.");
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    for (NSString *databaseName in self.databaseNames) {
-        // The destination path of the database
-        NSString *dbPath = [self.documentsPath stringByAppendingPathComponent:databaseName];
-        dbPath = [NSString stringWithFormat:@"%@.db", dbPath];
+    
+    if (![fileManager fileExistsAtPath:self.databasePath]) {
+        NSLog(@"Database not already present.");
         
-        // Check if the db already exists in the Documents folder
-        if (![fileManager fileExistsAtPath:dbPath]) {
-            NSLog(@"Database not already present. Copying %@ from project folder to document's directory.", databaseName);
-            // Copy the db from the Project directory to the Documents directory
-            NSString *sourcePath = [[NSBundle mainBundle] pathForResource:databaseName ofType:@"db"];
-            NSError *error;
-            [fileManager copyItemAtPath:sourcePath toPath:dbPath error:&error];
-            if (error) {
-                NSLog(@"Error copy file from project directory to documents directory: %@", error);
-            }
-        }
-        else {
-            NSLog(@"The database %@ already exists in the Documents directory.", databaseName);
-        }
+        // Remove any existing outdated database files.
+        [self deleteExistingDatabases];
+        
+        NSLog(@"Copying from project folder to document's directory.");
+        
+        // Copy the db from the Project directory to the Documents directory
+        NSString *sourcePath = [[NSBundle mainBundle] pathForResource:self.databaseName ofType:@"db"];
+        NSError *error;
+        [fileManager copyItemAtPath:sourcePath toPath:self.databasePath error:&error];
+        
+        if (error) NSLog(@"Error copy file from project directory to documents directory: %@", error);
+    }
+    else {
+        NSLog(@"The database %@ already exists in the Documents directory.", self.databasePath);
     }
 }
 
@@ -132,13 +142,6 @@
 }
 
 #pragma mark - Queries
-
-- (NSArray *)routes {
-    return nil;
-}
-- (NSArray *)routesForStop:(NSNumber*)stopNumber {
-    return nil;
-}
 
 - (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers
 {
