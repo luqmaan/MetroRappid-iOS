@@ -1,9 +1,9 @@
 //
-//  CapMetroTests.m
-//  CapMetroTests
+//  MetroRappidTests.m
+//  MetroRappidTests
 //
-//  Created by Luq on 2/9/14.
-//  Copyright (c) 2014 Luq. All rights reserved.
+//  Created by Luq on 2/23/14.
+//  Copyright (c) 2014 Createch. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
@@ -37,7 +37,7 @@
 {
     GTFSDB *gtfs = [[GTFSDB alloc] init];
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
-
+    
     // FIXME: Add test to support to make sure this can support multiple routes
     NSMutableArray *locations = [gtfs locationsForRoutes:@[@801] nearLocation:loc withinRadius:200.0f];
     
@@ -46,22 +46,22 @@
     CAPLocation *route801Chinatown = locations[1];
     CAPLocation *route801RepublicSquare = locations[15];
     CAPLocation *route801SouthParkMeadows = locations[24];
-
+    
     XCTAssertTrue([@"Tech Ridge Bay I" isEqualToString:route801TechRidge.name]);
     XCTAssertTrue([@"Chinatown Station" isEqualToString:route801Chinatown.name]);
     XCTAssertTrue([@"Republic Square Station" isEqualToString:route801RepublicSquare.name]);
     XCTAssertTrue([@"Southpark Meadows Station" isEqualToString:route801SouthParkMeadows.name]);
-
+    
     XCTAssertTrue([@"801" isEqualToString:route801RepublicSquare.routeId]);
     XCTAssertTrue([@"801" isEqualToString:route801Chinatown.routeId]);
     XCTAssertTrue([@"801" isEqualToString:route801RepublicSquare.routeId]);
     XCTAssertTrue([@"801" isEqualToString:route801SouthParkMeadows.routeId]);
-
+    
     XCTAssertEqual((NSUInteger)1, route801TechRidge.stops.count);
     XCTAssertEqual((NSUInteger)2, route801Chinatown.stops.count);
     XCTAssertEqual((NSUInteger)2, route801RepublicSquare.stops.count);
     XCTAssertEqual((NSUInteger)1, route801SouthParkMeadows.stops.count);
-
+    
     CAPStop *stop801TechRidge_S = route801TechRidge.stops[0];
     CAPStop *stop801Chinatown_S = route801Chinatown.stops[0];
     CAPStop *stop801Chinatown_N = route801Chinatown.stops[1];
@@ -75,7 +75,7 @@
     XCTAssertTrue([@"Northbound" isEqualToString:stop801RepublicSquare_N.headsign]);
     XCTAssertTrue([@"Southbound" isEqualToString:stop801RepublicSquare_S.headsign]);
     XCTAssertTrue([@"Southbound" isEqualToString:stop801SouthParkMeadows_N.headsign]);
-
+    
     NSLog(@"%@ %@", stop801Chinatown_N, stop801Chinatown_S);
     NSLog(@"%@ %@", stop801RepublicSquare_N, stop801RepublicSquare_S);
     
@@ -107,13 +107,13 @@
     NSError *error = nil;
     NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (error) { XCTFail(@"Reading XML failed %@", error); }
-   
+    
     CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil];
     CAPStop *mockStop = [[CAPStop alloc] init];
     [mockNextBus parseXML:xmlString forStop:mockStop];
     
     XCTAssertEqual((NSUInteger)12, mockStop.trips.count);
-
+    
     CAPTrip *trip1 = mockStop.trips[0];
     CAPTripRealtime *trip1Realtime = trip1.realtime;
     
@@ -127,3 +127,4 @@
 
 
 @end
+

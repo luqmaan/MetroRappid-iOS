@@ -10,12 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import <ProgressHUD/ProgressHUD.h>
 
-#import "NearbyViewController.h"
+#import "CAPNearbyViewController.h"
 #import "GTFSDB.h"
-#import "StopAnnotation.h"
 #import "CAPNextBus.h"
 
-@interface NearbyViewController () <CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface CAPNearbyViewController () <CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property GTFSDB* gtfs;
 @property CLLocationManager *locationManager;
@@ -25,7 +24,7 @@
 
 @end
 
-@implementation NearbyViewController
+@implementation CAPNearbyViewController
 
 - (void)baseInit {
     NSLog(@"Init NearbyViewController");
@@ -277,7 +276,7 @@
             oldTime = (UILabel *)[cell viewWithTag:101 + (i * 2)];
             
             if (trip.realtime.valid) {
-                mainTime.textColor = [UIColor colorWithHue:0.365 saturation:0.787 brightness:0.424 alpha:1];
+                mainTime.textColor = [UIColor colorWithHue:0.460 saturation:1.000 brightness:0.710 alpha:1];
                 if (![trip.estimatedTime isEqualToString:trip.tripTime]) {
                     oldTime.hidden = NO;
                     oldTime.text = trip.tripTime;

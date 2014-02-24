@@ -1,14 +1,14 @@
 //
-//  AppDelegate.m
-//  CapMetro
+//  CAPAppDelegate.m
+//  MetroRappid
 //
-//  Created by Luq on 2/9/14.
-//  Copyright (c) 2014 Luq. All rights reserved.
+//  Created by Luq on 2/23/14.
+//  Copyright (c) 2014 Createch. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "CAPAppDelegate.h"
 
-@implementation AppDelegate
+@implementation CAPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

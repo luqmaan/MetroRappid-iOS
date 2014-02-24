@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NearbyViewController : UITableViewController
+@interface CAPNearbyViewController : UITableViewController
 
 @end
