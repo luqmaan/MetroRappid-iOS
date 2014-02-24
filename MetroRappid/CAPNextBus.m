@@ -93,12 +93,14 @@
             [stop.trips addObject:trip];
         }
     }
-    else {
+    else if ([data[@"Runs"][@"Run"] isKindOfClass:[NSDictionary class]]) {
         NSDictionary *run = data[@"Runs"][@"Run"];
         CAPTrip *trip = [[CAPTrip alloc] init];
         [trip updateWithNextBusAPI:run];
         [stop.trips addObject:trip];
     }
+    
+    NSLog(@"Loaded %d trips", (int)stop.trips.count);
 
     if (self.completedCallback) self.completedCallback();
     

@@ -235,7 +235,6 @@
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
     UILabel *loadError = (UILabel *)[cell viewWithTag:11];
-    UIView *routeIndicator = (UIView *)[cell viewWithTag:21];
     UIView *proximityIndicator = (UIView *)[cell viewWithTag:22];
 
     routeNumber.text = location.name;
@@ -282,9 +281,10 @@
             if (trip.realtime.valid) {
                 mainTime.textColor = [UIColor colorWithHue:0.460 saturation:1.000 brightness:0.710 alpha:1];
             }
-            if (indexPath == self.lastClickedIndexPath) [mainTime.layer addAnimation:self.labelAnimationGroup forKey:nil];
+//            if (indexPath == self.lastClickedIndexPath) [mainTime.layer addAnimation:self.labelAnimationGroup forKey:nil];
             mainTime.text = trip.estimatedTime;
             mainTime.hidden = NO;
+            NSLog(@"mainTime %@ %@", mainTime, mainTime.text);
         }
 
     }

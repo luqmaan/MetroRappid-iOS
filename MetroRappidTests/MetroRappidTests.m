@@ -153,6 +153,22 @@
     XCTAssertTrue([@"5006" isEqualToString:trip1Realtime.vehicleId]);
 }
 
+- (void)testCAPNextBus_CanParseXMLWithNoArrivals
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *filePath = [bundle pathForResource:@"801-no-arrivals" ofType:@"xml"];
+    
+    NSError *error = nil;
+    NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    if (error) { XCTFail(@"Reading XML failed %@", error); }
+    
+    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil];
+    CAPStop *mockStop = [[CAPStop alloc] init];
+    [mockNextBus parseXML:xmlString forStop:mockStop];
+    
+    XCTAssertEqual((NSUInteger)0, mockStop.trips.count);
+}
+
 
 @end
 

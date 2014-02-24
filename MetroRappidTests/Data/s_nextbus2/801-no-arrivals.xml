@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:namesp1="http://namespaces.soaplite.com/perl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+   <soap:Body>
+      <soap:Fault>
+         <faultcode>soap:15034</faultcode>
+         <faultstring>SOAP - no runs available</faultstring>
+         <detail>
+            <AT_WEB xsi:type="namesp1:AT_WEB">
+               <code xsi:type="xsd:int">15034</code>
+            </AT_WEB>
+         </detail>
+      </soap:Fault>
+   </soap:Body>
+</soap:Envelope>
