@@ -1,0 +1,476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C7FE57F18BAC3B500A802A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE57E18BAC3B500A802A7 /* Foundation.framework */; };
+		8C7FE58118BAC3B500A802A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE58018BAC3B500A802A7 /* CoreGraphics.framework */; };
+		8C7FE58318BAC3B500A802A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE58218BAC3B500A802A7 /* UIKit.framework */; };
+		8C7FE58918BAC3B500A802A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE58718BAC3B500A802A7 /* InfoPlist.strings */; };
+		8C7FE58B18BAC3B500A802A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE58A18BAC3B500A802A7 /* main.m */; };
+		8C7FE58F18BAC3B500A802A7 /* METAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE58E18BAC3B500A802A7 /* METAppDelegate.m */; };
+		8C7FE59218BAC3B500A802A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE59018BAC3B500A802A7 /* Main.storyboard */; };
+		8C7FE59518BAC3B500A802A7 /* METViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE59418BAC3B500A802A7 /* METViewController.m */; };
+		8C7FE59718BAC3B500A802A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE59618BAC3B500A802A7 /* Images.xcassets */; };
+		8C7FE59E18BAC3B500A802A7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE59D18BAC3B500A802A7 /* XCTest.framework */; };
+		8C7FE59F18BAC3B500A802A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE57E18BAC3B500A802A7 /* Foundation.framework */; };
+		8C7FE5A018BAC3B500A802A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE58218BAC3B500A802A7 /* UIKit.framework */; };
+		8C7FE5A818BAC3B500A802A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE5A618BAC3B500A802A7 /* InfoPlist.strings */; };
+		8C7FE5AA18BAC3B500A802A7 /* MetroRappidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE5A918BAC3B500A802A7 /* MetroRappidTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8C7FE5A118BAC3B500A802A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C7FE57318BAC3B500A802A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C7FE57A18BAC3B500A802A7;
+			remoteInfo = MetroRappid;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8C7FE57B18BAC3B500A802A7 /* MetroRappid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroRappid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C7FE57E18BAC3B500A802A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8C7FE58018BAC3B500A802A7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8C7FE58218BAC3B500A802A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8C7FE58618BAC3B500A802A7 /* MetroRappid-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetroRappid-Info.plist"; sourceTree = "<group>"; };
+		8C7FE58818BAC3B500A802A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8C7FE58A18BAC3B500A802A7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8C7FE58C18BAC3B500A802A7 /* MetroRappid-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MetroRappid-Prefix.pch"; sourceTree = "<group>"; };
+		8C7FE58D18BAC3B500A802A7 /* METAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = METAppDelegate.h; sourceTree = "<group>"; };
+		8C7FE58E18BAC3B500A802A7 /* METAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = METAppDelegate.m; sourceTree = "<group>"; };
+		8C7FE59118BAC3B500A802A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8C7FE59318BAC3B500A802A7 /* METViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = METViewController.h; sourceTree = "<group>"; };
+		8C7FE59418BAC3B500A802A7 /* METViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = METViewController.m; sourceTree = "<group>"; };
+		8C7FE59618BAC3B500A802A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8C7FE59C18BAC3B500A802A7 /* MetroRappidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetroRappidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C7FE59D18BAC3B500A802A7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		8C7FE5A518BAC3B500A802A7 /* MetroRappidTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetroRappidTests-Info.plist"; sourceTree = "<group>"; };
+		8C7FE5A718BAC3B500A802A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8C7FE5A918BAC3B500A802A7 /* MetroRappidTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetroRappidTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C7FE57818BAC3B500A802A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7FE58118BAC3B500A802A7 /* CoreGraphics.framework in Frameworks */,
+				8C7FE58318BAC3B500A802A7 /* UIKit.framework in Frameworks */,
+				8C7FE57F18BAC3B500A802A7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C7FE59918BAC3B500A802A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7FE59E18BAC3B500A802A7 /* XCTest.framework in Frameworks */,
+				8C7FE5A018BAC3B500A802A7 /* UIKit.framework in Frameworks */,
+				8C7FE59F18BAC3B500A802A7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C7FE57218BAC3B500A802A7 = {
+			isa = PBXGroup;
+			children = (
+				8C7FE58418BAC3B500A802A7 /* MetroRappid */,
+				8C7FE5A318BAC3B500A802A7 /* MetroRappidTests */,
+				8C7FE57D18BAC3B500A802A7 /* Frameworks */,
+				8C7FE57C18BAC3B500A802A7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C7FE57C18BAC3B500A802A7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C7FE57B18BAC3B500A802A7 /* MetroRappid.app */,
+				8C7FE59C18BAC3B500A802A7 /* MetroRappidTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C7FE57D18BAC3B500A802A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C7FE57E18BAC3B500A802A7 /* Foundation.framework */,
+				8C7FE58018BAC3B500A802A7 /* CoreGraphics.framework */,
+				8C7FE58218BAC3B500A802A7 /* UIKit.framework */,
+				8C7FE59D18BAC3B500A802A7 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C7FE58418BAC3B500A802A7 /* MetroRappid */ = {
+			isa = PBXGroup;
+			children = (
+				8C7FE58D18BAC3B500A802A7 /* METAppDelegate.h */,
+				8C7FE58E18BAC3B500A802A7 /* METAppDelegate.m */,
+				8C7FE59018BAC3B500A802A7 /* Main.storyboard */,
+				8C7FE59318BAC3B500A802A7 /* METViewController.h */,
+				8C7FE59418BAC3B500A802A7 /* METViewController.m */,
+				8C7FE59618BAC3B500A802A7 /* Images.xcassets */,
+				8C7FE58518BAC3B500A802A7 /* Supporting Files */,
+			);
+			path = MetroRappid;
+			sourceTree = "<group>";
+		};
+		8C7FE58518BAC3B500A802A7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C7FE58618BAC3B500A802A7 /* MetroRappid-Info.plist */,
+				8C7FE58718BAC3B500A802A7 /* InfoPlist.strings */,
+				8C7FE58A18BAC3B500A802A7 /* main.m */,
+				8C7FE58C18BAC3B500A802A7 /* MetroRappid-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8C7FE5A318BAC3B500A802A7 /* MetroRappidTests */ = {
+			isa = PBXGroup;
+			children = (
+				8C7FE5A918BAC3B500A802A7 /* MetroRappidTests.m */,
+				8C7FE5A418BAC3B500A802A7 /* Supporting Files */,
+			);
+			path = MetroRappidTests;
+			sourceTree = "<group>";
+		};
+		8C7FE5A418BAC3B500A802A7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C7FE5A518BAC3B500A802A7 /* MetroRappidTests-Info.plist */,
+				8C7FE5A618BAC3B500A802A7 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C7FE57A18BAC3B500A802A7 /* MetroRappid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C7FE5AD18BAC3B500A802A7 /* Build configuration list for PBXNativeTarget "MetroRappid" */;
+			buildPhases = (
+				8C7FE57718BAC3B500A802A7 /* Sources */,
+				8C7FE57818BAC3B500A802A7 /* Frameworks */,
+				8C7FE57918BAC3B500A802A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetroRappid;
+			productName = MetroRappid;
+			productReference = 8C7FE57B18BAC3B500A802A7 /* MetroRappid.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8C7FE59B18BAC3B500A802A7 /* MetroRappidTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C7FE5B018BAC3B500A802A7 /* Build configuration list for PBXNativeTarget "MetroRappidTests" */;
+			buildPhases = (
+				8C7FE59818BAC3B500A802A7 /* Sources */,
+				8C7FE59918BAC3B500A802A7 /* Frameworks */,
+				8C7FE59A18BAC3B500A802A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C7FE5A218BAC3B500A802A7 /* PBXTargetDependency */,
+			);
+			name = MetroRappidTests;
+			productName = MetroRappidTests;
+			productReference = 8C7FE59C18BAC3B500A802A7 /* MetroRappidTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C7FE57318BAC3B500A802A7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MET;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Createch;
+				TargetAttributes = {
+					8C7FE59B18BAC3B500A802A7 = {
+						TestTargetID = 8C7FE57A18BAC3B500A802A7;
+					};
+				};
+			};
+			buildConfigurationList = 8C7FE57618BAC3B500A802A7 /* Build configuration list for PBXProject "MetroRappid" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8C7FE57218BAC3B500A802A7;
+			productRefGroup = 8C7FE57C18BAC3B500A802A7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C7FE57A18BAC3B500A802A7 /* MetroRappid */,
+				8C7FE59B18BAC3B500A802A7 /* MetroRappidTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8C7FE57918BAC3B500A802A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7FE59718BAC3B500A802A7 /* Images.xcassets in Resources */,
+				8C7FE58918BAC3B500A802A7 /* InfoPlist.strings in Resources */,
+				8C7FE59218BAC3B500A802A7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C7FE59A18BAC3B500A802A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7FE5A818BAC3B500A802A7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C7FE57718BAC3B500A802A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7FE58B18BAC3B500A802A7 /* main.m in Sources */,
+				8C7FE58F18BAC3B500A802A7 /* METAppDelegate.m in Sources */,
+				8C7FE59518BAC3B500A802A7 /* METViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C7FE59818BAC3B500A802A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7FE5AA18BAC3B500A802A7 /* MetroRappidTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8C7FE5A218BAC3B500A802A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C7FE57A18BAC3B500A802A7 /* MetroRappid */;
+			targetProxy = 8C7FE5A118BAC3B500A802A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8C7FE58718BAC3B500A802A7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C7FE58818BAC3B500A802A7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8C7FE59018BAC3B500A802A7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C7FE59118BAC3B500A802A7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8C7FE5A618BAC3B500A802A7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C7FE5A718BAC3B500A802A7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8C7FE5AB18BAC3B500A802A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8C7FE5AC18BAC3B500A802A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8C7FE5AE18BAC3B500A802A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MetroRappid/MetroRappid-Prefix.pch";
+				INFOPLIST_FILE = "MetroRappid/MetroRappid-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8C7FE5AF18BAC3B500A802A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MetroRappid/MetroRappid-Prefix.pch";
+				INFOPLIST_FILE = "MetroRappid/MetroRappid-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		8C7FE5B118BAC3B500A802A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MetroRappid.app/MetroRappid";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MetroRappid/MetroRappid-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MetroRappidTests/MetroRappidTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		8C7FE5B218BAC3B500A802A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MetroRappid.app/MetroRappid";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MetroRappid/MetroRappid-Prefix.pch";
+				INFOPLIST_FILE = "MetroRappidTests/MetroRappidTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C7FE57618BAC3B500A802A7 /* Build configuration list for PBXProject "MetroRappid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C7FE5AB18BAC3B500A802A7 /* Debug */,
+				8C7FE5AC18BAC3B500A802A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C7FE5AD18BAC3B500A802A7 /* Build configuration list for PBXNativeTarget "MetroRappid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C7FE5AE18BAC3B500A802A7 /* Debug */,
+				8C7FE5AF18BAC3B500A802A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8C7FE5B018BAC3B500A802A7 /* Build configuration list for PBXNativeTarget "MetroRappidTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C7FE5B118BAC3B500A802A7 /* Debug */,
+				8C7FE5B218BAC3B500A802A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C7FE57318BAC3B500A802A7 /* Project object */;
+}
