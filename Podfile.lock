@@ -1,0 +1,40 @@
+PODS:
+  - AFNetworking (2.1.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.1.0):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.1.0)
+  - AFNetworking/Security (2.1.0)
+  - AFNetworking/Serialization (2.1.0)
+  - AFNetworking/UIKit (2.1.0):
+    - AFNetworking/NSURLConnection
+  - FMDB (2.2):
+    - FMDB/standard
+  - FMDB/common (2.2)
+  - FMDB/standard (2.2):
+    - FMDB/common
+  - ProgressHUD (1.1)
+  - XMLDictionary (1.3)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.1)
+  - FMDB (~> 2.2)
+  - ProgressHUD (~> 1.1)
+  - XMLDictionary (~> 1.3)
+
+SPEC CHECKSUMS:
+  AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
+  FMDB: 97472cfacf0d9e445e915704fb43b4b142799c36
+  ProgressHUD: 9b41c9416b3ba4f9c5661afe9efa7938198ba810
+  XMLDictionary: 27390d3517062694ccb307a7750250e1b687571d
+
+COCOAPODS: 0.29.0
