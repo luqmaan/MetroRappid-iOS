@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		387F0A3B5C0E46AFA7FFB7B0 /* libPods-MetroRappid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F79404B7DDB64E558A1D9438 /* libPods-MetroRappid.a */; };
 		6D46D2689C534698AB05707A /* libPods-MetroRappid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F79404B7DDB64E558A1D9438 /* libPods-MetroRappid.a */; };
+		8C2B76D118BB10020027492F /* 801-no-arrivals.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B76D018BB10020027492F /* 801-no-arrivals.xml */; };
 		8C7FE60118BAC45A00A802A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60018BAC45A00A802A7 /* Foundation.framework */; };
 		8C7FE60318BAC45A00A802A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60218BAC45A00A802A7 /* CoreGraphics.framework */; };
 		8C7FE60518BAC45A00A802A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60418BAC45A00A802A7 /* UIKit.framework */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C2B76D018BB10020027492F /* 801-no-arrivals.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "801-no-arrivals.xml"; sourceTree = "<group>"; };
 		8C7FE5FD18BAC45A00A802A7 /* MetroRappid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroRappid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C7FE60018BAC45A00A802A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C7FE60218BAC45A00A802A7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -252,6 +254,7 @@
 		8C7FE66418BAF77000A802A7 /* s_nextbus2 */ = {
 			isa = PBXGroup;
 			children = (
+				8C2B76D018BB10020027492F /* 801-no-arrivals.xml */,
 				8C7FE66518BAF77000A802A7 /* 801-estimated.json */,
 				8C7FE66618BAF77000A802A7 /* 801-realtime-feb-22.xml */,
 				8C7FE66718BAF77000A802A7 /* 801-realtime.xml */,
@@ -361,6 +364,7 @@
 			files = (
 				8C7FE66918BAF77000A802A7 /* 801-estimated.json in Resources */,
 				8C7FE62A18BAC45A00A802A7 /* InfoPlist.strings in Resources */,
+				8C2B76D118BB10020027492F /* 801-no-arrivals.xml in Resources */,
 				8C7FE66A18BAF77000A802A7 /* 801-realtime-feb-22.xml in Resources */,
 				8C7FE66818BAF77000A802A7 /* the-triangle.xml in Resources */,
 				8C7FE66B18BAF77000A802A7 /* 801-realtime.xml in Resources */,

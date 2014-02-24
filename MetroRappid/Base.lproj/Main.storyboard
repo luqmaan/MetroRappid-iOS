@@ -38,10 +38,10 @@
                                             <rect key="frame" x="31" y="0.0" width="289" height="2"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </progressView>
-                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DX8-uY-E2H">
-                                            <rect key="frame" x="258" y="20" width="42" height="21"/>
+                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Error" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DX8-uY-E2H">
+                                            <rect key="frame" x="36" y="75" width="38" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:41" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQP-Di-yi7">
@@ -107,14 +107,15 @@
                                         <constraint firstItem="nvn-wU-Aut" firstAttribute="centerX" secondItem="eWj-vf-TtF" secondAttribute="centerX" id="42B-w4-Pk8"/>
                                         <constraint firstAttribute="trailing" secondItem="avg-Vo-2pm" secondAttribute="trailing" id="4Pk-0Q-QoK"/>
                                         <constraint firstItem="Y0X-vT-fgL" firstAttribute="leading" secondItem="yZb-1M-99V" secondAttribute="trailing" constant="15" id="5Th-xb-r4T"/>
+                                        <constraint firstItem="VQP-Di-yi7" firstAttribute="leading" secondItem="DX8-uY-E2H" secondAttribute="leading" id="7gx-zC-trm"/>
                                         <constraint firstAttribute="trailing" secondItem="HQi-qX-AhN" secondAttribute="trailing" constant="20" id="IAw-mS-ANy"/>
                                         <constraint firstItem="IXS-Lh-ocB" firstAttribute="centerY" secondItem="nvn-wU-Aut" secondAttribute="centerY" id="Lvp-6e-lrq"/>
                                         <constraint firstAttribute="centerY" secondItem="nvn-wU-Aut" secondAttribute="centerY" constant="5.5" id="MVG-Kk-5v3"/>
                                         <constraint firstAttribute="bottom" secondItem="eWj-vf-TtF" secondAttribute="bottom" id="REf-s3-TX9"/>
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="top" secondItem="HQi-qX-AhN" secondAttribute="bottom" constant="8" id="Rrq-Ni-Mc9"/>
-                                        <constraint firstItem="DX8-uY-E2H" firstAttribute="top" secondItem="Cs3-Bq-21W" secondAttribute="top" id="T1Z-On-L0g"/>
                                         <constraint firstItem="Cs3-Bq-21W" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" constant="20" id="UFI-YH-aLN"/>
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="top" secondItem="41j-de-ymS" secondAttribute="top" id="Uxx-gf-4Cj"/>
+                                        <constraint firstItem="VQP-Di-yi7" firstAttribute="top" secondItem="DX8-uY-E2H" secondAttribute="top" id="ZMk-BN-GoR"/>
                                         <constraint firstItem="eWj-vf-TtF" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" id="buW-ET-6xk"/>
                                         <constraint firstItem="6dM-Nq-0ej" firstAttribute="top" secondItem="yZb-1M-99V" secondAttribute="top" id="dpZ-IC-f1a"/>
                                         <constraint firstItem="eWj-vf-TtF" firstAttribute="leading" secondItem="5U0-V3-8TS" secondAttribute="leading" constant="15" id="eTa-Jl-qLA"/>
@@ -126,7 +127,6 @@
                                         <constraint firstItem="6dM-Nq-0ej" firstAttribute="top" secondItem="41j-de-ymS" secondAttribute="top" id="nQf-PX-bgs"/>
                                         <constraint firstItem="yZb-1M-99V" firstAttribute="leading" secondItem="6dM-Nq-0ej" secondAttribute="trailing" constant="15" id="oyG-Zq-UtD"/>
                                         <constraint firstItem="Y0X-vT-fgL" firstAttribute="top" secondItem="yZb-1M-99V" secondAttribute="top" id="rtV-gN-8jP"/>
-                                        <constraint firstAttribute="trailing" secondItem="DX8-uY-E2H" secondAttribute="trailing" constant="20" id="sDC-QA-6BL"/>
                                         <constraint firstItem="41j-de-ymS" firstAttribute="leading" secondItem="VQP-Di-yi7" secondAttribute="trailing" constant="15" id="v11-id-srh"/>
                                         <constraint firstItem="HQi-qX-AhN" firstAttribute="leading" secondItem="eWj-vf-TtF" secondAttribute="trailing" constant="15" id="vya-mG-NdD"/>
                                         <constraint firstItem="avg-Vo-2pm" firstAttribute="leading" secondItem="eWj-vf-TtF" secondAttribute="trailing" constant="10" id="xAz-zs-hef"/>
