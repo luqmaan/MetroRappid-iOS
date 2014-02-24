@@ -58,8 +58,9 @@
     };
     
     NSString *url = @"http://www.capmetro.org/planner/s_nextbus2.asp";
-//    url = @"http://localhost:1234/CapMetroTests/Data/s_nextbus2/801-realtime.xml";
+//    url = @"http://localhost:1234/MetroRappidTests/Data/s_nextbus2/801-realtime.xml";
     
+    NSLog(@"GET %@ %@", url, parameters);
     operation = [manager GET:url
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -82,14 +83,12 @@
     NSDictionary *data = xmlDict[@"soap:Body"][@"Nextbus2Response"];
     NSArray *runs = data[@"Runs"][@"Run"];
     
+    [stop.trips removeAllObjects];
     for (NSDictionary *run in runs) {
         CAPTrip *trip = [[CAPTrip alloc] init];
         [trip updateWithNextBusAPI:run];
         [stop.trips addObject:trip];
     }
-//    
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"tripTime" ascending:YES];
-//    [stop.trips sortedArrayWithOptions:<#(NSSortOptions)#> usingComparator:<#^NSComparisonResult(id obj1, id obj2)cmptr#>]
 
     if (self.completedCallback) {
         self.completedCallback();

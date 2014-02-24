@@ -1,0 +1,24 @@
+{
+    "status": "OK",
+    "routeDesc": "801-N Lamar S Congress-NB",
+    "stopDesc": "REPUBLIC SQUARE STATION (NB)",
+    "list": [{
+        "sched": "02:08 PM",
+        "est": "02:08 PM",
+        "estMin": 4,
+        "real": false,
+        "vId": ""
+    }, {
+        "sched": "02:28 PM",
+        "est": "02:28 PM",
+        "estMin": 24,
+        "real": false,
+        "vId": ""
+    }, {
+        "sched": "02:48 PM",
+        "est": "02:48 PM",
+        "estMin": 44,
+        "real": false,
+        "vId": ""
+    }]
+}

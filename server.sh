@@ -1,4 +1,12 @@
 #!/bin/sh
 
-kill -9 $(lsof -t -i :1234)
-nohup python -m SimpleHTTPServer 1234 &
+port=1234
+runningServerPid=$(lsof -t -i :$port)
+
+if [ -n "${runningServerPid-}" ]; then
+    echo "killing server with pid $runningServerPid"
+    kill -9 $runningServerPid
+fi
+
+echo "running new server on $port"
+nohup python -m SimpleHTTPServer $port &

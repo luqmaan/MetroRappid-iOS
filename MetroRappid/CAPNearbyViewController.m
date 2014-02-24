@@ -21,6 +21,7 @@
 @property NSMutableArray *locations;
 @property CAAnimationGroup *pulseAnimationGroup;
 @property CAAnimationGroup *labelAnimationGroup;
+@property NSIndexPath *lastClickedIndexPath;
 
 @end
 
@@ -51,14 +52,16 @@
     self.pulseAnimationGroup.fillMode = kCAFillModeForwards;
     
     CABasicAnimation *timeOpacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    timeOpacityAnimation.duration = 0.8;
-    timeOpacityAnimation.fromValue = [NSNumber numberWithFloat:0.1];
-    timeOpacityAnimation.toValue = [NSNumber numberWithFloat:0.6];
+    timeOpacityAnimation.duration = 0.5;
+    timeOpacityAnimation.fromValue = [NSNumber numberWithFloat:0.0];
+    timeOpacityAnimation.toValue = [NSNumber numberWithFloat:1.0];
     
     self.labelAnimationGroup = [CAAnimationGroup animation];
     self.labelAnimationGroup.autoreverses = NO;
-    self.labelAnimationGroup.repeatCount = 1;
+    self.labelAnimationGroup.duration = 0.5;
     self.labelAnimationGroup.animations = @[timeOpacityAnimation];
+    self.labelAnimationGroup.fillMode = kCAFillModeForwards;
+    self.labelAnimationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
 
     
     if (nil == self.locationManager) self.  locationManager = [[CLLocationManager alloc] init];
@@ -117,18 +120,20 @@
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
-    progressView.progress = 0.1f;
+    [progressView setProgress:0.1f animated:YES];
     progressView.hidden = NO;
     nb.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
     {
-        progressView.progress = totalBytesExpectedToRead / totalBytesExpectedToRead;
+        [progressView setProgress:totalBytesExpectedToRead / totalBytesExpectedToRead animated:YES];
     };
     
     nb.completedCallback = ^void(){
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
         [self.tableView reloadData];
-    };
+//        NSLog(@"%@", nb)
+    }
+    ;
     [nb startUpdates];
 }
 
@@ -192,7 +197,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
             [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
-            [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+            [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         });
     });
 
@@ -271,18 +276,13 @@
             if (i >= activeStop.trips.count) break;
             
             CAPTrip *trip = activeStop.trips[i];
-            UILabel *mainTime, *oldTime;
+            UILabel *mainTime;
             mainTime = (UILabel *)[cell viewWithTag:100 + (i * 2)];
-            oldTime = (UILabel *)[cell viewWithTag:101 + (i * 2)];
             
             if (trip.realtime.valid) {
                 mainTime.textColor = [UIColor colorWithHue:0.460 saturation:1.000 brightness:0.710 alpha:1];
-                if (![trip.estimatedTime isEqualToString:trip.tripTime]) {
-                    oldTime.hidden = NO;
-                    oldTime.text = trip.tripTime;
-
-                }
             }
+            if (indexPath == self.lastClickedIndexPath) [mainTime.layer addAnimation:self.labelAnimationGroup forKey:nil];
             mainTime.text = trip.estimatedTime;
             mainTime.hidden = NO;
         }
@@ -301,14 +301,13 @@
     CAPLocation *location = nextBus.location;
     CAPStop *stop = location.stops[nextBus.activeStopIndex];
     
-    if (stop.lastUpdated) {
-        return 140.0f;
-    }
-    else return 90.0f;
+    if (stop.lastUpdated) return 110.0f;
+    else return 85.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+    self.lastClickedIndexPath = indexPath;
     [self loadArrivalsForCellAtIndexPath:indexPath];
 }
 
