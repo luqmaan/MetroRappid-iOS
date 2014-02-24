@@ -67,6 +67,7 @@
              NSData *data = (NSData *)responseObject;
              NSString *xml = [NSString stringWithCString:[data bytes] encoding:NSISOLatin1StringEncoding];
              activeStop.lastUpdated = [NSDate date];
+             NSLog(@"About to parse xml");
              [self parseXML:xml forStop:activeStop];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -81,18 +82,25 @@
 
     NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLString:xmlString];
     NSDictionary *data = xmlDict[@"soap:Body"][@"Nextbus2Response"];
-    NSArray *runs = data[@"Runs"][@"Run"];
-    
+
     [stop.trips removeAllObjects];
-    for (NSDictionary *run in runs) {
+
+    if ([data[@"Runs"][@"Run"] isKindOfClass:[NSArray class]]) {
+        NSArray *runs = data[@"Runs"][@"Run"];
+        for (NSDictionary *run in runs) {
+            CAPTrip *trip = [[CAPTrip alloc] init];
+            [trip updateWithNextBusAPI:run];
+            [stop.trips addObject:trip];
+        }
+    }
+    else {
+        NSDictionary *run = data[@"Runs"][@"Run"];
         CAPTrip *trip = [[CAPTrip alloc] init];
         [trip updateWithNextBusAPI:run];
         [stop.trips addObject:trip];
     }
 
-    if (self.completedCallback) {
-        self.completedCallback();
-    }
+    if (self.completedCallback) self.completedCallback();
     
     return stop.trips;
 }

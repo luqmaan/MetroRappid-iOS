@@ -37,7 +37,10 @@
 		8C7FE65B18BAC8C300A802A7 /* gtfs_austin.db in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE65A18BAC8C300A802A7 /* gtfs_austin.db */; };
 		8C7FE65C18BAC8C300A802A7 /* gtfs_austin.db in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE65A18BAC8C300A802A7 /* gtfs_austin.db */; };
 		8C7FE65E18BAD26C00A802A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE65D18BAD26C00A802A7 /* MapKit.framework */; };
-		8C7FE66018BAE24500A802A7 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE65F18BAE24500A802A7 /* Data */; };
+		8C7FE66818BAF77000A802A7 /* the-triangle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE66318BAF77000A802A7 /* the-triangle.xml */; };
+		8C7FE66918BAF77000A802A7 /* 801-estimated.json in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE66518BAF77000A802A7 /* 801-estimated.json */; };
+		8C7FE66A18BAF77000A802A7 /* 801-realtime-feb-22.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE66618BAF77000A802A7 /* 801-realtime-feb-22.xml */; };
+		8C7FE66B18BAF77000A802A7 /* 801-realtime.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE66718BAF77000A802A7 /* 801-realtime.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +85,10 @@
 		8C7FE65618BAC87B00A802A7 /* CAPNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPNearbyViewController.m; sourceTree = "<group>"; };
 		8C7FE65A18BAC8C300A802A7 /* gtfs_austin.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtfs_austin.db; sourceTree = "<group>"; };
 		8C7FE65D18BAD26C00A802A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		8C7FE65F18BAE24500A802A7 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
+		8C7FE66318BAF77000A802A7 /* the-triangle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "the-triangle.xml"; sourceTree = "<group>"; };
+		8C7FE66518BAF77000A802A7 /* 801-estimated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "801-estimated.json"; sourceTree = "<group>"; };
+		8C7FE66618BAF77000A802A7 /* 801-realtime-feb-22.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "801-realtime-feb-22.xml"; sourceTree = "<group>"; };
+		8C7FE66718BAF77000A802A7 /* 801-realtime.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "801-realtime.xml"; sourceTree = "<group>"; };
 		EB4E22B76EA64E70A33E5BD2 /* Pods-MetroRappid.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetroRappid.xcconfig"; path = "Pods/Pods-MetroRappid.xcconfig"; sourceTree = "<group>"; };
 		F79404B7DDB64E558A1D9438 /* libPods-MetroRappid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MetroRappid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -176,7 +182,7 @@
 		8C7FE62518BAC45A00A802A7 /* MetroRappidTests */ = {
 			isa = PBXGroup;
 			children = (
-				8C7FE65F18BAE24500A802A7 /* Data */,
+				8C7FE66118BAF77000A802A7 /* Data */,
 				8C7FE62B18BAC45A00A802A7 /* MetroRappidTests.m */,
 				8C7FE62618BAC45A00A802A7 /* Supporting Files */,
 			);
@@ -224,6 +230,33 @@
 				8C7FE65A18BAC8C300A802A7 /* gtfs_austin.db */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		8C7FE66118BAF77000A802A7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8C7FE66218BAF77000A802A7 /* planner */,
+				8C7FE66418BAF77000A802A7 /* s_nextbus2 */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		8C7FE66218BAF77000A802A7 /* planner */ = {
+			isa = PBXGroup;
+			children = (
+				8C7FE66318BAF77000A802A7 /* the-triangle.xml */,
+			);
+			path = planner;
+			sourceTree = "<group>";
+		};
+		8C7FE66418BAF77000A802A7 /* s_nextbus2 */ = {
+			isa = PBXGroup;
+			children = (
+				8C7FE66518BAF77000A802A7 /* 801-estimated.json */,
+				8C7FE66618BAF77000A802A7 /* 801-realtime-feb-22.xml */,
+				8C7FE66718BAF77000A802A7 /* 801-realtime.xml */,
+			);
+			path = s_nextbus2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,9 +359,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C7FE66918BAF77000A802A7 /* 801-estimated.json in Resources */,
 				8C7FE62A18BAC45A00A802A7 /* InfoPlist.strings in Resources */,
+				8C7FE66A18BAF77000A802A7 /* 801-realtime-feb-22.xml in Resources */,
+				8C7FE66818BAF77000A802A7 /* the-triangle.xml in Resources */,
+				8C7FE66B18BAF77000A802A7 /* 801-realtime.xml in Resources */,
 				8C7FE65C18BAC8C300A802A7 /* gtfs_austin.db in Resources */,
-				8C7FE66018BAE24500A802A7 /* Data in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

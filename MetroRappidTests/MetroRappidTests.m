@@ -36,6 +36,8 @@
 - (void)testGTFSDB_CanFindNearbyLocationsForMultipleRoutes
 {
     GTFSDB *gtfs = [[GTFSDB alloc] init];
+    while (!gtfs.ready) ;
+
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
     
     // FIXME: Add test to support to make sure this can support multiple routes
@@ -99,7 +101,7 @@
     }
 }
 
-- (void)testCAPNextBus_CanParseXMLWithRealtimeResponse
+- (void)testCAPNextBus_CanParseXMLWithRealtimeResponse_WithMultipleRuns
 {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"801-realtime" ofType:@"xml"];
@@ -123,6 +125,32 @@
     XCTAssertTrue(trip1Realtime.valid);
     XCTAssertTrue([@"11:20 AM" isEqualToString:trip1Realtime.estimatedTime]);
     XCTAssertTrue([@"5022" isEqualToString:trip1Realtime.vehicleId]);
+}
+
+- (void)testCAPNextBus_CanParseXMLWithRealtimeResponse_WithSingleRun
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *filePath = [bundle pathForResource:@"801-realtime-feb-22" ofType:@"xml"];
+    
+    NSError *error = nil;
+    NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    if (error) { XCTFail(@"Reading XML failed %@", error); }
+    
+    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil];
+    CAPStop *mockStop = [[CAPStop alloc] init];
+    [mockNextBus parseXML:xmlString forStop:mockStop];
+    
+    XCTAssertEqual((NSUInteger)1, mockStop.trips.count);
+    
+    CAPTrip *trip1 = mockStop.trips[0];
+    CAPTripRealtime *trip1Realtime = trip1.realtime;
+    
+    XCTAssertTrue([@"801" isEqualToString:trip1.route]);
+    XCTAssertTrue([@"09:58 PM" isEqualToString:trip1.tripTime]);
+    XCTAssertTrue([@"10:00 PM" isEqualToString:trip1.estimatedTime]);
+    XCTAssertTrue(trip1Realtime.valid);
+    XCTAssertTrue([@"10:00 PM" isEqualToString:trip1Realtime.estimatedTime]);
+    XCTAssertTrue([@"5006" isEqualToString:trip1Realtime.vehicleId]);
 }
 
 
