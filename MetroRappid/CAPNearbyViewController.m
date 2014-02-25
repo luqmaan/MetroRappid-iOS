@@ -281,7 +281,7 @@
             if (trip.realtime.valid) {
                 mainTime.textColor = [UIColor colorWithHue:0.460 saturation:1.000 brightness:0.710 alpha:1];
             }
-//            if (indexPath == self.lastClickedIndexPath) [mainTime.layer addAnimation:self.labelAnimationGroup forKey:nil];
+            if (indexPath == self.lastClickedIndexPath) [mainTime.layer addAnimation:self.labelAnimationGroup forKey:nil];
             mainTime.text = trip.estimatedTime;
             mainTime.hidden = NO;
             NSLog(@"mainTime %@ %@", mainTime, mainTime.text);
