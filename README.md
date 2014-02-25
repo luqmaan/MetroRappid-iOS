@@ -2,7 +2,8 @@ An attempt at reverse engineering and speeding up the CapMetro app for my use ca
 
 If you're interested in working together on this app, please feel free to contact me, fork the repo, open an issue, etc.
 
-![preview](https://photos-5.dropbox.com/t/0/AADU0dBSjBNq6NMSRpnNR4LEmWDykvCwUOIwvpwflE8jmg/12/220760525/png/1024x768/3/1392879600/0/2/iOS%20Simulator%20Screen%20shot%20Feb%2019%2C%202014%2C%2011.22.00%20PM.png/WVdkn48BnDYbjRSBSh_Tz9UnAxTqbdZQ7dTXZ_fgIwo)
+![preview](https://photos-2.dropbox.com/t/0/AACUoIxi6ypHrEABeyQyWVqdeH3SezYDYgpu36JNkbAGVA/12/220760525/png/1024x768/3/1393228800/0/2/screenshot1-1136.png/i6qn6xdgLMHV-WKEnI2UiKTJwo2QQIbz5rfnOZRIiLo)
+
 
 Data
 --
