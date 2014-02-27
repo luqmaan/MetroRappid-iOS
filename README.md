@@ -1,4 +1,4 @@
-http://metrorapppid.com/
+http://metrorappid.com/
 
 
 An attempt at reverse engineering and speeding up the CapMetro app for my use case: view the MetroRapid realtime arrivals *quickly*.
