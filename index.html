@@ -3,17 +3,19 @@
 <head>
 <title>MetroRappid</title>
 <link href='http://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
 <style type='text/css'>
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     background: #fff;
-    font-family: Verdana, sans-serif;
+    font-family: 'Droid Serif', Georgia, serif;
     color: #fff;
 }
-h1, h2, h3, h4 {
+h1, a {
     font-family: 'Ropa Sans', Verdana, sans-serif;
+    letter-spacing: -1px;
 }
 h1 {
     font-size: 3.5em;
@@ -25,6 +27,10 @@ h2 {
     margin-top: 0.3em;
     margin-bottom: 1.2em;
 }
+p {
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
 .red {
     background: #C50004;
     margin: 0;
@@ -34,31 +40,13 @@ h2 {
 .red a {
     color: #fff;
 }
-a {
-    color: #19B289;
-    font-weight: bold;
-}
-a:hover {
-    color: #C50004;
-}
 .container {
     margin: 0 auto;
     width: 40em;
     padding: 0;
 }
 #desc {
-    padding: 3em 0 1em;
-}
-#nav {
-    padding: 0 0 3em;
-}
-#nav a {
-    display: block;
-    margin: 0em 0 1em;
-    font-size: 1.2em;
-}
-#nav a:hover {
-    color: #BDB6B6;
+    padding: 4em 0 2em;
 }
 #screens {
     width: 40em;
@@ -75,6 +63,20 @@ a:hover {
     max-width: 25em;
     border: 1px solid #ddd;
 }
+.screen a {
+    display: block;
+    margin: 0.5em 0;
+    line-height: 1.5em;
+    color: #19B289;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+a:hover {
+    color: #C50004;
+}
+a:hover img {
+
+}
 img a, a img  {
     border: none;
 }
@@ -83,27 +85,26 @@ img a, a img  {
 <body>
 
 <div class='red'>
-<div id='desc' class='container'>
-<h1>MetroRappid</h1>
-<h2>Fast realtime arrival information for Austin's CapMetro MetroRapid bus.</h2>
-<p>Fast Realtime Arrival information for Austin's CapMetro MetroRapid bus. Find out exactly when the next MetroRapid bus is going to arrive, without pressing a single button. </p>
-<p>Don't worry about figuring out the schedule, you'll know if the bus is running late and be immediately able to which stop to get on at. </p>
-<p>Coming Soon: View exactly where the bus is on a map.</p>
-</div>
-
-<div id='nav' class='container'>
-<a href='https://github.com/luqmaan/MetroRappid' target='_blank'>MetroRappid on GitHub</a>
-<a href='https://github.com/luqmaan/MetroRappid/issues?state=open' target='_blank'>To report a bug, or request support open an issue on GitHub</a>
-</div>
+    <div id='desc' class='container'>
+    <h1>MetroRappid</h1>
+    <p>Fast Realtime Arrival information for Austin's CapMetro MetroRapid bus.</p>
+    <p>Find out exactly when the next MetroRapid bus is going to arrive, without pressing a single button. </p>
+    <p>Don't worry about figuring out the schedule, you'll know if the bus is running late and be immediately able to which stop to get on at. </p>
+    <p>Coming Soon: View exactly where the bus is on a map.</p>
+    </div>
 </div>
 
 <div id='screens' class='container'>
     <div class='screen'>
         <a href='https://itunes.apple.com/us/app/metrorappid/id827603682?ls=1&mt=8' target='_blank'>
             <img src='img/MetroRappid-152.png' width='76' height='76' /><br />
-            MetroRappid in the App Store
+            MetroRappid on the App Store
         </a>
+        <a href='https://github.com/luqmaan/MetroRappid' target='_blank'>MetroRappid on GitHub</a>
+        <a href='https://github.com/luqmaan/MetroRappid/issues?state=open' target='_blank'>Report a bug or request support</a>
     </div>
+
+
     <div class='screen capture'>
         <img src='img/screenshot1-1136.png' />
     </div>
