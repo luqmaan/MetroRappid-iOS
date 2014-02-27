@@ -11,6 +11,7 @@
 #import <ProgressHUD/ProgressHUD.h>
 
 #import "CAPNearbyViewController.h"
+#import "CAPRealtimeMapViewController.h"
 #import "GTFSDB.h"
 #import "CAPNextBus.h"
 
@@ -286,9 +287,19 @@
             mainTime.hidden = NO;
             NSLog(@"mainTime %@ %@", mainTime, mainTime.text);
         }
+        
+        if (activeStop.trips.count > 0) {
+
+            MKMapView *mapView = (MKMapView *)[cell viewWithTag:200];
+            CAPRealtimeMapViewController *realtimeMapVC = [[CAPRealtimeMapViewController alloc] initWithMapView:mapView forLocation:location];
+            mapView.delegate = realtimeMapVC;
+            mapView.hidden = NO;
+            mapView.showsUserLocation = YES;
+            [realtimeMapVC zoom]
+        }
 
     }
-    
+
     return cell;
 }
 
