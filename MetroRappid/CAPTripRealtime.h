@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface CAPTripRealtime : NSObject
+@interface CAPTripRealtime : NSObject <MKAnnotation> {
+    CLLocationCoordinate2D coordinate;
+}
 
 @property (nonatomic, assign) BOOL valid;
 @property NSString *adherence;
@@ -20,9 +23,12 @@
 @property NSString *reliable;
 @property NSString *stopped;
 @property NSString *vehicleId;
-@property NSString *lat; // FIXME: Use float
-@property NSString *lon; // FIXME: Expose via CLLocation *position;
+@property (nonatomic, assign) float lat;
+@property (nonatomic, assign) float lon;
 
 - (void)updateWithNextBusAPI:(NSDictionary *)data;
+
+#pragma mark - MKAnnotation
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
 @end

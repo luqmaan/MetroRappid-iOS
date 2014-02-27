@@ -15,6 +15,7 @@
     self = [super init];
     if (self) {
         self.trips = [[NSMutableArray alloc] init];
+        self.showsMap = NO;
     }
     return self;
 }

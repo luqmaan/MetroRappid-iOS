@@ -10,19 +10,34 @@
 
 @interface CAPRealtimeMapViewController ()
 
-@property MKMapView *mapView;
-
 @end
 
 @implementation CAPRealtimeMapViewController
 
-- (id)initWithWithMapView:(MKMapView *)mapView forLocation:(CAPLocation *)location
+//- (id)initWithNextBus:(CAPNextBus *)nextBus
+//{
+//    self = [super init];
+//    if (self) {
+//        NSLog(@"Init mapview");
+//        self.nextBus = nextBus;
+//    }
+//    return self;
+//}
+
+- (void)setupMap:(MKMapView *)mapView withNextBus:(CAPNextBus *)nextBus
 {
-    self = [super init];
-    if (self) {
-        self.mapView = mapView;
+    NSLog(@"Setup mapview");
+    mapView.showsUserLocation = YES;
+
+    CAPStop *activeStop = nextBus.location.stops[ nextBus.activeStopIndex];
+    for (CAPTrip *trip in activeStop.trips) {
+        CAPTripRealtime *vehicle = trip.realtime;
+        NSLog(@"add annotation %@", vehicle);
+        [mapView addAnnotation:vehicle];
+        NSLog(@"Did add annotation");
     }
-    return self;
+    [self zoomToAnnotationsMapView:mapView];
+    NSLog(@"Did setup mapview");
 }
 
 - (void)zoomToAnnotationsMapView:(MKMapView *)mapView

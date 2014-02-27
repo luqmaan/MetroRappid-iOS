@@ -23,6 +23,7 @@
 @property CAAnimationGroup *pulseAnimationGroup;
 @property CAAnimationGroup *labelAnimationGroup;
 @property NSIndexPath *lastClickedIndexPath;
+@property CAPRealtimeMapViewController* realtimeMapVC;
 
 @end
 
@@ -70,6 +71,9 @@
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     self.locationManager.distanceFilter = 100; // meters
+
+    self.realtimeMapVC = [[CAPRealtimeMapViewController alloc] init];
+
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -131,6 +135,7 @@
     nb.completedCallback = ^void(){
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
+        activeStop.showsMap = YES;  // FIXME: Putting this as a property on the model seems bad
         [self.tableView reloadData];
 //        NSLog(@"%@", nb)
     }
@@ -288,14 +293,11 @@
             NSLog(@"mainTime %@ %@", mainTime, mainTime.text);
         }
         
-        if (activeStop.trips.count > 0) {
-
+        if (activeStop.trips.count > 0 && activeStop.showsMap) {
             MKMapView *mapView = (MKMapView *)[cell viewWithTag:200];
-            CAPRealtimeMapViewController *realtimeMapVC = [[CAPRealtimeMapViewController alloc] initWithMapView:mapView forLocation:location];
-            mapView.delegate = realtimeMapVC;
+            mapView.delegate = self.realtimeMapVC;
+            [self.realtimeMapVC setupMap:mapView withNextBus:nextBus];
             mapView.hidden = NO;
-            mapView.showsUserLocation = YES;
-            [realtimeMapVC zoom]
         }
 
     }
@@ -312,7 +314,10 @@
     CAPLocation *location = nextBus.location;
     CAPStop *stop = location.stops[nextBus.activeStopIndex];
     
-    if (stop.lastUpdated) return 110.0f;
+    if (stop.lastUpdated) {
+        if (stop.showsMap == YES) return 300.0f;
+        return 110.0f;
+    }
     else return 85.0f;
 }
 

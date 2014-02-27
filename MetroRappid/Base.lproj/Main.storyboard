@@ -120,6 +120,7 @@
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="top" secondItem="HQi-qX-AhN" secondAttribute="bottom" constant="8" id="Rrq-Ni-Mc9"/>
                                         <constraint firstItem="Cs3-Bq-21W" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" constant="20" id="UFI-YH-aLN"/>
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="top" secondItem="41j-de-ymS" secondAttribute="top" id="Uxx-gf-4Cj"/>
+                                        <constraint firstItem="37I-LO-gaP" firstAttribute="top" secondItem="VQP-Di-yi7" secondAttribute="bottom" constant="18" id="XT6-ik-AIW"/>
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="top" secondItem="DX8-uY-E2H" secondAttribute="top" id="ZMk-BN-GoR"/>
                                         <constraint firstItem="eWj-vf-TtF" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" id="buW-ET-6xk"/>
                                         <constraint firstItem="6dM-Nq-0ej" firstAttribute="top" secondItem="yZb-1M-99V" secondAttribute="top" id="dpZ-IC-f1a"/>
@@ -134,7 +135,6 @@
                                         <constraint firstItem="yZb-1M-99V" firstAttribute="leading" secondItem="6dM-Nq-0ej" secondAttribute="trailing" constant="15" id="oyG-Zq-UtD"/>
                                         <constraint firstItem="Y0X-vT-fgL" firstAttribute="top" secondItem="yZb-1M-99V" secondAttribute="top" id="rtV-gN-8jP"/>
                                         <constraint firstItem="HQi-qX-AhN" firstAttribute="leading" secondItem="37I-LO-gaP" secondAttribute="leading" constant="5" id="sNy-KF-3iD"/>
-                                        <constraint firstItem="37I-LO-gaP" firstAttribute="top" secondItem="VQP-Di-yi7" secondAttribute="bottom" constant="18" id="t1j-Hn-6PO"/>
                                         <constraint firstItem="41j-de-ymS" firstAttribute="leading" secondItem="VQP-Di-yi7" secondAttribute="trailing" constant="15" id="v11-id-srh"/>
                                         <constraint firstItem="HQi-qX-AhN" firstAttribute="leading" secondItem="eWj-vf-TtF" secondAttribute="trailing" constant="15" id="vya-mG-NdD"/>
                                         <constraint firstItem="avg-Vo-2pm" firstAttribute="leading" secondItem="eWj-vf-TtF" secondAttribute="trailing" constant="10" id="xAz-zs-hef"/>

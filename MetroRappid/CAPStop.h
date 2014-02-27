@@ -28,6 +28,8 @@
 @property NSMutableArray *trips;
 @property NSDate *lastUpdated;
 
+@property BOOL showsMap;
+
 - (void)updateWithGTFS:(NSDictionary *)data;
 
 @end

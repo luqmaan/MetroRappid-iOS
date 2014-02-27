@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-#import "CAPStop.h"
+#import "CAPNextBus.h"
 
 @interface CAPRealtimeMapViewController : NSObject <MKMapViewDelegate>
 
-- (id)initWithWithMapView:(MKMapView *)mapView forLocation:(CAPLocation *)location;
+- (void)setupMap:(MKMapView *)mapView withNextBus:(CAPNextBus *)nextBus;
 
 @end
