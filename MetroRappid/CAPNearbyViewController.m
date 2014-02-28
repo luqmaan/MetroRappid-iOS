@@ -111,15 +111,6 @@
     [self updateLocation];
 }
 
-- (IBAction)refreshBtnPress:(id)sender {
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    if (indexPath != nil) {
-        [self loadArrivalsForCellAtIndexPath:indexPath];
-    }
-}
-
-
 #pragma mark - Data
 
 - (void)loadArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
@@ -144,7 +135,6 @@
     nb.completedCallback = ^void(){
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
-        activeStop.showsMap = YES;  // FIXME: Putting this as a property on the model seems bad
         [self.tableView reloadData];
 //        NSLog(@"%@", nb)
     }
@@ -346,4 +336,26 @@
     }
 }
 
+#pragma mark - IBActions
+
+- (IBAction)scheduleBtnPress:(id)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    if (indexPath != nil) {
+        [self loadArrivalsForCellAtIndexPath:indexPath];
+    }
+}
+
+- (IBAction)mapBtnPress:(id)sender
+{
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    if (indexPath != nil) {
+        CAPNextBus *nb = self.locations[indexPath.row];
+        CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
+        activeStop.showsMap = !activeStop.showsMap;
+        [self.tableView reloadData];
+    }
+
+}
 @end

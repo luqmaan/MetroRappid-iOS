@@ -7,6 +7,7 @@
 //
 
 #import "CAPStop.h"
+#import <MapKit/MapKit.h>
 
 @implementation CAPStop
 
@@ -31,7 +32,10 @@
     self.lon = data[@"stop_lon"];
     self.name = [self formatString:data[@"stop_name"]];
     self.desc = data[@"stop_desc"];
-    self.headsign = [data[@"trip_headsign"] capitalizedString];
+    MKDistanceFormatter *df = [[MKDistanceFormatter alloc]init];
+    df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
+    CLLocationDistance dist = 1000 * self.distance;
+    self.headsign = [NSString stringWithFormat:@"%@ %@", [data[@"trip_headsign"] capitalizedString], [df stringFromDistance:dist]];
     self.stopSequence = [data[@"stop_sequence"] intValue];
     if ([self.headsign isEqualToString:@"Northbound"]) {
         self.directionId = 0;
