@@ -111,6 +111,15 @@
     [self updateLocation];
 }
 
+- (IBAction)refreshBtnPress:(id)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    if (indexPath != nil) {
+        [self loadArrivalsForCellAtIndexPath:indexPath];
+    }
+}
+
+
 #pragma mark - Data
 
 - (void)loadArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
@@ -319,12 +328,6 @@
         return 110.0f;
     }
     else return 85.0f;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-    self.lastClickedIndexPath = indexPath;
-    [self loadArrivalsForCellAtIndexPath:indexPath];
 }
 
 #pragma mark - UIGestureRecognizerDelegate

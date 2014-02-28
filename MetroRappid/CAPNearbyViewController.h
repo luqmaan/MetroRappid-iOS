@@ -10,4 +10,6 @@
 
 @interface CAPNearbyViewController : UITableViewController
 
+- (IBAction)refreshBtnPress:(id)sender;
+
 @end

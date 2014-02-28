@@ -30,5 +30,7 @@
 
 #pragma mark - MKAnnotation
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+@property NSString *title;
+@property NSString *subtitle;
 
 @end

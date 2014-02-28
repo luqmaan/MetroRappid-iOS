@@ -104,12 +104,23 @@
                                             <rect key="frame" x="31" y="113" width="279" height="176"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </mapView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yi-C4-TET">
+                                            <rect key="frame" x="257" y="15" width="53" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Refresh">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="refreshBtnPress:" destination="cZh-cL-NUE" eventType="touchUpInside" id="Pj3-ax-qSM"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="avg-Vo-2pm" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" id="1gt-uo-0EQ"/>
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="leading" secondItem="HQi-qX-AhN" secondAttribute="leading" id="3Rc-TK-dcq"/>
                                         <constraint firstItem="nvn-wU-Aut" firstAttribute="centerX" secondItem="eWj-vf-TtF" secondAttribute="centerX" id="42B-w4-Pk8"/>
                                         <constraint firstAttribute="trailing" secondItem="avg-Vo-2pm" secondAttribute="trailing" id="4Pk-0Q-QoK"/>
+                                        <constraint firstItem="Cs3-Bq-21W" firstAttribute="bottom" secondItem="4Yi-C4-TET" secondAttribute="bottom" constant="-6" id="5MH-Cu-AcL"/>
                                         <constraint firstItem="Y0X-vT-fgL" firstAttribute="leading" secondItem="yZb-1M-99V" secondAttribute="trailing" constant="15" id="5Th-xb-r4T"/>
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="leading" secondItem="DX8-uY-E2H" secondAttribute="leading" id="7gx-zC-trm"/>
                                         <constraint firstAttribute="bottom" secondItem="37I-LO-gaP" secondAttribute="bottom" constant="10" id="8Ig-eh-ODr"/>
@@ -121,6 +132,7 @@
                                         <constraint firstItem="Cs3-Bq-21W" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" constant="20" id="UFI-YH-aLN"/>
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="top" secondItem="41j-de-ymS" secondAttribute="top" id="Uxx-gf-4Cj"/>
                                         <constraint firstItem="37I-LO-gaP" firstAttribute="top" secondItem="VQP-Di-yi7" secondAttribute="bottom" constant="18" id="XT6-ik-AIW"/>
+                                        <constraint firstAttribute="trailing" secondItem="4Yi-C4-TET" secondAttribute="trailing" constant="10" id="XdU-N5-B1h"/>
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="top" secondItem="DX8-uY-E2H" secondAttribute="top" id="ZMk-BN-GoR"/>
                                         <constraint firstItem="eWj-vf-TtF" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" id="buW-ET-6xk"/>
                                         <constraint firstItem="6dM-Nq-0ej" firstAttribute="top" secondItem="yZb-1M-99V" secondAttribute="top" id="dpZ-IC-f1a"/>

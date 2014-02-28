@@ -32,24 +32,20 @@
     CAPStop *activeStop = nextBus.location.stops[ nextBus.activeStopIndex];
     for (CAPTrip *trip in activeStop.trips) {
         CAPTripRealtime *vehicle = trip.realtime;
-        NSLog(@"add annotation %@", vehicle);
+        
+        if (!vehicle.lat || !vehicle.lon) continue;
+        
         [mapView addAnnotation:vehicle];
-        NSLog(@"Did add annotation");
     }
     [self zoomToAnnotationsMapView:mapView];
-    NSLog(@"Did setup mapview");
+    NSLog(@"Did setup mapview with %d annotations", (int)mapView.annotations.count);
 }
 
 - (void)zoomToAnnotationsMapView:(MKMapView *)mapView
 {
-    MKMapRect zoomRect = MKMapRectNull;
-    for (id <MKAnnotation> annotation in mapView.annotations)
-    {
-        MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
-        MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.1, 0.1);
-        zoomRect = MKMapRectUnion(zoomRect, pointRect);
-    }
-    [mapView setVisibleMapRect:zoomRect edgePadding:UIEdgeInsetsMake(0, 10, 15, 10) animated:YES];
+    NSMutableArray *annotations = [[NSMutableArray alloc] initWithArray:mapView.annotations];
+    [annotations addObject:mapView.userLocation];
+    [mapView showAnnotations:mapView.annotations animated:YES];
 }
 
 

@@ -24,9 +24,13 @@
     self.reliable = data[@"Reliable"];
     self.stopped = data[@"Stopped"];
     self.vehicleId = data[@"Vehicleid"];
-    self.lat = [data[@"Lat"] floatValue];
-    self.lon = [data[@"Long"] floatValue];
-    coordinate = CLLocationCoordinate2DMake(self.lat, self.lon);
+    if (data[@"Lat"]) self.lat = [data[@"Lat"] floatValue];
+    if (data[@"Long"]) self.lon = [data[@"Long"] floatValue];
+    if (self.lat && self.lon) {
+        coordinate = CLLocationCoordinate2DMake(self.lat, self.lon);
+    }
+    self.title = [NSString stringWithFormat:@"%@ Minutes Away - Vehicle %@", self.estimatedMinutes, self.vehicleId];
+    self.subtitle = [NSString stringWithFormat:@"Location Updated %@", self.polltime];
 }
 
 - (NSString *)description
