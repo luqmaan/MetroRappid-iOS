@@ -28,7 +28,7 @@
 @property NSMutableArray *trips;
 @property NSDate *lastUpdated;
 
-@property BOOL showsMap;  // FIXME: Putting this as a property on the model seems bad
+@property BOOL showsTrips;  // FIXME: Putting this as a property on the model seems bad
 
 - (void)updateWithGTFS:(NSDictionary *)data;
 

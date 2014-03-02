@@ -11,9 +11,9 @@
 #import <ProgressHUD/ProgressHUD.h>
 
 #import "CAPNearbyViewController.h"
-#import "CAPRealtimeMapViewController.h"
 #import "GTFSDB.h"
 #import "CAPNextBus.h"
+#import "CAPRealtimeViewController.h"
 
 @interface CAPNearbyViewController () <CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -23,7 +23,6 @@
 @property CAAnimationGroup *pulseAnimationGroup;
 @property CAAnimationGroup *labelAnimationGroup;
 @property NSIndexPath *lastClickedIndexPath;
-@property CAPRealtimeMapViewController* realtimeMapVC;
 
 @end
 
@@ -71,8 +70,6 @@
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     self.locationManager.distanceFilter = 100; // meters
-
-    self.realtimeMapVC = [[CAPRealtimeMapViewController alloc] init];
 
 }
 
@@ -135,13 +132,20 @@
     nb.completedCallback = ^void(){
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
+        activeStop.showsTrips = YES;
         [self.tableView reloadData];
-//        NSLog(@"%@", nb)
-    }
-    ;
+    };
     [nb startUpdates];
 }
 
+- (void)hideArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    CAPNextBus *nb = self.locations[indexPath.row];
+    CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
+    NSLog(@"Hiding arrivals for %@", activeStop.name);
+    activeStop.showsTrips = NO;
+    [self.tableView reloadData];
+}
 #pragma mark - CLLocationManagerDelegate
 
 - (void)updateLocation
@@ -228,7 +232,7 @@
     CAPLocation *location = nextBus.location;
     CAPStop *activeStop = location.stops[nextBus.activeStopIndex];
     
-    if (activeStop.lastUpdated) {
+    if (activeStop.showsTrips) {
         CellIdentifier = @"TripsCell";
     }
     else {
@@ -238,12 +242,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
-    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
-    UILabel *loadError = (UILabel *)[cell viewWithTag:11];
     UIView *proximityIndicator = (UIView *)[cell viewWithTag:22];
 
     routeNumber.text = location.name;
-    stopName.text = activeStop.headsign;
     
     proximityIndicator.layer.cornerRadius = 6.0f;
     proximityIndicator.layer.borderWidth = 2.0f;
@@ -262,17 +263,10 @@
         [proximityIndicatorOuter.layer addAnimation:self.pulseAnimationGroup forKey:@"pulse"];
     }
 
-    UISwipeGestureRecognizer *recognizerRight;
-    recognizerRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLocationDirection:)];
-    recognizerRight.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
-    [tableView addGestureRecognizer:recognizerRight];
-
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
         
         if (activeStop.trips.count == 0) {
             NSLog(@"No trips for %@", activeStop.trips);
-            loadError.text = @"No upcoming arrivals";
-            loadError.hidden = NO;
             return cell;
         }
 
@@ -291,13 +285,6 @@
             mainTime.hidden = NO;
             NSLog(@"mainTime %@ %@", mainTime, mainTime.text);
         }
-        
-        if (activeStop.trips.count > 0 && activeStop.showsMap) {
-            MKMapView *mapView = (MKMapView *)[cell viewWithTag:200];
-            mapView.delegate = self.realtimeMapVC;
-            [self.realtimeMapVC setupMap:mapView withNextBus:nextBus];
-            mapView.hidden = NO;
-        }
 
     }
 
@@ -313,32 +300,16 @@
     CAPLocation *location = nextBus.location;
     CAPStop *stop = location.stops[nextBus.activeStopIndex];
     
-    if (stop.lastUpdated) {
-        if (stop.showsMap == YES) return 300.0f;
-        return 110.0f;
-    }
-    else return 85.0f;
+    if (stop.lastUpdated) return 90.0f;
+    else return 60.0f;
 }
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (void) swipeLocationDirection:(UISwipeGestureRecognizer *)gesture {
-    CGPoint location = [gesture locationInView:self.tableView];
-    
-    NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
-    if (swipedIndexPath) {
-        CAPNextBus *nb = self.locations[swipedIndexPath.row];
-        [nb activateNextStop];
-        [self.tableView reloadData];
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:swipedIndexPath];
-        UILabel *headsign = (UILabel *)[cell viewWithTag:2];
-        [headsign.layer addAnimation:self.labelAnimationGroup forKey:nil];
-    }
-}
 
 #pragma mark - IBActions
 
-- (IBAction)scheduleBtnPress:(id)sender {
+- (IBAction)reloadBtnPress:(id)sender {
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     if (indexPath != nil) {
@@ -346,16 +317,28 @@
     }
 }
 
-- (IBAction)mapBtnPress:(id)sender
-{
+- (IBAction)scheduleBtnPress:(id)sender {
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     if (indexPath != nil) {
-        CAPNextBus *nb = self.locations[indexPath.row];
-        CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
-        activeStop.showsMap = !activeStop.showsMap;
-        [self.tableView reloadData];
+        [self hideArrivalsForCellAtIndexPath:indexPath];
     }
-
 }
+
+# pragma mark - Segue
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    return YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"RealtimeMapViewSegue"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        CAPRealtimeViewController *realtimeVC = segue.destinationViewController;
+        realtimeVC.nextBus = self.locations[indexPath.row];
+    }
+}
+
 @end

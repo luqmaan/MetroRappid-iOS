@@ -26,7 +26,7 @@
 
 - (void)setupMap:(MKMapView *)mapView withNextBus:(CAPNextBus *)nextBus
 {
-    NSLog(@"Setup mapview");
+    NSLog(@"Setup mapview %@ with nextBus %@ %@", mapView, nextBus, nextBus.location);
     mapView.showsUserLocation = YES;
 
     CAPStop *activeStop = nextBus.location.stops[ nextBus.activeStopIndex];
