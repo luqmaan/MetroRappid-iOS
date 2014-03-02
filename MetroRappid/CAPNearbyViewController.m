@@ -146,6 +146,20 @@
     activeStop.showsTrips = NO;
     [self.tableView reloadData];
 }
+
+- (void)toggleArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    CAPNextBus *nb = self.locations[indexPath.row];
+    CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
+    NSLog(@"Toggling arrivals for %@", activeStop.name);
+    if (activeStop.showsTrips) {
+        [self hideArrivalsForCellAtIndexPath:indexPath];
+    }
+    else {
+        [self loadArrivalsForCellAtIndexPath:indexPath];
+    }
+}
+
 #pragma mark - CLLocationManagerDelegate
 
 - (void)updateLocation
@@ -300,8 +314,13 @@
     CAPLocation *location = nextBus.location;
     CAPStop *stop = location.stops[nextBus.activeStopIndex];
     
-    if (stop.lastUpdated) return 90.0f;
+    if (stop.showsTrips) return 90.0f;
     else return 60.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self toggleArrivalsForCellAtIndexPath:indexPath];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
