@@ -52,18 +52,12 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated]; // FIXME: Is this needed?
-}
-
 - (void)update
 {
     int vehicleCount = 0;
     for (CAPTrip *trip in self.stop.trips) if (trip.realtime.valid) vehicleCount++;
 
     self.navigationItem.title = self.stop.name;
-//    self.navigationItem.prompt = [NSString stringWithFor  mat:@"%d vehicles", vehicleCount];
     NSLog(@"Updated with %d vehicles", vehicleCount);
     [self.realtimeMapVC setupMap:self.mapView withStop:self.stop];
 }

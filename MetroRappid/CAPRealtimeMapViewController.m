@@ -37,13 +37,15 @@
 {
     NSLog(@"zoomToAnnotationsMapView");
     NSMutableArray *annotations = [[NSMutableArray alloc] initWithArray:mapView.annotations];
+
+    // FIXME: See how this works IRL
     if (!self.foundUserLocation && mapView.userLocation.location.horizontalAccuracy > kCLLocationAccuracyHundredMeters) {
         NSLog(@"Accurate location found, ignoring future updates");
-        // FIXME: See how this works IRL
         [annotations addObject:mapView.userLocation];
         self.foundUserLocation = YES;
         mapView.userTrackingMode = MKUserTrackingModeNone;
     }
+    
     [mapView showAnnotations:annotations animated:YES];
 }
 

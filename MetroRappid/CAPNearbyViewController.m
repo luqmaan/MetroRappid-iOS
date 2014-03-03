@@ -246,7 +246,12 @@
     CAPLocation *location = nextBus.location;
     CAPStop *activeStop = location.stops[nextBus.activeStopIndex];
     
-    if (activeStop.showsTrips) {
+    if (activeStop.trips.count == 0) {
+        CellIdentifier = @"Cell";
+        [ProgressHUD showError:@"No Arrivals"];
+        activeStop.showsTrips = NO;
+    }
+    else if (activeStop.showsTrips) {
         CellIdentifier = @"TripsCell";
     }
     else {
@@ -279,11 +284,6 @@
 
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
         
-        if (activeStop.trips.count == 0) {
-            NSLog(@"No trips for %@", activeStop.trips);
-            return cell;
-        }
-
         for (int i = 0; i < 3; i++) {
             if (i >= activeStop.trips.count) break;
             
@@ -314,7 +314,7 @@
     CAPLocation *location = nextBus.location;
     CAPStop *stop = location.stops[nextBus.activeStopIndex];
     
-    if (stop.showsTrips) return 90.0f;
+    if (stop.showsTrips && stop.trips.count > 0) return 90.0f;
     else return 60.0f;
 }
 

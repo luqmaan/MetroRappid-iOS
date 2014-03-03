@@ -24,6 +24,7 @@
 @property NSString *tripId;
 @property NSString *skedTripId;
 @property NSString *adherence;
+@property NSDate *estimatedDate;
 @property NSString *estimatedTime;
 @property NSString *block;
 @property NSString *exception;

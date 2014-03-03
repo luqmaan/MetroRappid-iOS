@@ -25,14 +25,30 @@
     self.tripId = data[@"Tripid"];
     self.skedTripId = data[@"Skedtripid"];
     self.adherence = data[@"Adherence"];
-    self.estimatedTime = data[@"Estimatedtime"];
-    self.estimatedTime = @"25m"; // FIXME: Put the actual time formatted like this
     self.realtime = [[CAPTripRealtime alloc] init];
     [self.realtime updateWithNextBusAPI:data[@"Realtime"]];
     self.block = data[@"Block"];
     self.exception = data[@"Exception"];
     self.atisStopId = data[@"Atisstopid"];
     self.stopId = data[@"Stopid"];
+;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *now = [[NSDate alloc] init];
+    NSString *estimated = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:now], data[@"Estimatedtime"]];
+    
+    [formatter setDateFormat:@"dd/MM/yyyy hh:mm a"];
+    self.estimatedDate = [formatter dateFromString:estimated];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(kCFCalendarUnitHour | kCFCalendarUnitMinute) fromDate:self.estimatedDate];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    self.estimatedTime = [NSString stringWithFormat:@"%dm", (int)minute];
+
+    if (hour > 1) self.estimatedTime = [NSString stringWithFormat:@"%dh %dm", (int)hour, (int)minute];
+
+    NSLog(@"%@  estimated = %@", self.estimatedDate, estimated);
 }
 
 - (NSString *)description
