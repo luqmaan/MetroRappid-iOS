@@ -10,6 +10,8 @@
 
 @implementation CAPTripRealtime
 
+@synthesize coordinate;  // Why this is needed, I don't know :(
+
 - (void)updateWithNextBusAPI:(NSDictionary *)data
 {
     self.valid = [data[@"Valid"] boolValue];
@@ -22,8 +24,18 @@
     self.reliable = data[@"Reliable"];
     self.stopped = data[@"Stopped"];
     self.vehicleId = data[@"Vehicleid"];
-    self.lat = data[@"Lat"];
-    self.lon = data[@"Long"];
+    if (data[@"Lat"]) self.lat = [data[@"Lat"] floatValue];
+    if (data[@"Long"]) self.lon = [data[@"Long"] floatValue];
+    if (self.lat && self.lon) {
+        coordinate = CLLocationCoordinate2DMake(self.lat, self.lon);
+    }
+    self.title = [NSString stringWithFormat:@"%@ Minutes Away - Vehicle %@", self.estimatedMinutes, self.vehicleId];
+    self.subtitle = [NSString stringWithFormat:@"Location Updated %@", self.polltime];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<CAPTripRealtime: coordinate = %f %f; >", (float)coordinate.latitude, (float)coordinate.longitude];
 }
 
 @end

@@ -11,7 +11,8 @@
 
 @interface CAPStop: NSObject
 
-@property (nonatomic, assign) float distance;
+@property (nonatomic, assign) float distance;  // FIXME: Use CLLocationDistance
+@property NSString *distancePretty;
 @property NSString *routeId;
 @property NSString *stopId;
 @property NSString *tripId;
@@ -27,6 +28,8 @@
 /** Array of CAPTrips */
 @property NSMutableArray *trips;
 @property NSDate *lastUpdated;
+
+@property BOOL showsTrips;  // FIXME: Putting this as a property on the model seems bad
 
 - (void)updateWithGTFS:(NSDictionary *)data;
 
