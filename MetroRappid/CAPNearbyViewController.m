@@ -133,6 +133,9 @@
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
         activeStop.showsTrips = YES;
+        if (activeStop.trips.count == 0) {
+            activeStop.showsTrips = NO;
+        }
         [self.tableView reloadData];
     };
     [nb startUpdates];
@@ -248,8 +251,6 @@
     
     if (activeStop.trips.count == 0) {
         CellIdentifier = @"Cell";
-        [ProgressHUD showError:@"No Arrivals"];
-        activeStop.showsTrips = NO;
     }
     else if (activeStop.showsTrips) {
         CellIdentifier = @"TripsCell";
