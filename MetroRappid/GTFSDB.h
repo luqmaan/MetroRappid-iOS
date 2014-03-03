@@ -21,6 +21,7 @@
 
 @property (nonatomic, assign) BOOL ready;
 
-- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers;
+/** 0 = North, 1 = South */
+- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(int)directionId;
 
 @end

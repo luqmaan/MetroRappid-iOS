@@ -47,8 +47,6 @@
     else {
         NSLog(@"WTF Direction %@ %@", self.headsign, data[@"directionId"]);
     }
-//    self.directionId = [data[@"direction_id"] intValue];
-    
 }
 
 - (NSString *)formatString:(NSString *)str

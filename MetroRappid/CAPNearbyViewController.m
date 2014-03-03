@@ -23,6 +23,7 @@
 @property CAAnimationGroup *pulseAnimationGroup;
 @property CAAnimationGroup *labelAnimationGroup;
 @property NSIndexPath *lastClickedIndexPath;
+@property (nonatomic, assign) int directionId;
 
 @end
 
@@ -33,6 +34,7 @@
     self.gtfs = [[GTFSDB alloc] init];
     
     self.locations = [[NSMutableArray alloc] init];
+    self.directionId = 1;
     
     CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacityAnimation.duration = 0.3;
@@ -163,6 +165,52 @@
     }
 }
 
+- (void)loadLocations
+{
+    BOOL __block waitingForGTFS = NO;
+    if (!self.gtfs.ready) {
+        waitingForGTFS = YES;
+        [ProgressHUD show:@"Loading Database"];
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
+        while (!self.gtfs.ready);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (waitingForGTFS == YES) {
+                waitingForGTFS = NO;
+                // Why does the ProgressHUD get dismissed before we get here? ;_;
+                [ProgressHUD showSuccess:nil];
+            }
+        });
+        
+        NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:self.locationManager.location inDirection:self.directionId];
+        [self.locations removeAllObjects];
+        
+        for (CAPLocation *location in data) {
+            CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location];
+            [self.locations addObject:nb];
+        }
+        NSLog(@"Got %lu locations", (unsigned long)self.locations.count);
+        
+        NSIndexPath *nearestStopIndexPath;
+        int i = 0;
+        while (i < self.locations.count) {
+            CAPNextBus *nb = self.locations[i];
+            if (nb.location.distanceIndex == 0) {
+                nearestStopIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                break;
+            }
+            i++;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
+            [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        });
+    });
+}
+
 #pragma mark - CLLocationManagerDelegate
 
 - (void)updateLocation
@@ -183,50 +231,7 @@
     
     [manager stopUpdatingLocation];
     [ProgressHUD showSuccess:@"Found location"];
-
-    BOOL __block waitingForGTFS = NO;
-    if (!self.gtfs.ready) {
-        waitingForGTFS = YES;
-        [ProgressHUD show:@"Loading Database"];
-    }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
-        while (!self.gtfs.ready);
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (waitingForGTFS == YES) {
-                waitingForGTFS = NO;
-                // Why does the ProgressHUD get dismissed before we get here? ;_;
-                [ProgressHUD showSuccess:nil];
-            }
-        });
-
-        NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:userLocation withinRadius:200.0f];
-        [self.locations removeAllObjects];
-
-        for (CAPLocation *location in data) {
-            CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location];
-            [self.locations addObject:nb];
-        }
-        NSLog(@"Got %lu locations", (unsigned long)self.locations.count);
-
-        NSIndexPath *nearestStopIndexPath;
-        int i = 0;
-        while (i < self.locations.count) {
-            CAPNextBus *nb = self.locations[i];
-            if (nb.location.distanceIndex == 0) {
-                nearestStopIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                break;
-            }
-            i++;
-        }
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-            [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
-            [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        });
-    });
-
+    [self loadLocations];
 }
 
 #pragma mark - UITableViewDataSource
@@ -335,6 +340,11 @@
     if (indexPath != nil) {
         [self loadArrivalsForCellAtIndexPath:indexPath];
     }
+}
+- (IBAction)toggleDirection:(id)sender {
+    UISegmentedControl *control = (UISegmentedControl *)sender;
+    self.directionId = control.selectedSegmentIndex;
+    [self loadLocations];
 }
 
 # pragma mark - Segue
