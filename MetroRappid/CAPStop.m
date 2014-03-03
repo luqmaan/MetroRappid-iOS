@@ -24,6 +24,10 @@
 - (void)updateWithGTFS:(NSDictionary *)data
 {
     self.distance = [data[@"distance"] floatValue];
+    MKDistanceFormatter *df = [[MKDistanceFormatter alloc]init];
+    df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
+    CLLocationDistance dist = 1000 * self.distance;
+    self.distancePretty = [df stringFromDistance:dist];
     self.routeId = data[@"route_id"];
     self.stopId = data[@"stop_id"];
     self.tripId = data[@"trip_id"];
@@ -32,11 +36,8 @@
     self.lon = data[@"stop_lon"];
     self.name = [self formatString:data[@"stop_name"]];
     self.desc = data[@"stop_desc"];
-    MKDistanceFormatter *df = [[MKDistanceFormatter alloc]init];
-    df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
-    CLLocationDistance dist = 1000 * self.distance;
-    self.headsign = [NSString stringWithFormat:@"%@ %@", [data[@"trip_headsign"] capitalizedString], [df stringFromDistance:dist]];
     self.stopSequence = [data[@"stop_sequence"] intValue];
+    self.headsign = [data[@"trip_headsign"] capitalizedString];
     if ([self.headsign isEqualToString:@"Northbound"]) {
         self.directionId = 0;
     }

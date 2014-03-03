@@ -12,6 +12,7 @@
 @interface CAPStop: NSObject
 
 @property (nonatomic, assign) float distance;  // FIXME: Use CLLocationDistance
+@property NSString *distancePretty;
 @property NSString *routeId;
 @property NSString *stopId;
 @property NSString *tripId;
