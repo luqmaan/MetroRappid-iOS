@@ -215,7 +215,6 @@
 
 - (void)updateLocation
 {
-    [ProgressHUD show:@"Locating"];
     [self.locationManager startUpdatingLocation];
 }
 
@@ -225,12 +224,11 @@
     NSLog(@"Got location %@", userLocation);
     
     if (userLocation.horizontalAccuracy > kCLLocationAccuracyHundredMeters) {
-        NSLog(@"Too inaccurate, rejecting");
-        return;
+        [ProgressHUD showSuccess:@"Found location"];
+        [manager stopUpdatingLocation];
+        [manager startMonitoringSignificantLocationChanges];
     };
     
-    [manager stopUpdatingLocation];
-    [ProgressHUD showSuccess:@"Found location"];
     [self loadLocations];
 }
 
