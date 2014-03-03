@@ -202,9 +202,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="801" id="dcF-cQ-brf">
-                        <barButtonItem key="leftBarButtonItem" id="6Ub-kA-yFX">
+                        <barButtonItem key="rightBarButtonItem" id="6Ub-kA-yFX">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="4RX-J2-JMU">
-                                <rect key="frame" x="16" y="7" width="71" height="30"/>
+                                <rect key="frame" x="233" y="7" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="N"/>
@@ -216,7 +216,6 @@
                                 </connections>
                             </segmentedControl>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Near Me" id="MOM-L0-kRX"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <attributedString key="userComments">
@@ -296,7 +295,6 @@
     </scenes>
     <resources>
         <image name="Map" width="50" height="50"/>
-        <image name="Near Me" width="75" height="75"/>
         <image name="Refresh" width="75" height="75"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
