@@ -12,6 +12,9 @@
 // FIXME: Rename to CAPRealtimeMapViewController
 @interface CAPRealtimeViewController : UIViewController
 
-@property CAPNextBus *nextBus;
+//@property CAPNextBus *nextBus;
+@property CAPStop *stop;
+
+//- (void)updateWithNextBus:(CAPNextBus *)nextBus;
 
 @end

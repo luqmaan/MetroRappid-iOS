@@ -28,6 +28,12 @@
     return self;
 }
 
+- (NSString *)description
+{
+    CAPStop *activeStop = self.location.stops[self.activeStopIndex];
+    return [NSString stringWithFormat:@"<CAPNextBus: location = %@; activeStopIndex = %d; activeStop = %@;>", self.location, self.activeStopIndex, activeStop];
+}
+
 - (void)activateNextStop
 {
     if (self.activeStopIndex + 1 < self.location.stops.count) self.activeStopIndex += 1;

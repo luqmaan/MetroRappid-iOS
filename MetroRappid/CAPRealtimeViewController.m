@@ -20,6 +20,7 @@
 
 - (void)baseInit
 {
+    NSLog(@"CAPRealtimeViewController baseInit");
     self.realtimeMapVC = [[CAPRealtimeMapViewController alloc] init];
     self.mapView.delegate = self.realtimeMapVC;
 }
@@ -43,6 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self update];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,7 +55,17 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated]; // FIXME: Is this needed?
-    [self.realtimeMapVC setupMap:self.mapView withNextBus:self.nextBus];
+}
+
+- (void)update
+{
+    int vehicleCount = 0;
+    for (CAPTrip *trip in self.stop.trips) if (trip.realtime.valid) vehicleCount++;
+
+    self.navigationItem.title = self.stop.name;
+//    self.navigationItem.prompt = [NSString stringWithFor  mat:@"%d vehicles", vehicleCount];
+    NSLog(@"Updated with %d vehicles", vehicleCount);
+    [self.realtimeMapVC setupMap:self.mapView withStop:self.stop];
 }
 
 @end

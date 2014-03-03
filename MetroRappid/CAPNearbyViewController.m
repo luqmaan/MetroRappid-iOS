@@ -336,27 +336,31 @@
     }
 }
 
-- (IBAction)scheduleBtnPress:(id)sender {
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    if (indexPath != nil) {
-        [self hideArrivalsForCellAtIndexPath:indexPath];
-    }
-}
-
 # pragma mark - Segue
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    if ([identifier isEqualToString:@"RealtimeMapViewSegue"]) {
+        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        if (!indexPath) {
+            NSLog(@"Could not find indexPathForSelectedRow");
+            return NO;
+        }
+    }
     return YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"RealtimeMapViewSegue"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
         CAPRealtimeViewController *realtimeVC = segue.destinationViewController;
-        realtimeVC.nextBus = self.locations[indexPath.row];
+        CAPNextBus *nextBus = self.locations[indexPath.row];
+        CAPStop *activeStop = nextBus.location.stops[nextBus.activeStopIndex];
+        realtimeVC.stop = activeStop;
+//        [realtimeVC updateWithNextBus:nextBus];
     }
 }
 

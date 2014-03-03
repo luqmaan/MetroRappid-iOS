@@ -10,9 +10,4 @@
 
 @interface CAPNearbyViewController : UITableViewController
 
-
-- (IBAction)scheduleBtnPress:(id)sender;
-
-- (IBAction)mapBtnPress:(id)sender;
-
 @end

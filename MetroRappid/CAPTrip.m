@@ -26,7 +26,7 @@
     self.skedTripId = data[@"Skedtripid"];
     self.adherence = data[@"Adherence"];
     self.estimatedTime = data[@"Estimatedtime"];
-    self.estimatedTime = @"25m";
+    self.estimatedTime = @"25m"; // FIXME: Put the actual time formatted like this
     self.realtime = [[CAPTripRealtime alloc] init];
     [self.realtime updateWithNextBusAPI:data[@"Realtime"]];
     self.block = data[@"Block"];

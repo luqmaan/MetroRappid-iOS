@@ -10,27 +10,19 @@
 
 @interface CAPRealtimeMapViewController ()
 
+@property BOOL foundUserLocation;
+
 @end
 
 @implementation CAPRealtimeMapViewController
 
-//- (id)initWithNextBus:(CAPNextBus *)nextBus
-//{
-//    self = [super init];
-//    if (self) {
-//        NSLog(@"Init mapview");
-//        self.nextBus = nextBus;
-//    }
-//    return self;
-//}
-
-- (void)setupMap:(MKMapView *)mapView withNextBus:(CAPNextBus *)nextBus
+- (void)setupMap:(MKMapView *)mapView withStop:(CAPStop *)stop
 {
-    NSLog(@"Setup mapview %@ with nextBus %@ %@", mapView, nextBus, nextBus.location);
+    NSLog(@"Setup mapview %@ with nextBus %@", mapView, stop);
     mapView.showsUserLocation = YES;
+    mapView.userTrackingMode = MKUserTrackingModeFollow;
 
-    CAPStop *activeStop = nextBus.location.stops[ nextBus.activeStopIndex];
-    for (CAPTrip *trip in activeStop.trips) {
+    for (CAPTrip *trip in stop.trips) {
         CAPTripRealtime *vehicle = trip.realtime;
         
         if (!vehicle.lat || !vehicle.lon) continue;
@@ -43,9 +35,16 @@
 
 - (void)zoomToAnnotationsMapView:(MKMapView *)mapView
 {
+    NSLog(@"zoomToAnnotationsMapView");
     NSMutableArray *annotations = [[NSMutableArray alloc] initWithArray:mapView.annotations];
-    [annotations addObject:mapView.userLocation];
-    [mapView showAnnotations:mapView.annotations animated:YES];
+    if (!self.foundUserLocation && mapView.userLocation.location.horizontalAccuracy > kCLLocationAccuracyHundredMeters) {
+        NSLog(@"Accurate location found, ignoring future updates");
+        // FIXME: See how this works IRL
+        [annotations addObject:mapView.userLocation];
+        self.foundUserLocation = YES;
+        mapView.userTrackingMode = MKUserTrackingModeNone;
+    }
+    [mapView showAnnotations:annotations animated:YES];
 }
 
 
@@ -66,9 +65,10 @@
     
 }
 
-- (void)mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)newUserLocation
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)newUserLocation
 {
-    
+    NSLog(@"mapView didUpdateUserLocation");
+    [self zoomToAnnotationsMapView:mapView];
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
