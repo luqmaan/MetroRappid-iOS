@@ -211,6 +211,9 @@
                                     <segment title="S"/>
                                 </segments>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="toggleDirection:" destination="cZh-cL-NUE" eventType="valueChanged" id="egp-D1-Xdb"/>
+                                </connections>
                             </segmentedControl>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Near Me" id="MOM-L0-kRX"/>
