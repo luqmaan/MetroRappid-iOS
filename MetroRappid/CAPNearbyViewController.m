@@ -101,7 +101,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self loadLocations];
+    [self loadLocationsGTFS];
     [self updateLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
@@ -124,6 +124,7 @@
     NSLog(@"Loading arrivals for %@", activeStop.name);
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+
     UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
     [progressView setProgress:0.1f animated:YES];
     progressView.hidden = NO;
@@ -131,7 +132,16 @@
     {
         [progressView setProgress:totalBytesExpectedToRead / totalBytesExpectedToRead animated:YES];
     };
-    
+    [UIView animateWithDuration:0.2f animations:^{
+        UILabel *error = (UILabel *)[cell viewWithTag:110];
+        UIButton *refreshBtn = (UIButton *)[cell viewWithTag:200];
+        error.layer.opacity = 0.5;
+        refreshBtn.layer.opacity = 0.5;
+        for (int i = 0; i < 3; i++) {
+            UILabel *mainTime = (UILabel *)[cell viewWithTag:100 + (i * 2)];
+            mainTime.layer.opacity = 0.5;
+        }
+    }];
     nb.completedCallback = ^void(){
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
@@ -140,6 +150,16 @@
             activeStop.showsTrips = NO;
         }
         [self.tableView reloadData];
+        [UIView animateWithDuration:0.4f animations:^{
+            UILabel *error = (UILabel *)[cell viewWithTag:110];
+            UIButton *refreshBtn = (UIButton *)[cell viewWithTag:200];
+            error.layer.opacity = 1.0;
+            refreshBtn.layer.opacity = 1.0;
+            for (int i = 0; i < 3; i++) {
+                UILabel *mainTime = (UILabel *)[cell viewWithTag:100 + (i * 2)];
+                mainTime.layer.opacity = 1.0;
+            }
+        }];
     };
     [nb startUpdates];
 }
@@ -166,7 +186,7 @@
     }
 }
 
-- (void)loadLocations
+- (void)loadLocationsGTFS
 {
     BOOL __block waitingForGTFS = NO;
     if (!self.gtfs.ready) {
@@ -231,7 +251,7 @@
         [manager startMonitoringSignificantLocationChanges];
     };
     
-    [self loadLocations];
+    [self loadLocationsGTFS];
 }
 
 #pragma mark - UITableViewDataSource
@@ -289,23 +309,29 @@
     }
 
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
+        BOOL arrivals = NO;
         
         for (int i = 0; i < 3; i++) {
             if (i >= activeStop.trips.count) break;
-            
             CAPTrip *trip = activeStop.trips[i];
+            if (!trip.realtime.valid) {
+                i = MAX(i, i-1);
+                continue;
+            };
+            arrivals = YES;
+
             UILabel *mainTime;
             mainTime = (UILabel *)[cell viewWithTag:100 + (i * 2)];
             
-            if (trip.realtime.valid) {
-                mainTime.textColor = [UIColor colorWithHue:0.460 saturation:1.000 brightness:0.710 alpha:1];
-            }
             if (indexPath == self.lastClickedIndexPath) [mainTime.layer addAnimation:self.labelAnimationGroup forKey:nil];
             mainTime.text = trip.estimatedTime;
             mainTime.hidden = NO;
-            NSLog(@"mainTime %@ %@", mainTime, mainTime.text);
         }
-
+        if (!arrivals) {
+            UILabel *error = (UILabel *)[cell viewWithTag:110];
+            error.hidden = NO;
+       }
+        
     }
 
     return cell;
@@ -344,7 +370,7 @@
 - (IBAction)toggleDirection:(id)sender {
     UISegmentedControl *control = (UISegmentedControl *)sender;
     self.directionId = control.selectedSegmentIndex;
-    [self loadLocations];
+    [self loadLocationsGTFS];
 }
 
 # pragma mark - Segue
@@ -369,9 +395,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
         CAPRealtimeViewController *realtimeVC = segue.destinationViewController;
         CAPNextBus *nextBus = self.locations[indexPath.row];
-        CAPStop *activeStop = nextBus.location.stops[nextBus.activeStopIndex];
-        realtimeVC.stop = activeStop;
-//        [realtimeVC updateWithNextBus:nextBus];
+        realtimeVC.nextBus = nextBus;
     }
 }
 

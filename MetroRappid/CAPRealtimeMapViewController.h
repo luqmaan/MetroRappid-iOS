@@ -14,5 +14,6 @@
 @interface CAPRealtimeMapViewController : NSObject <MKMapViewDelegate>
 
 - (void)setupMap:(MKMapView *)mapView withStop:(CAPStop *)stop;
+- (void)updateMap:(MKMapView *)mapView withStop:(CAPStop *)stop;
 
 @end

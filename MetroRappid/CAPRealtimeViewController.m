@@ -54,11 +54,18 @@
 - (void)update
 {
     int vehicleCount = 0;
-    for (CAPTrip *trip in self.stop.trips) if (trip.realtime.valid) vehicleCount++;
+    CAPStop *stop = self.nextBus.location.stops[self.nextBus.activeStopIndex];
+    for (CAPTrip *trip in stop.trips) if (trip.realtime.valid) vehicleCount++;
 
-    self.navigationItem.title = self.stop.name;
+    self.navigationItem.title = stop.name;
     NSLog(@"Updated with %d vehicles", vehicleCount);
-    [self.realtimeMapVC setupMap:self.mapView withStop:self.stop];
+    [self.realtimeMapVC setupMap:self.mapView withStop:stop];
+}
+
+- (IBAction)refresh:(id)sender {
+    [self.nextBus startUpdates];
+    CAPStop *stop = self.nextBus.location.stops[self.nextBus.activeStopIndex];
+    [self.realtimeMapVC updateMap:self.mapView withStop:stop];
 }
 
 @end
