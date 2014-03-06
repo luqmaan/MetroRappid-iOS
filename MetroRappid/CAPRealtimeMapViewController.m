@@ -19,6 +19,7 @@
 - (void)setupMap:(MKMapView *)mapView withStop:(CAPStop *)stop
 {
     NSLog(@"Setup mapview %@ with nextBus %@", mapView, stop);
+    mapView.delegate = self;
     mapView.showsUserLocation = YES;
     mapView.userTrackingMode = MKUserTrackingModeFollow;
 
@@ -37,9 +38,8 @@
 {
     NSLog(@"zoomToAnnotationsMapView");
     NSMutableArray *annotations = [[NSMutableArray alloc] initWithArray:mapView.annotations];
-
-    // FIXME: See how this works IRL
-    if (!self.foundUserLocation && mapView.userLocation.location.horizontalAccuracy > kCLLocationAccuracyHundredMeters) {
+    
+    if (!self.foundUserLocation && mapView.userLocation.location.horizontalAccuracy > kCLLocationAccuracyKilometer) {
         NSLog(@"Accurate location found, ignoring future updates");
         [annotations addObject:mapView.userLocation];
         self.foundUserLocation = YES;

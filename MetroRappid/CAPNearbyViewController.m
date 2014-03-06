@@ -205,6 +205,8 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.directionId == 0) self.navigationItem.title = @"801 N";
+            if (self.directionId == 1) self.navigationItem.title = @"801 S";
             [self.tableView reloadData];
             [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
             [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];

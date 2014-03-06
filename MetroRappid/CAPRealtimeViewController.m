@@ -22,7 +22,6 @@
 {
     NSLog(@"CAPRealtimeViewController baseInit");
     self.realtimeMapVC = [[CAPRealtimeMapViewController alloc] init];
-    self.mapView.delegate = self.realtimeMapVC;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
