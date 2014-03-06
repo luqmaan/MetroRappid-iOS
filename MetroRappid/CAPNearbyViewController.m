@@ -101,6 +101,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self loadLocations];
     [self updateLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
@@ -224,7 +225,6 @@
     NSLog(@"Got location %@", userLocation);
     
     if (userLocation.horizontalAccuracy > kCLLocationAccuracyHundredMeters) {
-        [ProgressHUD showSuccess:@"Found location"];
         [manager stopUpdatingLocation];
         [manager startMonitoringSignificantLocationChanges];
     };
