@@ -12,7 +12,7 @@
 
 @property FMDatabaseQueue *queue;
 @property NSString *databaseName;
-@property NSString *documentsPath;
+@property NSString *cachesPath;
 @property NSString *databasePath;
 @property NSArray *versions;
 
@@ -29,12 +29,12 @@
         self.ready = NO;
         
         self.databaseName = @"gtfs_austin";
-        self.documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        self.cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
         NSString *currentVersion = [self.versions lastObject];
         self.databasePath = [self databasePathForVersion:currentVersion];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
-            [self copyDatabasesFromProjectToDocuments];
+            [self copyDatabasesFromProject];
 
             self.queue = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
         
@@ -52,7 +52,7 @@
 - (NSString *)databasePathForVersion:(NSString *)version
 {
     NSString *databaseFullName = [NSString stringWithFormat:@"%@_%@.db", version, self.databaseName];
-    NSString *databasePath = [self.documentsPath stringByAppendingPathComponent:databaseFullName];
+    NSString *databasePath = [self.cachesPath stringByAppendingPathComponent:databaseFullName];
     NSLog(@"databasePath for version %@ : %@", version, databasePath);
     return databasePath;
 }
@@ -72,12 +72,11 @@
     }
 }
 
-// Add the databases to the Documents directory.
-// It isn't necessary to check if every cities data is up to date; the user only cares about their own city.
-- (void)copyDatabasesFromProjectToDocuments
+- (void)copyDatabasesFromProject
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
+    NSLog(@"self.databasePath: %@", self.databasePath);
     if (![fileManager fileExistsAtPath:self.databasePath]) {
         NSLog(@"Database not already present.");
         
