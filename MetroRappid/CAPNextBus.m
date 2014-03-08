@@ -66,8 +66,6 @@
     
     NSString *url = @"http://www.capmetro.org/planner/s_nextbus2.asp";
 //    url= @"http://localhost:1234/MetroRappidTests/Data/s_nextbus2/801-realtime.xml";
-//    url= @"http://localhost:1234/MetroRappidTests/Data/s_nextbus2/801-realtime-no-realtime-arrivals.xml";
-//    url= @"http://localhost:1234/MetroRappidTests/Data/s_nextbus2/801-realtime-one-realtime-arrival.xml";
     
     NSLog(@"GET %@ %@", url, parameters);
     operation = [manager GET:url
@@ -91,9 +89,16 @@
     // pass stop because activeStop may change before parseXML is called
     NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLString:xmlString];
     NSDictionary *data = xmlDict[@"soap:Body"][@"Nextbus2Response"];
+    
+    if (!data) {
+        NSMutableDictionary *errorDetails = [NSMutableDictionary dictionary];
+        errorDetails[NSLocalizedDescriptionKey] = @"Invalid Response";
+        NSError *error = [[NSError alloc] initWithDomain:@"soap" code:200 userInfo:errorDetails];
+        self.errorCallback(error);
+        return nil;
+    }
 
     [stop.trips removeAllObjects];
-    NSLog(@"Stop.trips has %d objects", (int)stop.trips.count);
 
     if ([data[@"Runs"][@"Run"] isKindOfClass:[NSArray class]]) {
         NSArray *runs = data[@"Runs"][@"Run"];

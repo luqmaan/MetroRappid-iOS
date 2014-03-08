@@ -7,6 +7,7 @@
 //
 
 #import "CAPRealtimeMapViewController.h"
+#import "CAPStopView.h"
 
 @interface CAPRealtimeMapViewController ()
 
@@ -99,6 +100,21 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    if ([annotation isKindOfClass:[CAPStop class]]) {
+        CAPStop *stop = (CAPStop *)annotation;
+        NSString *stopAnnotationID = [NSString stringWithFormat:@"CAPStop"];
+        
+        MKAnnotationView *stopView = [theMapView dequeueReusableAnnotationViewWithIdentifier:stopAnnotationID];
+        if (stopView) {
+            stopView.annotation = stop;
+        }
+        else {
+            stopView = [[CAPStopView alloc] initWithAnnotation:annotation reuseIdentifier:stopAnnotationID];
+            stopView.tintColor = [UIColor greenColor];
+            stopView.canShowCallout = YES;
+        }
+        return stopView;
+    }
     return nil;
 }
 

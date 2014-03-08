@@ -147,9 +147,6 @@
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
         activeStop.showsTrips = YES;
-        if (activeStop.trips.count == 0) {
-            activeStop.showsTrips = NO;
-        }
         [self.tableView reloadData];
         [UIView animateWithDuration:0.4f animations:^{
             UILabel *error = (UILabel *)[cell viewWithTag:110];
@@ -281,10 +278,7 @@
     CAPLocation *location = nextBus.location;
     CAPStop *activeStop = location.stops[nextBus.activeStopIndex];
     
-    if (activeStop.trips.count == 0) {
-        CellIdentifier = @"Cell";
-    }
-    else if (activeStop.showsTrips) {
+    if (activeStop.showsTrips) {
         CellIdentifier = @"TripsCell";
     }
     else {
@@ -318,12 +312,15 @@
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
         int numAdded = 0;
         int numLabels = 3;
+        int i = 0;
         
-        for (int i = 0; i < numLabels; i++) {
+        NSLog(@"activeStop.trips.count %d", (int)activeStop.trips.count);
+        while (numAdded < numLabels) {
+//        for (int i = 0; i < numLabels; i++) {
             if (i >= activeStop.trips.count) break;
             CAPTrip *trip = activeStop.trips[i];
+            i++;
             if (!trip.realtime.valid) {
-                i = MAX(i, i-1);
                 continue;
             };
             
@@ -367,7 +364,7 @@
     CAPLocation *location = nextBus.location;
     CAPStop *stop = location.stops[nextBus.activeStopIndex];
     
-    if (stop.showsTrips && stop.trips.count > 0) return 90.0f;
+    if (stop.showsTrips) return 90.0f;
     else return 60.0f;
 }
 
