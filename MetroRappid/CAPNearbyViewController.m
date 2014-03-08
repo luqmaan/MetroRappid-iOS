@@ -34,7 +34,7 @@
     self.gtfs = [[GTFSDB alloc] init];
     
     self.locations = [[NSMutableArray alloc] init];
-    self.directionId = 1;
+    self.directionId = 0;
     
     CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacityAnimation.duration = 0.3;
@@ -66,7 +66,6 @@
     self.labelAnimationGroup.fillMode = kCAFillModeForwards;
     self.labelAnimationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
 
-    
     if (nil == self.locationManager) self.  locationManager = [[CLLocationManager alloc] init];
     
     self.locationManager.delegate = self;
@@ -101,6 +100,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.delaysContentTouches = NO;
     [self loadLocationsGTFS];
     [self updateLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -125,13 +125,6 @@
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 
-    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
-    [progressView setProgress:0.1f animated:YES];
-    progressView.hidden = NO;
-    nb.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
-    {
-        [progressView setProgress:totalBytesExpectedToRead / totalBytesExpectedToRead animated:YES];
-    };
     [UIView animateWithDuration:0.2f animations:^{
         UILabel *error = (UILabel *)[cell viewWithTag:110];
         UIButton *refreshBtn = (UIButton *)[cell viewWithTag:200];
@@ -142,6 +135,14 @@
             mainTime.layer.opacity = 0.5;
         }
     }];
+    
+    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
+    [progressView setProgress:0.1f animated:YES];
+    progressView.hidden = NO;
+    nb.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
+    {
+        [progressView setProgress:totalBytesExpectedToRead / totalBytesExpectedToRead animated:YES];
+    };
     nb.completedCallback = ^void(){
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
@@ -160,6 +161,12 @@
                 mainTime.layer.opacity = 1.0;
             }
         }];
+    };
+    nb.errorCallback = ^void(NSError *error) {
+        [ProgressHUD showError:error.localizedDescription];
+        progressView.progress = 0;
+        progressView.hidden = YES;
+        [self.tableView reloadData];
     };
     [nb startUpdates];
 }
@@ -208,7 +215,7 @@
         [self.locations removeAllObjects];
         
         for (CAPLocation *location in data) {
-            CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location];
+            CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location andRoute:@"801"];
             [self.locations addObject:nb];
         }
         NSLog(@"Got %lu locations", (unsigned long)self.locations.count);
@@ -225,8 +232,8 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.directionId == 0) self.navigationItem.title = @"801 N";
-            if (self.directionId == 1) self.navigationItem.title = @"801 S";
+            if (self.directionId == 0) self.navigationItem.title = @"801 North";
+            if (self.directionId == 1) self.navigationItem.title = @"801 South";
             [self.tableView reloadData];
             [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
             [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -309,31 +316,45 @@
     }
 
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
-        BOOL arrivals = NO;
+        int numAdded = 0;
+        int numLabels = 3;
         
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < numLabels; i++) {
             if (i >= activeStop.trips.count) break;
             CAPTrip *trip = activeStop.trips[i];
             if (!trip.realtime.valid) {
                 i = MAX(i, i-1);
                 continue;
             };
-            arrivals = YES;
-
+            
             UILabel *mainTime;
-            mainTime = (UILabel *)[cell viewWithTag:100 + (i * 2)];
+            mainTime = (UILabel *)[cell viewWithTag:100 + (numAdded * 2)];
             
             if (indexPath == self.lastClickedIndexPath) [mainTime.layer addAnimation:self.labelAnimationGroup forKey:nil];
             mainTime.text = trip.estimatedTime;
             mainTime.hidden = NO;
+            numAdded++;
         }
-        if (!arrivals) {
+        if (numAdded == 0) {
             UILabel *error = (UILabel *)[cell viewWithTag:110];
             error.hidden = NO;
-       }
-        
+        }
+        for (int i = numAdded; i < numLabels; i++) {
+            UILabel *time = (UILabel *)[cell viewWithTag:100 + (numAdded * 2)];
+            time.text = @"";
+            time.hidden = YES;
+        }
     }
-
+    
+    // http://stackoverflow.com/questions/19256996/uibutton-not-showing-highlight-on-tap-in-ios7
+    for (id obj in cell.subviews) {
+        if ([NSStringFromClass([obj class]) isEqualToString:@"UITableViewCellScrollView"]) {
+            UIScrollView *scroll = (UIScrollView *) obj;
+            scroll.delaysContentTouches = NO;
+            break;
+        }
+    }
+    
     return cell;
 }
 

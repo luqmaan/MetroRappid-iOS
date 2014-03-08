@@ -10,10 +10,11 @@
 
 @implementation CAPTripRealtime
 
-@synthesize coordinate;  // Why this is needed, I don't know :(
+@synthesize coordinate;  // Why this is needed, I do not know :(
 
 - (void)updateWithNextBusAPI:(NSDictionary *)data
 {
+    self._data = data;
     self.valid = [data[@"Valid"] boolValue];
     self.adherence = data[@"Adherence"];
     self.estimatedTime = data[@"Estimatedtime"];
@@ -35,7 +36,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<CAPTripRealtime: coordinate = %f %f; >", (float)coordinate.latitude, (float)coordinate.longitude];
+    return [NSString stringWithFormat:@"<CAPTripRealtime: coordinate = %f %f; Estimatedtime = %@; estimatedMinutes = %@; >", (float)coordinate.latitude, (float)coordinate.longitude, self.estimatedTime, self.estimatedMinutes];
 }
 
 @end

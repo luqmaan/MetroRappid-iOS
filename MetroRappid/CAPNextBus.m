@@ -17,13 +17,14 @@
 
 @implementation CAPNextBus
 
-- (id)initWithLocation:(CAPLocation *)location
+- (id)initWithLocation:(CAPLocation *)location andRoute:(NSString *)routeId
 {
     self = [super init];
     if (self) {
         self.location = location;
         self.activeStopIndex = 0;
         self.userAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25";
+        self.routeId = routeId;
     }
     return self;
 }
@@ -57,7 +58,7 @@
     
     CAPStop *activeStop = self.location.stops[self.activeStopIndex];
     NSDictionary *parameters = @{
-        // @"routeid": 801,  // optional
+        @"route": self.routeId,
         @"stopid": activeStop.stopId,
         @"opt": @"lol_at_ur_bugs__plz_expose_the_real_api",  // number = json, everything else = xml
         @"output": @"xml",  // NOOP, used to work now use bad input to opt to force xml
@@ -65,6 +66,8 @@
     
     NSString *url = @"http://www.capmetro.org/planner/s_nextbus2.asp";
 //    url= @"http://localhost:1234/MetroRappidTests/Data/s_nextbus2/801-realtime.xml";
+//    url= @"http://localhost:1234/MetroRappidTests/Data/s_nextbus2/801-realtime-no-realtime-arrivals.xml";
+//    url= @"http://localhost:1234/MetroRappidTests/Data/s_nextbus2/801-realtime-one-realtime-arrival.xml";
     
     NSLog(@"GET %@ %@", url, parameters);
     operation = [manager GET:url
@@ -78,6 +81,7 @@
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
+             self.errorCallback(error);
          }];
     [operation setDownloadProgressBlock:self.progressCallback];
 }
@@ -85,11 +89,11 @@
 - (id)parseXML:(NSString *)xmlString forStop:(CAPStop *)stop
 {
     // pass stop because activeStop may change before parseXML is called
-
     NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLString:xmlString];
     NSDictionary *data = xmlDict[@"soap:Body"][@"Nextbus2Response"];
 
     [stop.trips removeAllObjects];
+    NSLog(@"Stop.trips has %d objects", (int)stop.trips.count);
 
     if ([data[@"Runs"][@"Run"] isKindOfClass:[NSArray class]]) {
         NSArray *runs = data[@"Runs"][@"Run"];

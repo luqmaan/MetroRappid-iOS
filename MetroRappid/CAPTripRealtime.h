@@ -25,6 +25,8 @@
 @property NSString *vehicleId;
 @property (nonatomic, assign) float lat;
 @property (nonatomic, assign) float lon;
+/** Original API dict */
+@property NSDictionary *_data;
 
 - (void)updateWithNextBusAPI:(NSDictionary *)data;
 

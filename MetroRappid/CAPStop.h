@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
+#pragma mark - CAPSTop
 
-@interface CAPStop: NSObject
+@interface CAPStop: NSObject <MKAnnotation>
 
 @property (nonatomic, assign) float distance;  // FIXME: Use CLLocationDistance
 @property NSString *distancePretty;
@@ -17,8 +19,8 @@
 @property NSString *stopId;
 @property NSString *tripId;
 @property NSString *shapeId;
-@property NSString *lat;
-@property NSString *lon;
+@property (nonatomic, assign) float lat;
+@property (nonatomic, assign) float lon;
 @property NSString *name;
 @property NSString *headsign;
 @property NSString *desc;
@@ -33,8 +35,15 @@
 
 - (void)updateWithGTFS:(NSDictionary *)data;
 
+#pragma mark - CAPStop MKAnnotation
+
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+@property NSString *title; // FIXME: Do the right thing
+@property NSString *subtitle;
+
 @end
 
+#pragma mark - CAPLocation
 
 // Groups of stops that share the same route and name
 // Usually differ by headisng/direction, e.g. southbound

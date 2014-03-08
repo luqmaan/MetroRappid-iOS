@@ -13,14 +13,16 @@
 
 @interface CAPNextBus : NSObject
 
+@property NSString *routeId;
 @property CAPLocation *location;
 /** The index of the active stop inside of stops */
 @property (nonatomic, assign) int activeStopIndex;
 @property NSDictionary *nextBusData;
 @property (nonatomic, copy) void (^completedCallback)(void);
+@property (nonatomic, copy) void (^errorCallback)(NSError*);
 @property (nonatomic, copy) void (^progressCallback)(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead);
 
-- (id)initWithLocation:(CAPLocation *)location;
+- (id)initWithLocation:(CAPLocation *)location andRoute:(NSString *)routeId;
 - (id)parseXML:(NSString *)xmlString forStop:(CAPStop *)stop;
 - (void)startUpdates;
 - (void)activateNextStop;

@@ -1,0 +1,1830 @@
+<?xml version="1.0"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><Nextbus2Response xmlns="AT_WEB">
+            <Responsecode>0</Responsecode>
+            <Version>1.6</Version>
+            <Input>
+                <Stopid>497</Stopid>
+                <Atisstopid>0</Atisstopid>
+                <Landmarkid>0</Landmarkid>
+                <Route></Route>
+                <Runs>999</Runs>
+                <Xmode>BCXTFRSLK123</Xmode>
+                <Date>03/07/14</Date>
+                <Time>06:22 PM</Time>
+            </Input>
+            <Stop>
+                <Description>UT WEST MALL STATION (SB)</Description>
+                <Area>Austin</Area>
+                <Atisstopid>1235</Atisstopid>
+                <Stopid>497</Stopid>
+                <Lat>30.286062</Lat>
+                <Long>-97.741816</Long>
+                <Stopposition>N</Stopposition>
+                <Heading>NB</Heading>
+                <Side>Near</Side>
+                <Stopstatustype>N</Stopstatustype>
+            </Stop>
+            <Stops>
+                <Stop>
+                    <Description>UT WEST MALL STATION (SB)</Description>
+                    <Area>Austin</Area>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                    <Lat>30.286062</Lat>
+                    <Long>-97.741816</Long>
+                    <Stopposition>N</Stopposition>
+                    <Heading>NB</Heading>
+                    <Side>Near</Side>
+                    <Stopstatustype>N</Stopstatustype>
+                </Stop>
+            </Stops>
+            <Runs>
+                <Run>
+                    <Route>19</Route>
+                    <Publicroute>19</Publicroute>
+                    <Sign>19-Bull Creek-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>06:31 PM</Triptime>
+                    <Tripid>39335-16</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>06:31 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>06:31 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>019-70</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>1</Route>
+                    <Publicroute>1</Publicroute>
+                    <Sign>1-Metric/South Congress SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>06:37 PM</Triptime>
+                    <Tripid>39248-2</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>06:37 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>06:37 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>001-10</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>06:38 PM</Triptime>
+                    <Tripid>39988-31</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>06:38 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>Y</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>06:38 PM</Estimatedtime>
+                        <Estimatedminutes>31</Estimatedminutes>
+                        <Polltime>06:21 PM</Polltime>
+                        <Trend>S</Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>N</Reliable>
+                        <Stopped>N</Stopped>
+                        <Vehicleid>5014</Vehicleid>
+                        <Lat>30.421616</Lat>
+                        <Long>-97.665924</Long>
+                    </Realtime>
+                    <Block>801-12</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>06:41 PM</Triptime>
+                    <Tripid>39460-29</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>06:41 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>06:41 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-14</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>5</Route>
+                    <Publicroute>5</Publicroute>
+                    <Sign>5-Woodrow/South 5th-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>06:50 PM</Triptime>
+                    <Tripid>39713-26</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>06:50 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>06:50 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>005-05</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Pub licroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>06:58 PM</Triptime>
+                    <Tripid>39988-32</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>06:58 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>Y</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>06:58 PM</Estimatedtime>
+                        <Estimatedminutes>52</Estimatedminutes>
+                        <Polltime>06:21 PM</Polltime>
+                        <Trend>S</Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>N</Reliable>
+                        <Stopped>N</Stopped>
+                        <Vehicleid>5001</Vehicleid>
+                        <Lat>30.349428</Lat>
+                        <Long>-97.711494</Long>
+                    </Realtime>
+                    <Block>801-03</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>19</Route>
+                    <Publicroute>19</Publicroute>
+                    <Sign>19-Bull Creek-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:08 PM</Triptime>
+                    <Tripid>39335-17</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:08 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:08 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>019-02</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:11 PM</Triptime>
+                    <Tripid>39460-30</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:11 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:11 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-06</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>1</Route>
+                    <Publicroute>1</Publicroute>
+                    <Sign>1-Metric/South Congress SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:13 PM</Triptime>
+                    <Tripid>39249-0</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:13 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:13 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>001-91</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:18 PM</Triptime>
+                    <Tripid>39988-32</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:18 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>Y</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:18 PM</Estimatedtime>
+                        <Estimatedminutes>72</Estimatedminutes>
+                        <Polltime>06:21 PM</Polltime>
+                        <Trend>S</Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>N</Reliable>
+                        <Stopped>N</Stopped>
+                        <Vehicleid>5005</Vehicleid>
+                        <Lat>30.340876</Lat>
+                        <Long>-97.716843</Long>
+                    </Realtime>
+                    <Block>801-05</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>5</Route>
+                    <Publicroute>5</Publicroute>
+                    <Sign>5-Woodrow/South 5th-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:20 PM</Triptime>
+                    <Tripid>39713-27</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:20 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:20 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>005-07</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>19</Route>
+                    <Publicroute>19</Publicroute>
+                    <Sign>19-Bull Creek-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:33 PM</Triptime>
+                    <Tripid>39335-18</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:33 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:33 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>019-90</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:37 PM</Triptime>
+                    <Tripid>39460-31</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:37 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:37 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-10</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:38 PM</Triptime>
+                    <Tripid>39988-33</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:38 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:38 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>801-07</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>5</Route>
+                    <Publicroute>5</Publicroute>
+                    <Sign>5-Woodrow/South 5th-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:47 PM</Triptime>
+                    <Tripid>39713-28</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:47 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:47 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>005-02</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>1</Route>
+                    <Publicroute>1</Publicroute>
+                    <Sign>1-Metric/South Congress SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:53 PM</Triptime>
+                    <Tripid>39249-1</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:53 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:53 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>001-05</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>07:58 PM</Triptime>
+                    <Tripid>39988-33</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>07:58 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>07:58 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>801-11</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>08:07 PM</Triptime>
+                    <Tripid>39460-32</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>08:07 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>08:07 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-12</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>19</Route>
+                    <Publicroute>19</Publicroute>
+                    <Sign>19-Bull Creek-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>08:10 PM</Triptime>
+                    <Tripid>39335-19</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>08:10 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>08:10 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>019-01</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>5</Route>
+                    <Publicroute>5</Publicroute>
+                    <Sign>5-Woodrow/South 5th-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>08:17 PM</Triptime>
+                    <Tripid>39713-29</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>08:17 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>08:17 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>005-04</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>08:18 PM</Triptime>
+                    <Tripid>39988-34</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>08:18 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>08:18 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>801-15</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>1</Route>
+                    <Publicroute>1</Publicroute>
+                    <Sign>1-Metric/South Congress SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>08:33 PM</Triptime>
+                    <Tripid>39249-2</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>08:33 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>08:33 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>001-93</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>08:37 PM</Triptime>
+                    <Tripid>39460-33</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>08:37 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>08:37 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-93</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>08:38 PM</Triptime>
+                    <Tripid>39988-34</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>08:38 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>08:38 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>801-13</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>5</Route>
+                    <Publicroute>5</Publicroute>
+                    <Sign>5-Woodrow/South 5th-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>08:57 PM</Triptime>
+                    <Tripid>39713-30</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>08:57 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>08:57 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>005-06</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>08:58 PM</Triptime>
+                    <Tripid>39988-35</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>08:58 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>08:58 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>801-06</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>09:02 PM</Triptime>
+                    <Tripid>39460-34</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>09:02 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>09:02 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-05</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>19</Route>
+                    <Publicroute>19</Publicroute>
+                    <Sign>19-Bull Creek-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>09:10 PM</Triptime>
+                    <Tripid>39335-20</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>09:10 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>09:10 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>019-02</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>1</Route>
+                    <Publicroute>1</Publicroute>
+                    <Sign>1-Metric/South Congress SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>09:13 PM</Triptime>
+                    <Tripid>39249-3</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>09:13 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>09:13 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>001-94</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>09:18 PM</Triptime>
+                    <Tripid>39988-35</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>09:18 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>09:18 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>801-08</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>09:32 PM</Triptime>
+                    <Tripid>39460-35</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>09:32 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>09:32 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-09</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>5</Route>
+                    <Publicroute>5</Publicroute>
+                    <Sign>5-Woodrow/South 5th-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>09:37 PM</Triptime>
+                    <Tripid>39713-31</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>09:37 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>09:37 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>005-03</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>09:38 PM</Triptime>
+                    <Tripid>39988-36</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>09:38 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>09:38 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>801-10</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>1</Route>
+                    <Publicroute>1</Publicroute>
+                    <Sign>1-Metric/South Congress SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>09:53 PM</Triptime>
+                    <Tripid>39249-4</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>09:53 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>09:53 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>001-03</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>09:58 PM</Triptime>
+                    <Tripid>39988-36</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>09:58 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>09:58 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>801-12</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>10:02 PM</Triptime>
+                    <Tripid>39460-36</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>10:02 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>10:02 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-13</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>19</Route>
+                    <Publicroute>19</Publicroute>
+                    <Sign>19-Bull Creek-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>10:10 PM</Triptime>
+                    <Tripid>39335-21</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>10:10 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>10:10 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>019-01</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>5</Route>
+                    <Publicroute>5</Publicroute>
+                    <Sign>5-Woodrow/South 5th-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>10:17 PM</Triptime>
+                    <Tripid>39713-32</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>10:17 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>10:17 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>005-05</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>801</Route>
+                    <Publicroute>801</Publicroute>
+                    <Sign>801-N Lamar S Congress-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>L</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>10:18 PM</Triptime>
+                    <Tripid>39988-37</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>10:18 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>10:18 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>801-03</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>10:32 PM</Triptime>
+                    <Tripid>39460-37</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>10:32 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>10:32 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-16</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>1</Route>
+                    <Publicroute>1</Publicroute>
+                    <Sign>1-Metric/South Congress SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>10:33 PM</Triptime>
+                    <Tripid>39249-5</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>10:33 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>10:33 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>001-92</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>5</Route>
+                    <Publicroute>5</Publicroute>
+                    <Sign>5-Woodrow/South 5th-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>10:57 PM</Triptime>
+                    <Tripid>39713-33</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>10:57 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>10:57 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>005-02</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>11:02 PM</Triptime>
+                    <Tripid>39460-38</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>11:02 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>11:02 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-03</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>1</Route>
+                    <Publicroute>1</Publicroute>
+                    <Sign>1-Metric/South Congress SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>11:13 PM</Triptime>
+                    <Tripid>39251-19</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>11:13 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>11:13 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>001-91</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>3</Route>
+                    <Publicroute>3</Publicroute>
+                    <Sign>3-Burnet/Manchaca-SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>11:32 PM</Triptime>
+                    <Tripid>39460-39</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>11:32 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>11:32 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>003-01</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+                <Run>
+                    <Route>1</Route>
+                    <Publicroute>1</Publicroute>
+                    <Sign>1-Metric/South Congress SB</Sign>
+                    <Operator>CM</Operator>
+                    <Publicoperator>CM</Publicoperator>
+                    <Direction>S</Direction>
+                    <Status>N</Status>
+                    <Servicetype>0</Servicetype>
+                    <Routetype>B</Routetype>
+                    <Triptime>11:53 PM</Triptime>
+                    <Tripid>39251-20</Tripid>
+                    <Skedtripid>
+                    </Skedtripid>
+                    <Adherence>0</Adherence>
+                    <Estimatedtime>11:53 PM</Estimatedtime>
+                    <Realtime>
+                        <Valid>N</Valid>
+                        <Adherence>0</Adherence>
+                        <Estimatedtime>11:53 PM</Estimatedtime>
+                        <Estimatedminutes>
+                        </Estimatedminutes>
+                        <Polltime></Polltime>
+                        <Trend>
+                        </Trend>
+                        <Speed>0.00</Speed>
+                        <Reliable>
+                        </Reliable>
+                        <Stopped>
+                        </Stopped>
+                        <Vehicleid></Vehicleid>
+                        <Lat>0.000000</Lat>
+                        <Long>0.000000</Long>
+                    </Realtime>
+                    <Block>001-05</Block>
+                    <Exception>N</Exception>
+                    <Atisstopid>1235</Atisstopid>
+                    <Stopid>497</Stopid>
+                </Run>
+            </Runs>
+            <Statusinfo>|R,801,S,,</Statusinfo>
+            <Requestor>192.168.10.90</Requestor>
+            <Host>cmtaatisweb2</Host>
+            <Copyright>XML schema Copyright (c) 2003-2013 Trapeze Software ULC, its subsidiaries and affiliates.  All rights reserved.</Copyright>
+            <Soapversion>2.6.3 - 09/23/13</Soapversion>
+        </Nextbus2Response></soap:Body></soap:Envelope>
