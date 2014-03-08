@@ -12,9 +12,7 @@
 
 @property FMDatabaseQueue *queue;
 @property NSString *databaseName;
-@property NSString *cachesPath;
 @property NSString *databasePath;
-@property NSArray *versions;
 
 @end
 
@@ -25,17 +23,12 @@
     self = [super init];
     NSLog(@"Init GTFS");
     if (self) {
-        self.versions = @[@"1.0"];
         self.ready = NO;
         
         self.databaseName = @"gtfs_austin";
-        self.cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-        NSString *currentVersion = [self.versions lastObject];
-        self.databasePath = [self databasePathForVersion:currentVersion];
+        self.databasePath = [[NSBundle mainBundle] pathForResource:self.databaseName ofType:@"db"];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
-            [self copyDatabasesFromProject];
-
             self.queue = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
         
             [self addDistanceFunction];
@@ -48,54 +41,6 @@
 }
 
 #pragma mark - Setup
-
-- (NSString *)databasePathForVersion:(NSString *)version
-{
-    NSString *databaseFullName = [NSString stringWithFormat:@"%@_%@.db", version, self.databaseName];
-    NSString *databasePath = [self.cachesPath stringByAppendingPathComponent:databaseFullName];
-    NSLog(@"databasePath for version %@ : %@", version, databasePath);
-    return databasePath;
-}
-
-- (void)deleteExistingDatabases {
-    for (NSString *version in self.versions) {
-        if ([version isEqualToString:[self.versions lastObject]]) continue;
-        
-        NSString *dbPath = [self databasePathForVersion:version];
-        NSLog(@"DELETE %@", dbPath);
-
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSError *error;
-        [fileManager removeItemAtPath:dbPath error:&error];
-
-        if (error) NSLog(@"Error removing database at path %@ : %@", dbPath, error);
-    }
-}
-
-- (void)copyDatabasesFromProject
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    NSLog(@"self.databasePath: %@", self.databasePath);
-    if (![fileManager fileExistsAtPath:self.databasePath]) {
-        NSLog(@"Database not already present.");
-        
-        // Remove any existing outdated database files.
-        [self deleteExistingDatabases];
-        
-        NSLog(@"Copying from project folder to document's directory.");
-        
-        // Copy the db from the Project directory to the Documents directory
-        NSString *sourcePath = [[NSBundle mainBundle] pathForResource:self.databaseName ofType:@"db"];
-        NSError *error;
-        [fileManager copyItemAtPath:sourcePath toPath:self.databasePath error:&error];
-        
-        if (error) NSLog(@"Error copy file from project directory to documents directory: %@", error);
-    }
-    else {
-        NSLog(@"The database %@ already exists in the Documents directory.", self.databasePath);
-    }
-}
 
 - (void)logSchema
 {

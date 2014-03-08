@@ -95,6 +95,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    NSLog(@"Did receive memory warning");
 }
 
 - (void)viewDidLoad
