@@ -79,16 +79,15 @@
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6up-aU-B7M">
-                                            <rect key="frame" x="240" y="5" width="80" height="80"/>
+                                            <rect key="frame" x="240" y="0.0" width="80" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="80" id="32P-UD-CN3"/>
+                                                <constraint firstAttribute="height" constant="90" id="32P-UD-CN3"/>
                                                 <constraint firstAttribute="width" constant="80" id="LGl-LB-1T2"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                             <color key="tintColor" red="0.02111615549" green="0.74067540320000003" blue="0.57025341429999998" alpha="1" colorSpace="deviceRGB"/>
-                                            <inset key="contentEdgeInsets" minX="25" minY="10" maxX="20" maxY="35"/>
-                                            <state key="normal" image="Map"/>
+                                            <state key="normal" title="Map"/>
                                             <connections>
                                                 <segue destination="Aha-zK-bYD" kind="push" identifier="RealtimeMapViewSegue" id="qeE-Ib-bZn"/>
                                             </connections>
@@ -319,7 +318,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Map" width="100" height="100"/>
         <image name="Refresh" width="36" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -412,8 +412,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"RealtimeMapViewSegue"]) {
-        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        UIButton *button = (UIButton *)sender;
+        UITableViewCell *cell = (UITableViewCell*)button.superview.superview.superview; // FIXME: ;_;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+
         CAPRealtimeViewController *realtimeVC = segue.destinationViewController;
         CAPNextBus *nextBus = self.locations[indexPath.row];
         realtimeVC.nextBus = nextBus;
