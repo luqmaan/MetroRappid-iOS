@@ -7,14 +7,18 @@
 //
 
 #import "CAPStop.h"
+#import <MapKit/MapKit.h>
 
 @implementation CAPStop
+
+@synthesize coordinate;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         self.trips = [[NSMutableArray alloc] init];
+        self.showsTrips = NO;
     }
     return self;
 }
@@ -22,16 +26,23 @@
 - (void)updateWithGTFS:(NSDictionary *)data
 {
     self.distance = [data[@"distance"] floatValue];
+    MKDistanceFormatter *df = [[MKDistanceFormatter alloc]init];
+    df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
+    CLLocationDistance dist = 1000 * self.distance;
+    self.distancePretty = [df stringFromDistance:dist];
     self.routeId = data[@"route_id"];
     self.stopId = data[@"stop_id"];
     self.tripId = data[@"trip_id"];
     self.shapeId = data[@"shape_id"];
-    self.lat = data[@"stop_lat"];
-    self.lon = data[@"stop_lon"];
+    self.lat = [data[@"stop_lat"] floatValue];
+    self.lon = [data[@"stop_lon"] floatValue];
+    if (self.lat && self.lon) {
+        coordinate = CLLocationCoordinate2DMake(self.lat, self.lon);
+    }
     self.name = [self formatString:data[@"stop_name"]];
     self.desc = data[@"stop_desc"];
-    self.headsign = [data[@"trip_headsign"] capitalizedString];
     self.stopSequence = [data[@"stop_sequence"] intValue];
+    self.headsign = [data[@"trip_headsign"] capitalizedString];
     if ([self.headsign isEqualToString:@"Northbound"]) {
         self.directionId = 0;
     }
@@ -41,8 +52,8 @@
     else {
         NSLog(@"WTF Direction %@ %@", self.headsign, data[@"directionId"]);
     }
-//    self.directionId = [data[@"direction_id"] intValue];
-    
+    self.title = [NSString stringWithFormat:@"%@", self.name];
+    self.subtitle = [NSString stringWithFormat:@"Stop #%@ %@", self.stopId, self.desc];
 }
 
 - (NSString *)formatString:(NSString *)str

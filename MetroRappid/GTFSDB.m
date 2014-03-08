@@ -12,9 +12,7 @@
 
 @property FMDatabaseQueue *queue;
 @property NSString *databaseName;
-@property NSString *documentsPath;
 @property NSString *databasePath;
-@property NSArray *versions;
 
 @end
 
@@ -25,17 +23,12 @@
     self = [super init];
     NSLog(@"Init GTFS");
     if (self) {
-        self.versions = @[@"1.0"];
         self.ready = NO;
         
         self.databaseName = @"gtfs_austin";
-        self.documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *currentVersion = [self.versions lastObject];
-        self.databasePath = [self databasePathForVersion:currentVersion];
+        self.databasePath = [[NSBundle mainBundle] pathForResource:self.databaseName ofType:@"db"];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
-            [self copyDatabasesFromProjectToDocuments];
-
             self.queue = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
         
             [self addDistanceFunction];
@@ -48,55 +41,6 @@
 }
 
 #pragma mark - Setup
-
-- (NSString *)databasePathForVersion:(NSString *)version
-{
-    NSString *databaseFullName = [NSString stringWithFormat:@"%@_%@.db", version, self.databaseName];
-    NSString *databasePath = [self.documentsPath stringByAppendingPathComponent:databaseFullName];
-    NSLog(@"databasePath for version %@ : %@", version, databasePath);
-    return databasePath;
-}
-
-- (void)deleteExistingDatabases {
-    for (NSString *version in self.versions) {
-        if ([version isEqualToString:[self.versions lastObject]]) continue;
-        
-        NSString *dbPath = [self databasePathForVersion:version];
-        NSLog(@"DELETE %@", dbPath);
-
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSError *error;
-        [fileManager removeItemAtPath:dbPath error:&error];
-
-        if (error) NSLog(@"Error removing database at path %@ : %@", dbPath, error);
-    }
-}
-
-// Add the databases to the Documents directory.
-// It isn't necessary to check if every cities data is up to date; the user only cares about their own city.
-- (void)copyDatabasesFromProjectToDocuments
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if (![fileManager fileExistsAtPath:self.databasePath]) {
-        NSLog(@"Database not already present.");
-        
-        // Remove any existing outdated database files.
-        [self deleteExistingDatabases];
-        
-        NSLog(@"Copying from project folder to document's directory.");
-        
-        // Copy the db from the Project directory to the Documents directory
-        NSString *sourcePath = [[NSBundle mainBundle] pathForResource:self.databaseName ofType:@"db"];
-        NSError *error;
-        [fileManager copyItemAtPath:sourcePath toPath:self.databasePath error:&error];
-        
-        if (error) NSLog(@"Error copy file from project directory to documents directory: %@", error);
-    }
-    else {
-        NSLog(@"The database %@ already exists in the Documents directory.", self.databasePath);
-    }
-}
 
 - (void)logSchema
 {
@@ -143,72 +87,57 @@
 
 #pragma mark - Queries
 
-- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location withinRadius:(float)kilometers
+- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(int)directionId
 {
     NSString *query = [NSString stringWithFormat:
         @"\n SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, "
-        @"\n        stop_desc, stop_lat, stop_lon, unique_stops.stop_sequence, distance(stop_lat, stop_lon, %f, %f) as \"distance\" "
+        @"\n        stop_desc, stop_lat, stop_lon, unique_stops.stop_sequence, unique_stops.direction_id, distance(stop_lat, stop_lon, %f, %f) as \"distance\" "
         @"\n FROM "
         @"\n   stops, "
-        @"\n   (SELECT stop_id, route_id, stop_sequence, unique_trips.trip_id, unique_trips.trip_headsign "
+        @"\n   (SELECT stop_id, route_id, stop_sequence, unique_trips.trip_id, unique_trips.trip_headsign, unique_trips.direction_id "
         @"\n    FROM "
         @"\n      stop_times, "
-        @"\n      (SELECT trip_id, route_id, trip_headsign "
+        @"\n      (SELECT trip_id, route_id, trip_headsign, direction_id "
         @"\n       FROM trips "
-        @"\n       WHERE route_id IN (%@) "
+        @"\n       WHERE route_id IN (%@) AND direction_id = %d"
         @"\n       GROUP BY shape_id "
         @"\n      ) AS unique_trips "
         @"\n    WHERE stop_times.trip_id = unique_trips.trip_id "
         @"\n    GROUP BY stop_id) AS unique_stops "
         @"\n WHERE stops.stop_id = unique_stops.stop_id "
-        @"\n AND distance(stop_lat, stop_lon, %f, %f) < %f ",
+        @"\n ORDER BY unique_stops.stop_sequence "
+        ,
         location.coordinate.latitude,
         location.coordinate.longitude,
         [routes componentsJoinedByString:@", "],
-        location.coordinate.latitude,
-        location.coordinate.longitude,
-        kilometers
+        directionId
     ];
+    
+    // NOTE: CAPLocation is kind of pointless now, since we only care about one direction.
+    //       Not going to remove it just quite yet, since I change my mind every five commits.
 
-    NSMutableArray * __block data;
+    NSMutableArray * __block data = [[NSMutableArray alloc] init];
 
     [self.queue inDatabase:^(FMDatabase *db) {
-        NSLog(@"Executed query %@", query);
+        NSLog(@"Executing query %@", query);
         FMResultSet *rs = [db executeQuery:query];
 
-        // FIXME: There has to be a better way to determine if two stops are related.
-        //        Currently use if same route id and same stop name, they are related.
-        NSMutableDictionary *stopsDictWithLocationAsKey = [[NSMutableDictionary alloc] init];
-        
+        NSMutableArray *distances = [[NSMutableArray alloc] init];
         while ([rs next]) {
-            CAPStop *stop = [[CAPStop alloc] init];
-            [stop updateWithGTFS:[rs resultDictionary]];
-            
-            // Combine stops with the same name, but different directions
-            NSString *key = [NSString stringWithFormat:@"%@ %@", stop.name, stop.routeId];
-            
-            if (!stopsDictWithLocationAsKey[key]) {
-                stopsDictWithLocationAsKey[key] = [[CAPLocation alloc] init];
-            }
-            CAPLocation *location = stopsDictWithLocationAsKey[key];
-            
-            [location updateWithStop:stop];
+            CAPLocation *location = [[CAPLocation alloc] init];
+            [location updateWithGTFS:[rs resultDictionary]];
+            [data addObject:location];
+            [distances addObject:[NSNumber numberWithFloat:location.distance]];
         }
         
-        data = [NSMutableArray arrayWithArray:[stopsDictWithLocationAsKey allValues]];
+        NSSortDescriptor *lowestToHighest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        [distances sortUsingDescriptors:@[lowestToHighest]];
         
-        [self sortStopsByDirectionForLocations:data];
-        
-        // Add an indicator of closeness to the location
-        [self sortLocationsByDistance:data];
-        int distanceIndex = 0;
         for (CAPLocation *location in data) {
+            NSUInteger distanceIndex = [distances indexOfObject:[NSNumber numberWithFloat:location.distance]];
             location.distanceIndex = distanceIndex;
-            distanceIndex++;
         }
         
-        // Sort by stopSequence, North to South
-        [self sortLocationsByStopSequence:data];
         NSLog(@"GTFS found %d locations with", (int)data.count);
     }];
 

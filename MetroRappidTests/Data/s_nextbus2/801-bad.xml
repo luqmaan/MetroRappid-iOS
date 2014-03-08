@@ -1,0 +1,17 @@
+
+<?xml version="1.0"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><Nextbus2Response xmlns="AT_WEB">
+            <Responsecode>0</Responsecode>
+            <Version>1.6</Version>
+            <Input>
+                <Stopid>610</Stopid>
+                <Atisstopid>0</Atisstopid>
+                <Landmarkid>0</Landmarkid>
+                <Route>801</Route>
+                <Runs>999</Runs>
+                <Xmode>BCXTFRSLK123</Xmode>
+                <Date>03/08/14</Date>
+                <Time>00:02 AM</Time>
+            </Input>
+            <Stop>
+                <Descriptio
