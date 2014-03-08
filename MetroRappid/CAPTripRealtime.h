@@ -15,6 +15,7 @@
 
 @property (nonatomic, assign) BOOL valid;
 @property NSString *adherence;
+@property NSDate *estimatedDate;
 @property NSString *estimatedTime;
 @property NSString *estimatedMinutes;
 @property NSString *polltime;
@@ -34,5 +35,7 @@
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property NSString *title; // FIXME: Do the right thing
 @property NSString *subtitle;
+
+- (void)updateTitle;
 
 @end
