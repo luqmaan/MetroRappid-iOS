@@ -17,13 +17,14 @@
 
 @implementation CAPNextBus
 
-- (id)initWithLocation:(CAPLocation *)location
+- (id)initWithLocation:(CAPLocation *)location andRoute:(NSString *)routeId
 {
     self = [super init];
     if (self) {
         self.location = location;
         self.activeStopIndex = 0;
         self.userAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25";
+        self.routeId = routeId;
     }
     return self;
 }
@@ -57,7 +58,7 @@
     
     CAPStop *activeStop = self.location.stops[self.activeStopIndex];
     NSDictionary *parameters = @{
-        // @"routeid": 801,  // optional
+        @"route": self.routeId,
         @"stopid": activeStop.stopId,
         @"opt": @"lol_at_ur_bugs__plz_expose_the_real_api",  // number = json, everything else = xml
         @"output": @"xml",  // NOOP, used to work now use bad input to opt to force xml
@@ -78,6 +79,7 @@
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
+             self.errorCallback(error);
          }];
     [operation setDownloadProgressBlock:self.progressCallback];
 }
@@ -85,9 +87,16 @@
 - (id)parseXML:(NSString *)xmlString forStop:(CAPStop *)stop
 {
     // pass stop because activeStop may change before parseXML is called
-
     NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLString:xmlString];
     NSDictionary *data = xmlDict[@"soap:Body"][@"Nextbus2Response"];
+    
+    if (!data) {
+        NSMutableDictionary *errorDetails = [NSMutableDictionary dictionary];
+        errorDetails[NSLocalizedDescriptionKey] = @"Invalid Response";
+        NSError *error = [[NSError alloc] initWithDomain:@"soap" code:200 userInfo:errorDetails];
+        self.errorCallback(error);
+        return nil;
+    }
 
     [stop.trips removeAllObjects];
 

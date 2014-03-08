@@ -11,6 +11,8 @@
 
 @implementation CAPStop
 
+@synthesize coordinate;
+
 - (id)init
 {
     self = [super init];
@@ -32,8 +34,11 @@
     self.stopId = data[@"stop_id"];
     self.tripId = data[@"trip_id"];
     self.shapeId = data[@"shape_id"];
-    self.lat = data[@"stop_lat"];
-    self.lon = data[@"stop_lon"];
+    self.lat = [data[@"stop_lat"] floatValue];
+    self.lon = [data[@"stop_lon"] floatValue];
+    if (self.lat && self.lon) {
+        coordinate = CLLocationCoordinate2DMake(self.lat, self.lon);
+    }
     self.name = [self formatString:data[@"stop_name"]];
     self.desc = data[@"stop_desc"];
     self.stopSequence = [data[@"stop_sequence"] intValue];
@@ -47,6 +52,8 @@
     else {
         NSLog(@"WTF Direction %@ %@", self.headsign, data[@"directionId"]);
     }
+    self.title = [NSString stringWithFormat:@"%@", self.name];
+    self.subtitle = [NSString stringWithFormat:@"Stop #%@ %@", self.stopId, self.desc];
 }
 
 - (NSString *)formatString:(NSString *)str

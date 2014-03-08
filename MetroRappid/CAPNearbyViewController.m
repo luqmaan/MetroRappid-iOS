@@ -34,7 +34,7 @@
     self.gtfs = [[GTFSDB alloc] init];
     
     self.locations = [[NSMutableArray alloc] init];
-    self.directionId = 1;
+    self.directionId = 0;
     
     CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacityAnimation.duration = 0.3;
@@ -66,7 +66,6 @@
     self.labelAnimationGroup.fillMode = kCAFillModeForwards;
     self.labelAnimationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
 
-    
     if (nil == self.locationManager) self.  locationManager = [[CLLocationManager alloc] init];
     
     self.locationManager.delegate = self;
@@ -101,7 +100,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self loadLocations];
+    self.tableView.delaysContentTouches = NO;
+    [self loadLocationsGTFS];
     [self updateLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
@@ -124,6 +124,18 @@
     NSLog(@"Loading arrivals for %@", activeStop.name);
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+
+    [UIView animateWithDuration:0.2f animations:^{
+        UILabel *error = (UILabel *)[cell viewWithTag:110];
+        UIButton *refreshBtn = (UIButton *)[cell viewWithTag:200];
+        error.layer.opacity = 0.5;
+        refreshBtn.layer.opacity = 0.5;
+        for (int i = 0; i < 3; i++) {
+            UILabel *mainTime = (UILabel *)[cell viewWithTag:100 + (i * 2)];
+            mainTime.layer.opacity = 0.5;
+        }
+    }];
+    
     UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
     [progressView setProgress:0.1f animated:YES];
     progressView.hidden = NO;
@@ -131,14 +143,26 @@
     {
         [progressView setProgress:totalBytesExpectedToRead / totalBytesExpectedToRead animated:YES];
     };
-    
     nb.completedCallback = ^void(){
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
         activeStop.showsTrips = YES;
-        if (activeStop.trips.count == 0) {
-            activeStop.showsTrips = NO;
-        }
+        [self.tableView reloadData];
+        [UIView animateWithDuration:0.4f animations:^{
+            UILabel *error = (UILabel *)[cell viewWithTag:110];
+            UIButton *refreshBtn = (UIButton *)[cell viewWithTag:200];
+            error.layer.opacity = 1.0;
+            refreshBtn.layer.opacity = 1.0;
+            for (int i = 0; i < 3; i++) {
+                UILabel *mainTime = (UILabel *)[cell viewWithTag:100 + (i * 2)];
+                mainTime.layer.opacity = 1.0;
+            }
+        }];
+    };
+    nb.errorCallback = ^void(NSError *error) {
+        [ProgressHUD showError:error.localizedDescription];
+        progressView.progress = 0;
+        progressView.hidden = YES;
         [self.tableView reloadData];
     };
     [nb startUpdates];
@@ -166,7 +190,7 @@
     }
 }
 
-- (void)loadLocations
+- (void)loadLocationsGTFS
 {
     BOOL __block waitingForGTFS = NO;
     if (!self.gtfs.ready) {
@@ -188,7 +212,7 @@
         [self.locations removeAllObjects];
         
         for (CAPLocation *location in data) {
-            CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location];
+            CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location andRoute:@"801"];
             [self.locations addObject:nb];
         }
         NSLog(@"Got %lu locations", (unsigned long)self.locations.count);
@@ -205,6 +229,8 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.directionId == 0) self.navigationItem.title = @"801 North";
+            if (self.directionId == 1) self.navigationItem.title = @"801 South";
             [self.tableView reloadData];
             [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
             [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -229,7 +255,7 @@
         [manager startMonitoringSignificantLocationChanges];
     };
     
-    [self loadLocations];
+    [self loadLocationsGTFS];
 }
 
 #pragma mark - UITableViewDataSource
@@ -252,10 +278,7 @@
     CAPLocation *location = nextBus.location;
     CAPStop *activeStop = location.stops[nextBus.activeStopIndex];
     
-    if (activeStop.trips.count == 0) {
-        CellIdentifier = @"Cell";
-    }
-    else if (activeStop.showsTrips) {
+    if (activeStop.showsTrips) {
         CellIdentifier = @"TripsCell";
     }
     else {
@@ -287,25 +310,50 @@
     }
 
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
+        int numAdded = 0;
+        int numLabels = 3;
+        int i = 0;
         
-        for (int i = 0; i < 3; i++) {
+        NSLog(@"activeStop.trips.count %d", (int)activeStop.trips.count);
+        while (numAdded < numLabels) {
             if (i >= activeStop.trips.count) break;
-            
             CAPTrip *trip = activeStop.trips[i];
-            UILabel *mainTime;
-            mainTime = (UILabel *)[cell viewWithTag:100 + (i * 2)];
+            i++;
+            if (!trip.realtime.valid) {
+                continue;
+            };
             
-            if (trip.realtime.valid) {
-                mainTime.textColor = [UIColor colorWithHue:0.460 saturation:1.000 brightness:0.710 alpha:1];
-            }
+            UILabel *mainTime;
+            mainTime = (UILabel *)[cell viewWithTag:100 + (numAdded * 2)];
+            
             if (indexPath == self.lastClickedIndexPath) [mainTime.layer addAnimation:self.labelAnimationGroup forKey:nil];
             mainTime.text = trip.estimatedTime;
             mainTime.hidden = NO;
-            NSLog(@"mainTime %@ %@", mainTime, mainTime.text);
+            numAdded++;
         }
-
+        UILabel *error = (UILabel *)[cell viewWithTag:110];
+        if (numAdded == 0) {
+            error.hidden = NO;
+        }
+        else {
+            error.hidden = YES;
+        }
+        for (int i = numAdded; i < numLabels; i++) {
+            UILabel *time = (UILabel *)[cell viewWithTag:100 + (numAdded * 2)];
+            time.text = @"";
+            time.hidden = YES;
+        }
     }
-
+    
+    // http://stackoverflow.com/questions/19256996/uibutton-not-showing-highlight-on-tap-in-ios7
+    for (id obj in cell.subviews) {
+        if ([NSStringFromClass([obj class]) isEqualToString:@"UITableViewCellScrollView"]) {
+            UIScrollView *scroll = (UIScrollView *) obj;
+            scroll.delaysContentTouches = NO;
+            break;
+        }
+    }
+    
     return cell;
 }
 
@@ -318,7 +366,7 @@
     CAPLocation *location = nextBus.location;
     CAPStop *stop = location.stops[nextBus.activeStopIndex];
     
-    if (stop.showsTrips && stop.trips.count > 0) return 90.0f;
+    if (stop.showsTrips) return 90.0f;
     else return 60.0f;
 }
 
@@ -342,7 +390,7 @@
 - (IBAction)toggleDirection:(id)sender {
     UISegmentedControl *control = (UISegmentedControl *)sender;
     self.directionId = control.selectedSegmentIndex;
-    [self loadLocations];
+    [self loadLocationsGTFS];
 }
 
 # pragma mark - Segue
@@ -363,13 +411,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"RealtimeMapViewSegue"]) {
-        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        UIButton *button = (UIButton *)sender;
+        UITableViewCell *cell = (UITableViewCell*)button.superview.superview.superview; // FIXME: ;_;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+
         CAPRealtimeViewController *realtimeVC = segue.destinationViewController;
         CAPNextBus *nextBus = self.locations[indexPath.row];
-        CAPStop *activeStop = nextBus.location.stops[nextBus.activeStopIndex];
-        realtimeVC.stop = activeStop;
-//        [realtimeVC updateWithNextBus:nextBus];
+        realtimeVC.nextBus = nextBus;
     }
 }
 

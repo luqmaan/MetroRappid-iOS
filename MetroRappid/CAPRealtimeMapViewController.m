@@ -7,6 +7,7 @@
 //
 
 #import "CAPRealtimeMapViewController.h"
+#import "CAPStopView.h"
 
 @interface CAPRealtimeMapViewController ()
 
@@ -16,34 +17,79 @@
 
 @implementation CAPRealtimeMapViewController
 
-- (void)setupMap:(MKMapView *)mapView withStop:(CAPStop *)stop
+- (void)setupMap:(MKMapView *)mapView withStop:stop
 {
-    NSLog(@"Setup mapview %@ with nextBus %@", mapView, stop);
+    NSLog(@"Setup mapview %@", mapView);
+    mapView.delegate = self;
     mapView.showsUserLocation = YES;
-    mapView.userTrackingMode = MKUserTrackingModeFollow;
+    mapView.userInteractionEnabled = YES;
+    [mapView removeAnnotations:mapView.annotations];
+    [mapView addAnnotation:stop];
+}
 
+- (void)updateMap:(MKMapView *)mapView withStop:(CAPStop *)stop
+{
+    NSMutableArray *existing = [[NSMutableArray alloc] init];
+    for (id annotation in mapView.annotations) {
+        if ([annotation class] == [CAPTripRealtime class]) {
+            [existing addObject:annotation];
+        }
+    }
+    NSLog(@"Found %d existing annotations", (int)existing.count);
+    
     for (CAPTrip *trip in stop.trips) {
         CAPTripRealtime *vehicle = trip.realtime;
+        if (!vehicle.lat || !vehicle.lon) {
+            NSLog(@"Skipping vehicle %@ %@", vehicle, vehicle._data);
+            continue;
+        };
         
-        if (!vehicle.lat || !vehicle.lon) continue;
-        
-        [mapView addAnnotation:vehicle];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"vehicleId == '%@'", vehicle.vehicleId]];
+        NSArray *matches = [existing filteredArrayUsingPredicate:predicate];
+        if (matches.count > 0) {
+            CAPTripRealtime *match = matches[0];
+            [match updateWithNextBusAPI:vehicle._data];
+            [UIView animateWithDuration:2.0f animations:^{
+                match.coordinate = vehicle.coordinate;
+            }];
+            if (matches.count > 1) NSLog(@"Wtf too many matching vehicles %@ for vehicle %@", matches, vehicle);
+            [existing removeObject:match];
+        }
+        else {
+            [mapView addAnnotation:vehicle];
+        }
+        [existing removeObject:vehicle];
     }
+
+    NSLog(@"%d expired vehicles will be removed", (int)existing.count);
+    for (id expiredVehicle in existing) {
+        [mapView removeAnnotation:expiredVehicle];
+    }
+    CAPTripRealtime *closestTrip = nil;
+    for (id annotation in mapView.annotations) {
+        if ([annotation class] == [CAPTripRealtime class]) {
+            CAPTripRealtime *trip = (CAPTripRealtime *)annotation;
+            if (!closestTrip) closestTrip = trip;
+            if ([closestTrip.estimatedMinutes intValue] > [trip.estimatedMinutes intValue]) closestTrip = trip;
+        }
+    }
+    if (closestTrip) {
+        NSLog(@"Selecting closestTrip %@", closestTrip);
+        [mapView deselectAnnotation:closestTrip animated:YES];
+        [mapView selectAnnotation:closestTrip animated:YES];
+    }
+    
     [self zoomToAnnotationsMapView:mapView];
-    NSLog(@"Did setup mapview with %d annotations", (int)mapView.annotations.count);
+    NSLog(@"Did update mapView to have %d annotations", (int)mapView.annotations.count);
 }
 
 - (void)zoomToAnnotationsMapView:(MKMapView *)mapView
 {
-    NSLog(@"zoomToAnnotationsMapView");
     NSMutableArray *annotations = [[NSMutableArray alloc] initWithArray:mapView.annotations];
-
-    // FIXME: See how this works IRL
-    if (!self.foundUserLocation && mapView.userLocation.location.horizontalAccuracy > kCLLocationAccuracyHundredMeters) {
-        NSLog(@"Accurate location found, ignoring future updates");
+    
+    if (mapView.userLocation.location.horizontalAccuracy > kCLLocationAccuracyThreeKilometers) {
+        NSLog(@"Accurate location found %@", mapView.userLocation);
         [annotations addObject:mapView.userLocation];
-        self.foundUserLocation = YES;
-        mapView.userTrackingMode = MKUserTrackingModeNone;
     }
     
     [mapView showAnnotations:annotations animated:YES];
@@ -54,28 +100,58 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    if ([annotation isKindOfClass:[CAPStop class]]) {
+        CAPStop *stop = (CAPStop *)annotation;
+        NSString *stopAnnotationID = [NSString stringWithFormat:@"CAPStop"];
+        
+        MKAnnotationView *stopView = [theMapView dequeueReusableAnnotationViewWithIdentifier:stopAnnotationID];
+        if (stopView) {
+            stopView.annotation = stop;
+        }
+        else {
+            stopView = [[CAPStopView alloc] initWithAnnotation:annotation reuseIdentifier:stopAnnotationID];
+            stopView.tintColor = [UIColor greenColor];
+            stopView.canShowCallout = YES;
+        }
+        return stopView;
+    }
     return nil;
 }
 
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
+/*
+ - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
 {
-
 }
+*/
 
+/*
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    
 }
+*/
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    CAPTripRealtime *trip = (CAPTripRealtime *)view.annotation;
+    NSLog(@"Did select %@ ", trip);
+}
+
+/*
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+}
+*/
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)newUserLocation
 {
-    NSLog(@"mapView didUpdateUserLocation");
-    [self zoomToAnnotationsMapView:mapView];
+    if (!self.foundUserLocation) [self zoomToAnnotationsMapView:mapView];
+    self.foundUserLocation = YES;
 }
 
+/*
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    
 }
-
+*/
+ 
 @end

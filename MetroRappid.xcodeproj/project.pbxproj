@@ -11,6 +11,7 @@
 		6D46D2689C534698AB05707A /* libPods-MetroRappid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F79404B7DDB64E558A1D9438 /* libPods-MetroRappid.a */; };
 		8C063EEA18BEE69600F4ED6A /* CAPRealtimeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C063EE918BEE69600F4ED6A /* CAPRealtimeMapViewController.m */; };
 		8C2B76D118BB10020027492F /* 801-no-arrivals.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B76D018BB10020027492F /* 801-no-arrivals.xml */; };
+		8C6417F818CAD70E0018AE52 /* CAPStopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6417F718CAD70E0018AE52 /* CAPStopView.m */; };
 		8C7FE60118BAC45A00A802A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60018BAC45A00A802A7 /* Foundation.framework */; };
 		8C7FE60318BAC45A00A802A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60218BAC45A00A802A7 /* CoreGraphics.framework */; };
 		8C7FE60518BAC45A00A802A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60418BAC45A00A802A7 /* UIKit.framework */; };
@@ -60,6 +61,8 @@
 		8C063EE818BEE69600F4ED6A /* CAPRealtimeMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPRealtimeMapViewController.h; sourceTree = "<group>"; };
 		8C063EE918BEE69600F4ED6A /* CAPRealtimeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRealtimeMapViewController.m; sourceTree = "<group>"; };
 		8C2B76D018BB10020027492F /* 801-no-arrivals.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "801-no-arrivals.xml"; sourceTree = "<group>"; };
+		8C6417F618CAD70E0018AE52 /* CAPStopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPStopView.h; sourceTree = "<group>"; };
+		8C6417F718CAD70E0018AE52 /* CAPStopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPStopView.m; sourceTree = "<group>"; };
 		8C7FE5FD18BAC45A00A802A7 /* MetroRappid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroRappid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C7FE60018BAC45A00A802A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C7FE60218BAC45A00A802A7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +131,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C6417F518CAD6F60018AE52 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8C6417F618CAD70E0018AE52 /* CAPStopView.h */,
+				8C6417F718CAD70E0018AE52 /* CAPStopView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		8C7FE5F418BAC45A00A802A7 = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +176,7 @@
 		8C7FE60618BAC45A00A802A7 /* MetroRappid */ = {
 			isa = PBXGroup;
 			children = (
+				8C6417F518CAD6F60018AE52 /* Views */,
 				8C7FE65918BAC8C300A802A7 /* Data */,
 				8C7FE64018BAC82600A802A7 /* Controllers */,
 				8C7FE63B18BAC80D00A802A7 /* Models */,
@@ -454,6 +467,7 @@
 			files = (
 				8C7FE65718BAC87B00A802A7 /* CAPNearbyViewController.m in Sources */,
 				8C7FE64B18BAC83100A802A7 /* CAPStop.m in Sources */,
+				8C6417F818CAD70E0018AE52 /* CAPStopView.m in Sources */,
 				8C9212AD18C28A1F00BBB208 /* CAPRealtimeViewController.m in Sources */,
 				8C7FE60D18BAC45A00A802A7 /* main.m in Sources */,
 				8C7FE64F18BAC83100A802A7 /* CAPTripRealtime.m in Sources */,

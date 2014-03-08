@@ -8,11 +8,14 @@
 
 #import "CAPRealtimeViewController.h"
 #import "CAPRealtimeMapViewController.h"
+#import <ProgressHUD/ProgressHUD.h>
 
 @interface CAPRealtimeViewController ()
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property CAPRealtimeMapViewController* realtimeMapVC;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshBtn;
 
 @end
 
@@ -22,7 +25,6 @@
 {
     NSLog(@"CAPRealtimeViewController baseInit");
     self.realtimeMapVC = [[CAPRealtimeMapViewController alloc] init];
-    self.mapView.delegate = self.realtimeMapVC;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -55,11 +57,47 @@
 - (void)update
 {
     int vehicleCount = 0;
-    for (CAPTrip *trip in self.stop.trips) if (trip.realtime.valid) vehicleCount++;
+    CAPStop *stop = self.nextBus.location.stops[self.nextBus.activeStopIndex];
+    for (CAPTrip *trip in stop.trips) if (trip.realtime.valid) vehicleCount++;
+    NSLog(@"Updating map with %d vehicles", vehicleCount);
 
-    self.navigationItem.title = self.stop.name;
-    NSLog(@"Updated with %d vehicles", vehicleCount);
-    [self.realtimeMapVC setupMap:self.mapView withStop:self.stop];
+    self.navigationItem.title = stop.name;
+    [self.realtimeMapVC setupMap:self.mapView withStop:stop];
+    [self.realtimeMapVC updateMap:self.mapView withStop:stop];
+    
+}
+
+- (IBAction)refresh:(id)sender {
+    // Do this so we can use them in tha block
+    UIProgressView *progressView = self.progressBar;
+    UIBarButtonItem *refreshButton = self.refreshBtn;
+    CAPNextBus *nextBus = self.nextBus;
+    CAPRealtimeMapViewController *realtimeMapVC = self.realtimeMapVC;
+    MKMapView *mapView = self.mapView;
+
+    progressView.progress = 0.0;
+    progressView.hidden = NO;
+    progressView.layer.opacity = 1.0;
+    refreshButton.enabled = NO;
+    self.nextBus.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
+    {
+        [progressView setProgress:totalBytesExpectedToRead / totalBytesExpectedToRead animated:YES];
+    };
+    self.nextBus.completedCallback = ^void(){
+        refreshButton.enabled = YES;
+        [UIView animateWithDuration:2.0f animations:^{
+            progressView.layer.opacity = 0.0;
+        }];
+        CAPStop *stop = nextBus.location.stops[nextBus.activeStopIndex];
+        [realtimeMapVC updateMap:mapView withStop:stop];
+    };
+    self.nextBus.errorCallback = ^void(NSError *error) {
+        refreshButton.enabled = YES;
+        [ProgressHUD showError:error.localizedDescription];
+        progressView.progress = 0;
+        progressView.layer.opacity = 0.0;
+    };
+    [self.nextBus startUpdates];
 }
 
 @end
