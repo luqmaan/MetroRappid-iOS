@@ -7,7 +7,7 @@
 //
 
 #import "CAPRealtimeMapViewController.h"
-#import "CAPStopView.h"
+#import "CAPTripRealtimeView.h"
 
 @interface CAPRealtimeMapViewController ()
 
@@ -36,14 +36,14 @@
         }
     }
     NSLog(@"Found %d existing annotations", (int)existing.count);
-    
+
     for (CAPTrip *trip in stop.trips) {
         CAPTripRealtime *vehicle = trip.realtime;
         if (!vehicle.lat || !vehicle.lon) {
             NSLog(@"Skipping vehicle %@ %@", vehicle, vehicle._data);
             continue;
         };
-        
+
         NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"vehicleId == '%@'", vehicle.vehicleId]];
         NSArray *matches = [existing filteredArrayUsingPredicate:predicate];
         if (matches.count > 0) {
@@ -78,7 +78,7 @@
         [mapView deselectAnnotation:closestTrip animated:YES];
         [mapView selectAnnotation:closestTrip animated:YES];
     }
-    
+
     [self zoomToAnnotationsMapView:mapView];
     NSLog(@"Did update mapView to have %d annotations", (int)mapView.annotations.count);
 }
@@ -86,12 +86,12 @@
 - (void)zoomToAnnotationsMapView:(MKMapView *)mapView
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] initWithArray:mapView.annotations];
-    
+
     if (mapView.userLocation.location.horizontalAccuracy > kCLLocationAccuracyThreeKilometers) {
         NSLog(@"Accurate location found %@", mapView.userLocation);
         [annotations addObject:mapView.userLocation];
     }
-    
+
     [mapView showAnnotations:annotations animated:YES];
 }
 
@@ -100,20 +100,20 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    if ([annotation isKindOfClass:[CAPStop class]]) {
-        CAPStop *stop = (CAPStop *)annotation;
-        NSString *stopAnnotationID = [NSString stringWithFormat:@"CAPStop"];
-        
-        MKAnnotationView *stopView = [theMapView dequeueReusableAnnotationViewWithIdentifier:stopAnnotationID];
-        if (stopView) {
-            stopView.annotation = stop;
+    if ([annotation isKindOfClass:[CAPTripRealtime class]]) {
+        CAPTripRealtime *stop = (CAPTripRealtime *)annotation;
+        NSString *tripAnnotationID = [NSString stringWithFormat:@"CAPTripRealtime"];
+
+        MKAnnotationView *tripView = [theMapView dequeueReusableAnnotationViewWithIdentifier:tripAnnotationID];
+        if (tripView) {
+            tripView.annotation = stop;
         }
         else {
-            stopView = [[CAPStopView alloc] initWithAnnotation:annotation reuseIdentifier:stopAnnotationID];
-            stopView.tintColor = [UIColor greenColor];
-            stopView.canShowCallout = YES;
+            tripView = [[CAPTripRealtimeView alloc] initWithAnnotation:annotation reuseIdentifier:tripAnnotationID];
+            tripView.tintColor = [UIColor greenColor];
+            tripView.canShowCallout = YES;
         }
-        return stopView;
+        return tripView;
     }
     return nil;
 }
@@ -153,5 +153,5 @@
 {
 }
 */
- 
+
 @end

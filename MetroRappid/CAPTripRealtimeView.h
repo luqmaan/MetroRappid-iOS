@@ -1,5 +1,5 @@
 //
-//  CAPStopView.h
+//  CAPTripRealtimeView.h
 //  MetroRappid
 //
 //  Created by Luq on 3/7/14.
@@ -8,6 +8,6 @@
 
 #import <MapKit/MapKit.h>
 
-@interface CAPStopView : MKAnnotationView
+@interface CAPTripRealtimeView : MKAnnotationView
 
 @end

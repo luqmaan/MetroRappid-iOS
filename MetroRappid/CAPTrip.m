@@ -47,9 +47,6 @@
     // Stringify it
     self.estimatedTime = [NSString stringWithFormat:@"%dm", (int)components.minute];
     if (components.hour > 1) self.estimatedTime = [NSString stringWithFormat:@"%dh %dm", (int)components.hour, (int)components.minute];
-    
-    self.realtime.estimatedTime = self.estimatedTime;
-    
 }
 
 - (NSString *)description
