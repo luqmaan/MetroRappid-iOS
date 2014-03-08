@@ -316,7 +316,6 @@
         
         NSLog(@"activeStop.trips.count %d", (int)activeStop.trips.count);
         while (numAdded < numLabels) {
-//        for (int i = 0; i < numLabels; i++) {
             if (i >= activeStop.trips.count) break;
             CAPTrip *trip = activeStop.trips[i];
             i++;
@@ -332,9 +331,12 @@
             mainTime.hidden = NO;
             numAdded++;
         }
+        UILabel *error = (UILabel *)[cell viewWithTag:110];
         if (numAdded == 0) {
-            UILabel *error = (UILabel *)[cell viewWithTag:110];
             error.hidden = NO;
+        }
+        else {
+            error.hidden = YES;
         }
         for (int i = numAdded; i < numLabels; i++) {
             UILabel *time = (UILabel *)[cell viewWithTag:100 + (numAdded * 2)];
