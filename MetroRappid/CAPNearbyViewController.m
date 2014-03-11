@@ -289,9 +289,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
+    UILabel *distance = (UILabel *)[cell viewWithTag:2];
     UIView *proximityIndicator = (UIView *)[cell viewWithTag:22];
 
     routeNumber.text = location.name;
+    if (!activeStop.distance) distance.hidden = YES;
+    else {
+        distance.hidden = NO;
+        distance.text = activeStop.distancePretty;
+    }
     
     proximityIndicator.layer.cornerRadius = 6.0f;
     proximityIndicator.layer.borderWidth = 2.0f;
