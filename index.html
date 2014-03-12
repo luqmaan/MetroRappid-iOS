@@ -44,32 +44,47 @@ p {
     margin: 0 auto;
     max-width: 40em;
     padding: 0;
+    display: block;
 }
 #desc {
     padding: 4em 0 2em;
 }
 #screens {
-    width: 40em;
-    margin: 0 auto;
-    padding: 3em;
+    max-width: 990px;
+    margin: auto;
+    padding: 3em 0;
 }
 .screen {
     display: block;
-    width: 40em;
+    float: left;
     text-align: center;
     margin-bottom: 3em;
+    width: 320px;
+    height: 568px;
+}
+.screen.capture {
+    margin: 0 0 0 0;
+    padding: 0 0 0 10px;
 }
 .screen.capture img {
-    max-width: 25em;
+    width: 320px;
+    height: 568px;
     border: 1px solid #ddd;
 }
-.screen a {
+.white a {
     display: block;
     margin: 0.5em 0;
     line-height: 1.5em;
     color: #19B289;
     font-weight: bold;
     font-size: 1.5em;
+}
+#feet {
+    text-align: center;
+}
+.foot {
+    margin: 10px auto;
+    padding: 30px;
 }
 a:hover {
     color: #C50004;
@@ -87,24 +102,14 @@ img a, a img  {
 <div class='red'>
     <div id='desc' class='container'>
     <h1>MetroRappid</h1>
-    <p>Fast Realtime Arrival information for Austin's CapMetro MetroRapid bus.</p>
-    <p>Find out exactly when the next MetroRapid bus is going to arrive, without pressing a single button. </p>
-    <p>Don't worry about figuring out the schedule, you'll know if the bus is running late and be immediately able to which stop to get on at. </p>
-    <p>Coming Soon: View exactly where the bus is on a map.</p>
+        <p>Real-time* MetroRapid arrivals for Austin's CapMetro bus.</p>
+        <p>Quickly find nearby stops and arrival times for the next three MetroRapid buses. Open the map to see exactly where those buses are relative to your location.</p>
+        <p>Currently supports CapMetro's 801 route in Austin, Texas.</p>
+        <p>*Real-time data is provided by CapMetro and is accurate within 90 seconds.</p>
     </div>
 </div>
 
 <div id='screens' class='container'>
-    <div class='screen'>
-        <a href='https://itunes.apple.com/us/app/metrorappid/id827603682?ls=1&mt=8' target='_blank'>
-            <img src='img/MetroRappid-152.png' width='76' height='76' /><br />
-            MetroRappid on the App Store
-        </a>
-        <a href='https://github.com/luqmaan/MetroRappid' target='_blank'>MetroRappid on GitHub</a>
-        <a href='https://github.com/luqmaan/MetroRappid/issues?state=open' target='_blank'>Report a bug or request support</a>
-    </div>
-
-
     <div class='screen capture'>
         <img src='img/screenshot1-1136.png' />
     </div>
@@ -115,6 +120,18 @@ img a, a img  {
         <img src='img/screenshot3-1136.png' />
     </div>
 </div>
+<div id='feet' class='container white'>
+    <div class='foot'>
+        <hr />
+        <a href='https://itunes.apple.com/us/app/metrorappid/id827603682?ls=1&mt=8' target='_blank'>
+            <img src='img/MetroRappid-152.png' width='76' height='76' /><br />
+            MetroRappid on the App Store
+        </a>
+        <a href='https://github.com/luqmaan/MetroRappid' target='_blank'>MetroRappid on GitHub</a>
+        <a href='https://github.com/luqmaan/MetroRappid/issues?state=open' target='_blank'>Report a bug or request support</a>
+    </div>
+</div>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -124,6 +141,6 @@ img a, a img  {
   ga('create', 'UA-48501204-1', 'metrorappid.com');
   ga('send', 'pageview');
 </script>
-    
+
 </body>
 </html>
