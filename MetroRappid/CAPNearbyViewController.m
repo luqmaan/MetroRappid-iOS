@@ -104,12 +104,6 @@
     self.tableView.delaysContentTouches = NO;
     [self loadLocationsGTFS];
     [self updateLocation];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
-}
-
-- (void)appDidEnterForeground:(NSNotification *)notification
-{
-    [self updateLocation];
 }
 
 #pragma mark - Data
