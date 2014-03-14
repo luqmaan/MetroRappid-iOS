@@ -138,6 +138,7 @@
     }];
     
     UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
+    [progressView setProgress:0.0f animated:NO];
     [progressView setProgress:0.1f animated:YES];
     progressView.hidden = NO;
     nb.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
@@ -162,7 +163,7 @@
     };
     nb.errorCallback = ^void(NSError *error) {
         [ProgressHUD showError:error.localizedDescription];
-        progressView.progress = 0;
+        [progressView setProgress:0.0f animated:NO];
         progressView.hidden = YES;
         [self.tableView reloadData];
     };
@@ -298,7 +299,7 @@
         distance.hidden = NO;
         distance.text = activeStop.distancePretty;
     }
-    
+
     proximityIndicator.layer.cornerRadius = 6.0f;
     proximityIndicator.layer.borderWidth = 2.0f;
     proximityIndicator.layer.backgroundColor = [[UIColor whiteColor] CGColor];
@@ -308,13 +309,16 @@
         UIView *proximityIndicatorOuter = (UIView *)[cell viewWithTag:24];
         
         proximityIndicator.layer.borderColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
-        
+    
         proximityIndicatorOuter.hidden = NO;
         proximityIndicatorOuter.layer.backgroundColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
         proximityIndicatorOuter.layer.cornerRadius = 6.0f;
         
         [proximityIndicatorOuter.layer addAnimation:self.pulseAnimationGroup forKey:@"pulse"];
     }
+    
+    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
+    [progressView setProgress:0 animated:NO];
 
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
         int numAdded = 0;
@@ -351,7 +355,7 @@
             time.hidden = YES;
         }
     }
-    
+
     // http://stackoverflow.com/questions/19256996/uibutton-not-showing-highlight-on-tap-in-ios7
     for (id obj in cell.subviews) {
         if ([NSStringFromClass([obj class]) isEqualToString:@"UITableViewCellScrollView"]) {

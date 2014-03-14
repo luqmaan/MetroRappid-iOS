@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4rr-H9-MQR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4rr-H9-MQR">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Nearby View Controller - 801-->
@@ -27,7 +27,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <progressView hidden="YES" opaque="NO" tag="12" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="avg-Vo-2pm">
+                                        <progressView hidden="YES" opaque="NO" tag="12" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="avg-Vo-2pm">
                                             <rect key="frame" x="31" y="0.0" width="289" height="2"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </progressView>
@@ -78,6 +78,21 @@
                                                 <constraint firstAttribute="height" constant="12" id="hrn-hU-p96"/>
                                             </constraints>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6up-aU-B7M">
+                                            <rect key="frame" x="240" y="0.0" width="80" height="90"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="90" id="32P-UD-CN3"/>
+                                                <constraint firstAttribute="width" constant="80" id="LGl-LB-1T2"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="19"/>
+                                            <color key="tintColor" red="0.02111615549" green="0.74067540320000003" blue="0.57025341429999998" alpha="1" colorSpace="deviceRGB"/>
+                                            <inset key="contentEdgeInsets" minX="0.0" minY="40" maxX="7" maxY="0.0"/>
+                                            <state key="normal" title="Map"/>
+                                            <connections>
+                                                <segue destination="Aha-zK-bYD" kind="push" identifier="RealtimeMapViewSegue" id="qeE-Ib-bZn"/>
+                                            </connections>
+                                        </button>
                                         <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mh5-GF-AdE">
                                             <rect key="frame" x="20" y="42" width="51" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -100,8 +115,8 @@
                                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.2mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfA-6h-7bH">
-                                            <rect key="frame" x="260" y="22" width="42" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.2mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KfA-6h-7bH">
+                                            <rect key="frame" x="245" y="22" width="60" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
                                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,8 +129,9 @@
                                         <constraint firstAttribute="trailing" secondItem="avg-Vo-2pm" secondAttribute="trailing" id="4Pk-0Q-QoK"/>
                                         <constraint firstItem="HQi-qX-AhN" firstAttribute="top" secondItem="5U0-V3-8TS" secondAttribute="top" constant="20" symbolic="YES" id="6xt-xe-GTY"/>
                                         <constraint firstAttribute="trailing" secondItem="HQi-qX-AhN" secondAttribute="trailing" constant="75" id="Cb6-ZX-O72"/>
-                                        <constraint firstItem="KfA-6h-7bH" firstAttribute="leading" secondItem="HQi-qX-AhN" secondAttribute="trailing" constant="15" id="CbE-dI-GIS"/>
+                                        <constraint firstItem="KfA-6h-7bH" firstAttribute="leading" secondItem="HQi-qX-AhN" secondAttribute="trailing" id="JQr-yA-V15"/>
                                         <constraint firstItem="IXS-Lh-ocB" firstAttribute="centerY" secondItem="nvn-wU-Aut" secondAttribute="centerY" id="Lvp-6e-lrq"/>
+                                        <constraint firstAttribute="trailing" secondItem="KfA-6h-7bH" secondAttribute="trailing" constant="15" id="MN3-st-Lax"/>
                                         <constraint firstAttribute="centerY" secondItem="nvn-wU-Aut" secondAttribute="centerY" constant="5.5" id="MVG-Kk-5v3"/>
                                         <constraint firstAttribute="bottom" secondItem="eWj-vf-TtF" secondAttribute="bottom" id="REf-s3-TX9"/>
                                         <constraint firstItem="VQP-Di-yi7" firstAttribute="top" secondItem="HQi-qX-AhN" secondAttribute="bottom" constant="8" id="Rrq-Ni-Mc9"/>
@@ -181,8 +197,8 @@
                                                 <constraint firstAttribute="height" constant="12" id="rli-tN-a0q"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.2mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clx-Ko-SOp">
-                                            <rect key="frame" x="260" y="22" width="42" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.2mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="clx-Ko-SOp">
+                                            <rect key="frame" x="245" y="22" width="60" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
                                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -196,12 +212,13 @@
                                         <constraint firstItem="xxQ-HM-sZX" firstAttribute="top" secondItem="1Bh-No-7Rs" secondAttribute="top" id="AFe-YT-4Ec"/>
                                         <constraint firstItem="H9L-PN-yYM" firstAttribute="leading" secondItem="7GD-k4-Sh0" secondAttribute="trailing" constant="12" id="CzU-WR-l1a"/>
                                         <constraint firstItem="xxQ-HM-sZX" firstAttribute="leading" secondItem="1Bh-No-7Rs" secondAttribute="leading" constant="15" id="DE5-ko-Ff8"/>
+                                        <constraint firstItem="clx-Ko-SOp" firstAttribute="leading" secondItem="H9L-PN-yYM" secondAttribute="trailing" id="I0z-Ly-nFZ"/>
                                         <constraint firstItem="7Wj-Qt-WbT" firstAttribute="leading" secondItem="xxQ-HM-sZX" secondAttribute="trailing" constant="10" id="J8Y-Tr-Lh9"/>
                                         <constraint firstItem="i5L-3Z-5sg" firstAttribute="centerX" secondItem="7GD-k4-Sh0" secondAttribute="centerX" id="Xwt-zz-Peg"/>
                                         <constraint firstAttribute="trailing" secondItem="7Wj-Qt-WbT" secondAttribute="trailing" id="aqV-zH-5OF"/>
                                         <constraint firstAttribute="trailing" secondItem="H9L-PN-yYM" secondAttribute="trailing" constant="75" id="jGj-ho-XgV"/>
+                                        <constraint firstAttribute="trailing" secondItem="clx-Ko-SOp" secondAttribute="trailing" constant="15" id="oQ9-bd-Uav"/>
                                         <constraint firstAttribute="bottom" secondItem="xxQ-HM-sZX" secondAttribute="bottom" id="qpw-wq-3oM"/>
-                                        <constraint firstItem="clx-Ko-SOp" firstAttribute="leading" secondItem="H9L-PN-yYM" secondAttribute="trailing" constant="15" id="rcp-DC-CNi"/>
                                         <constraint firstAttribute="centerY" secondItem="7GD-k4-Sh0" secondAttribute="centerY" id="sZa-nx-27j"/>
                                         <constraint firstItem="7Wj-Qt-WbT" firstAttribute="top" secondItem="1Bh-No-7Rs" secondAttribute="top" id="vOa-70-OgK"/>
                                         <constraint firstItem="H9L-PN-yYM" firstAttribute="top" secondItem="1Bh-No-7Rs" secondAttribute="top" constant="20" symbolic="YES" id="yu3-NL-y4K"/>
@@ -228,11 +245,6 @@
                                     <action selector="toggleDirection:" destination="cZh-cL-NUE" eventType="valueChanged" id="egp-D1-Xdb"/>
                                 </connections>
                             </segmentedControl>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="OcJ-Qr-o3b">
-                            <connections>
-                                <segue destination="Aha-zK-bYD" kind="push" identifier="RealtimeMapViewSegue" id="llJ-eN-LbE"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
