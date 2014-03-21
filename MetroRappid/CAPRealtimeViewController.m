@@ -64,7 +64,7 @@
     self.navigationItem.title = stop.name;
     [self.realtimeMapVC setupMap:self.mapView withStop:stop];
     [self.realtimeMapVC updateMap:self.mapView withStop:stop];
-    
+    [self.realtimeMapVC zoomToAnnotationsMapView:self.mapView];
 }
 
 - (IBAction)refresh:(id)sender {

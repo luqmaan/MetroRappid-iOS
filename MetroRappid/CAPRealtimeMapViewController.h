@@ -15,5 +15,6 @@
 
 - (void)setupMap:(MKMapView *)mapView withStop:stop;
 - (void)updateMap:(MKMapView *)mapView withStop:(CAPStop *)stop;
+- (void)zoomToAnnotationsMapView:(MKMapView *)mapView;
 
 @end
