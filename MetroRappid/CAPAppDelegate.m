@@ -15,6 +15,11 @@
     NSDictionary *titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"DINAlternate-Bold" size:18.0]};
     [[UIBarButtonItem appearance] setTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
+    NSDictionary *segmentedTextAttributes = @{
+        NSFontAttributeName: [UIFont fontWithName:@"DINAlternate-Bold" size:17.0],
+        NSBaselineOffsetAttributeName: @-1.0
+    };
+    [[UISegmentedControl appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:segmentedTextAttributes forState:UIControlStateNormal];
     return YES;
 }
 							
