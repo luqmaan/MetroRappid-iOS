@@ -12,7 +12,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    NSDictionary *titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"DINAlternate-Bold" size:18.0]};
+    [[UIBarButtonItem appearance] setTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
     return YES;
 }
 							
