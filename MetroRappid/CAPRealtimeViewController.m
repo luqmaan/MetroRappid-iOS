@@ -76,9 +76,8 @@
     MKMapView *mapView = self.mapView;
 
     progressView.progress = 0.0;
-    progressView.hidden = NO;
-    progressView.layer.opacity = 1.0;
     refreshButton.enabled = NO;
+    
     self.nextBus.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
     {
         [progressView setProgress:totalBytesExpectedToRead / totalBytesExpectedToRead animated:YES];
@@ -86,7 +85,6 @@
     self.nextBus.completedCallback = ^void(){
         refreshButton.enabled = YES;
         [UIView animateWithDuration:2.0f animations:^{
-            progressView.layer.opacity = 0.0;
         }];
         CAPStop *stop = nextBus.location.stops[nextBus.activeStopIndex];
         [realtimeMapVC updateMap:mapView withStop:stop];
@@ -95,7 +93,6 @@
         refreshButton.enabled = YES;
         [ProgressHUD showError:error.localizedDescription];
         progressView.progress = 0;
-        progressView.layer.opacity = 0.0;
     };
     [self.nextBus startUpdates];
 }
