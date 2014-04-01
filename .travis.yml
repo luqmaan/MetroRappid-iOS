@@ -2,5 +2,6 @@ rvm: 1.9.3
 before_install:
   - gem install cocoapods -v '0.29.0'
 language: objective-c
-xcode_project: MetroRappid.xcworkspace
-xcode_scheme: MetroRappidTests
+script:
+  - xctool -workspace MetroRappid.xcworkspace -scheme TravisExample -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - xctool test -workspace MetroRappid.xcworkspace -scheme TravisExampleTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
