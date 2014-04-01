@@ -225,8 +225,8 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.directionId == 0) self.navigationItem.title = @"801 North";
-            if (self.directionId == 1) self.navigationItem.title = @"801 South";
+            if (self.directionId == 0) self.navigationItem.title = @"801 NORTH";
+            if (self.directionId == 1) self.navigationItem.title = @"801 SOUTH";
             [self.tableView reloadData];
             [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
             [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
