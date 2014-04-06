@@ -41,7 +41,7 @@
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
     
     // FIXME: Add test to support to make sure this can support multiple routes
-    NSMutableArray *locations = [gtfs locationsForRoutes:@[@801] nearLocation:loc withinRadius:200.0f];
+    NSMutableArray *locations = [gtfs locationsForRoutes:@[@801] nearLocation:loc inDirection:0];
     
     XCTAssertEqual((NSUInteger)25, locations.count);
     CAPLocation *route801TechRidge = locations[0];
@@ -94,7 +94,7 @@
     GTFSDB *gtfs = [[GTFSDB alloc] init];
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
     
-    NSMutableArray *locations = [gtfs locationsForRoutes:@[@935] nearLocation:loc withinRadius:1.0f];
+    NSMutableArray *locations = [gtfs locationsForRoutes:@[@935] nearLocation:loc inDirection:0];
     
     for (CAPLocation *loc in locations) {
         XCTAssertEqual((NSUInteger)1, loc.stops.count);
@@ -110,7 +110,7 @@
     NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (error) { XCTFail(@"Reading XML failed %@", error); }
     
-    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil];
+    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil andRoute:@"801"];
     CAPStop *mockStop = [[CAPStop alloc] init];
     [mockNextBus parseXML:xmlString forStop:mockStop];
     
@@ -136,7 +136,7 @@
     NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (error) { XCTFail(@"Reading XML failed %@", error); }
     
-    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil];
+    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil andRoute:@"801"];
     CAPStop *mockStop = [[CAPStop alloc] init];
     [mockNextBus parseXML:xmlString forStop:mockStop];
     
@@ -162,7 +162,7 @@
     NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (error) { XCTFail(@"Reading XML failed %@", error); }
     
-    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil];
+    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil andRoute:@"801"];
     CAPStop *mockStop = [[CAPStop alloc] init];
     [mockNextBus parseXML:xmlString forStop:mockStop];
     

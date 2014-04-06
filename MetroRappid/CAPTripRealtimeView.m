@@ -8,6 +8,11 @@
 
 #import "CAPTripRealtimeView.h"
 
+@interface CAPTripRealtimeView ()
+@property CABasicAnimation *scaleAnimation;
+@end
+
+
 @implementation CAPTripRealtimeView
 
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
@@ -25,18 +30,25 @@
         self.layer.shadowRadius = 3.0f;
         self.layer.shadowOpacity = 0.3f;
         self.layer.shadowOffset = CGSizeMake(0, 0);
+        
+        self.scaleAnimation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
+        self.scaleAnimation.duration = 2.0;
+        self.scaleAnimation.fromValue = [NSNumber numberWithFloat:3.0];
+        self.scaleAnimation.toValue = [NSNumber numberWithFloat:4.0];
+        self.scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+        self.scaleAnimation.autoreverses = YES;
+        self.scaleAnimation.repeatCount = INFINITY;
+        self.scaleAnimation.fillMode = kCAFillModeForwards;
+        [self startAnimating];
 
-        CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
-        scaleAnimation.duration = 2.0;
-        scaleAnimation.fromValue = [NSNumber numberWithFloat:3.0];
-        scaleAnimation.toValue = [NSNumber numberWithFloat:4.0];
-        scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
-        scaleAnimation.autoreverses = YES;
-        scaleAnimation.repeatCount = INFINITY;
-        scaleAnimation.fillMode = kCAFillModeForwards;
-        [self.layer addAnimation:scaleAnimation forKey:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startAnimating) name:UIApplicationWillEnterForegroundNotification object:[UIApplication sharedApplication]];
     }
     return self;
+}
+         
+- (void)startAnimating
+{
+    [self.layer addAnimation:self.scaleAnimation forKey:nil];
 }
 
 @end
