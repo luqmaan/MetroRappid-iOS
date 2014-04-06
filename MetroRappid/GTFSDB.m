@@ -87,7 +87,7 @@
 
 #pragma mark - Queries
 
-- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(int)directionId
+- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(GTFSDirection)directionId
 {
     NSString *query = [NSString stringWithFormat:
         @"\n SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, "
@@ -113,9 +113,6 @@
         directionId
     ];
     
-    // NOTE: CAPLocation is kind of pointless now, since we only care about one direction.
-    //       Not going to remove it just quite yet, since I change my mind every five commits.
-
     NSMutableArray * __block data = [[NSMutableArray alloc] init];
 
     [self.queue inDatabase:^(FMDatabase *db) {
@@ -124,18 +121,18 @@
 
         NSMutableArray *distances = [[NSMutableArray alloc] init];
         while ([rs next]) {
-            CAPLocation *location = [[CAPLocation alloc] init];
-            [location updateWithGTFS:[rs resultDictionary]];
-            [data addObject:location];
-            [distances addObject:[NSNumber numberWithFloat:location.distance]];
+            CAPStop *stop = [[CAPStop alloc] init];
+            [stop updateWithGTFS:[rs resultDictionary]];
+            [data addObject:stop];
+            [distances addObject:[NSNumber numberWithFloat:stop.distance]];
         }
         
         NSSortDescriptor *lowestToHighest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
         [distances sortUsingDescriptors:@[lowestToHighest]];
         
-        for (CAPLocation *location in data) {
-            NSUInteger distanceIndex = [distances indexOfObject:[NSNumber numberWithFloat:location.distance]];
-            location.distanceIndex = distanceIndex;
+        for (CAPStop *stop in data) {
+            NSUInteger distanceIndex = [distances indexOfObject:[NSNumber numberWithFloat:stop.distance]];
+            stop.distanceIndex = (int)distanceIndex;
         }
         
         NSLog(@"GTFS found %d locations with", (int)data.count);
@@ -144,34 +141,25 @@
     return data;
 }
 
-- (void)sortStopsByDirectionForLocations:(NSMutableArray *)locations
+- (void)sortStopsByDistance:(NSMutableArray *)stops
 {
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"directionId" ascending:NO];
-    for (CAPLocation *location in locations) {
-        [location.stops sortUsingDescriptors:@[sortDescriptor]];
-    }
-}
-
-- (void)sortLocationsByDistance:(NSMutableArray *)locations
-{
-    [locations sortUsingComparator:^NSComparisonResult(CAPLocation* location1, CAPLocation* location2) {
-        if (location1.distance > location2.distance) return (NSComparisonResult)NSOrderedDescending;
-        else if (location1.distance < location2.distance) return (NSComparisonResult)NSOrderedAscending;
+    [stops sortUsingComparator:^NSComparisonResult(CAPStop* stop1, CAPStop* stop2) {
+        if (stop1.distance > stop2.distance) return (NSComparisonResult)NSOrderedDescending;
+        else if (stop1.distance < stop2.distance) return (NSComparisonResult)NSOrderedAscending;
         return (NSComparisonResult)NSOrderedSame;
     }];
 }
 
-- (void)sortLocationsByStopSequence:(NSMutableArray *)locations
+
+- (void)sortStopsByStopSequence:(NSMutableArray *)stops
 {
-    // Make sure to call sortStopsByDirectionForLocations:(NSMutableArray *)locations first
-    [locations sortUsingComparator:^NSComparisonResult(CAPLocation* location1, CAPLocation* location2) {
-        CAPStop *stop1 = location1.stops[0];
-        CAPStop *stop2 = location2.stops[0];
+    [stops sortUsingComparator:^NSComparisonResult(CAPStop* stop1, CAPStop* stop2) {
         
         if (stop1.stopSequence > stop2.stopSequence) return (NSComparisonResult)NSOrderedDescending;
         else if (stop1.stopSequence < stop2.stopSequence) return (NSComparisonResult)NSOrderedAscending;
         return (NSComparisonResult)NSOrderedSame;
     }];
 }
+
 
 @end

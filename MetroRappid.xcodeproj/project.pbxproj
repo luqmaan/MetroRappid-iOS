@@ -36,7 +36,6 @@
 		8C7FE65318BAC85700A802A7 /* GTFSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE65218BAC85700A802A7 /* GTFSDB.m */; };
 		8C7FE65418BAC85700A802A7 /* GTFSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE65218BAC85700A802A7 /* GTFSDB.m */; };
 		8C7FE65718BAC87B00A802A7 /* CAPNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE65618BAC87B00A802A7 /* CAPNearbyViewController.m */; };
-		8C7FE65818BAC87B00A802A7 /* CAPNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE65618BAC87B00A802A7 /* CAPNearbyViewController.m */; };
 		8C7FE65B18BAC8C300A802A7 /* gtfs_austin.db in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE65A18BAC8C300A802A7 /* gtfs_austin.db */; };
 		8C7FE65C18BAC8C300A802A7 /* gtfs_austin.db in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE65A18BAC8C300A802A7 /* gtfs_austin.db */; };
 		8C7FE65E18BAD26C00A802A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE65D18BAD26C00A802A7 /* MapKit.framework */; };
@@ -483,7 +482,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C7FE65818BAC87B00A802A7 /* CAPNearbyViewController.m in Sources */,
 				8C7FE65018BAC83100A802A7 /* CAPTripRealtime.m in Sources */,
 				8C7FE62C18BAC45A00A802A7 /* MetroRappidTests.m in Sources */,
 				8C7FE64E18BAC83100A802A7 /* CAPTrip.m in Sources */,

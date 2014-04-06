@@ -13,6 +13,9 @@
 
 @interface CAPStop: NSObject <MKAnnotation>
 
+/** Relative distance to other stops this stop was created with, assigned by GTFSDB */
+@property (nonatomic, assign) int distanceIndex;  // FIXME: This probably shouldn't exist. Instead whatever acceses this should just compute/cache it as needed.
+
 @property (nonatomic, assign) float distance;  // FIXME: Use CLLocationDistance
 @property NSString *distancePretty;
 @property NSString *routeId;
@@ -42,24 +45,3 @@
 @property NSString *subtitle;
 
 @end
-
-#pragma mark - CAPLocation
-
-// Groups of stops that share the same route and name
-// Usually differ by headisng/direction, e.g. southbound
-@interface CAPLocation : NSObject
-
-- (void)updateWithGTFS:(NSDictionary *)data;
-- (void)updateWithStop:(CAPStop *)stop;
-- (BOOL)stopBelongsHere:(CAPStop *)stop;
-
-@property NSMutableArray *stops;
-@property NSMutableArray *stopIds;
-@property NSString *name;
-@property NSString *routeId;
-/** Index as a number relative to other locations, 0 being closest. */
-@property (nonatomic, assign) int distanceIndex;
-@property (nonatomic, assign) float distance;
-
-@end
-
