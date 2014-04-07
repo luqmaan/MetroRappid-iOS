@@ -66,43 +66,45 @@
     XCTAssertTrue([@"5873" isEqualToString:route801SouthParkMeadows.stopId]);
 }
 
-//- (void)testGTFSDB_CanFindNearbyLocationsForUnidirectionalRoute
-//{
-//    GTFSDB *gtfs = [[GTFSDB alloc] init];
-//    CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
-//    
-//    NSMutableArray *locations = [gtfs locationsForRoutes:@[@935] nearLocation:loc inDirection:0];
-//    
-//    for (CAPLocation *loc in locations) {
-//        XCTAssertEqual((NSUInteger)1, loc.stops.count);
-//    }
-//}
-//
-//- (void)testCAPNextBus_CanParseXMLWithRealtimeResponse_WithMultipleRuns
-//{
-//    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-//    NSString *filePath = [bundle pathForResource:@"801-realtime" ofType:@"xml"];
-//    
-//    NSError *error = nil;
-//    NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-//    if (error) { XCTFail(@"Reading XML failed %@", error); }
-//    
-//    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil andRoute:@"801"];
-//    CAPStop *mockStop = [[CAPStop alloc] init];
-//    [mockNextBus parseXML:xmlString forStop:mockStop];
-//    
-//    XCTAssertEqual((NSUInteger)12, mockStop.trips.count);
-//    
-//    CAPTrip *trip1 = mockStop.trips[0];
-//    CAPTripRealtime *trip1Realtime = trip1.realtime;
-//    
-//    XCTAssertTrue([@"801" isEqualToString:trip1.route]);
-//    XCTAssertTrue([@"11:19 AM" isEqualToString:trip1.tripTime]);
-//    XCTAssertTrue([@"11:20 AM" isEqualToString:trip1.estimatedTime]);
-//    XCTAssertTrue(trip1Realtime.valid);
-//    XCTAssertTrue([@"11:20 AM" isEqualToString:trip1Realtime.estimatedTime]);
-//    XCTAssertTrue([@"5022" isEqualToString:trip1Realtime.vehicleId]);
-//}
+// Test that Auditorium shores north and south are two different stops
+
+// Test that CAPNextBus parseXML handles xml errors or instantiation errors
+
+// Test CAPModelUtils
+
+- (void)testCAPNextBus_CanParseXMLWithRealtimeResponse_WithMultipleRuns
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *filePath = [bundle pathForResource:@"801-realtime" ofType:@"xml"];
+    
+    NSError *error = nil;
+    NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    if (error) { XCTFail(@"Reading XML failed %@", error); }
+    
+    CAPNextBus *nextBus = [[CAPNextBus alloc] init];
+    CAPStop *mockStop = [[CAPStop alloc] init];
+    
+    void (^errorCallback)(NSError *error) = ^void(NSError *error) {
+        XCTFail(@"Error callback %@", error);
+    };
+
+    void (^completedCallback)() = ^void(){
+        XCTAssertEqual((NSUInteger)12, mockStop.trips.count);
+        
+        CAPTrip *trip1 = mockStop.trips[0];
+        CAPTripRealtime *trip1Realtime = trip1.realtime;
+
+        NSLog(@"trip1.estimatedTime %@", trip1.estimatedTime);
+        NSLog(@"trip1Realtime.estimatedTime %@", trip1Realtime.estimatedTime);
+        
+        XCTAssertTrue([@"801" isEqualToString:trip1.route]);
+        XCTAssertTrue([@"11:19 AM" isEqualToString:trip1.tripTime]);
+        XCTAssertTrue(trip1Realtime.valid);
+        XCTAssertTrue([@"5022" isEqualToString:trip1Realtime.vehicleId]);
+    };
+
+    [nextBus parseXML:xmlString forStop:mockStop onCompleted:completedCallback onError:errorCallback];
+}
 //
 //- (void)testCAPNextBus_CanParseXMLWithRealtimeResponse_WithSingleRun
 //{

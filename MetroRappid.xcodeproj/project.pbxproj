@@ -44,6 +44,7 @@
 		8C7FE66A18BAF77000A802A7 /* 801-realtime-feb-22.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE66618BAF77000A802A7 /* 801-realtime-feb-22.xml */; };
 		8C7FE66B18BAF77000A802A7 /* 801-realtime.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE66718BAF77000A802A7 /* 801-realtime.xml */; };
 		8C9212AD18C28A1F00BBB208 /* CAPRealtimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9212AC18C28A1F00BBB208 /* CAPRealtimeViewController.m */; };
+		8CD4961118F2D5D60088E8B5 /* CAPModelUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4961018F2D5D60088E8B5 /* CAPModelUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		8C7FE66718BAF77000A802A7 /* 801-realtime.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "801-realtime.xml"; sourceTree = "<group>"; };
 		8C9212AB18C28A1F00BBB208 /* CAPRealtimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPRealtimeViewController.h; sourceTree = "<group>"; };
 		8C9212AC18C28A1F00BBB208 /* CAPRealtimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRealtimeViewController.m; sourceTree = "<group>"; };
+		8CD4960F18F2D5D60088E8B5 /* CAPModelUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPModelUtils.h; sourceTree = "<group>"; };
+		8CD4961018F2D5D60088E8B5 /* CAPModelUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPModelUtils.m; sourceTree = "<group>"; };
 		EB4E22B76EA64E70A33E5BD2 /* Pods-MetroRappid.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetroRappid.xcconfig"; path = "Pods/Pods-MetroRappid.xcconfig"; sourceTree = "<group>"; };
 		F79404B7DDB64E558A1D9438 /* libPods-MetroRappid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MetroRappid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -231,6 +234,8 @@
 				8C7FE64618BAC83100A802A7 /* CAPTrip.m */,
 				8C7FE64718BAC83100A802A7 /* CAPTripRealtime.h */,
 				8C7FE64818BAC83100A802A7 /* CAPTripRealtime.m */,
+				8CD4960F18F2D5D60088E8B5 /* CAPModelUtils.h */,
+				8CD4961018F2D5D60088E8B5 /* CAPModelUtils.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 				8C7FE64B18BAC83100A802A7 /* CAPStop.m in Sources */,
 				8C9212AD18C28A1F00BBB208 /* CAPRealtimeViewController.m in Sources */,
 				8C6417FB18CB9A540018AE52 /* CAPTripRealtimeView.m in Sources */,
+				8CD4961118F2D5D60088E8B5 /* CAPModelUtils.m in Sources */,
 				8C7FE60D18BAC45A00A802A7 /* main.m in Sources */,
 				8C7FE64F18BAC83100A802A7 /* CAPTripRealtime.m in Sources */,
 				8C7FE64D18BAC83100A802A7 /* CAPTrip.m in Sources */,
