@@ -15,11 +15,6 @@
 
 @implementation CAPModelUtilsTests
 
-- (NSDate *)mockDateMethod
-{
-    XCTAssertTrue(YES == YES);
-}
-
 - (void)testDateFromCapMetroTimeString
 {
     NSDate *reference = [[NSDate alloc] initWithTimeIntervalSince1970:1396881552.956699];
