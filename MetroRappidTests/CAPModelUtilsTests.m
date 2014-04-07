@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "CAPModelUtils.h"
 
 @interface CAPModelUtilsTests : XCTestCase
 
@@ -14,12 +15,26 @@
 
 @implementation CAPModelUtilsTests
 
-- (void)testLol
+- (NSDate *)mockDateMethod
 {
     XCTAssertTrue(YES == YES);
 }
 
-//-(NSDate *)dateFromCapMetroTimeString:(NSString *)timeString;
-//-(NSString *)formattedTimeUntilDate:(NSDate *)date;
+- (void)testDateFromCapMetroTimeString
+{
+    NSDate *reference = [[NSDate alloc] initWithTimeIntervalSince1970:1396881552.956699];
+    NSDate *date1 = [CAPModelUtils dateFromCapMetroTime:@"11:30 PM" withReferenceDate:reference];
+    XCTAssertEqual(1396931400.000000, date1.timeIntervalSince1970);
+}
+
+- (void)testTimeBetweenStart
+{
+    NSDate *start = [[NSDate alloc] initWithTimeIntervalSince1970:1396881552.956699];
+    NSDate *end = [[NSDate alloc] initWithTimeIntervalSince1970:1396931400.000000];
+    
+    XCTAssertTrue([@"0m" isEqualToString:[CAPModelUtils timeBetweenStart:start andEnd:start]]);
+    XCTAssertTrue([@"13h 50m" isEqualToString:[CAPModelUtils timeBetweenStart:start andEnd:end]]);
+}
+
 
 @end

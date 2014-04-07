@@ -10,14 +10,14 @@
 
 @implementation CAPModelUtils
 
--(NSDate *)dateFromCapMetroTimeString:(NSString *)timeString
+
++ (NSDate *)dateFromCapMetroTime:(NSString *)timeString withReferenceDate:(NSDate *)now;
 {
     // The API sends strings without in the format 11:30 AM. To correctly do time comparisons, we need a full date (day, month, year).
     // Take 11:30 AM, add dd/MM/yyyy to the front.
     // Use a dateFormatter to convert this new string into a proper date.
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSDate *now = [[NSDate alloc] init];
 
     [formatter setDateFormat:@"dd/MM/yyyy"];
     NSString *estimated = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:now], timeString];
@@ -28,11 +28,8 @@
     return estimatedDate;
 }
 
--(NSString *)formattedTimeUntilDate:(NSDate *)date
++ (NSString *)timeBetweenStart:(NSDate *)now andEnd:(NSDate *)date;
 {
-    NSDate *now = [[NSDate alloc] init];
-
-    
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(kCFCalendarUnitHour | kCFCalendarUnitMinute) fromDate:now toDate:date options:0];
 

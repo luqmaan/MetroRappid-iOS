@@ -10,7 +10,7 @@
 
 @interface CAPModelUtils : NSObject
 
--(NSDate *)dateFromCapMetroTimeString:(NSString *)timeString;
--(NSString *)formattedTimeUntilDate:(NSDate *)date;
++ (NSDate *)dateFromCapMetroTime:(NSString *)timeString withReferenceDate:(NSDate *)now;
++ (NSString *)timeBetweenStart:(NSDate *)now andEnd:(NSDate *)date;
 
 @end
