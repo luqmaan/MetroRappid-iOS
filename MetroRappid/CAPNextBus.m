@@ -61,7 +61,7 @@
              NSString *xml = [NSString stringWithCString:[data bytes] encoding:NSISOLatin1StringEncoding];
              stop.lastUpdated = [NSDate date];
              NSLog(@"About to parse xml");
-             [self parseXML:xml forStop:stop onCompleted:completedCallback onError:errorCallback];
+             [self updateStop:stop withXML:xml onCompleted:completedCallback onError:errorCallback];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
@@ -71,55 +71,42 @@
     [operation setDownloadProgressBlock:progressCallback];
 }
 
-- (id)parseXML:(NSString *)xmlString
-       forStop:(CAPStop *)stop
-   onCompleted:(void (^)(void))completedCallback
-       onError:(void (^)(NSError *))errorCallback
+- (void)updateStop:(CAPStop *)stop
+           withXML:(NSString *)xmlString
+       onCompleted:(void (^)(void))completedCallback
+           onError:(void (^)(NSError *))errorCallback
 {
     [stop.trips removeAllObjects];
+
+    NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLString:xmlString];
+    NSDictionary *data = xmlDict[@"soap:Body"][@"Nextbus2Response"];
     
-    @try {
-        NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLString:xmlString];
-        NSDictionary *data = xmlDict[@"soap:Body"][@"Nextbus2Response"];
-        
-        if (!data) {
-            NSMutableDictionary *errorDetails = [NSMutableDictionary dictionary];
-            errorDetails[NSLocalizedDescriptionKey] = @"Invalid Response";
-            NSError *error = [[NSError alloc] initWithDomain:@"soap" code:500 userInfo:errorDetails];
-            errorCallback(error);
-            return nil;
-        }
-            
-        if ([data[@"Runs"][@"Run"] isKindOfClass:[NSArray class]]) {
-            NSArray *runs = data[@"Runs"][@"Run"];
-            for (NSDictionary *run in runs) {
-                CAPTrip *trip = [[CAPTrip alloc] init];
-                [trip updateWithNextBusAPI:run];
-                [stop.trips addObject:trip];
-            }
-        }
-        else if ([data[@"Runs"][@"Run"] isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *run = data[@"Runs"][@"Run"];
-            CAPTrip *trip = [[CAPTrip alloc] init];
-            [trip updateWithNextBusAPI:run];
-            [stop.trips addObject:trip];
-        }
-        
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Error parsing XML response");
+    if (!data) {
         NSMutableDictionary *errorDetails = [NSMutableDictionary dictionary];
         errorDetails[NSLocalizedDescriptionKey] = @"Invalid Response";
         NSError *error = [[NSError alloc] initWithDomain:@"soap" code:500 userInfo:errorDetails];
         errorCallback(error);
-        return nil;
+        return;
     }
-    @finally {
-        NSLog(@"Loaded %d trips", (int)stop.trips.count);
-        if (completedCallback) completedCallback();
-        return stop.trips;
+        
+    if ([data[@"Runs"][@"Run"] isKindOfClass:[NSArray class]]) {
+        NSArray *runs = data[@"Runs"][@"Run"];
+        for (NSDictionary *run in runs) {
+            CAPTrip *trip = [[CAPTrip alloc] init];
+            [trip updateWithNextBusAPI:run];
+            [stop.trips addObject:trip];
+        }
     }
-    
+    else if ([data[@"Runs"][@"Run"] isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *run = data[@"Runs"][@"Run"];
+        CAPTrip *trip = [[CAPTrip alloc] init];
+        [trip updateWithNextBusAPI:run];
+        [stop.trips addObject:trip];
+    }
+
+    NSLog(@"Loaded %d trips", (int)stop.trips.count);
+
+    completedCallback();
 }
 
 @end

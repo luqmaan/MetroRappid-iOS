@@ -85,7 +85,7 @@
     CAPStop *mockStop = [[CAPStop alloc] init];
     
     void (^errorCallback)(NSError *error) = ^void(NSError *error) {
-        XCTFail(@"Error callback %@", error);
+        XCTFail(@"onError should not be called %@", error);
     };
 
     void (^completedCallback)() = ^void(){
@@ -103,50 +103,62 @@
         XCTAssertTrue([@"5022" isEqualToString:trip1Realtime.vehicleId]);
     };
 
-    [nextBus parseXML:xmlString forStop:mockStop onCompleted:completedCallback onError:errorCallback];
+    [nextBus updateStop:mockStop withXML:xmlString onCompleted:completedCallback onError:errorCallback];
 }
-//
-//- (void)testCAPNextBus_CanParseXMLWithRealtimeResponse_WithSingleRun
-//{
-//    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-//    NSString *filePath = [bundle pathForResource:@"801-realtime-feb-22" ofType:@"xml"];
-//    
-//    NSError *error = nil;
-//    NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-//    if (error) { XCTFail(@"Reading XML failed %@", error); }
-//    
-//    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil andRoute:@"801"];
-//    CAPStop *mockStop = [[CAPStop alloc] init];
-//    [mockNextBus parseXML:xmlString forStop:mockStop];
-//    
-//    XCTAssertEqual((NSUInteger)1, mockStop.trips.count);
-//    
-//    CAPTrip *trip1 = mockStop.trips[0];
-//    CAPTripRealtime *trip1Realtime = trip1.realtime;
-//    
-//    XCTAssertTrue([@"801" isEqualToString:trip1.route]);
-//    XCTAssertTrue([@"09:58 PM" isEqualToString:trip1.tripTime]);
-//    XCTAssertTrue([@"10:00 PM" isEqualToString:trip1.estimatedTime]);
-//    XCTAssertTrue(trip1Realtime.valid);
-//    XCTAssertTrue([@"10:00 PM" isEqualToString:trip1Realtime.estimatedTime]);
-//    XCTAssertTrue([@"5006" isEqualToString:trip1Realtime.vehicleId]);
-//}
-//
-//- (void)testCAPNextBus_CanParseXMLWithNoArrivals
-//{
-//    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-//    NSString *filePath = [bundle pathForResource:@"801-no-arrivals" ofType:@"xml"];
-//    
-//    NSError *error = nil;
-//    NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-//    if (error) { XCTFail(@"Reading XML failed %@", error); }
-//    
-//    CAPNextBus *mockNextBus = [[CAPNextBus alloc] initWithLocation:nil andRoute:@"801"];
-//    CAPStop *mockStop = [[CAPStop alloc] init];
-//    [mockNextBus parseXML:xmlString forStop:mockStop];
-//    
-//    XCTAssertEqual((NSUInteger)0, mockStop.trips.count);
-//}
+
+- (void)testCAPNextBus_CanParseXMLWithRealtimeResponse_WithSingleRun
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *filePath = [bundle pathForResource:@"801-realtime-feb-22" ofType:@"xml"];
+    
+    NSError *error = nil;
+    NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    if (error) { XCTFail(@"Reading XML failed %@", error); }
+    
+    CAPNextBus *nextBus = [[CAPNextBus alloc] init];
+    CAPStop *mockStop = [[CAPStop alloc] init];
+
+    void (^errorCallback)(NSError *error) = ^void(NSError *error) {
+        XCTFail(@"onError should not be called %@", error);
+    };
+    
+    void (^completedCallback)() = ^void(){
+        XCTAssertEqual((NSUInteger)1, mockStop.trips.count);
+        
+        CAPTrip *trip1 = mockStop.trips[0];
+        CAPTripRealtime *trip1Realtime = trip1.realtime;
+        
+        XCTAssertTrue([@"801" isEqualToString:trip1.route]);
+        XCTAssertTrue([@"09:58 PM" isEqualToString:trip1.tripTime]);
+        XCTAssertTrue(trip1Realtime.valid);
+        XCTAssertTrue([@"5006" isEqualToString:trip1Realtime.vehicleId]);
+    };
+    
+    [nextBus updateStop:mockStop withXML:xmlString onCompleted:completedCallback onError:errorCallback];
+}
+
+- (void)testCAPNextBus_CanParseXMLWithNoArrivals
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *filePath = [bundle pathForResource:@"801-no-arrivals" ofType:@"xml"];
+    
+    NSError *error = nil;
+    NSString *xmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    if (error) { XCTFail(@"Reading XML failed %@", error); }
+    
+    CAPNextBus *nextBus = [[CAPNextBus alloc] init];
+    CAPStop *mockStop = [[CAPStop alloc] init];
+
+    void (^errorCallback)(NSError *error) = ^void(NSError *error) {
+        XCTAssertEqual((NSUInteger)0, mockStop.trips.count);
+    };
+    
+    void (^completedCallback)() = ^void() {
+        XCTFail(@"onCompleted should not be called");
+    };
+
+    [nextBus updateStop:mockStop withXML:xmlString onCompleted:completedCallback onError:errorCallback];
+}
 
 
 @end

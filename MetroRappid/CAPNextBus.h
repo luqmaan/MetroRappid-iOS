@@ -19,8 +19,8 @@
  onCompleted:(void (^)(void))completedCallback
      onError:(void (^)(NSError *))errorCallback;
 
-- (id)parseXML:(NSString *)xmlString
-       forStop:(CAPStop *)stop
+- (void)updateStop:(CAPStop *)stop
+       withXML:(NSString *)xmlString
    onCompleted:(void (^)(void))completedCallback
        onError:(void (^)(NSError *))errorCallback;
 

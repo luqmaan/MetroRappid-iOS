@@ -33,7 +33,14 @@
 @implementation CAPNearbyViewController
 
 - (void)baseInit {
-    NSLog(@"Init NearbyViewController");
+    
+    
+    // Don't want to make real requests in Travis CI
+    BOOL isRunningTests = [[[NSProcessInfo processInfo] environment] objectForKey:@"isRunningTests"];
+    NSLog(@"Is running tests: %@", [[[NSProcessInfo processInfo] environment] objectForKey:@"isRunningTests"] ? @"Yes" : @"No");
+    if (isRunningTests) return;
+    
+    NSLog(@"Init CAPNearbyViewController");
     self.gtfs = [[GTFSDB alloc] init];
     
     self.locations = [[NSMutableArray alloc] init];
@@ -105,15 +112,9 @@
 {
     [super viewDidLoad];
 
-    // Don't want to make real requests in Travis CI
-    BOOL isRunningTests = [[[NSProcessInfo processInfo] environment] objectForKey:@"isRunningTests"];
-    NSLog(@"Is running tests: %@", [[[NSProcessInfo processInfo] environment] objectForKey:@"isRunningTests"] ? @"Yes" : @"No");
-
-    if (!isRunningTests) {
-        self.tableView.delaysContentTouches = NO;
-        [self loadLocationsGTFS];
-        [self updateLocation];
-    }
+    self.tableView.delaysContentTouches = NO;
+    [self loadLocationsGTFS];
+    [self updateLocation];
 }
 
 #pragma mark - Data
