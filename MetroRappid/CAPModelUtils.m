@@ -32,6 +32,7 @@
 {
     NSDate *now = [[NSDate alloc] init];
 
+    
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(kCFCalendarUnitHour | kCFCalendarUnitMinute) fromDate:now toDate:date options:0];
 

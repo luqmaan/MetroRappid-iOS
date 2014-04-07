@@ -10,4 +10,7 @@
 
 @interface CAPModelUtils : NSObject
 
+-(NSDate *)dateFromCapMetroTimeString:(NSString *)timeString;
+-(NSString *)formattedTimeUntilDate:(NSDate *)date;
+
 @end
