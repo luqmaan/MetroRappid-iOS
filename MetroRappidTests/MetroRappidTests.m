@@ -40,7 +40,6 @@
 
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
     
-    // FIXME: Add test to support to make sure this can support multiple routes
     NSMutableArray *stops = [gtfs locationsForRoutes:@[@801] nearLocation:loc inDirection:GTFSSouthbound];
     
     XCTAssertEqual((NSUInteger)23, stops.count);
@@ -66,9 +65,31 @@
     XCTAssertTrue([@"5873" isEqualToString:route801SouthParkMeadows.stopId]);
 }
 
-// Test that Auditorium shores north and south are two different stops
+- (void)testGTFSDB_AuditoriumShoresNorthIsDifferentFromSouth
+{
+    GTFSDB *gtfs = [[GTFSDB alloc] init];
+    while (!gtfs.ready) ;
+    
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:30.267153 longitude:-97.743061];
+    
+    NSMutableArray *southStops = [gtfs locationsForRoutes:@[@801] nearLocation:loc inDirection:GTFSSouthbound];
+    NSMutableArray *northStops = [gtfs locationsForRoutes:@[@801] nearLocation:loc inDirection:GTFSNorthbound];
+    
+    XCTAssertEqual((NSUInteger)23, southStops.count);
+    XCTAssertEqual((NSUInteger)23, northStops.count);
 
-// Test that CAPNextBus parseXML handles xml errors or instantiation errors
+    CAPStop *auditoriumShoresNorth = northStops[7];
+    CAPStop *auditoriumShoresSouth = southStops[15];
+    
+    XCTAssertTrue([@"Auditorium Shores Station" isEqualToString:auditoriumShoresNorth.name]);
+    XCTAssertTrue([@"Auditorium Shores Station" isEqualToString:auditoriumShoresSouth.name]);
+
+    XCTAssertTrue([@"Auditorium Shores Station" isEqualToString:auditoriumShoresNorth.name]);
+    XCTAssertTrue([@"Auditorium Shores Station" isEqualToString:auditoriumShoresSouth.name]);
+    
+    XCTAssertTrue([@"2767" isEqualToString:auditoriumShoresNorth.stopId]);
+    XCTAssertTrue([@"2763" isEqualToString:auditoriumShoresSouth.stopId]);
+}
 
 // Test CAPModelUtils
 
