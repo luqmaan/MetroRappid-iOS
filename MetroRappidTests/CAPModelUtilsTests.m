@@ -17,9 +17,18 @@
 
 - (void)testDateFromCapMetroTimeString
 {
-    NSDate *reference = [[NSDate alloc] initWithTimeIntervalSince1970:1396881552.956699];
-    NSDate *date1 = [CAPModelUtils dateFromCapMetroTime:@"11:30 PM" withReferenceDate:reference];
-    XCTAssertEqual(1396931400.000000, date1.timeIntervalSince1970);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+
+    // expected
+    [formatter setDateFormat:@"dd/MM/yyyy hh:mm a"];
+    NSDate *expected = [formatter dateFromString:@"22/02/2002 11:30 PM"];
+    
+    // actual
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *reference = [formatter dateFromString:@"22/02/2002"];
+    NSDate *actual = [CAPModelUtils dateFromCapMetroTime:@"11:30 PM" withReferenceDate:reference];
+
+    XCTAssertEqual(expected.timeIntervalSince1970, actual.timeIntervalSince1970);
 }
 
 - (void)testTimeBetweenStart
