@@ -57,13 +57,12 @@
 - (void)update
 {
     int vehicleCount = 0;
-    CAPStop *stop = self.nextBus.location.stops[self.nextBus.activeStopIndex];
-    for (CAPTrip *trip in stop.trips) if (trip.realtime.valid) vehicleCount++;
+    for (CAPTrip *trip in self.stop.trips) if (trip.realtime.valid) vehicleCount++;
     NSLog(@"Updating map with %d vehicles", vehicleCount);
 
-    self.navigationItem.title = stop.name;
-    [self.realtimeMapVC setupMap:self.mapView withStop:stop];
-    [self.realtimeMapVC updateMap:self.mapView withStop:stop];
+    self.navigationItem.title = self.stop.name;
+    [self.realtimeMapVC setupMap:self.mapView withStop:self.stop];
+    [self.realtimeMapVC updateMap:self.mapView withStop:self.stop];
     [self.realtimeMapVC zoomToAnnotationsMapView:self.mapView];
 }
 
@@ -71,30 +70,33 @@
     // Do this so we can use them in tha block
     UIProgressView *progressView = self.progressBar;
     UIBarButtonItem *refreshButton = self.refreshBtn;
-    CAPNextBus *nextBus = self.nextBus;
+    CAPStop *stop = self.stop;
     CAPRealtimeMapViewController *realtimeMapVC = self.realtimeMapVC;
     MKMapView *mapView = self.mapView;
 
     progressView.progress = 0.0;
     refreshButton.enabled = NO;
-    
-    self.nextBus.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
+
+    void (^progressCallback)(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
     {
         [progressView setProgress:totalBytesExpectedToRead / totalBytesExpectedToRead animated:YES];
     };
-    self.nextBus.completedCallback = ^void(){
+
+    void (^completedCallback)() = ^void(){
         refreshButton.enabled = YES;
         [UIView animateWithDuration:2.0f animations:^{
         }];
-        CAPStop *stop = nextBus.location.stops[nextBus.activeStopIndex];
         [realtimeMapVC updateMap:mapView withStop:stop];
     };
-    self.nextBus.errorCallback = ^void(NSError *error) {
+
+    void (^errorCallback)(NSError *error) = ^void(NSError *error) {
         refreshButton.enabled = YES;
         [ProgressHUD showError:error.localizedDescription];
         progressView.progress = 0;
     };
-    [self.nextBus startUpdates];
+    
+    CAPNextBus *nextBus = [[CAPNextBus alloc] init];
+    [nextBus updateStop:stop onProgress:progressCallback onCompleted:completedCallback onError:errorCallback];
 }
 
 @end

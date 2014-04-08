@@ -24,7 +24,7 @@
 		8C7FE62118BAC45A00A802A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60018BAC45A00A802A7 /* Foundation.framework */; };
 		8C7FE62218BAC45A00A802A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60418BAC45A00A802A7 /* UIKit.framework */; };
 		8C7FE62A18BAC45A00A802A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE62818BAC45A00A802A7 /* InfoPlist.strings */; };
-		8C7FE62C18BAC45A00A802A7 /* MetroRappidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE62B18BAC45A00A802A7 /* MetroRappidTests.m */; };
+		8C7FE62C18BAC45A00A802A7 /* CAPNextBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE62B18BAC45A00A802A7 /* CAPNextBusTests.m */; };
 		8C7FE64918BAC83100A802A7 /* CAPNextBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE64218BAC83100A802A7 /* CAPNextBus.m */; };
 		8C7FE64A18BAC83100A802A7 /* CAPNextBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE64218BAC83100A802A7 /* CAPNextBus.m */; };
 		8C7FE64B18BAC83100A802A7 /* CAPStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE64418BAC83100A802A7 /* CAPStop.m */; };
@@ -36,7 +36,6 @@
 		8C7FE65318BAC85700A802A7 /* GTFSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE65218BAC85700A802A7 /* GTFSDB.m */; };
 		8C7FE65418BAC85700A802A7 /* GTFSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE65218BAC85700A802A7 /* GTFSDB.m */; };
 		8C7FE65718BAC87B00A802A7 /* CAPNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE65618BAC87B00A802A7 /* CAPNearbyViewController.m */; };
-		8C7FE65818BAC87B00A802A7 /* CAPNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7FE65618BAC87B00A802A7 /* CAPNearbyViewController.m */; };
 		8C7FE65B18BAC8C300A802A7 /* gtfs_austin.db in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE65A18BAC8C300A802A7 /* gtfs_austin.db */; };
 		8C7FE65C18BAC8C300A802A7 /* gtfs_austin.db in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE65A18BAC8C300A802A7 /* gtfs_austin.db */; };
 		8C7FE65E18BAD26C00A802A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE65D18BAD26C00A802A7 /* MapKit.framework */; };
@@ -45,6 +44,9 @@
 		8C7FE66A18BAF77000A802A7 /* 801-realtime-feb-22.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE66618BAF77000A802A7 /* 801-realtime-feb-22.xml */; };
 		8C7FE66B18BAF77000A802A7 /* 801-realtime.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FE66718BAF77000A802A7 /* 801-realtime.xml */; };
 		8C9212AD18C28A1F00BBB208 /* CAPRealtimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9212AC18C28A1F00BBB208 /* CAPRealtimeViewController.m */; };
+		8CD4961118F2D5D60088E8B5 /* CAPModelUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4961018F2D5D60088E8B5 /* CAPModelUtils.m */; };
+		8CD4961618F2E3D30088E8B5 /* CAPGTFSDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4961518F2E3D30088E8B5 /* CAPGTFSDatabaseTests.m */; };
+		8CD4961818F2E5330088E8B5 /* CAPModelUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4961718F2E5330088E8B5 /* CAPModelUtilsTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +81,7 @@
 		8C7FE61F18BAC45A00A802A7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8C7FE62718BAC45A00A802A7 /* MetroRappidTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetroRappidTests-Info.plist"; sourceTree = "<group>"; };
 		8C7FE62918BAC45A00A802A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8C7FE62B18BAC45A00A802A7 /* MetroRappidTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetroRappidTests.m; sourceTree = "<group>"; };
+		8C7FE62B18BAC45A00A802A7 /* CAPNextBusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAPNextBusTests.m; sourceTree = "<group>"; };
 		8C7FE64118BAC83100A802A7 /* CAPNextBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPNextBus.h; sourceTree = "<group>"; };
 		8C7FE64218BAC83100A802A7 /* CAPNextBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPNextBus.m; sourceTree = "<group>"; };
 		8C7FE64318BAC83100A802A7 /* CAPStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPStop.h; sourceTree = "<group>"; };
@@ -100,6 +102,10 @@
 		8C7FE66718BAF77000A802A7 /* 801-realtime.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "801-realtime.xml"; sourceTree = "<group>"; };
 		8C9212AB18C28A1F00BBB208 /* CAPRealtimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPRealtimeViewController.h; sourceTree = "<group>"; };
 		8C9212AC18C28A1F00BBB208 /* CAPRealtimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRealtimeViewController.m; sourceTree = "<group>"; };
+		8CD4960F18F2D5D60088E8B5 /* CAPModelUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPModelUtils.h; sourceTree = "<group>"; };
+		8CD4961018F2D5D60088E8B5 /* CAPModelUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPModelUtils.m; sourceTree = "<group>"; };
+		8CD4961518F2E3D30088E8B5 /* CAPGTFSDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPGTFSDatabaseTests.m; sourceTree = "<group>"; };
+		8CD4961718F2E5330088E8B5 /* CAPModelUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPModelUtilsTests.m; sourceTree = "<group>"; };
 		EB4E22B76EA64E70A33E5BD2 /* Pods-MetroRappid.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetroRappid.xcconfig"; path = "Pods/Pods-MetroRappid.xcconfig"; sourceTree = "<group>"; };
 		F79404B7DDB64E558A1D9438 /* libPods-MetroRappid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MetroRappid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -203,9 +209,11 @@
 		8C7FE62518BAC45A00A802A7 /* MetroRappidTests */ = {
 			isa = PBXGroup;
 			children = (
-				8C7FE66118BAF77000A802A7 /* Data */,
-				8C7FE62B18BAC45A00A802A7 /* MetroRappidTests.m */,
 				8C7FE62618BAC45A00A802A7 /* Supporting Files */,
+				8C7FE66118BAF77000A802A7 /* Data */,
+				8C7FE62B18BAC45A00A802A7 /* CAPNextBusTests.m */,
+				8CD4961518F2E3D30088E8B5 /* CAPGTFSDatabaseTests.m */,
+				8CD4961718F2E5330088E8B5 /* CAPModelUtilsTests.m */,
 			);
 			path = MetroRappidTests;
 			sourceTree = "<group>";
@@ -232,6 +240,8 @@
 				8C7FE64618BAC83100A802A7 /* CAPTrip.m */,
 				8C7FE64718BAC83100A802A7 /* CAPTripRealtime.h */,
 				8C7FE64818BAC83100A802A7 /* CAPTripRealtime.m */,
+				8CD4960F18F2D5D60088E8B5 /* CAPModelUtils.h */,
+				8CD4961018F2D5D60088E8B5 /* CAPModelUtils.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -469,6 +479,7 @@
 				8C7FE64B18BAC83100A802A7 /* CAPStop.m in Sources */,
 				8C9212AD18C28A1F00BBB208 /* CAPRealtimeViewController.m in Sources */,
 				8C6417FB18CB9A540018AE52 /* CAPTripRealtimeView.m in Sources */,
+				8CD4961118F2D5D60088E8B5 /* CAPModelUtils.m in Sources */,
 				8C7FE60D18BAC45A00A802A7 /* main.m in Sources */,
 				8C7FE64F18BAC83100A802A7 /* CAPTripRealtime.m in Sources */,
 				8C7FE64D18BAC83100A802A7 /* CAPTrip.m in Sources */,
@@ -483,11 +494,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C7FE65818BAC87B00A802A7 /* CAPNearbyViewController.m in Sources */,
+				8CD4961818F2E5330088E8B5 /* CAPModelUtilsTests.m in Sources */,
 				8C7FE65018BAC83100A802A7 /* CAPTripRealtime.m in Sources */,
-				8C7FE62C18BAC45A00A802A7 /* MetroRappidTests.m in Sources */,
+				8C7FE62C18BAC45A00A802A7 /* CAPNextBusTests.m in Sources */,
 				8C7FE64E18BAC83100A802A7 /* CAPTrip.m in Sources */,
 				8C7FE64A18BAC83100A802A7 /* CAPNextBus.m in Sources */,
+				8CD4961618F2E3D30088E8B5 /* CAPGTFSDatabaseTests.m in Sources */,
 				8C7FE65418BAC85700A802A7 /* GTFSDB.m in Sources */,
 				8C7FE64C18BAC83100A802A7 /* CAPStop.m in Sources */,
 			);
