@@ -7,6 +7,7 @@
 //
 
 #import "CAPTrip.h"
+#import "CAPModelUtils.h"
 
 @implementation CAPTrip
 
@@ -32,21 +33,9 @@
     self.atisStopId = data[@"Atisstopid"];
     self.stopId = data[@"Stopid"];
 
-    // Convert the EstimatedTime string to NSDate
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     NSDate *now = [[NSDate alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy"];
-    NSString *estimated = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:now], data[@"Estimatedtime"]];
-    [formatter setDateFormat:@"dd/MM/yyyy hh:mm a"];
-    self.estimatedDate = [formatter dateFromString:estimated];
-
-    // Get the time difference between now and estimatedDate
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(kCFCalendarUnitHour | kCFCalendarUnitMinute) fromDate:now toDate:self.estimatedDate options:0];
-
-    // Stringify it
-    self.estimatedTime = [NSString stringWithFormat:@"%dm", (int)components.minute];
-    if (components.hour > 1) self.estimatedTime = [NSString stringWithFormat:@"%dh %dm", (int)components.hour, (int)components.minute];
+    self.estimatedDate = [CAPModelUtils dateFromCapMetroTime:data[@"Estimatedtime"] withReferenceDate:now];
+    self.estimatedTime = [CAPModelUtils timeBetweenStart:now andEnd:self.estimatedDate];
 }
 
 - (NSString *)description

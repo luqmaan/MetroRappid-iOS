@@ -22,16 +22,18 @@
     [formatter setDateFormat:@"dd/MM/yyyy"];
     NSString *estimated = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:now], timeString];
 
+    NSLog(@"Estimated %@", estimated);
+    
     [formatter setDateFormat:@"dd/MM/yyyy hh:mm a"];
     NSDate *estimatedDate = [formatter dateFromString:estimated];
     
     return estimatedDate;
 }
 
-+ (NSString *)timeBetweenStart:(NSDate *)now andEnd:(NSDate *)date;
++ (NSString *)timeBetweenStart:(NSDate *)now andEnd:(NSDate *)end;
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(kCFCalendarUnitHour | kCFCalendarUnitMinute) fromDate:now toDate:date options:0];
+    NSDateComponents *components = [calendar components:(kCFCalendarUnitHour | kCFCalendarUnitMinute) fromDate:now toDate:end options:0];
 
     NSString *formattedTimeUntilDate;
     
