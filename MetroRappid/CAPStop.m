@@ -62,6 +62,7 @@
     str = [str stringByReplacingOccurrencesOfString:@"(SB)" withString:@""];
     str = [str stringByReplacingOccurrencesOfString:@"(EB)" withString:@""];
     str = [str stringByReplacingOccurrencesOfString:@"(WB)" withString:@""];
+    str = [str stringByReplacingOccurrencesOfString:@"CRESTIVIEW" withString:@"Crestview"];
     str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return [str capitalizedString];
 }

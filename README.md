@@ -8,3 +8,12 @@ If you're interested in working together on this app, please feel free to contac
 
 ![preview](http://metrorappid.com/img/screenshot3-1136.png)
 
+Importing the GTFS data
+--
+
+Download the GTFS zip: http://www.capmetro.org/gisdata/google_transit.zip
+
+```
+pip install -r requirements.txt
+gtfsdb-load --database_url sqlite:///gtfs_austin.db google_transit.zip
+```
