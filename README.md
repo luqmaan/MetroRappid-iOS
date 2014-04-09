@@ -1,6 +1,6 @@
 http://metrorappid.com/
 
-[![Build Status](https://travis-ci.org/luqmaan/MetroRappid.svg?branch=misc-tweaks)](https://travis-ci.org/luqmaan/MetroRappid)
+[![Build Status](https://travis-ci.org/luqmaan/MetroRappid.svg?branch=dev)](https://travis-ci.org/luqmaan/MetroRappid)
 
 An attempt at reverse engineering and speeding up the CapMetro app for my use case: view the MetroRapid realtime arrivals *quickly*.
 
