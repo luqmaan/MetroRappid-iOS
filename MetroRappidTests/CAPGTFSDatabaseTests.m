@@ -67,13 +67,13 @@
     CAPStop *auditoriumShoresNorth = northStops[7];
     CAPStop *auditoriumShoresSouth = southStops[15];
     
-    XCTAssertTrue([@"Auditorium Shores Station" isEqualToString:auditoriumShoresNorth.name]);
+    XCTAssertTrue([@"210 Riverside/Barton Springs" isEqualToString:auditoriumShoresNorth.name]);
     XCTAssertTrue([@"Auditorium Shores Station" isEqualToString:auditoriumShoresSouth.name]);
     
-    XCTAssertTrue([@"Auditorium Shores Station" isEqualToString:auditoriumShoresNorth.name]);
-    XCTAssertTrue([@"Auditorium Shores Station" isEqualToString:auditoriumShoresSouth.name]);
+    XCTAssertTrue([@"Northbound" isEqualToString:auditoriumShoresNorth.headsign]);
+    XCTAssertTrue([@"Southbound" isEqualToString:auditoriumShoresSouth.headsign]);
     
-    XCTAssertTrue([@"2767" isEqualToString:auditoriumShoresNorth.stopId]);
+    XCTAssertTrue([@"5942" isEqualToString:auditoriumShoresNorth.stopId]);
     XCTAssertTrue([@"2763" isEqualToString:auditoriumShoresSouth.stopId]);
 }
 
