@@ -17,11 +17,15 @@
 #define DEG2RAD(degrees) (degrees * 0.01745327) // degrees * pi over 180
 
 
+typedef enum {
+    GTFSNorthbound,
+    GTFSSouthbound
+} GTFSDirection;
+
 @interface GTFSDB : NSObject
 
 @property (nonatomic, assign) BOOL ready;
 
-/** 0 = North, 1 = South */
-- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(int)directionId;
+- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(GTFSDirection)direction;
 
 @end

@@ -79,7 +79,6 @@
         [mapView selectAnnotation:closestTrip animated:YES];
     }
 
-    [self zoomToAnnotationsMapView:mapView];
     NSLog(@"Did update mapView to have %d annotations", (int)mapView.annotations.count);
 }
 

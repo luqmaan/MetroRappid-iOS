@@ -62,76 +62,14 @@
     str = [str stringByReplacingOccurrencesOfString:@"(SB)" withString:@""];
     str = [str stringByReplacingOccurrencesOfString:@"(EB)" withString:@""];
     str = [str stringByReplacingOccurrencesOfString:@"(WB)" withString:@""];
+    str = [str stringByReplacingOccurrencesOfString:@"CRESTIVIEW" withString:@"Crestview"];
     str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return [str capitalizedString];
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Stop: %@ %@ - %d %@ %@ - tripId: %@ with %d trips, sequence: %d>", self.routeId, self.name, self.directionId, self.headsign, self.stopId, self.tripId, (int)self.trips.count, self.stopSequence];
-}
-
-@end
-
-@implementation CAPLocation
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        self.stops = [[NSMutableArray alloc] init];
-        self.stopIds = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (void)updateWithGTFS:(NSDictionary *)data
-{
-    CAPStop *stop = [[CAPStop alloc] init];
-    [stop updateWithGTFS:data];
-
-    [self updateWithStop:stop];
-}
-
-- (void)updateWithStop:(CAPStop *)stop
-{
-    if (!self.name || !self.routeId) {
-        // the first one always belongs here
-        self.name = stop.name;
-        self.routeId = stop.routeId;
-        self.distance = stop.distance;
-    }
-    if ([self stopBelongsHere:stop]) {
-        [self.stopIds addObject:stop.stopId];
-        [self.stops addObject:stop];
-        self.distance = MIN(self.distance, stop.distance);
-    }
-}
-
-- (BOOL)stopBelongsHere:(CAPStop *)stop
-{
-    // Make sure data really does belong to this stop
-    if (![self.name isEqualToString:stop.name]) {
-        // FIXME: throw error?
-        NSLog(@"Error: Stop does not belong to location, incorrect name: `%@` != `%@`", self.name, stop.name);
-        return NO;
-    }
-    if (![self.routeId isEqualToString:stop.routeId]) {
-        // FIXME: throw error?
-        NSLog(@"Error: Stop does not belong to location, incorrect route id:  `%@` != `%@`", self.routeId, stop.routeId);
-        return NO;
-    }
-    
-    // Don't add same stop multiple times
-    if ([self.stopIds containsObject:stop.stopId]) {
-        NSLog(@"Error: Stop does not belong, duplicate stop");
-        return NO;
-    }
-    
-    return YES;
-}
-
--(NSString *)description {
-    return [NSString stringWithFormat:@"<Location: %@ %@ %f km distance with %lu stops %@>", self.routeId, self.name, self.distance, (unsigned long)self.stops.count, self.stopIds];
+    return [NSString stringWithFormat:@"<Stop: %@ %@ - %d %@ stopId: %@ - tripId: %@ with %d trips, sequence: %d>", self.routeId, self.name, self.directionId, self.headsign, self.stopId, self.tripId, (int)self.trips.count, self.stopSequence];
 }
 
 @end

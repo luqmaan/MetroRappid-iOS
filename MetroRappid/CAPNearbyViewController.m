@@ -17,24 +17,34 @@
 
 @interface CAPNearbyViewController () <CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property GTFSDB* gtfs;
+@property GTFSDB *gtfs;
 @property CLLocationManager *locationManager;
+
 @property NSMutableArray *locations;
+@property (nonatomic, assign) GTFSDirection gtfsDirection;
+
+@property NSIndexPath *lastClickedIndexPath;  // FIXME: What is this for? Remove it.
+
 @property CAAnimationGroup *pulseAnimationGroup;
 @property CAAnimationGroup *labelAnimationGroup;
-@property NSIndexPath *lastClickedIndexPath;
-@property (nonatomic, assign) int directionId;
 
 @end
 
 @implementation CAPNearbyViewController
 
 - (void)baseInit {
-    NSLog(@"Init NearbyViewController");
+    
+    
+    // Don't want to make real requests in Travis CI
+    BOOL isRunningTests = [[[NSProcessInfo processInfo] environment] objectForKey:@"isRunningTests"];
+    NSLog(@"Is running tests: %@", [[[NSProcessInfo processInfo] environment] objectForKey:@"isRunningTests"] ? @"Yes" : @"No");
+    if (isRunningTests) return;
+    
+    NSLog(@"Init CAPNearbyViewController");
     self.gtfs = [[GTFSDB alloc] init];
     
     self.locations = [[NSMutableArray alloc] init];
-    self.directionId = 0;
+    self.gtfsDirection = GTFSNorthbound;
     
     CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacityAnimation.duration = 0.3;
@@ -101,14 +111,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.tableView.delaysContentTouches = NO;
     [self loadLocationsGTFS];
-    [self updateLocation];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
-}
-
-- (void)appDidEnterForeground:(NSNotification *)notification
-{
     [self updateLocation];
 }
 
@@ -120,8 +125,9 @@
         [ProgressHUD showError:@"Can't load arrivals"];
         return;
     }
-    CAPNextBus *nb = self.locations[indexPath.row];
-    CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
+    CAPNextBus *nb = [[CAPNextBus alloc] init];  // FIXME: Does this need to be created every time? Is it better as a property?
+
+    CAPStop *activeStop = self.locations[indexPath.row];
     NSLog(@"Loading arrivals for %@", activeStop.name);
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
@@ -138,13 +144,16 @@
     }];
     
     UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
+    [progressView setProgress:0.0f animated:NO];
     [progressView setProgress:0.1f animated:YES];
     progressView.hidden = NO;
-    nb.progressCallback = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
+
+    void (^progressCallback)(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) = ^void(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)
     {
         [progressView setProgress:totalBytesExpectedToRead / totalBytesExpectedToRead animated:YES];
     };
-    nb.completedCallback = ^void(){
+
+    void (^completedCallback)() = ^void(){
         NSLog(@"nextBus callback called");
         progressView.hidden = YES;
         activeStop.showsTrips = YES;
@@ -160,19 +169,20 @@
             }
         }];
     };
-    nb.errorCallback = ^void(NSError *error) {
+
+    void (^errorCallback)(NSError *error) = ^void(NSError *error) {
         [ProgressHUD showError:error.localizedDescription];
-        progressView.progress = 0;
+        [progressView setProgress:0.0f animated:NO];
         progressView.hidden = YES;
         [self.tableView reloadData];
     };
-    [nb startUpdates];
+
+    [nb updateStop:activeStop onProgress:progressCallback onCompleted:completedCallback onError:errorCallback];
 }
 
 - (void)hideArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    CAPNextBus *nb = self.locations[indexPath.row];
-    CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
+    CAPStop *activeStop = self.locations[indexPath.row];
     NSLog(@"Hiding arrivals for %@", activeStop.name);
     activeStop.showsTrips = NO;
     [self.tableView reloadData];
@@ -180,9 +190,9 @@
 
 - (void)toggleArrivalsForCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    CAPNextBus *nb = self.locations[indexPath.row];
-    CAPStop *activeStop = nb.location.stops[nb.activeStopIndex];
+    CAPStop *activeStop = self.locations[indexPath.row];
     NSLog(@"Toggling arrivals for %@", activeStop.name);
+
     if (activeStop.showsTrips) {
         [self hideArrivalsForCellAtIndexPath:indexPath];
     }
@@ -209,20 +219,20 @@
             }
         });
         
-        NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:self.locationManager.location inDirection:self.directionId];
+        NSMutableArray *data = [self.gtfs locationsForRoutes:@[@801] nearLocation:self.locationManager.location inDirection:self.gtfsDirection];
         [self.locations removeAllObjects];
         
-        for (CAPLocation *location in data) {
-            CAPNextBus *nb = [[CAPNextBus alloc] initWithLocation:location andRoute:@"801"];
-            [self.locations addObject:nb];
+        // FIXME: lol just copy or something
+        for (CAPStop *stop in data) {
+            [self.locations addObject:stop];
         }
         NSLog(@"Got %lu locations", (unsigned long)self.locations.count);
         
         NSIndexPath *nearestStopIndexPath;
         int i = 0;
         while (i < self.locations.count) {
-            CAPNextBus *nb = self.locations[i];
-            if (nb.location.distanceIndex == 0) {
+            CAPStop *stop = self.locations[i];
+            if (stop.distanceIndex == 0) {
                 nearestStopIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 break;
             }
@@ -230,8 +240,8 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.directionId == 0) self.navigationItem.title = @"801 North";
-            if (self.directionId == 1) self.navigationItem.title = @"801 South";
+            if (self.gtfsDirection == GTFSNorthbound) self.navigationItem.title = @"801 North";
+            if (self.gtfsDirection == GTFSSouthbound) self.navigationItem.title = @"801 South";
             [self.tableView reloadData];
             [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
             [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -275,11 +285,9 @@
 {
     static NSString *CellIdentifier;
     
-    CAPNextBus *nextBus = [self.locations objectAtIndex:indexPath.row];
-    CAPLocation *location = nextBus.location;
-    CAPStop *activeStop = location.stops[nextBus.activeStopIndex];
+    CAPStop *stop = self.locations[indexPath.row];
     
-    if (activeStop.showsTrips) {
+    if (stop.showsTrips) {
         CellIdentifier = @"TripsCell";
     }
     else {
@@ -289,36 +297,45 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
+    UILabel *distance = (UILabel *)[cell viewWithTag:2];
     UIView *proximityIndicator = (UIView *)[cell viewWithTag:22];
 
-    routeNumber.text = location.name;
-    
+    routeNumber.text = stop.name;
+    if (!stop.distance) distance.hidden = YES;
+    else {
+        distance.hidden = NO;
+        distance.text = stop.distancePretty;
+    }
+
     proximityIndicator.layer.cornerRadius = 6.0f;
     proximityIndicator.layer.borderWidth = 2.0f;
     proximityIndicator.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     proximityIndicator.layer.borderColor = [[UIColor grayColor] CGColor];
     
-    if (location.distanceIndex == 0) {
+    if (stop.distanceIndex == 0) {
         UIView *proximityIndicatorOuter = (UIView *)[cell viewWithTag:24];
         
         proximityIndicator.layer.borderColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
-        
+    
         proximityIndicatorOuter.hidden = NO;
         proximityIndicatorOuter.layer.backgroundColor = [[UIColor colorWithHue:0.576 saturation:0.867 brightness:0.976 alpha:1] CGColor];
         proximityIndicatorOuter.layer.cornerRadius = 6.0f;
         
         [proximityIndicatorOuter.layer addAnimation:self.pulseAnimationGroup forKey:@"pulse"];
     }
+    
+    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:12];
+    [progressView setProgress:0 animated:NO];
 
     if ([CellIdentifier isEqualToString:@"TripsCell"]) {
         int numAdded = 0;
         int numLabels = 3;
         int i = 0;
         
-        NSLog(@"activeStop.trips.count %d", (int)activeStop.trips.count);
+        NSLog(@"stop.trips.count %d", (int)stop.trips.count);
         while (numAdded < numLabels) {
-            if (i >= activeStop.trips.count) break;
-            CAPTrip *trip = activeStop.trips[i];
+            if (i >= stop.trips.count) break;
+            CAPTrip *trip = stop.trips[i];
             i++;
             if (!trip.realtime.valid) {
                 continue;
@@ -345,7 +362,7 @@
             time.hidden = YES;
         }
     }
-    
+
     // http://stackoverflow.com/questions/19256996/uibutton-not-showing-highlight-on-tap-in-ios7
     for (id obj in cell.subviews) {
         if ([NSStringFromClass([obj class]) isEqualToString:@"UITableViewCellScrollView"]) {
@@ -363,9 +380,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    CAPNextBus *nextBus = self.locations[indexPath.row];
-    CAPLocation *location = nextBus.location;
-    CAPStop *stop = location.stops[nextBus.activeStopIndex];
+    CAPStop *stop = self.locations[indexPath.row];
     
     if (stop.showsTrips) return 90.0f;
     else return 60.0f;
@@ -390,7 +405,7 @@
 }
 - (IBAction)toggleDirection:(id)sender {
     UISegmentedControl *control = (UISegmentedControl *)sender;
-    self.directionId = control.selectedSegmentIndex;
+    self.gtfsDirection = (int)control.selectedSegmentIndex;
     [self loadLocationsGTFS];
 }
 
@@ -417,8 +432,8 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 
         CAPRealtimeViewController *realtimeVC = segue.destinationViewController;
-        CAPNextBus *nextBus = self.locations[indexPath.row];
-        realtimeVC.nextBus = nextBus;
+        CAPStop *stop = self.locations[indexPath.row];
+        realtimeVC.stop = stop;
     }
 }
 
