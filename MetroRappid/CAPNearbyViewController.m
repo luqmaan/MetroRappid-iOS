@@ -240,8 +240,8 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.gtfsDirection == GTFSNorthbound) self.navigationItem.title = @"801 NORTH";
-            if (self.gtfsDirection == GTFSSouthbound) self.navigationItem.title = @"801 SOUTH";
+            if (self.gtfsDirection == GTFSNorthbound) self.navigationItem.title = @"801 North";
+            if (self.gtfsDirection == GTFSSouthbound) self.navigationItem.title = @"801 South";
             [self.tableView reloadData];
             [self loadArrivalsForCellAtIndexPath:nearestStopIndexPath];
             [self.tableView scrollToRowAtIndexPath:nearestStopIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
