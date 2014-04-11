@@ -64,6 +64,7 @@
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = ""
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -95,6 +96,8 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
+            key = ""
+            value = ""
             isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
