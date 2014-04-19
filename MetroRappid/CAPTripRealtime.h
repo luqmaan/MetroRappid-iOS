@@ -33,8 +33,8 @@
 
 #pragma mark - MKAnnotation
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
-@property NSString *title; // FIXME: Do the right thing
-@property NSString *subtitle;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 
 - (void)updateTitle;
 
