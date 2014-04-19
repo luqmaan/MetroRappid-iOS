@@ -36,7 +36,7 @@
     
     
     // Don't want to make real requests in Travis CI
-    BOOL isRunningTests = [[[NSProcessInfo processInfo] environment] objectForKey:@"isRunningTests"];
+    BOOL isRunningTests = [[[[NSProcessInfo processInfo] environment] objectForKey:@"isRunningTests"] boolValue];
     NSLog(@"Is running tests: %@", [[[NSProcessInfo processInfo] environment] objectForKey:@"isRunningTests"] ? @"Yes" : @"No");
     if (isRunningTests) return;
     
