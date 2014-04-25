@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import pprint
 
 import arrow
 import requests
@@ -12,7 +13,8 @@ def stops_for_route(route_id):
             d[col[0]] = row[idx]
         return d
 
-    conn = sqlite3.connect("MetroRappid/Data/gtfs_austin.db", detect_types=sqlite3.PARSE_COLNAMES)
+    conn = sqlite3.connect(
+        "MetroRappid/Data/gtfs_austin.db", detect_types=sqlite3.PARSE_COLNAMES)
     cur = conn.cursor()
     cur.row_factory = dict_factory
 
@@ -55,10 +57,15 @@ def stops_for_route(route_id):
     return stops
 
 
-def backup_nextbus2(route_id):
-    directory = 'MetroRappidTests/Data/s_nextbus2/{}'.format(arrow.now().format('YYYY-MM-DD-HH-mm-ss'))
-    os.makedirs(directory)
+def res_comment(res):
+    return '''<!--
+        {} {} {}
+        {}
+-->
+    '''.format(res.request.method, res.status_code, res.request.url, pprint.pformat(dict(res.headers)))
 
+
+def backup_nextbus2(route_id, now):
     stops = stops_for_route(route_id)
 
     for stop in stops:
@@ -71,12 +78,49 @@ def backup_nextbus2(route_id):
         if not res.ok:
             print 'request failed: {} {}'.format(res.request.url, res.status_code)
 
+        directory = 'MetroRappidTests/Data/s_nextbus2/{}'.format(now.format('YYYY-MM-DD-HH-mm'))
+        try:
+            os.makedirs(directory)
+        except OSError:
+            print 'directory already exists'
+
         fname = '{}/{}-{}-{}.xml'.format(directory, stop['route_id'], stop['stop_id'], res.status_code)
         print 'writing results to {}'.format(fname)
 
         with open(fname, 'w+') as f:
+            f.write(res_comment(res))
             f.write(res.content)
 
 
+def backup_nextbus(lat, lon, now, route_id=None):
+    res = requests.get('http://www.capmetro.org/planner/s_service.asp', params={
+        'output': 'xml',
+        'opt': '2',
+        'tool': 'NB',
+        'loc1lat': lat,
+        'loc1lng': lon,
+        'route': route_id,
+    })
+
+    if not res.ok:
+        print 'request failed: {} {}'.format(res.request.url, res.status_code)
+
+    directory = 'MetroRappidTests/Data/s_nextbus/{}'.format(arrow.now().format('YYYY-MM-DD-HH-mm'))
+    try:
+        os.makedirs(directory)
+    except OSError:
+        print 'directory already exists'
+
+    fname = '{}/{}-{}-{}-{}.xml'.format(directory, route_id, lat, lon, res.status_code)
+    print 'writing results to {}'.format(fname)
+
+    with open(fname, 'w+') as f:
+        f.write(res_comment(res))
+        f.write(res.content)
+
+
 if __name__ == '__main__':
-    backup_nextbus2(801)
+    now = arrow.now()
+    # backup_nextbus2(801, now)
+    backup_nextbus(801, 30.268224, -97.743678, now)
+    backup_nextbus(30.268224, -97.743678, now)
