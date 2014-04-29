@@ -1,0 +1,466 @@
+<!--
+        GET 200 http://www.capmetro.org/planner/s_nextbus2.asp?opt=meow+meow+meow&stopid=5871&route=801
+        {'access-control-allow-origin': 'http://cmtacustas1',
+ 'cache-control': 'private',
+ 'content-encoding': 'gzip',
+ 'content-length': '2912',
+ 'content-type': 'text/html',
+ 'date': 'Tue, 29 Apr 2014 22:51:07 GMT',
+ 'server': 'Microsoft-IIS/7.0',
+ 'set-cookie': 'ASPSESSIONIDASBBBARA=AIBPCCNDHEHLHNOEPHJMKFAB; path=/',
+ 'vary': 'Accept-Encoding',
+ 'x-powered-by': 'ASP.NET1a'}
+-->
+    <?xml version="1.0"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><Nextbus2Response xmlns="AT_WEB">
+			<Responsecode>0</Responsecode>
+			<Version>1.6</Version>
+			<Input>
+				<Stopid>5871</Stopid>
+				<Atisstopid>0</Atisstopid>
+				<Landmarkid>0</Landmarkid>
+				<Route>801</Route>
+				<Runs>999</Runs>
+				<Xmode>BCXTFRSLK123</Xmode>
+				<Date>04/29/14</Date>
+				<Time>05:51 PM</Time>
+			</Input>
+			<Stop>
+				<Description>LITTLE TEXAS STATION (SB)</Description>
+				<Area>Austin</Area>
+				<Atisstopid>58030</Atisstopid>
+				<Stopid>5871</Stopid>
+				<Lat>30.203434</Lat>
+				<Long>-97.775419</Long>
+				<Stopposition>N</Stopposition>
+				<Heading>NB</Heading>
+				<Side>Near</Side>
+				<Stopstatustype>N</Stopstatustype>
+			</Stop>
+			<Stops>
+				<Stop>
+					<Description>LITTLE TEXAS STATION (SB)</Description>
+					<Area>Austin</Area>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+					<Lat>30.203434</Lat>
+					<Long>-97.775419</Long>
+					<Stopposition>N</Stopposition>
+					<Heading>NB</Heading>
+					<Side>Near</Side>
+					<Stopstatustype>N</Stopstatustype>
+				</Stop>
+			</Stops>
+			<Runs>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>05:54 PM</Triptime>
+					<Tripid>43925-57</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>-2</Adherence>
+					<Estimatedtime>05:56 PM</Estimatedtime>
+					<Realtime>
+						<Valid>Y</Valid>
+						<Adherence>-2</Adherence>
+						<Estimatedtime>05:56 PM</Estimatedtime>
+						<Estimatedminutes>5</Estimatedminutes>
+						<Polltime>05:49 PM</Polltime>
+						<Trend>S</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>Y</Reliable>
+						<Stopped>N</Stopped>
+						<Vehicleid>5011</Vehicleid>
+						<Lat>30.222845</Lat>
+						<Long>-97.766304</Long>
+					</Realtime>
+					<Block>801-02</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>06:06 PM</Triptime>
+					<Tripid>43925-58</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>-3</Adherence>
+					<Estimatedtime>06:09 PM</Estimatedtime>
+					<Realtime>
+						<Valid>Y</Valid>
+						<Adherence>-3</Adherence>
+						<Estimatedtime>06:09 PM</Estimatedtime>
+						<Estimatedminutes>18</Estimatedminutes>
+						<Polltime>05:49 PM</Polltime>
+						<Trend>S</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>Y</Reliable>
+						<Stopped>N</Stopped>
+						<Vehicleid>5012</Vehicleid>
+						<Lat>30.248117</Lat>
+						<Long>-97.750313</Long>
+					</Realtime>
+					<Block>801-04</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>06:15 PM</Triptime>
+					<Tripid>43925-59</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>-4</Adherence>
+					<Estimatedtime>06:19 PM</Estimatedtime>
+					<Realtime>
+						<Valid>Y</Valid>
+						<Adherence>-4</Adherence>
+						<Estimatedtime>06:19 PM</Estimatedtime>
+						<Estimatedminutes>28</Estimatedminutes>
+						<Polltime>05:49 PM</Polltime>
+						<Trend>S</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>Y</Reliable>
+						<Stopped>N</Stopped>
+						<Vehicleid>5002</Vehicleid>
+						<Lat>30.278093</Lat>
+						<Long>-97.742966</Long>
+					</Realtime>
+					<Block>801-06</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>06:25 PM</Triptime>
+					<Tripid>43925-60</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>0</Adherence>
+					<Estimatedtime>06:25 PM</Estimatedtime>
+					<Realtime>
+						<Valid>Y</Valid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>06:25 PM</Estimatedtime>
+						<Estimatedminutes>34</Estimatedminutes>
+						<Polltime>05:49 PM</Polltime>
+						<Trend>S</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>Y</Reliable>
+						<Stopped>N</Stopped>
+						<Vehicleid>5010</Vehicleid>
+						<Lat>30.303585</Lat>
+						<Long>-97.737709</Long>
+					</Realtime>
+					<Block>801-70</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>06:37 PM</Triptime>
+					<Tripid>43925-61</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>-1</Adherence>
+					<Estimatedtime>06:37 PM</Estimatedtime>
+					<Realtime>
+						<Valid>Y</Valid>
+						<Adherence>-1</Adherence>
+						<Estimatedtime>06:37 PM</Estimatedtime>
+						<Estimatedminutes>47</Estimatedminutes>
+						<Polltime>05:49 PM</Polltime>
+						<Trend>S</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>Y</Reliable>
+						<Stopped>N</Stopped>
+						<Vehicleid>5006</Vehicleid>
+						<Lat>30.349180</Lat>
+						<Long>-97.711746</Long>
+					</Realtime>
+					<Block>801-08</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>06:47 PM</Triptime>
+					<Tripid>43925-62</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>0</Adherence>
+					<Estimatedtime>06:47 PM</Estimatedtime>
+					<Realtime>
+						<Valid>Y</Valid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>06:47 PM</Estimatedtime>
+						<Estimatedminutes>56</Estimatedminutes>
+						<Polltime>05:48 PM</Polltime>
+						<Trend>S</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>N</Reliable>
+						<Stopped>N</Stopped>
+						<Vehicleid>5015</Vehicleid>
+						<Lat>30.424200</Lat>
+						<Long>-97.670898</Long>
+					</Realtime>
+					<Block>801-10</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>07:07 PM</Triptime>
+					<Tripid>43925-63</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>0</Adherence>
+					<Estimatedtime>07:07 PM</Estimatedtime>
+					<Realtime>
+						<Valid>N</Valid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>07:07 PM</Estimatedtime>
+						<Estimatedminutes>
+						</Estimatedminutes>
+						<Polltime></Polltime>
+						<Trend>
+						</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>
+						</Reliable>
+						<Stopped>
+						</Stopped>
+						<Vehicleid></Vehicleid>
+						<Lat>0.000000</Lat>
+						<Long>0.000000</Long>
+					</Realtime>
+					<Block>801-12</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>07:27 PM</Triptime>
+					<Tripid>43925-64</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>0</Adherence>
+					<Estimatedtime>07:27 PM</Estimatedtime>
+					<Realtime>
+						<Valid>N</Valid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>07:27 PM</Estimatedtime>
+						<Estimatedminutes>
+						</Estimatedminutes>
+						<Polltime></Polltime>
+						<Trend>
+						</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>
+						</Reliable>
+						<Stopped>
+						</Stopped>
+						<Vehicleid></Vehicleid>
+						<Lat>0.000000</Lat>
+						<Long>0.000000</Long>
+					</Realtime>
+					<Block>801-03</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>07:47 PM</Triptime>
+					<Tripid>43925-65</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>0</Adherence>
+					<Estimatedtime>07:47 PM</Estimatedtime>
+					<Realtime>
+						<Valid>N</Valid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>07:47 PM</Estimatedtime>
+						<Estimatedminutes>
+						</Estimatedminutes>
+						<Polltime></Polltime>
+						<Trend>
+						</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>
+						</Reliable>
+						<Stopped>
+						</Stopped>
+						<Vehicleid></Vehicleid>
+						<Lat>0.000000</Lat>
+						<Long>0.000000</Long>
+					</Realtime>
+					<Block>801-05</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>08:07 PM</Triptime>
+					<Tripid>43925-66</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>0</Adherence>
+					<Estimatedtime>08:07 PM</Estimatedtime>
+					<Realtime>
+						<Valid>N</Valid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>08:07 PM</Estimatedtime>
+						<Estimatedminutes>
+						</Estimatedminutes>
+						<Polltime></Polltime>
+						<Trend>
+						</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>
+						</Reliable>
+						<Stopped>
+						</Stopped>
+						<Vehicleid></Vehicleid>
+						<Lat>0.000000</Lat>
+						<Long>0.000000</Long>
+					</Realtime>
+					<Block>801-07</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+				<Run>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Triptime>08:27 PM</Triptime>
+					<Tripid>43925-67</Tripid>
+					<Skedtripid>
+					</Skedtripid>
+					<Adherence>0</Adherence>
+					<Estimatedtime>08:27 PM</Estimatedtime>
+					<Realtime>
+						<Valid>N</Valid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>08:27 PM</Estimatedtime>
+						<Estimatedminutes>
+						</Estimatedminutes>
+						<Polltime></Polltime>
+						<Trend>
+						</Trend>
+						<Speed>0.00</Speed>
+						<Reliable>
+						</Reliable>
+						<Stopped>
+						</Stopped>
+						<Vehicleid></Vehicleid>
+						<Lat>0.000000</Lat>
+						<Long>0.000000</Long>
+					</Realtime>
+					<Block>801-11</Block>
+					<Exception>N</Exception>
+					<Atisstopid>58030</Atisstopid>
+					<Stopid>5871</Stopid>
+				</Run>
+			</Runs>
+			<Statusinfo>|R,801,S,,</Statusinfo>
+			<Requestor>192.168.10.91</Requestor>
+			<Host>cmtaatisweb2</Host>
+			<Copyright>XML schema Copyright (c) 2003-2013 Trapeze Software ULC, its subsidiaries and affiliates.  All rights reserved.</Copyright>
+			<Soapversion>2.6.3 - 09/23/13</Soapversion>
+		</Nextbus2Response></soap:Body></soap:Envelope>

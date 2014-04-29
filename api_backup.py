@@ -95,7 +95,7 @@ def backup_nextbus2(route_id, now):
 def backup_nextbus(lat, lon, now, route_id=None):
     res = requests.get('http://www.capmetro.org/planner/s_service.asp', params={
         'output': 'xml',
-        'opt': '2',
+        'opt': 2,
         'tool': 'NB',
         'loc1lat': lat,
         'loc1lng': lon,
@@ -109,7 +109,7 @@ def backup_nextbus(lat, lon, now, route_id=None):
     try:
         os.makedirs(directory)
     except OSError:
-        print 'directory already exists'
+        pass
 
     fname = '{}/{}-{}-{}-{}.xml'.format(directory, route_id, lat, lon, res.status_code)
     print 'writing results to {}'.format(fname)
@@ -122,5 +122,5 @@ def backup_nextbus(lat, lon, now, route_id=None):
 if __name__ == '__main__':
     now = arrow.now()
     # backup_nextbus2(801, now)
-    backup_nextbus(801, 30.268224, -97.743678, now)
-    backup_nextbus(30.268224, -97.743678, now)
+    backup_nextbus(30.268224, -97.743678, now, route_id=801)
+    # backup_nextbus(30.268224, -97.743678, now)
