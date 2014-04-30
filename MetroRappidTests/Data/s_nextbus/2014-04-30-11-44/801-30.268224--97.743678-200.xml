@@ -1,0 +1,280 @@
+<!--
+        GET 200 http://www.capmetro.org/planner/s_service.asp?opt=2&tool=NB&loc1lat=30.268224&output=xml&route=801&loc1lng=-97.743678
+        {'access-control-allow-origin': 'http://cmtacustas1',
+ 'cache-control': 'private',
+ 'content-encoding': 'gzip',
+ 'content-length': '2460',
+ 'content-type': 'text/html',
+ 'date': 'Wed, 30 Apr 2014 15:44:32 GMT',
+ 'server': 'Microsoft-IIS/7.0',
+ 'set-cookie': 'ASPSESSIONIDASBBBARA=HPHCDCNDGCBPLAEKBIIMAPHD; path=/',
+ 'vary': 'Accept-Encoding',
+ 'x-powered-by': 'ASP.NET1a'}
+-->
+    <?xml version="1.0"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><NextbusResponse xmlns="AT_WEB">
+			<Responsecode>0</Responsecode>
+			<Version>1.26</Version>
+			<Input>
+				<Locationlat>30.268224</Locationlat>
+				<Locationlong>-97.743678</Locationlong>
+				<Locationtext>postedid </Locationtext>
+				<Atisstopid>0</Atisstopid>
+				<Stopid></Stopid>
+				<Landmarkid></Landmarkid>
+				<Date>4/30/2014</Date>
+				<Time>10:44 AM</Time>
+				<Route>801</Route>
+			</Input>
+			<Atstop>
+				<Walkdist>0.27</Walkdist>
+				<Walkdir>W</Walkdir>
+				<Description>REPUBLIC SQUARE STATION (SB)</Description>
+				<Area>Austin</Area>
+				<Atisstopid>58028</Atisstopid>
+				<Stopid>5867</Stopid>
+				<Lat>30.267748</Lat>
+				<Long>-97.746859</Long>
+				<Stopposition>N</Stopposition>
+				<Heading>NB</Heading>
+				<Side>Near</Side>
+				<Stopstatustype>N</Stopstatustype>
+				<Service>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-SB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>S</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Times>10:38 AM, 10:50 AM, 11:02 AM, 11:14 AM</Times>
+					<Tripinfo>
+						<Triptime>10:38 AM</Triptime>
+						<Tripid>44921-23</Tripid>
+						<Skedtripid>
+						</Skedtripid>
+						<Adherence>-2</Adherence>
+						<Estimatedtime>10:40 AM</Estimatedtime>
+						<Realtime>
+							<Valid>Y</Valid>
+							<Adherence>-2</Adherence>
+							<Estimatedtime>10:40 AM</Estimatedtime>
+							<Estimatedminutes>
+							</Estimatedminutes>
+							<Polltime>10:43 AM</Polltime>
+							<Trend>I</Trend>
+							<Speed>0.00</Speed>
+							<Reliable>Y</Reliable>
+							<Stopped>N</Stopped>
+							<Vehicleid>5008</Vehicleid>
+							<Lat>30.256092</Lat>
+							<Long>-97.747398</Long>
+						</Realtime>
+						<Block>801-13</Block>
+						<Exception>N</Exception>
+					</Tripinfo>
+					<Tripinfo>
+						<Triptime>10:50 AM</Triptime>
+						<Tripid>44921-24</Tripid>
+						<Skedtripid>
+						</Skedtripid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>10:50 AM</Estimatedtime>
+						<Realtime>
+							<Valid>Y</Valid>
+							<Adherence>0</Adherence>
+							<Estimatedtime>10:50 AM</Estimatedtime>
+							<Estimatedminutes>6</Estimatedminutes>
+							<Polltime>10:43 AM</Polltime>
+							<Trend>S</Trend>
+							<Speed>0.00</Speed>
+							<Reliable>Y</Reliable>
+							<Stopped>N</Stopped>
+							<Vehicleid>5012</Vehicleid>
+							<Lat>30.281998</Lat>
+							<Long>-97.742111</Long>
+						</Realtime>
+						<Block>801-02</Block>
+						<Exception>N</Exception>
+					</Tripinfo>
+					<Tripinfo>
+						<Triptime>11:02 AM</Triptime>
+						<Tripid>44921-25</Tripid>
+						<Skedtripid>
+						</Skedtripid>
+						<Adherence>2</Adherence>
+						<Estimatedtime>11:00 AM</Estimatedtime>
+						<Realtime>
+							<Valid>Y</Valid>
+							<Adherence>2</Adherence>
+							<Estimatedtime>11:00 AM</Estimatedtime>
+							<Estimatedminutes>16</Estimatedminutes>
+							<Polltime>10:43 AM</Polltime>
+							<Trend>S</Trend>
+							<Speed>0.00</Speed>
+							<Reliable>Y</Reliable>
+							<Stopped>N</Stopped>
+							<Vehicleid>5004</Vehicleid>
+							<Lat>30.313431</Lat>
+							<Long>-97.732552</Long>
+						</Realtime>
+						<Block>801-04</Block>
+						<Exception>N</Exception>
+					</Tripinfo>
+					<Tripinfo>
+						<Triptime>11:14 AM</Triptime>
+						<Tripid>44921-26</Tripid>
+						<Skedtripid>
+						</Skedtripid>
+						<Adherence>-1</Adherence>
+						<Estimatedtime>11:14 AM</Estimatedtime>
+						<Realtime>
+							<Valid>Y</Valid>
+							<Adherence>-1</Adherence>
+							<Estimatedtime>11:14 AM</Estimatedtime>
+							<Estimatedminutes>31</Estimatedminutes>
+							<Polltime>10:43 AM</Polltime>
+							<Trend>D</Trend>
+							<Speed>0.00</Speed>
+							<Reliable>Y</Reliable>
+							<Stopped>N</Stopped>
+							<Vehicleid>5011</Vehicleid>
+							<Lat>30.365763</Lat>
+							<Long>-97.695625</Long>
+						</Realtime>
+						<Block>801-06</Block>
+						<Exception>N</Exception>
+					</Tripinfo>
+				</Service>
+			</Atstop>
+			<Atstop>
+				<Walkdist>0.29</Walkdist>
+				<Walkdir>SW</Walkdir>
+				<Description>REPUBLIC SQUARE STATION (NB)</Description>
+				<Area>Austin</Area>
+				<Atisstopid>58017</Atisstopid>
+				<Stopid>5868</Stopid>
+				<Lat>30.266217</Lat>
+				<Long>-97.746059</Long>
+				<Stopposition>N</Stopposition>
+				<Heading>NB</Heading>
+				<Side>Near</Side>
+				<Stopstatustype>N</Stopstatustype>
+				<Service>
+					<Route>801</Route>
+					<Publicroute>801</Publicroute>
+					<Sign>801-N Lamar S Congress-NB</Sign>
+					<Operator>CM</Operator>
+					<Publicoperator>CM</Publicoperator>
+					<Direction>N</Direction>
+					<Status>L</Status>
+					<Servicetype>0</Servicetype>
+					<Routetype>K</Routetype>
+					<Times>10:43 AM, 10:55 AM, 11:07 AM, 11:19 AM</Times>
+					<Tripinfo>
+						<Triptime>10:43 AM</Triptime>
+						<Tripid>44917-25</Tripid>
+						<Skedtripid>
+						</Skedtripid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>10:43 AM</Estimatedtime>
+						<Realtime>
+							<Valid>Y</Valid>
+							<Adherence>0</Adherence>
+							<Estimatedtime>10:43 AM</Estimatedtime>
+							<Estimatedminutes>
+							</Estimatedminutes>
+							<Polltime>10:43 AM</Polltime>
+							<Trend>S</Trend>
+							<Speed>0.00</Speed>
+							<Reliable>Y</Reliable>
+							<Stopped>N</Stopped>
+							<Vehicleid>5009</Vehicleid>
+							<Lat>30.265993</Lat>
+							<Long>-97.746170</Long>
+						</Realtime>
+						<Block>801-14</Block>
+						<Exception>N</Exception>
+					</Tripinfo>
+					<Tripinfo>
+						<Triptime>10:55 AM</Triptime>
+						<Tripid>44917-26</Tripid>
+						<Skedtripid>
+						</Skedtripid>
+						<Adherence>-5</Adherence>
+						<Estimatedtime>11:00 AM</Estimatedtime>
+						<Realtime>
+							<Valid>Y</Valid>
+							<Adherence>-5</Adherence>
+							<Estimatedtime>11:00 AM</Estimatedtime>
+							<Estimatedminutes>16</Estimatedminutes>
+							<Polltime>10:43 AM</Polltime>
+							<Trend>I</Trend>
+							<Speed>0.00</Speed>
+							<Reliable>Y</Reliable>
+							<Stopped>N</Stopped>
+							<Vehicleid>5015</Vehicleid>
+							<Lat>30.222349</Lat>
+							<Long>-97.766624</Long>
+						</Realtime>
+						<Block>801-05</Block>
+						<Exception>N</Exception>
+					</Tripinfo>
+					<Tripinfo>
+						<Triptime>11:07 AM</Triptime>
+						<Tripid>44917-27</Tripid>
+						<Skedtripid>
+						</Skedtripid>
+						<Adherence>-1</Adherence>
+						<Estimatedtime>11:08 AM</Estimatedtime>
+						<Realtime>
+							<Valid>Y</Valid>
+							<Adherence>-1</Adherence>
+							<Estimatedtime>11:08 AM</Estimatedtime>
+							<Estimatedminutes>24</Estimatedminutes>
+							<Polltime>10:43 AM</Polltime>
+							<Trend>D</Trend>
+							<Speed>0.00</Speed>
+							<Reliable>Y</Reliable>
+							<Stopped>N</Stopped>
+							<Vehicleid>5017</Vehicleid>
+							<Lat>30.192183</Lat>
+							<Long>-97.779129</Long>
+						</Realtime>
+						<Block>801-07</Block>
+						<Exception>N</Exception>
+					</Tripinfo>
+					<Tripinfo>
+						<Triptime>11:19 AM</Triptime>
+						<Tripid>44917-28</Tripid>
+						<Skedtripid>
+						</Skedtripid>
+						<Adherence>0</Adherence>
+						<Estimatedtime>11:19 AM</Estimatedtime>
+						<Realtime>
+							<Valid>Y</Valid>
+							<Adherence>0</Adherence>
+							<Estimatedtime>11:19 AM</Estimatedtime>
+							<Estimatedminutes>35</Estimatedminutes>
+							<Polltime>10:42 AM</Polltime>
+							<Trend>S</Trend>
+							<Speed>0.00</Speed>
+							<Reliable>Y</Reliable>
+							<Stopped>N</Stopped>
+							<Vehicleid>5020</Vehicleid>
+							<Lat>30.162867</Lat>
+							<Long>-97.790375</Long>
+						</Realtime>
+						<Block>801-09</Block>
+						<Exception>N</Exception>
+					</Tripinfo>
+				</Service>
+			</Atstop>
+			<Statusinfo>|R,801,S,,|R,801,N,,</Statusinfo>
+			<Requestor>192.168.10.91</Requestor>
+			<Host>cmtaatisweb2</Host>
+			<Copyright>XML schema Copyright (c) 2003-2013 Trapeze Software ULC, its subsidiaries and affiliates.  All rights reserved.</Copyright>
+			<Soapversion>2.6.3 - 09/23/13</Soapversion>
+		</NextbusResponse></soap:Body></soap:Envelope>
