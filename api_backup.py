@@ -121,6 +121,6 @@ def backup_nextbus(lat, lon, now, route_id=None):
 
 if __name__ == '__main__':
     now = arrow.now()
-    # backup_nextbus2(801, now)
+    backup_nextbus2(801, now)
     backup_nextbus(30.268224, -97.743678, now, route_id=801)
-    # backup_nextbus(30.268224, -97.743678, now)
+    backup_nextbus(30.268224, -97.743678, now)
