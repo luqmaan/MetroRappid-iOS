@@ -123,7 +123,7 @@ static FMDatabaseQueue *queue;
         FMResultSet *rs = [db executeQuery:query];
         [rs next];
         data = [rs resultDictionary];
-        NSLog(@"data %@", data);
+//        NSLog(@"data %@", data);
         while([rs next]) ;
     }];
  
@@ -132,13 +132,16 @@ static FMDatabaseQueue *queue;
 
 + (NSMutableArray *)routesNearLocation:(CLLocation *)location
 {
-    NSString *query = [self queryWithFormat:@[@"SELECT DISTINCT route_id FROM trips, ",
-                                              @"( SELECT DISTINCT trip_id",
+    NSString *query = [self queryWithFormat:@[@"SELECT route_id, ledistance",
+                                              @"FROM trips, ",
+                                              @"( SELECT trip_id, distance(stop_lat, stop_lon, %f, %f) as \"ledistance\"",
                                               @"  FROM stops, stop_times",
                                               @"  WHERE stop_times.stop_id = stops.stop_id",
-                                              @"  AND distance(stop_lat, stop_lon, %f, %f) < 0.5",
+                                              @"  GROUP BY trip_id",
                                               @") AS nearby_trips",
-                                              @"WHERE trips.trip_id = nearby_trips.trip_id"],
+                                              @"WHERE trips.trip_id = nearby_trips.trip_id",
+                                              @"GROUP BY route_id",
+                                              @"ORDER BY CAST(route_id AS INTEGER)"],
                        location.coordinate.latitude,
                        location.coordinate.longitude];
 
@@ -149,8 +152,7 @@ static FMDatabaseQueue *queue;
         FMResultSet *rs = [db executeQuery:query];
 
         while([rs next]) {
-            NSLog(@"result %@", [rs resultDictionary]);
-            [data addObject:[rs objectForColumnIndex:0]];
+            [data addObject:[rs resultDictionary]];
         }
     }];
     

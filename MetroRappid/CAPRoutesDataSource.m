@@ -10,11 +10,13 @@
 #import "CAPRoute.h"
 #import "GTFSDB.h"
 #import "CAPRouteCell.h"
+#import "CAPRouteHeaderView.h"
 
 @interface CAPRoutesDataSource ()
 
 /** First array is favorite routes, second is nearby routes. */
 @property NSMutableDictionary *routes;
+@property NSArray *allRoutes;
 
 @end
 
@@ -26,6 +28,9 @@
     if (self = [super init]) {
         // FIXME: How will this work with search? New VC/dataSource?
         _routes = [[NSMutableDictionary alloc] init];
+        _allRoutes = @[];
+        _activityFavorite = NO;
+        _activityNearby = YES;
     }
     NSLog(@"CAPRoutesDataSource init");
     return self;
@@ -39,6 +44,7 @@
     [route801 update];
     [route550 update];
     self.routes[@"favorites"] = @[route801, route550];
+    self.activityFavorite = NO;
 }
 
 - (void)loadNearby:(CLLocation *)location
@@ -46,13 +52,25 @@
     NSMutableArray *nearbyRouteIds = [GTFSDB routesNearLocation:location];
     NSMutableArray *nearbyRoutes = [[NSMutableArray alloc] init];
     
-    for (NSString *nearbyRouteId in nearbyRouteIds) {
-        CAPRoute *route = [[CAPRoute alloc] initWithRouteId:nearbyRouteId];
+    for (NSDictionary *nearbyRouteData in nearbyRouteIds) {
+        CAPRoute *route = [[CAPRoute alloc] initWithRouteId:nearbyRouteData[@"route_id"]];
+        route.distance = [nearbyRouteData[@"ledistance"] floatValue];
         [route update];
         [nearbyRoutes addObject:route];
     }
-    
+
+    self.allRoutes = [nearbyRoutes copy];
+
     self.routes[@"nearby"] = nearbyRoutes;
+    self.activityNearby = NO;
+}
+
+- (void)filterNearbyByDistance:(float)distance
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"distance < %f", distance]];
+    NSArray *filteredRoutes = [self.allRoutes filteredArrayUsingPredicate:predicate];
+    NSLog(@"Filtered %d nearby routes", (int)filteredRoutes.count);
+    self.routes[@"nearby"] = filteredRoutes;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -90,6 +108,31 @@
     routeCell.routeIdLabel.text = route.routeId;
     
     return routeCell;
+}
+
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    CAPRouteHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"RouteHeader" forIndexPath:indexPath];
+    
+    NSString *section = [self keyForSection:indexPath.section];
+
+    if ([section isEqualToString:@"favorites"]) {
+        headerView.sectionLabel.text = @"Realtime";
+        if (!self.activityFavorite) {
+            [headerView.activityIndicator stopAnimating];
+            headerView.distanceSlider.hidden = NO;
+        }
+    }
+    if ([section isEqualToString:@"nearby"]) {
+        headerView.sectionLabel.text = @"Nearby";
+        if (!self.activityNearby) {
+            [headerView.activityIndicator stopAnimating];
+            headerView.distanceSlider.hidden = NO;
+        }
+    }
+
+    return headerView;
 }
 
 

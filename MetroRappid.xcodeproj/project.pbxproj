@@ -14,6 +14,7 @@
 		8C6417FB18CB9A540018AE52 /* CAPTripRealtimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6417FA18CB9A540018AE52 /* CAPTripRealtimeView.m */; };
 		8C67C49E1922F1E500FA94D4 /* CAPRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67C49D1922F1E500FA94D4 /* CAPRoutesViewController.m */; };
 		8C6E1DD11929948300DA52CE /* CAPRouteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E1DD01929948300DA52CE /* CAPRouteCell.m */; };
+		8C6E1DD71929B36C00DA52CE /* CAPRouteHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E1DD61929B36C00DA52CE /* CAPRouteHeaderView.m */; };
 		8C7FE60118BAC45A00A802A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60018BAC45A00A802A7 /* Foundation.framework */; };
 		8C7FE60318BAC45A00A802A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60218BAC45A00A802A7 /* CoreGraphics.framework */; };
 		8C7FE60518BAC45A00A802A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7FE60418BAC45A00A802A7 /* UIKit.framework */; };
@@ -74,6 +75,8 @@
 		8C67C49D1922F1E500FA94D4 /* CAPRoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRoutesViewController.m; sourceTree = "<group>"; };
 		8C6E1DCF1929948300DA52CE /* CAPRouteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPRouteCell.h; sourceTree = "<group>"; };
 		8C6E1DD01929948300DA52CE /* CAPRouteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRouteCell.m; sourceTree = "<group>"; };
+		8C6E1DD51929B36C00DA52CE /* CAPRouteHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPRouteHeaderView.h; sourceTree = "<group>"; };
+		8C6E1DD61929B36C00DA52CE /* CAPRouteHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRouteHeaderView.m; sourceTree = "<group>"; };
 		8C7FE5FD18BAC45A00A802A7 /* MetroRappid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroRappid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C7FE60018BAC45A00A802A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C7FE60218BAC45A00A802A7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -155,6 +158,8 @@
 				8C6417FA18CB9A540018AE52 /* CAPTripRealtimeView.m */,
 				8C6E1DCF1929948300DA52CE /* CAPRouteCell.h */,
 				8C6E1DD01929948300DA52CE /* CAPRouteCell.m */,
+				8C6E1DD51929B36C00DA52CE /* CAPRouteHeaderView.h */,
+				8C6E1DD61929B36C00DA52CE /* CAPRouteHeaderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 				8CD4961118F2D5D60088E8B5 /* CAPModelUtils.m in Sources */,
 				8C7FE60D18BAC45A00A802A7 /* main.m in Sources */,
 				8C7FE64F18BAC83100A802A7 /* CAPTripRealtime.m in Sources */,
+				8C6E1DD71929B36C00DA52CE /* CAPRouteHeaderView.m in Sources */,
 				8CB1250E19271569008F25C7 /* CAPRoutesDataSource.m in Sources */,
 				8CB125121927EA32008F25C7 /* CAPRoute.m in Sources */,
 				8C7FE64D18BAC83100A802A7 /* CAPTrip.m in Sources */,

@@ -23,7 +23,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self layoutViews];
+    
+    
     self.routesDataSource = [[CAPRoutesDataSource alloc] init];
     self.collectionView.dataSource = self.routesDataSource;
     [self.routesDataSource loadFavorites];
@@ -52,6 +54,14 @@
 }
 */
 
+#pragma mark - Layout
+
+- (void)layoutViews
+{
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
+    layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+}
+
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)locationManager didUpdateLocations:(NSArray *)locations
@@ -64,6 +74,15 @@
         [self.routesDataSource loadNearby:lastLocation];
         [self.collectionView reloadData];
 //    }
+}
+
+- (IBAction)distanceChanged:(UISlider *)sender {
+    NSLog(@"DO THA STANKY LEG");
+    float newDistance = (float)sender.value;
+    NSLog(@"New distance %f", newDistance);
+    [self.routesDataSource filterNearbyByDistance:newDistance];
+    [sender setNeedsDisplay];
+    [self.collectionView reloadSections:[[NSIndexSet alloc]initWithIndex:1]];
 }
 
 @end

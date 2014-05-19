@@ -12,7 +12,11 @@
 
 @interface CAPRoutesDataSource : NSObject <UICollectionViewDataSource>
 
+@property (nonatomic, assign) BOOL activityFavorite;
+@property (nonatomic, assign) BOOL activityNearby;
+
 - (void)loadFavorites;
 - (void)loadNearby:(CLLocation *)location;
+- (void)filterNearbyByDistance:(float)distance;
 
 @end

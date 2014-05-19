@@ -21,6 +21,7 @@
 {
     if (self = [super init]) {
         _routeId = routeId;
+        _distance = 0.0f;
     }
     return self;
 }

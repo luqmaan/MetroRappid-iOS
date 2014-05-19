@@ -265,32 +265,33 @@
             </objects>
             <point key="canvasLocation" x="849" y="-215"/>
         </scene>
-        <!--Routes View Controller-->
+        <!--Routes View Controller - Routes-->
         <scene sceneID="hRV-BI-FlQ">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="d4R-qd-7dt" customClass="CAPRoutesViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="yXx-9J-FB4">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NUh-Mt-LYl">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OiJ-Ww-VyL">
                             <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RouteCell" id="Fwp-ZW-Zht" customClass="CAPRouteCell">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="50" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="666" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlM-X2-2ot">
-                                            <rect key="frame" x="11" y="14" width="29" height="21"/>
+                                            <rect key="frame" x="6" y="10" width="39" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="21"/>
+                                            <color key="textColor" red="0.75660884380000004" green="0.0" blue="0.032425597309999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -305,12 +306,54 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RouteHeader" id="zao-Kb-EbP" customClass="CAPRouteHeaderView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqg-uf-4c1">
+                                    <rect key="frame" x="20" y="9" width="75" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JvR-IU-TXn">
+                                    <rect key="frame" x="286" y="15" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="color" red="0.75660884380000004" green="0.0" blue="0.032425597309999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </activityIndicatorView>
+                                <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.10000000000000001" maxValue="5" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5Y-5z-Y3j">
+                                    <rect key="frame" x="184" y="10" width="118" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="114" id="Fg9-9Z-nH2"/>
+                                        <constraint firstAttribute="height" constant="30" id="Uhe-8g-ltA"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="distanceChanged:" destination="d4R-qd-7dt" eventType="valueChanged" id="JvV-ir-Csn"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="t5Y-5z-Y3j" secondAttribute="centerY" id="Ggv-UB-ndE"/>
+                                <constraint firstAttribute="trailing" secondItem="JvR-IU-TXn" secondAttribute="trailing" constant="14" id="JRI-qD-9iZ"/>
+                                <constraint firstAttribute="centerY" secondItem="bqg-uf-4c1" secondAttribute="centerY" constant="0.5" id="Wyn-Uk-gId"/>
+                                <constraint firstAttribute="centerY" secondItem="JvR-IU-TXn" secondAttribute="centerY" constant="0.5" id="ZPB-de-bJZ"/>
+                                <constraint firstItem="bqg-uf-4c1" firstAttribute="leading" secondItem="zao-Kb-EbP" secondAttribute="leading" constant="20" id="fTH-bU-T0e"/>
+                                <constraint firstAttribute="trailing" secondItem="t5Y-5z-Y3j" secondAttribute="trailing" constant="20" id="wWc-SM-GmF"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="activityIndicator" destination="JvR-IU-TXn" id="5pY-Lb-Bj2"/>
+                                <outlet property="distanceSlider" destination="t5Y-5z-Y3j" id="pv5-x3-s64"/>
+                                <outlet property="sectionLabel" destination="bqg-uf-4c1" id="2qw-zX-TOz"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="d4R-qd-7dt" id="SZC-a6-6Ze"/>
                             <outlet property="delegate" destination="d4R-qd-7dt" id="unH-X6-D2z"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="yZH-MH-p6n"/>
+                    <navigationItem key="navigationItem" title="Routes" id="yZH-MH-p6n"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4SQ-cd-80O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -380,7 +423,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.77297985550000003" green="0.0" blue="0.0173913464" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>

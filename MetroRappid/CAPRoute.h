@@ -34,6 +34,8 @@ typedef enum {
 @property NSString *routeColor;
 @property NSString *routeTextColor;
 
+@property (nonatomic, assign) float distance;
+
 - (id)initWithRouteId:(NSString *)routeId;
 - (void)update;
 
