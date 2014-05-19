@@ -26,6 +26,8 @@ typedef enum {
 
 @property (nonatomic, assign) BOOL ready;
 
-- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(GTFSDirection)direction;
++ (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(GTFSDirection)direction;
++ (NSDictionary *)routeWithId:(NSString *)routeId;
++ (NSMutableArray *)routesNearLocation:(CLLocation *)location;
 
 @end

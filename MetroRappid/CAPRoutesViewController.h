@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface CAPRoutesViewController : UICollectionViewController
+@interface CAPRoutesViewController : UICollectionViewController <CLLocationManagerDelegate>
 
 @end

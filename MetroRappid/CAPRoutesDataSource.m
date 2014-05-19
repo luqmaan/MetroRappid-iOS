@@ -7,75 +7,89 @@
 //
 
 #import "CAPRoutesDataSource.h"
+#import "CAPRoute.h"
 #import "GTFSDB.h"
+#import "CAPRouteCell.h"
 
+@interface CAPRoutesDataSource ()
 
-@interface CAPRoutesDataSource()
-
-@property NSMutableArray *routes;
+/** First array is favorite routes, second is nearby routes. */
+@property NSMutableDictionary *routes;
 
 @end
 
 
 @implementation CAPRoutesDataSource
 
-@synthesize routes;
-
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        GTFSDB *gtfsdb = nil;
-        
-        // FIXME: For now, default favorite routes like this. In future save and load to/from preferences.
-        CAPRoute *route801 = [[CAPRoute alloc] initWithGTFS:[gtfsb route:801]];
-        CAPRoute *route550 = [[CAPRoute alloc] initWithGTFS:[gtfsb route:550]];
-
-        // FIXME: How will this work with search? New VC/datasource?
-        // First array is favorites/realtime. Second is nearby.
-        self.routes = [[NSMutableArray alloc] initWithArray:@[ @[route801, route550] ]];
-
-        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        locationManager.distanceFilter = 100; // meters
-        [locationManager startUpdatingLocation];
+    if (self = [super init]) {
+        // FIXME: How will this work with search? New VC/dataSource?
+        _routes = [[NSMutableDictionary alloc] init];
     }
+    NSLog(@"CAPRoutesDataSource init");
     return self;
 }
 
-#pragma mark - CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)locationManager didUpdateLocations:(NSArray *)locations
+- (void)loadFavorites
 {
-    CLLocation *lastLocation = [locations lastObject];
-    NSLog(@"Got location %@", lastLocation);
-    
-    if (lastLocation.horizontalAccuracy > kCLLocationAccuracyHundredMeters) {
-        [locationManager stopUpdatingLocation];
-        
-        NSMutableArray *nearbyRoutes = [[NSMutableArray alloc] init];
-        NSMutableArray *nearbyRoutesData = [gtfsdb routesNearLocation:lastLocation];
+    // FIXME: For now, default favorite routes like this. In future save and load to/from preferences.
+    CAPRoute *route801 = [[CAPRoute alloc] initWithRouteId:@"801"];
+    CAPRoute *route550 = [[CAPRoute alloc] initWithRouteId:@"550"];
+    [route801 update];
+    [route550 update];
+    self.routes[@"favorites"] = @[route801, route550];
+}
 
-        for (NSDictionary *routeData in nearbyRoutesData) {
-            CAPRoute *route = [[CAPRoute alloc] initWithGTFS:routeData];
-            [nearbyRoutes addObject:route];
-        }
-        
-        [self.routes addObject:nearbyRoutes];
+- (void)loadNearby:(CLLocation *)location
+{
+    NSMutableArray *nearbyRouteIds = [GTFSDB routesNearLocation:location];
+    NSMutableArray *nearbyRoutes = [[NSMutableArray alloc] init];
+    
+    for (NSString *nearbyRouteId in nearbyRouteIds) {
+        CAPRoute *route = [[CAPRoute alloc] initWithRouteId:nearbyRouteId];
+        [route update];
+        [nearbyRoutes addObject:route];
     }
+    
+    self.routes[@"nearby"] = nearbyRoutes;
 }
 
 #pragma mark - UICollectionViewDataSource
 
+- (NSString*)keyForSection:(NSInteger)section
+{
+    if (section == 0) {
+        return @"favorites";
+    }
+    if (section == 1) {
+        return @"nearby";
+    }
+    NSLog(@"WTF section %d", (int)section);
+    return @"WTF";
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 2;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.routes.count;
+    NSString *key = [self keyForSection:section];
+    return [self.routes[key] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.routes[indexPath.row] count];
+    NSString *key = [self keyForSection:indexPath.section];
+    CAPRoute *route = self.routes[key][indexPath.row];
+
+    CAPRouteCell *routeCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RouteCell" forIndexPath:indexPath];
+    
+    routeCell.routeIdLabel.text = route.routeId;
+    
+    return routeCell;
 }
 
 

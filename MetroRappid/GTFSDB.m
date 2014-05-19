@@ -8,34 +8,40 @@
 
 #import "GTFSDB.h"
 
-@interface GTFSDB ()
+static GTFSDB *sharedGTFSDBSingleton;
+static FMDatabaseQueue *queue;
 
-@property FMDatabaseQueue *queue;
-@property NSString *databaseName;
-@property NSString *databasePath;
+
+@interface GTFSDB ()
 
 @end
 
+
 @implementation GTFSDB
+
++ (void)initialize
+{
+    static BOOL initialized = NO;
+    if(!initialized)
+    {
+        initialized = YES;
+        sharedGTFSDBSingleton = [[GTFSDB alloc] init];
+    }
+}
 
 - (id)init
 {
     self = [super init];
-    NSLog(@"Init GTFS");
+    NSLog(@"Init GTFSDB");
     if (self) {
-        self.ready = NO;
+        NSString *databaseName  = @"gtfs_austin";;
+        NSString *databasePath = [[NSBundle mainBundle] pathForResource:databaseName ofType:@"db"];
         
-        self.databaseName = @"gtfs_austin";
-        self.databasePath = [[NSBundle mainBundle] pathForResource:self.databaseName ofType:@"db"];
+        queue = [FMDatabaseQueue databaseQueueWithPath:databasePath];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
-            self.queue = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
+        [self addDistanceFunction];
         
-            [self addDistanceFunction];
-        
-            self.ready = YES;
-            NSLog(@"Database ready");
-        });
+        NSLog(@"Database ready");
     }
     return self;
 }
@@ -44,7 +50,7 @@
 
 - (void)logSchema
 {
-    [self.queue inDatabase:^(FMDatabase *db) {
+    [queue inDatabase:^(FMDatabase *db) {
         FMResultSet *results = [db executeQuery:@"SELECT rootpage, name, sql FROM sqlite_master ORDER BY name;"];
         NSLog(@"tables: %@ %@ %d %@", results, [results resultDictionary], results.columnCount, [results columnNameForIndex:0]);
         for (id column in [results columnNameToIndexMap]) {
@@ -60,7 +66,7 @@
 // Distance in kilometers
 - (void)addDistanceFunction
 {
-    [self.queue inDatabase:^(FMDatabase *db) {
+    [queue inDatabase:^(FMDatabase *db) {
         // See http://daveaddey.com/?p=71
         [db makeFunctionNamed:@"distance" maximumArguments:4 withBlock:^(sqlite3_context *context, int argc, sqlite3_value **argv) {
             // check that we have four arguments (lat1, lon1, lat2, lon2)
@@ -87,7 +93,72 @@
 
 #pragma mark - Queries
 
-- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(GTFSDirection)directionId
++ (NSString *)queryWithFormat:(NSArray *)statements, ...
+{
+    va_list args;
+    va_start(args, statements);
+
+    NSMutableString *format = [[NSMutableString alloc]  init];
+    for (NSString *statement in statements) {
+        [format appendString:@"\n "];
+        [format appendString:statement];
+    }
+    
+    NSString *formattedQuery = [[NSString alloc] initWithFormat:format arguments:args];
+
+    va_end(args);
+    return formattedQuery;
+}
+
++ (NSDictionary *)routeWithId:(NSString *)routeId
+{
+    NSString *query = [self queryWithFormat:@[@"SELECT *",
+                                              @"FROM routes",
+                                              @"WHERE route_id = '%@'"],
+                       routeId];
+
+    NSDictionary *__block data = [[NSDictionary alloc] init];
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery:query];
+        [rs next];
+        data = [rs resultDictionary];
+        NSLog(@"data %@", data);
+        while([rs next]) ;
+    }];
+ 
+    return data;
+}
+
++ (NSMutableArray *)routesNearLocation:(CLLocation *)location
+{
+    NSString *query = [self queryWithFormat:@[@"SELECT DISTINCT route_id FROM trips, ",
+                                              @"( SELECT DISTINCT trip_id",
+                                              @"  FROM stops, stop_times",
+                                              @"  WHERE stop_times.stop_id = stops.stop_id",
+                                              @"  AND distance(stop_lat, stop_lon, %f, %f) < 0.5",
+                                              @") AS nearby_trips",
+                                              @"WHERE trips.trip_id = nearby_trips.trip_id"],
+                       location.coordinate.latitude,
+                       location.coordinate.longitude];
+
+    NSMutableArray *__block data = [[NSMutableArray alloc] init];
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        NSLog(@"Executing query %@", query);
+        FMResultSet *rs = [db executeQuery:query];
+
+        while([rs next]) {
+            NSLog(@"result %@", [rs resultDictionary]);
+            [data addObject:[rs objectForColumnIndex:0]];
+        }
+    }];
+    
+    NSLog(@"Loaded %d routes near location", (int)[data count]);
+    return data;
+};
+
++ (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(GTFSDirection)directionId
 {
     NSString *query = [NSString stringWithFormat:
         @"\n SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, "
@@ -115,7 +186,7 @@
     
     NSMutableArray * __block data = [[NSMutableArray alloc] init];
 
-    [self.queue inDatabase:^(FMDatabase *db) {
+    [queue inDatabase:^(FMDatabase *db) {
         NSLog(@"Executing query %@", query);
         FMResultSet *rs = [db executeQuery:query];
 
@@ -150,7 +221,6 @@
     }];
 }
 
-
 - (void)sortStopsByStopSequence:(NSMutableArray *)stops
 {
     [stops sortUsingComparator:^NSComparisonResult(CAPStop* stop1, CAPStop* stop2) {
@@ -160,6 +230,5 @@
         return (NSComparisonResult)NSOrderedSame;
     }];
 }
-
 
 @end

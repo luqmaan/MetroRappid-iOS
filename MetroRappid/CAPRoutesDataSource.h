@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface CAPRoutesDataSource : NSObject <UICollectionViewDataSource, CLLocationManagerDelegate>
+
+@interface CAPRoutesDataSource : NSObject <UICollectionViewDataSource>
+
+- (void)loadFavorites;
+- (void)loadNearby:(CLLocation *)location;
 
 @end
