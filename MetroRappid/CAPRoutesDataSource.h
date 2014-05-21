@@ -18,5 +18,8 @@
 - (void)loadFavorites;
 - (void)loadNearby:(CLLocation *)location;
 - (void)filterNearbyByDistance:(float)distance;
+- (NSInteger)sectionForKey:(NSString *)section;
+- (NSString*)keyForSection:(NSInteger)section;
+- (NSInteger)numberOfItemsInSectionWithKey:(NSString *)key;
 
 @end

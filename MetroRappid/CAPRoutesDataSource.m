@@ -63,6 +63,7 @@
 
     self.routes[@"nearby"] = nearbyRoutes;
     self.activityNearby = NO;
+    [self filterNearbyByDistance:0.5];
 }
 
 - (void)filterNearbyByDistance:(float)distance
@@ -75,6 +76,17 @@
 
 #pragma mark - UICollectionViewDataSource
 
+- (NSInteger)sectionForKey:(NSString *)section
+{
+    if ([section isEqualToString:@"favorites"]) {
+        return 0;
+    }
+    if ([section isEqualToString:@"nearby"]) {
+        return 1;
+    }
+    return 666;
+}
+
 - (NSString*)keyForSection:(NSInteger)section
 {
     if (section == 0) {
@@ -85,6 +97,11 @@
     }
     NSLog(@"WTF section %d", (int)section);
     return @"WTF";
+}
+
+- (NSInteger)numberOfItemsInSectionWithKey:(NSString *)key
+{
+    return [self.routes[key] count];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -116,12 +133,12 @@
     CAPRouteHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"RouteHeader" forIndexPath:indexPath];
     
     NSString *section = [self keyForSection:indexPath.section];
+    NSLog(@"Section indexPath %@ %@", section, indexPath);
 
     if ([section isEqualToString:@"favorites"]) {
         headerView.sectionLabel.text = @"Realtime";
         if (!self.activityFavorite) {
             [headerView.activityIndicator stopAnimating];
-            headerView.distanceSlider.hidden = NO;
         }
     }
     if ([section isEqualToString:@"nearby"]) {
@@ -129,6 +146,8 @@
         if (!self.activityNearby) {
             [headerView.activityIndicator stopAnimating];
             headerView.distanceSlider.hidden = NO;
+            headerView.distanceLabel.text = [NSString stringWithFormat:@"%f", headerView.distanceSlider.value];
+            headerView.distanceLabel.hidden = NO;
         }
     }
 

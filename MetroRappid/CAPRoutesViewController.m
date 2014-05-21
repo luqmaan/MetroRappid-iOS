@@ -59,7 +59,8 @@
 - (void)layoutViews
 {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
-    layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+    layout.collectionView.contentInset = UIEdgeInsetsMake(10, 15, 10, 15);
+//    layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -77,12 +78,25 @@
 }
 
 - (IBAction)distanceChanged:(UISlider *)sender {
-    NSLog(@"DO THA STANKY LEG");
     float newDistance = (float)sender.value;
     NSLog(@"New distance %f", newDistance);
-    [self.routesDataSource filterNearbyByDistance:newDistance];
-    [sender setNeedsDisplay];
-    [self.collectionView reloadSections:[[NSIndexSet alloc]initWithIndex:1]];
+    
+    [self.collectionView performBatchUpdates:^{
+        NSMutableArray *indexPathsOld = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [self.routesDataSource numberOfItemsInSectionWithKey:@"nearby"]; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:[self.routesDataSource sectionForKey:@"nearby"]];
+            [indexPathsOld addObject:indexPath];
+        }
+        [self.routesDataSource filterNearbyByDistance:newDistance];
+        [self.collectionView deleteItemsAtIndexPaths:indexPathsOld];
+        
+        NSMutableArray *indexPathsNew = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [self.routesDataSource numberOfItemsInSectionWithKey:@"nearby"]; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:[self.routesDataSource sectionForKey:@"nearby"]];
+            [indexPathsNew addObject:indexPath];
+        }
+        [self.collectionView insertItemsAtIndexPaths:indexPathsNew];
+    } completion:nil];
 }
 
 @end
