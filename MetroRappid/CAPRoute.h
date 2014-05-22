@@ -31,8 +31,10 @@ typedef enum {
 @property NSString *routeDesc;
 @property GTFSRouteType routeType;
 @property NSString *routeUrl;
-@property NSString *routeColor;
-@property NSString *routeTextColor;
+@property UIColor *routeColor;
+@property NSString *routeColorHex;
+@property UIColor *routeTextColor;
+@property NSString *routeTextColorHex;
 
 @property (nonatomic, assign) float distance;
 

@@ -16,7 +16,7 @@
 
 /** First array is favorite routes, second is nearby routes. */
 @property NSMutableDictionary *routes;
-@property NSArray *allRoutes;
+@property NSMutableArray *allRoutes;
 
 @end
 
@@ -28,15 +28,16 @@
     if (self = [super init]) {
         // FIXME: How will this work with search? New VC/dataSource?
         _routes = [[NSMutableDictionary alloc] init];
-        _allRoutes = @[];
-        _activityFavorite = NO;
+        _allRoutes = [[NSMutableArray alloc] init];
+        _activityFavorite = YES;
         _activityNearby = YES;
+        _activityAll = YES;
     }
     NSLog(@"CAPRoutesDataSource init");
     return self;
 }
 
-- (void)loadFavorites
+- (void)loadFavoriteRoutes
 {
     // FIXME: For now, default favorite routes like this. In future save and load to/from preferences.
     CAPRoute *route801 = [[CAPRoute alloc] initWithRouteId:@"801"];
@@ -47,7 +48,20 @@
     self.activityFavorite = NO;
 }
 
-- (void)loadNearby:(CLLocation *)location
+- (void)loadAllRoutes
+{
+    NSMutableArray *allRouteIds = [GTFSDB routes];
+    
+    for (NSDictionary *nearbyRouteData in allRouteIds) {
+        CAPRoute *route = [[CAPRoute alloc] initWithRouteId:nearbyRouteData[@"route_id"]];
+        [route update];
+        [self.allRoutes addObject:route];
+    }
+    self.routes[@"all"] = self.allRoutes;
+    self.activityAll = NO;
+}
+
+- (void)loadNearbyRoutes:(CLLocation *)location
 {
     NSMutableArray *nearbyRouteIds = [GTFSDB routesNearLocation:location];
     NSMutableArray *nearbyRoutes = [[NSMutableArray alloc] init];
@@ -58,12 +72,12 @@
         [route update];
         [nearbyRoutes addObject:route];
     }
-
-    self.allRoutes = [nearbyRoutes copy];
+    
+    self.allRoutes = [nearbyRoutes mutableCopy];
 
     self.routes[@"nearby"] = nearbyRoutes;
     self.activityNearby = NO;
-    [self filterNearbyByDistance:0.5];
+    [self filterNearbyByDistance:4.0];
 }
 
 - (void)filterNearbyByDistance:(float)distance
@@ -71,6 +85,8 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"distance < %f", distance]];
     NSArray *filteredRoutes = [self.allRoutes filteredArrayUsingPredicate:predicate];
     NSLog(@"Filtered %d nearby routes", (int)filteredRoutes.count);
+    NSSortDescriptor *distanceSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES];
+    filteredRoutes = [filteredRoutes sortedArrayUsingDescriptors:@[distanceSortDescriptor]];
     self.routes[@"nearby"] = filteredRoutes;
 }
 
@@ -84,6 +100,9 @@
     if ([section isEqualToString:@"nearby"]) {
         return 1;
     }
+    if ([section isEqualToString:@"all"]) {
+        return 2;
+    }
     return 666;
 }
 
@@ -95,6 +114,10 @@
     if (section == 1) {
         return @"nearby";
     }
+    if (section == 2) {
+        return @"all";
+    }
+
     NSLog(@"WTF section %d", (int)section);
     return @"WTF";
 }
@@ -106,7 +129,7 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -123,6 +146,8 @@
     CAPRouteCell *routeCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RouteCell" forIndexPath:indexPath];
     
     routeCell.routeIdLabel.text = route.routeId;
+    [routeCell setRouteName:route.routeLongName];
+    [routeCell setColor:route.routeColor textColor:route.routeTextColor];
     
     return routeCell;
 }
@@ -136,21 +161,24 @@
     NSLog(@"Section indexPath %@ %@", section, indexPath);
 
     if ([section isEqualToString:@"favorites"]) {
-        headerView.sectionLabel.text = @"Realtime";
+        headerView.sectionLabel.text = @"REALTIME";
         if (!self.activityFavorite) {
             [headerView.activityIndicator stopAnimating];
         }
     }
     if ([section isEqualToString:@"nearby"]) {
-        headerView.sectionLabel.text = @"Nearby";
+        headerView.sectionLabel.text = @"NEARBY";
         if (!self.activityNearby) {
             [headerView.activityIndicator stopAnimating];
-            headerView.distanceSlider.hidden = NO;
-            headerView.distanceLabel.text = [NSString stringWithFormat:@"%f", headerView.distanceSlider.value];
-            headerView.distanceLabel.hidden = NO;
         }
     }
-
+    if ([section isEqualToString:@"all"]) {
+        headerView.sectionLabel.text = @"ALL";
+        if (!self.activityAll) {
+            [headerView.activityIndicator stopAnimating];
+        }
+    }
+    
     return headerView;
 }
 

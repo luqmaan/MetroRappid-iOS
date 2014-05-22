@@ -273,79 +273,95 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="OiJ-Ww-VyL">
-                            <size key="itemSize" width="50" height="30"/>
-                            <size key="headerReferenceSize" width="50" height="50"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="OiJ-Ww-VyL">
+                            <size key="itemSize" width="75" height="70"/>
+                            <size key="headerReferenceSize" width="40" height="40"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RouteCell" id="Fwp-ZW-Zht" customClass="CAPRouteCell">
-                                <rect key="frame" x="5" y="50" width="50" height="30"/>
+                                <rect key="frame" x="5" y="45" width="75" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="666" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlM-X2-2ot">
-                                            <rect key="frame" x="6" y="0.0" width="39" height="29"/>
+                                            <rect key="frame" x="10" y="5" width="39" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="21"/>
-                                            <color key="textColor" red="0.75660884380000004" green="0.0" blue="0.032425597309999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="55" translatesAutoresizingMaskIntoConstraints="NO" id="qZ3-Gm-7Yw">
+                                            <rect key="frame" x="10" y="34" width="55" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Slaughter / Manchacha">
+                                                    <attributes>
+                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <font key="NSFont" size="11" name="AvenirNext-Medium"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0XJ-A1-rBQ">
+                                            <rect key="frame" x="0.0" y="69" width="75" height="1"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="Jdm-GV-jpU"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="AlM-X2-2ot" secondAttribute="centerY" constant="0.5" id="ozZ-Kd-YqN"/>
-                                    <constraint firstAttribute="centerX" secondItem="AlM-X2-2ot" secondAttribute="centerX" id="uFE-V8-FB7"/>
+                                    <constraint firstAttribute="trailing" secondItem="0XJ-A1-rBQ" secondAttribute="trailing" id="388-75-9qn"/>
+                                    <constraint firstItem="0XJ-A1-rBQ" firstAttribute="leading" secondItem="Fwp-ZW-Zht" secondAttribute="leading" id="5M9-Re-47y"/>
+                                    <constraint firstItem="AlM-X2-2ot" firstAttribute="leading" secondItem="Fwp-ZW-Zht" secondAttribute="leading" constant="10" id="67b-39-EoV"/>
+                                    <constraint firstItem="qZ3-Gm-7Yw" firstAttribute="leading" secondItem="Fwp-ZW-Zht" secondAttribute="leading" constant="10" id="RSP-k9-RnG"/>
+                                    <constraint firstAttribute="trailing" secondItem="qZ3-Gm-7Yw" secondAttribute="trailing" constant="10" id="Xpp-FG-F5j"/>
+                                    <constraint firstItem="qZ3-Gm-7Yw" firstAttribute="top" secondItem="AlM-X2-2ot" secondAttribute="bottom" id="bLe-PK-kzM"/>
+                                    <constraint firstAttribute="bottom" secondItem="0XJ-A1-rBQ" secondAttribute="bottom" id="gmy-Nc-iJs"/>
+                                    <constraint firstItem="AlM-X2-2ot" firstAttribute="top" secondItem="Fwp-ZW-Zht" secondAttribute="top" constant="5" id="sWY-H1-8Bg"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="routeColorView" destination="0XJ-A1-rBQ" id="wvI-U0-lE1"/>
                                     <outlet property="routeIdLabel" destination="AlM-X2-2ot" id="Gwz-em-506"/>
+                                    <outlet property="routeNameLabel" destination="qZ3-Gm-7Yw" id="GhS-IF-GwM"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RouteHeader" id="zao-Kb-EbP" customClass="CAPRouteHeaderView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqg-uf-4c1">
-                                    <rect key="frame" x="0.0" y="9" width="75" height="31"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqg-uf-4c1">
+                                    <rect key="frame" x="10" y="7" width="65" height="26"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="19"/>
+                                    <color key="textColor" red="0.580046622983871" green="0.5511027642765105" blue="0.55321125736245658" alpha="1" colorSpace="deviceRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JvR-IU-TXn">
-                                    <rect key="frame" x="300" y="15" width="20" height="20"/>
+                                    <rect key="frame" x="280" y="10" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="color" red="0.75660884380000004" green="0.0" blue="0.032425597309999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </activityIndicatorView>
-                                <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.5" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="t5Y-5z-Y3j">
-                                    <rect key="frame" x="204" y="10" width="118" height="31"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="114" id="Fg9-9Z-nH2"/>
-                                        <constraint firstAttribute="height" constant="30" id="Uhe-8g-ltA"/>
-                                    </constraints>
-                                    <connections>
-                                        <action selector="distanceChanged:" destination="d4R-qd-7dt" eventType="touchUpOutside" id="JZz-zC-IJW"/>
-                                        <action selector="distanceChanged:" destination="d4R-qd-7dt" eventType="touchUpInside" id="aOo-k3-VXO"/>
-                                    </connections>
-                                </slider>
                             </subviews>
+                            <color key="backgroundColor" red="0.94720262099999997" green="0.94720262099999997" blue="0.94720262099999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
-                                <constraint firstAttribute="centerY" secondItem="t5Y-5z-Y3j" secondAttribute="centerY" id="Ggv-UB-ndE"/>
-                                <constraint firstAttribute="trailing" secondItem="JvR-IU-TXn" secondAttribute="trailing" id="JRI-qD-9iZ"/>
-                                <constraint firstAttribute="centerY" secondItem="bqg-uf-4c1" secondAttribute="centerY" constant="0.5" id="Wyn-Uk-gId"/>
-                                <constraint firstAttribute="centerY" secondItem="JvR-IU-TXn" secondAttribute="centerY" constant="0.5" id="ZPB-de-bJZ"/>
-                                <constraint firstItem="bqg-uf-4c1" firstAttribute="leading" secondItem="zao-Kb-EbP" secondAttribute="leading" id="fTH-bU-T0e"/>
-                                <constraint firstAttribute="trailing" secondItem="t5Y-5z-Y3j" secondAttribute="trailing" id="wWc-SM-GmF"/>
+                                <constraint firstAttribute="trailing" secondItem="JvR-IU-TXn" secondAttribute="trailing" constant="20" id="JRI-qD-9iZ"/>
+                                <constraint firstAttribute="centerY" secondItem="bqg-uf-4c1" secondAttribute="centerY" constant="0.5" id="WhD-ol-qQD"/>
+                                <constraint firstAttribute="centerY" secondItem="JvR-IU-TXn" secondAttribute="centerY" id="ZPB-de-bJZ"/>
+                                <constraint firstItem="bqg-uf-4c1" firstAttribute="leading" secondItem="zao-Kb-EbP" secondAttribute="leading" constant="10" id="uRf-Lb-QBW"/>
                             </constraints>
                             <connections>
                                 <outlet property="activityIndicator" destination="JvR-IU-TXn" id="5pY-Lb-Bj2"/>
-                                <outlet property="distanceSlider" destination="t5Y-5z-Y3j" id="pv5-x3-s64"/>
                                 <outlet property="sectionLabel" destination="bqg-uf-4c1" id="2qw-zX-TOz"/>
                             </connections>
                         </collectionReusableView>

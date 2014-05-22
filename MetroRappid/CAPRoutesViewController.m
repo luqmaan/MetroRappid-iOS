@@ -25,17 +25,23 @@
     [super viewDidLoad];
     [self layoutViews];
     
-    
     self.routesDataSource = [[CAPRoutesDataSource alloc] init];
     self.collectionView.dataSource = self.routesDataSource;
-    [self.routesDataSource loadFavorites];
-    [self.collectionView reloadData];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     self.locationManager.distanceFilter = 100; // meters
-    [self.locationManager startUpdatingLocation];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.routesDataSource loadFavoriteRoutes];
+        [self.routesDataSource loadAllRoutes];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+            [self.locationManager startUpdatingLocation];
+        });
+    });
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,8 +65,9 @@
 - (void)layoutViews
 {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
-    layout.collectionView.contentInset = UIEdgeInsetsMake(10, 15, 10, 15);
-//    layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//    layout.collectionView.contentInset = UIEdgeInsetsMake(0, 10, 0, 10);
+//    layout.sectionInset = UIEdgeInsetsMake(10, 0, 10, 0);
+
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -70,33 +77,16 @@
     CLLocation *lastLocation = [locations lastObject];
     NSLog(@"Got location %@", lastLocation);
     
-//    if (lastLocation.horizontalAccuracy > kCLLocationAccuracyHundredMeters) {
+    if (lastLocation.horizontalAccuracy > kCLLocationAccuracyKilometer) {
         [locationManager stopUpdatingLocation];
-        [self.routesDataSource loadNearby:lastLocation];
-        [self.collectionView reloadData];
-//    }
-}
 
-- (IBAction)distanceChanged:(UISlider *)sender {
-    float newDistance = (float)sender.value;
-    NSLog(@"New distance %f", newDistance);
-    
-    [self.collectionView performBatchUpdates:^{
-        NSMutableArray *indexPathsOld = [[NSMutableArray alloc] init];
-        for (int i = 0; i < [self.routesDataSource numberOfItemsInSectionWithKey:@"nearby"]; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:[self.routesDataSource sectionForKey:@"nearby"]];
-            [indexPathsOld addObject:indexPath];
-        }
-        [self.routesDataSource filterNearbyByDistance:newDistance];
-        [self.collectionView deleteItemsAtIndexPaths:indexPathsOld];
-        
-        NSMutableArray *indexPathsNew = [[NSMutableArray alloc] init];
-        for (int i = 0; i < [self.routesDataSource numberOfItemsInSectionWithKey:@"nearby"]; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:[self.routesDataSource sectionForKey:@"nearby"]];
-            [indexPathsNew addObject:indexPath];
-        }
-        [self.collectionView insertItemsAtIndexPaths:indexPathsNew];
-    } completion:nil];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self.routesDataSource loadNearbyRoutes:lastLocation];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+            });
+        });
+    }
 }
 
 @end

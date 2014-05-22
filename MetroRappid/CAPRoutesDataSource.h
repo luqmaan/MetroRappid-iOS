@@ -14,9 +14,11 @@
 
 @property (nonatomic, assign) BOOL activityFavorite;
 @property (nonatomic, assign) BOOL activityNearby;
+@property (nonatomic, assign) BOOL activityAll;
 
-- (void)loadFavorites;
-- (void)loadNearby:(CLLocation *)location;
+- (void)loadFavoriteRoutes;
+- (void)loadAllRoutes;
+- (void)loadNearbyRoutes:(CLLocation *)location;
 - (void)filterNearbyByDistance:(float)distance;
 - (NSInteger)sectionForKey:(NSString *)section;
 - (NSString*)keyForSection:(NSInteger)section;

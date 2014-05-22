@@ -130,6 +130,26 @@ static FMDatabaseQueue *queue;
     return data;
 }
 
++ (NSMutableArray *)routes
+{
+    NSString *query = [self queryWithFormat:@[@"SELECT route_id",
+                                              @"FROM routes"
+                                              ]];
+    NSMutableArray *__block data = [[NSMutableArray alloc] init];
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        NSLog(@"Executing query %@", query);
+
+        FMResultSet *rs = [db executeQuery:query];
+        while([rs next]) {
+            [data addObject:[rs resultDictionary]];
+        }
+    }];
+    
+    return data;
+    
+}
+
 + (NSMutableArray *)routesNearLocation:(CLLocation *)location
 {
     NSString *query = [self queryWithFormat:@[@"SELECT route_id, ledistance",

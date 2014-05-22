@@ -11,6 +11,10 @@
 @interface CAPRouteCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *routeIdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *routeNameLabel;
+@property (weak, nonatomic) IBOutlet UIView *routeColorView;
 
+- (void)setRouteName:(NSString *)text;
+- (void)setColor:(UIColor *)color textColor:(UIColor *)textColor;
 
 @end

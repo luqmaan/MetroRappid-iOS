@@ -11,6 +11,4 @@
 
 @interface CAPRoutesViewController : UICollectionViewController <CLLocationManagerDelegate>
 
-- (IBAction)distanceChanged:(id)sender;
-
 @end

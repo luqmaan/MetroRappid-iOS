@@ -29,5 +29,6 @@ typedef enum {
 + (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(GTFSDirection)direction;
 + (NSDictionary *)routeWithId:(NSString *)routeId;
 + (NSMutableArray *)routesNearLocation:(CLLocation *)location;
++ (NSMutableArray *)routes;
 
 @end
