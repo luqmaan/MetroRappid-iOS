@@ -16,5 +16,7 @@
 
 - (void)setRouteName:(NSString *)text;
 - (void)setColor:(UIColor *)color textColor:(UIColor *)textColor;
+- (void)appearSelected;
+- (void)appearDeselected;
 
 @end

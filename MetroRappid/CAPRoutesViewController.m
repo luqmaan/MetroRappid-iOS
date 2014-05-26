@@ -23,10 +23,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self layoutViews];
     
     self.routesDataSource = [[CAPRoutesDataSource alloc] init];
     self.collectionView.dataSource = self.routesDataSource;
+    self.collectionView.delegate = self.routesDataSource;
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -59,16 +59,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-#pragma mark - Layout
-
-- (void)layoutViews
-{
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
-//    layout.collectionView.contentInset = UIEdgeInsetsMake(0, 10, 0, 10);
-//    layout.sectionInset = UIEdgeInsetsMake(10, 0, 10, 0);
-
-}
 
 #pragma mark - CLLocationManagerDelegate
 

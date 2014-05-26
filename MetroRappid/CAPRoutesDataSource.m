@@ -138,6 +138,8 @@
     return [self.routes[key] count];
 }
 
+#pragma mark - Cell
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *key = [self keyForSection:indexPath.section];
@@ -149,9 +151,29 @@
     [routeCell setRouteName:route.routeLongName];
     [routeCell setColor:route.routeColor textColor:route.routeTextColor];
     
+    if (routeCell.selected) {
+        [routeCell appearSelected];
+    }
+    else {
+        [routeCell appearDeselected];
+    }
+    
     return routeCell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CAPRouteCell *cell = (CAPRouteCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell appearSelected];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CAPRouteCell *cell = (CAPRouteCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell appearDeselected];
+}
+
+#pragma mark - Header
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -181,6 +203,5 @@
     
     return headerView;
 }
-
 
 @end

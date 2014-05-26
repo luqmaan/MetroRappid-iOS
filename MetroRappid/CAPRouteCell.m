@@ -39,5 +39,18 @@
     // self.routeIdLabel.textColor = textColor;
 }
 
+- (void)appearSelected
+{
+    self.backgroundColor = [UIColor colorWithHue:0.997 saturation:1.000 brightness:0.773 alpha:1];
+    self.routeNameLabel.textColor = [UIColor whiteColor];
+    self.routeIdLabel.textColor = [UIColor whiteColor];
+}
+
+- (void)appearDeselected
+{
+    self.backgroundColor = [UIColor clearColor];
+    self.routeNameLabel.textColor = [UIColor darkGrayColor];
+    self.routeIdLabel.textColor = [UIColor darkGrayColor];
+}
 
 @end

@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface CAPRoutesDataSource : NSObject <UICollectionViewDataSource>
+@interface CAPRoutesDataSource : NSObject <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, assign) BOOL activityFavorite;
 @property (nonatomic, assign) BOOL activityNearby;
