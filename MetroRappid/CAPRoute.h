@@ -38,6 +38,8 @@ typedef enum {
 
 @property (nonatomic, assign) float distance;
 
+@property NSMutableArray *trips;
+
 - (id)initWithRouteId:(NSString *)routeId;
 - (void)update;
 

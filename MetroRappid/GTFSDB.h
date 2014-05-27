@@ -30,5 +30,7 @@ typedef enum {
 + (NSDictionary *)routeWithId:(NSString *)routeId;
 + (NSMutableArray *)routesNearLocation:(CLLocation *)location;
 + (NSMutableArray *)routes;
++ (NSMutableArray *)activeTripsForRoute:(NSString *)routeId;
++ (NSMutableArray *)shapeWithId:(NSString *)shapeId;
 
 @end

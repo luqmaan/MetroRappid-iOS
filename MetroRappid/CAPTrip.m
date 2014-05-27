@@ -8,12 +8,32 @@
 
 #import "CAPTrip.h"
 #import "CAPModelUtils.h"
+#import "GTFSDB.h"
 
 @implementation CAPTrip
 
+- (void)updateShape
+{
+    // TODO: use this https://github.com/luqmaan/ShapeReducer-objc
+}
+
+- (void)updateWithGTFS:(NSDictionary *)data
+{
+    self.blockId = data[@"block_id"];
+    self.directionId = data[@"direction_id"];
+    self.routeId = data[@"route_id"];
+    self.serviceId = data[@"service_id"];
+    self.shapeId = data[@"shape_id"];
+    self.tripHeadsign = data[@"trip_headsign"];
+    self.tripId = data[@"trip_id"];
+    self.tripShortName = data[@"trip_short_name"];
+    self.tripType = data[@"trip_type"];
+    self.bikesAllowed = [data[@"bikes_allowed"] integerValue];
+    self.wheelchairAccessible = [data[@"wheelchair_accessible"] integerValue];
+}
+
 - (void)updateWithNextBusAPI:(NSDictionary *)data
 {
-    self.route = data[@"Route"];
     self.publicRoute = data[@"Publicroute"];
     self.sign = data[@"Sign"];
     self.leOperator = data[@"Operator"];

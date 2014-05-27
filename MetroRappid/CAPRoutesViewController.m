@@ -41,7 +41,6 @@
             [self.locationManager startUpdatingLocation];
         });
     });
-    
 }
 
 - (void)didReceiveMemoryWarning

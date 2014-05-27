@@ -123,7 +123,6 @@ static FMDatabaseQueue *queue;
         FMResultSet *rs = [db executeQuery:query];
         [rs next];
         data = [rs resultDictionary];
-//        NSLog(@"data %@", data);
         while([rs next]) ;
     }];
  
@@ -147,7 +146,57 @@ static FMDatabaseQueue *queue;
     }];
     
     return data;
+}
+
++ (NSMutableArray *)activeTripsForRoute:(NSString *)routeId
+{
+    /* FIXME: This query may be returning the wrong shape for some route.
+     * For example, run it on 392 and GROUP BY shape_id instead.
+     */
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    NSString *day = [[dateFormatter stringFromDate:[NSDate date]] lowercaseString];
+    NSString *query = [self queryWithFormat:@[@"SELECT * FROM trips, calendar",
+                                              @"WHERE route_id = %@",
+                                              @"AND calendar.service_id = trips.service_id",
+                                              @"AND calendar.%@ = 1",
+                                              @"GROUP BY trip_headsign;"],
+                       routeId,
+                       day];
+    
+    NSMutableArray *__block data = [[NSMutableArray alloc] init];
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        NSLog(@"Executing query %@", query);
+        
+        FMResultSet *rs = [db executeQuery:query];
+        while([rs next]) {
+            [data addObject:[rs resultDictionary]];
+        }
+    }];
+    
+    return data;
+}
+
++ (NSMutableArray *)shapeWithId:(NSString *)shapeId
+{
+    NSString *query = [self queryWithFormat:@[@"SELECT * FROM shapes",
+                                              @"WHERE shape_id = %@"],
+                       shapeId];
+    
+    NSMutableArray *__block data = [[NSMutableArray alloc] init];
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        NSLog(@"Executing query %@", query);
+        
+        FMResultSet *rs = [db executeQuery:query];
+        while([rs next]) {
+            [data addObject:[rs resultDictionary]];
+        }
+    }];
+    
+    return data;
 }
 
 + (NSMutableArray *)routesNearLocation:(CLLocation *)location

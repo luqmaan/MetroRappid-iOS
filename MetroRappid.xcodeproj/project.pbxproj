@@ -51,6 +51,7 @@
 		8CB125121927EA32008F25C7 /* CAPRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB125111927EA32008F25C7 /* CAPRoute.m */; };
 		8CB125131927EA32008F25C7 /* CAPRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB125111927EA32008F25C7 /* CAPRoute.m */; };
 		8CC8EC061933C65C0027F15D /* CAPRouteMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8EC051933C65C0027F15D /* CAPRouteMapViewController.m */; };
+		8CC8EC101934478D0027F15D /* CAPShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8EC0F1934478D0027F15D /* CAPShape.m */; };
 		8CD4961118F2D5D60088E8B5 /* CAPModelUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4961018F2D5D60088E8B5 /* CAPModelUtils.m */; };
 		8CD4961618F2E3D30088E8B5 /* CAPGTFSDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4961518F2E3D30088E8B5 /* CAPGTFSDatabaseTests.m */; };
 		8CD4961818F2E5330088E8B5 /* CAPModelUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4961718F2E5330088E8B5 /* CAPModelUtilsTests.m */; };
@@ -119,6 +120,8 @@
 		8CB125111927EA32008F25C7 /* CAPRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRoute.m; sourceTree = "<group>"; };
 		8CC8EC041933C65C0027F15D /* CAPRouteMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPRouteMapViewController.h; sourceTree = "<group>"; };
 		8CC8EC051933C65C0027F15D /* CAPRouteMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPRouteMapViewController.m; sourceTree = "<group>"; };
+		8CC8EC0E1934478D0027F15D /* CAPShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPShape.h; sourceTree = "<group>"; };
+		8CC8EC0F1934478D0027F15D /* CAPShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPShape.m; sourceTree = "<group>"; };
 		8CD4960F18F2D5D60088E8B5 /* CAPModelUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPModelUtils.h; sourceTree = "<group>"; };
 		8CD4961018F2D5D60088E8B5 /* CAPModelUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPModelUtils.m; sourceTree = "<group>"; };
 		8CD4961518F2E3D30088E8B5 /* CAPGTFSDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPGTFSDatabaseTests.m; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 				8CB1250D19271569008F25C7 /* CAPRoutesDataSource.m */,
 				8CB125101927EA32008F25C7 /* CAPRoute.h */,
 				8CB125111927EA32008F25C7 /* CAPRoute.m */,
+				8CC8EC0E1934478D0027F15D /* CAPShape.h */,
+				8CC8EC0F1934478D0027F15D /* CAPShape.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -516,6 +521,7 @@
 				8C67C49E1922F1E500FA94D4 /* CAPRoutesViewController.m in Sources */,
 				8C6E1DD11929948300DA52CE /* CAPRouteCell.m in Sources */,
 				8C7FE65318BAC85700A802A7 /* GTFSDB.m in Sources */,
+				8CC8EC101934478D0027F15D /* CAPShape.m in Sources */,
 				8C7FE64918BAC83100A802A7 /* CAPNextBus.m in Sources */,
 				8C7FE61118BAC45A00A802A7 /* CAPAppDelegate.m in Sources */,
 				8C063EEA18BEE69600F4ED6A /* CAPRealtimeMapViewController.m in Sources */,

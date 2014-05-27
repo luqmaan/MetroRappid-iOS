@@ -17,6 +17,8 @@
 
 @implementation CAPRoute
 
+@synthesize trips;
+
 - (id)initWithRouteId:(NSString *)routeId
 {
     if (self = [super init]) {
