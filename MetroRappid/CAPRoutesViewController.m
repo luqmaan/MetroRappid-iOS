@@ -8,6 +8,7 @@
 
 #import "CAPRoutesViewController.h"
 #import "CAPRoutesDataSource.h"
+#import "CAPRouteMapViewController.h"
 
 
 @interface CAPRoutesViewController ()
@@ -53,14 +54,16 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the n}ew view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
-    @"RouteCellSelectedSegue";
-    
-
-    
-    
+   if ([segue.identifier isEqualToString:@"RouteCellSelectedSegue"]) {
+       CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.collectionView];
+       NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:buttonPosition];
+       CAPRoute *route = [self.routesDataSource objectForIndexPath:indexPath];
+       
+       NSLog(@"RouteCellSelectedSegue with %@", route);
+       
+       CAPRouteMapViewController *destinationVC = [segue destinationViewController];
+       destinationVC.route = route;
+    }
 }
 
 

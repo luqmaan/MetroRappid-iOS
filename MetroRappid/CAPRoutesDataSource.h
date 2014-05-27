@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "CAPRoute.h"
 
 
 @interface CAPRoutesDataSource : NSObject <UICollectionViewDataSource>
@@ -23,5 +24,6 @@
 - (NSInteger)sectionForKey:(NSString *)section;
 - (NSString*)keyForSection:(NSInteger)section;
 - (NSInteger)numberOfItemsInSectionWithKey:(NSString *)key;
+- (CAPRoute *)objectForIndexPath:(NSIndexPath *)indexPath;
 
 @end

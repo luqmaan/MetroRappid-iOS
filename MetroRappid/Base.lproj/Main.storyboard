@@ -385,13 +385,38 @@
             <objects>
                 <viewController id="n81-S8-teB" customClass="CAPRouteMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cl2-Xc-1uM"/>
-                        <viewControllerLayoutGuide type="bottom" id="Qae-56-erJ"/>
+                        <viewControllerLayoutGuide type="top" id="SMz-o0-BpH"/>
+                        <viewControllerLayoutGuide type="bottom" id="Go0-MK-6Ty"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cHo-Qp-HWu" customClass="CAPRouteCell">
+                    <view key="view" contentMode="scaleToFill" id="rWo-Jg-gRW">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gCR-5U-BBB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.77297985550000003" green="0.0" blue="0.0173913464" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1GU-Gt-bp5">
+                                <rect key="frame" x="110" y="456" width="101" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="North"/>
+                                    <segment title="South"/>
+                                </segments>
+                                <color key="tintColor" red="0.77297985550000003" green="0.0" blue="0.0173913464" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gCR-5U-BBB" firstAttribute="top" secondItem="SMz-o0-BpH" secondAttribute="bottom" id="Ach-ac-wT0"/>
+                            <constraint firstAttribute="centerX" secondItem="1GU-Gt-bp5" secondAttribute="centerX" constant="-0.5" id="RJl-wN-8Xr"/>
+                            <constraint firstItem="gCR-5U-BBB" firstAttribute="leading" secondItem="rWo-Jg-gRW" secondAttribute="leading" id="SGK-Rs-yCn"/>
+                            <constraint firstItem="Go0-MK-6Ty" firstAttribute="top" secondItem="gCR-5U-BBB" secondAttribute="bottom" id="Ufr-KD-Ll2"/>
+                            <constraint firstItem="Go0-MK-6Ty" firstAttribute="top" secondItem="1GU-Gt-bp5" secondAttribute="bottom" constant="20" id="WXl-Nt-2dy"/>
+                            <constraint firstAttribute="trailing" secondItem="gCR-5U-BBB" secondAttribute="trailing" id="kjN-j8-FkK"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="801" id="477-8n-aI2"/>
                 </viewController>

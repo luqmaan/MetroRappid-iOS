@@ -7,7 +7,6 @@
 //
 
 #import "CAPRoutesDataSource.h"
-#import "CAPRoute.h"
 #import "GTFSDB.h"
 #import "CAPRouteCell.h"
 #import "CAPRouteHeaderView.h"
@@ -136,6 +135,11 @@
 {
     NSString *key = [self keyForSection:section];
     return [self.routes[key] count];
+}
+
+- (CAPRoute *)objectForIndexPath:(NSIndexPath *)indexPath
+{
+    return self.routes[[self keyForSection:indexPath.section]][indexPath.row];
 }
 
 #pragma mark - Cell
