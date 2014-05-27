@@ -42,6 +42,10 @@
     self.routeColor = [[self class] colorFromHexString:self.routeColorHex];
     self.routeTextColorHex = self.gtfsData[@"route_text_color"];
     self.routeTextColor = [[self class] colorFromHexString:self.routeTextColorHex];
+    
+    if ([self.routeId isEqualToString:@"801"] || [self.routeId isEqualToString:@"550"]) {
+        self.routeColor = [UIColor colorWithHue:0.997 saturation:1.000 brightness:0.773 alpha:1];
+    }
 }
 
 // http://stackoverflow.com/a/12397366/854025

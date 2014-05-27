@@ -151,26 +151,7 @@
     [routeCell setRouteName:route.routeLongName];
     [routeCell setColor:route.routeColor textColor:route.routeTextColor];
     
-    if (routeCell.selected) {
-        [routeCell appearSelected];
-    }
-    else {
-        [routeCell appearDeselected];
-    }
-    
     return routeCell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CAPRouteCell *cell = (CAPRouteCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell appearSelected];
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CAPRouteCell *cell = (CAPRouteCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell appearDeselected];
 }
 
 #pragma mark - Header

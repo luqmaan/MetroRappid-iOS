@@ -26,7 +26,6 @@
     
     self.routesDataSource = [[CAPRoutesDataSource alloc] init];
     self.collectionView.dataSource = self.routesDataSource;
-    self.collectionView.delegate = self.routesDataSource;
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -49,16 +48,21 @@
     [super didReceiveMemoryWarning];
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
+    // Get the n}ew view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    @"RouteCellSelectedSegue";
+    
+
+    
+    
 }
-*/
+
 
 #pragma mark - CLLocationManagerDelegate
 

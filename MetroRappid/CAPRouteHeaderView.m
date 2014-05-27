@@ -13,6 +13,8 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    [super drawRect:rect];
+
     // http://stackoverflow.com/a/22781815/854025
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(ctx, 0.5f * [[UIScreen mainScreen] scale]);

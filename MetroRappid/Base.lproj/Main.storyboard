@@ -273,29 +273,22 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="OiJ-Ww-VyL">
-                            <size key="itemSize" width="75" height="70"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="OiJ-Ww-VyL">
+                            <size key="itemSize" width="70" height="70"/>
                             <size key="headerReferenceSize" width="40" height="40"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="10"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="5" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RouteCell" id="Fwp-ZW-Zht" customClass="CAPRouteCell">
-                                <rect key="frame" x="5" y="45" width="75" height="70"/>
+                                <rect key="frame" x="10" y="50" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="75" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="666" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlM-X2-2ot">
-                                            <rect key="frame" x="10" y="5" width="39" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="21"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="55" translatesAutoresizingMaskIntoConstraints="NO" id="qZ3-Gm-7Yw">
-                                            <rect key="frame" x="10" y="34" width="55" height="31"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="56" translatesAutoresizingMaskIntoConstraints="NO" id="qZ3-Gm-7Yw">
+                                            <rect key="frame" x="7" y="29" width="56" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Slaughter / Manchacha">
@@ -308,31 +301,42 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="666" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlM-X2-2ot">
+                                            <rect key="frame" x="7" y="5" width="36" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="oVa-qg-F9B"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0XJ-A1-rBQ">
-                                            <rect key="frame" x="0.0" y="69" width="75" height="1"/>
+                                            <rect key="frame" x="49" y="7" width="14" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="Jdm-GV-jpU"/>
+                                                <constraint firstAttribute="height" constant="14" id="Jdm-GV-jpU"/>
+                                                <constraint firstAttribute="width" constant="14" id="NxI-n3-MJX"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="0XJ-A1-rBQ" secondAttribute="trailing" id="388-75-9qn"/>
-                                    <constraint firstItem="0XJ-A1-rBQ" firstAttribute="leading" secondItem="Fwp-ZW-Zht" secondAttribute="leading" id="5M9-Re-47y"/>
-                                    <constraint firstItem="AlM-X2-2ot" firstAttribute="leading" secondItem="Fwp-ZW-Zht" secondAttribute="leading" constant="10" id="67b-39-EoV"/>
-                                    <constraint firstItem="qZ3-Gm-7Yw" firstAttribute="leading" secondItem="Fwp-ZW-Zht" secondAttribute="leading" constant="10" id="RSP-k9-RnG"/>
-                                    <constraint firstAttribute="trailing" secondItem="qZ3-Gm-7Yw" secondAttribute="trailing" constant="10" id="Xpp-FG-F5j"/>
-                                    <constraint firstItem="qZ3-Gm-7Yw" firstAttribute="top" secondItem="AlM-X2-2ot" secondAttribute="bottom" id="bLe-PK-kzM"/>
-                                    <constraint firstAttribute="bottom" secondItem="0XJ-A1-rBQ" secondAttribute="bottom" id="gmy-Nc-iJs"/>
-                                    <constraint firstItem="AlM-X2-2ot" firstAttribute="top" secondItem="Fwp-ZW-Zht" secondAttribute="top" constant="5" id="sWY-H1-8Bg"/>
+                                    <constraint firstItem="AlM-X2-2ot" firstAttribute="leading" secondItem="Fwp-ZW-Zht" secondAttribute="leading" constant="7" id="4bX-VV-IMY"/>
+                                    <constraint firstItem="qZ3-Gm-7Yw" firstAttribute="top" secondItem="AlM-X2-2ot" secondAttribute="bottom" constant="-1" id="7TZ-nc-T5F"/>
+                                    <constraint firstItem="AlM-X2-2ot" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Fwp-ZW-Zht" secondAttribute="top" constant="5" id="E1J-Ar-44x"/>
+                                    <constraint firstAttribute="trailing" secondItem="0XJ-A1-rBQ" secondAttribute="trailing" constant="7" id="S4c-iB-FvP"/>
+                                    <constraint firstAttribute="centerY" secondItem="qZ3-Gm-7Yw" secondAttribute="centerY" priority="750" id="rWY-TC-Xmy"/>
+                                    <constraint firstItem="qZ3-Gm-7Yw" firstAttribute="leading" secondItem="Fwp-ZW-Zht" secondAttribute="leading" constant="7" id="uWG-DO-enb"/>
+                                    <constraint firstItem="0XJ-A1-rBQ" firstAttribute="top" secondItem="Fwp-ZW-Zht" secondAttribute="top" constant="7" id="vQN-np-y2s"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="routeColorView" destination="0XJ-A1-rBQ" id="wvI-U0-lE1"/>
                                     <outlet property="routeIdLabel" destination="AlM-X2-2ot" id="Gwz-em-506"/>
                                     <outlet property="routeNameLabel" destination="qZ3-Gm-7Yw" id="GhS-IF-GwM"/>
+                                    <segue destination="n81-S8-teB" kind="push" identifier="RouteCellSelectedSegue" id="dNv-hn-7ls"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -375,6 +379,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4SQ-cd-80O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="867" y="451"/>
+        </scene>
+        <!--Route Map View Controller - 801-->
+        <scene sceneID="Lbc-uk-uRG">
+            <objects>
+                <viewController id="n81-S8-teB" customClass="CAPRouteMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cl2-Xc-1uM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qae-56-erJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cHo-Qp-HWu" customClass="CAPRouteCell">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="801" id="477-8n-aI2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ixg-pB-boQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1264" y="451"/>
         </scene>
         <!--Realtime View Controller-->
         <scene sceneID="jFt-29-cN4">
