@@ -11,14 +11,6 @@
 
 @implementation CAPRouteCell
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)setRouteName:(NSString *)text
 {
     NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
@@ -38,10 +30,6 @@
     self.routeColorView.layer.borderColor = [color CGColor];
     self.routeColorView.layer.borderWidth = 2.0f;
     self.routeColorView.layer.cornerRadius = 7.0f;
-    self.layer.borderColor = [[UIColor colorWithHue:0.500 saturation:0.081 brightness:0.431 alpha:1] CGColor];
-
-    // nope, the colors they use are horrible
-    // self.routeIdLabel.textColor = textColor;
 }
 
 -(void)setHighlighted:(BOOL)highlighted {
