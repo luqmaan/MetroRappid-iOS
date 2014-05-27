@@ -26,10 +26,8 @@
 
 - (void)setColor:(UIColor *)color textColor:(UIColor *)textColor
 {
-    self.routeColorView.backgroundColor = [UIColor clearColor];
-    self.routeColorView.layer.borderColor = [color CGColor];
-    self.routeColorView.layer.borderWidth = 2.0f;
-    self.routeColorView.layer.cornerRadius = 7.0f;
+    self.routeColorView.backgroundColor = color;
+    self.routeColorView.layer.cornerRadius = 5.0f;
 }
 
 -(void)setHighlighted:(BOOL)highlighted {
