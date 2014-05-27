@@ -37,14 +37,6 @@
     CGContextMoveToPoint(ctx, CGRectGetMinX(rect), CGRectGetMaxY(rect));
     CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
     CGContextStrokePath(ctx);
-    
-//    CALayer *bottomBorder = [CALayer layer];
-//    CGRect bottomBorderRect = rect;
-//    bottomBorderRect.size.height = 1.0f;
-//    bottomBorderRect.origin.y = rect.origin.y + rect.size.height - 1.0f;
-//    bottomBorder.frame = bottomBorderRect;
-//    bottomBorder.backgroundColor = [[UIColor lightGrayColor] CGColor];
-//    [self.layer addSublayer:bottomBorder];
 }
 
 @end

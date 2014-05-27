@@ -13,7 +13,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (weak, nonatomic) IBOutlet UISlider *distanceSlider;
-@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
 @end
