@@ -100,7 +100,7 @@ static FMDatabaseQueue *queue;
 
     NSMutableString *format = [[NSMutableString alloc]  init];
     for (NSString *statement in statements) {
-        [format appendString:@"\n "];
+        [format appendString:@"\n"];
         [format appendString:statement];
     }
     
@@ -148,35 +148,53 @@ static FMDatabaseQueue *queue;
     return data;
 }
 
-+ (NSMutableArray *)activeTripsForRoute:(NSString *)routeId
++ (NSMutableArray *)tripsForRoute:(NSString *)routeId
 {
-    /* FIXME: This query may be returning the wrong shape for some route.
-     * For example, run it on 392 and GROUP BY shape_id instead.
+    /* FIXME: This query returns multiple shapes for 550 and 392.
+     * This may be because CapMetro doesn't support hour precision.
+     * 550 on saturday has two real shapes, there isn't a way to convert that back to the time of day for which it is valid.
+     * So instead, the safe choice seems to be to choose the shape with the most points.
+     * So, only return the direction 0 and 1 trips with the highest shape count.
      */
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
     NSString *day = [[dateFormatter stringFromDate:[NSDate date]] lowercaseString];
-    NSString *query = [self queryWithFormat:@[@"SELECT * FROM trips, calendar",
-                                              @"WHERE route_id = %@",
-                                              @"AND calendar.service_id = trips.service_id",
-                                              @"AND calendar.%@ = 1",
-                                              @"GROUP BY trip_headsign;"],
+    NSString *query = [self queryWithFormat:@[@"SELECT shapes.shape_id, count(*) as shapes_count, *",
+                                              @"FROM shapes,",
+                                              @"(",
+                                              @"    SELECT * FROM trips, calendar",
+                                              @"    WHERE route_id = %@",
+                                              @"    AND calendar.service_id = trips.service_id",
+                                              @"    AND calendar.%@ = 1",
+                                              @"    GROUP BY shape_id",
+                                              @") as trips",
+                                              @"WHERE shapes.shape_id = trips.shape_id",
+                                              @"GROUP BY shapes.shape_id",
+                                              @"ORDER BY shapes_count DESC"],
                        routeId,
                        day];
     
-    NSMutableArray *__block data = [[NSMutableArray alloc] init];
+    NSDictionary *__block maxDirection0 = nil;
+    NSDictionary *__block maxDirection1 = nil;
     
     [queue inDatabase:^(FMDatabase *db) {
         NSLog(@"Executing query %@", query);
         
         FMResultSet *rs = [db executeQuery:query];
         while([rs next]) {
-            [data addObject:[rs resultDictionary]];
+            NSDictionary *trip = [rs resultDictionary];
+            if ([trip[@"direction_id"] intValue] == 0 && (!maxDirection0 || trip[@"shapes_count"] > maxDirection0[@"shapes_count"])) {
+                maxDirection0 = trip;
+            }
+            if ([trip[@"direction_id"] intValue] == 1 && (!maxDirection1 || trip[@"shapes_count"] > maxDirection1[@"shapes_count"])) {
+                maxDirection1 = trip;
+            }
         }
     }];
+
     
-    return data;
+    return [@[maxDirection0, maxDirection1] mutableCopy];
 }
 
 + (NSMutableArray *)shapeWithId:(NSString *)shapeId
