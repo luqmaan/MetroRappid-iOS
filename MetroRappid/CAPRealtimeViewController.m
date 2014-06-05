@@ -57,7 +57,7 @@
 - (void)update
 {
     int vehicleCount = 0;
-    for (CAPTrip *trip in self.stop.trips) if (trip.realtime.valid) vehicleCount++;
+//    for (CAPTrip *trip in self.stop.trips) if (trip.realtime.valid) vehicleCount++;
     NSLog(@"Updating map with %d vehicles", vehicleCount);
 
     self.navigationItem.title = self.stop.name;

@@ -10,6 +10,10 @@
 #import "CAPModelUtils.h"
 #import "GTFSDB.h"
 
+@interface CAPTrip ()
+
+@end
+
 @implementation CAPTrip
 
 - (void)updateShape
@@ -46,8 +50,8 @@
     self.tripId = data[@"Tripid"];
     self.skedTripId = data[@"Skedtripid"];
     self.adherence = data[@"Adherence"];
-    self.realtime = [[CAPTripRealtime alloc] init];
-    [self.realtime updateWithNextBusAPI:data[@"Realtime"]];
+//    self.realtime = [[CAPTripRealtime alloc] init];
+//    [self.realtime updateWithNextBusAPI:data[@"Realtime"]];
     self.block = data[@"Block"];
     self.exception = data[@"Exception"];
     self.atisStopId = data[@"Atisstopid"];
@@ -57,10 +61,10 @@
     self.estimatedDate = [CAPModelUtils dateFromCapMetroTime:data[@"Estimatedtime"] withReferenceDate:now];
     self.estimatedTime = [CAPModelUtils timeBetweenStart:now andEnd:self.estimatedDate];
 }
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<Trip: %@ scheduled: %@, estimated: %@, realtime: %@>", self.tripId, self.tripTime, self.estimatedTime, self.realtime.valid ? @"true" : @"false"];
-}
+//
+//- (NSString *)description
+//{
+////    return [NSString stringWithFormat:@"<Trip: %@ scheduled: %@, estimated: %@, realtime: %@>", self.tripId, self.tripTime, self.estimatedTime, self.realtime.valid ? @"true" : @"false"];
+//}
 
 @end

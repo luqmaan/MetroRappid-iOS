@@ -8,7 +8,7 @@
 
 #import "CAPRoutesViewController.h"
 #import "CAPRoutesDataSource.h"
-#import "CAPRouteMapViewController.h"
+#import "MetroRappid-Swift.h"
 
 
 @interface CAPRoutesViewController ()
@@ -60,7 +60,7 @@
        
        NSLog(@"RouteCellSelectedSegue with %@", route);
        
-       CAPRouteMapViewController *destinationVC = [segue destinationViewController];
+       CAPRouteMapViewController *destinationVC = (CAPRouteMapViewController *)[segue destinationViewController];
        destinationVC.route = route;
     }
 }

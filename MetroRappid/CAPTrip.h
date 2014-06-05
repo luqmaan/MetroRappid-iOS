@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CAPTripRealtime.h"
+//#import "CAPTripRealtime.h"
 #import "CAPShape.h"
 
 @interface CAPTrip : NSObject
@@ -47,7 +47,7 @@
 @property NSString *atisStopId;
 @property NSString *stopId;
 
-@property CAPTripRealtime *realtime;
+//@property CAPTripRealtime *realtime;
 
 - (void)updateWithGTFS:(NSDictionary *)data;
 - (void)updateWithNextBusAPI:(NSDictionary *)data;
