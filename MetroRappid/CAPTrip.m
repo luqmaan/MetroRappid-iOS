@@ -28,7 +28,7 @@
     self.routeId = data[@"route_id"];
     self.serviceId = data[@"service_id"];
     self.shapeId = data[@"shape_id"];
-    self.tripHeadsign = data[@"trip_headsign"];
+    self.tripHeadsign = [data[@"trip_headsign"] capitalizedString];
     self.tripId = data[@"trip_id"];
     self.tripShortName = data[@"trip_short_name"];
     self.tripType = data[@"trip_type"];

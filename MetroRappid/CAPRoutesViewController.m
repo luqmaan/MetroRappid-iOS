@@ -8,6 +8,7 @@
 
 #import "CAPRoutesViewController.h"
 #import "CAPRoutesDataSource.h"
+#import "CAPTrip.h"
 #import "MetroRappid-Swift.h"
 
 
