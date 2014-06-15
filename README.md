@@ -15,7 +15,7 @@ If you're interested in working together on this app, please feel free to contac
 The Data
 --
 
-For realtime data, MetroRappid uses CapMetro's hidden and undocumented "API". A [list of endpoints we've found in the API](https://github.com/luqmaan/MetroRappid/wiki/The-CapMetro-API]) is available on the wiki. Example responses can be found in [MetroRappidTests/Data](https://github.com/luqmaan/MetroRappid/tree/dev/MetroRappidTests/Data).
+For realtime data, MetroRappid uses CapMetro's hidden and undocumented "API". A [list of endpoints we've found in the API](https://github.com/luqmaan/MetroRappid/wiki/The-CapMetro-API) is available on the wiki. Example responses can be found in [MetroRappidTests/Data](https://github.com/luqmaan/MetroRappid/tree/dev/MetroRappidTests/Data).
 
 For static data, MetroRappid uses the [GTFS files published by CapMetro](http://www.capmetro.org/gisdata/google_transit.zip).
 
