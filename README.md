@@ -6,8 +6,8 @@ Fast realtime arrival info for Austin's MetroRapid bus. http://metrorappid.com/
 An attempt at reverse engineering and speeding up the CapMetro app for my use case: view the MetroRapid realtime arrivals *quickly*.
 
 - [MetroRappid iOS on the the App Store](https://itunes.apple.com/us/app/metrorappid/id827603682?ls=1&mt=8)
-- [MetroRappid Android](https://github.com/sethgho/MetroRappidAndroid) (under development)
-- [MetroRappid Web](https://github.com/luqmaan/MetroRappidWeb) (under development)
+- [MetroRappid Web](https://github.com/luqmaan/GhettoRappid) (under development)
+- [MetroRappid Android](https://github.com/sethgho/MetroRappidAndroid) (completed, but we're having some api key issues ;_;)
 
 If you're interested in working together on this app, please feel free to contact me, fork the repo, open an issue, etc.
 
