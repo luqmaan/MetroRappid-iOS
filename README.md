@@ -1,3 +1,9 @@
+### :warning: See [metrorappid.com](http://metrorappid.com) :warning:
+
+#### This project is being deprecated in favor of [metrorappid.com](http://metrorappid.com) / https://github.com/luqmaan/GhettoRappid. A webapp that works well on the desktop, iOS and Android is much easier to maintain and develop for.
+
+
+
 MetroRappid [![Build Status](https://travis-ci.org/luqmaan/MetroRappid.svg?branch=dev)](https://travis-ci.org/luqmaan/MetroRappid)
 ==
 
