@@ -4,7 +4,7 @@
 
 
 
-MetroRappid [![Build Status](https://travis-ci.org/luqmaan/MetroRappid.svg?branch=dev)](https://travis-ci.org/luqmaan/MetroRappid)
+MetroRappid [![Build Status](https://travis-ci.org/luqmaan/MetroRappid-iOS.svg?branch=dev)](https://travis-ci.org/luqmaan/MetroRappid-iOS)
 ==
 
 Fast realtime arrival info for Austin's MetroRapid bus. http://metrorappid.com/
