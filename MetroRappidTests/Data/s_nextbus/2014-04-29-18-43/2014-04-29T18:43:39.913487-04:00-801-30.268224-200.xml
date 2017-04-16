@@ -1,0 +1,15 @@
+<!--
+        GET 200 http://www.capmetro.org/planner/s_service.asp?opt=2&tool=NB&loc1lat=801&output=xml&route=2014-04-29T18%3A43%3A39.913487-04%3A00&loc1lng=30.268224
+        {'access-control-allow-origin': 'http://cmtacustas1',
+ 'cache-control': 'private',
+ 'content-encoding': 'gzip',
+ 'content-length': '421',
+ 'content-type': 'text/html',
+ 'date': 'Tue, 29 Apr 2014 22:43:43 GMT',
+ 'server': 'Microsoft-IIS/7.0',
+ 'set-cookie': 'ASPSESSIONIDASBBBARA=EJNOCCNDNLBLFMLBGFECDKKK; path=/',
+ 'vary': 'Accept-Encoding',
+ 'x-powered-by': 'ASP.NET1a'}
+-->
+    <?xml version="1.0"?>
+<soap:Envelope xmlns:namesp1="http://namespaces.soaplite.com/perl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><soap:Fault><faultcode>soap:11057</faultcode><faultstring>#11057--Syntax Error</faultstring><detail><AT_WEB xsi:type="namesp1:AT_WEB"><code xsi:type="xsd:int">11057</code></AT_WEB></detail></soap:Fault></soap:Body></soap:Envelope>
