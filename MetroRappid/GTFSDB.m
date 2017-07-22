@@ -8,34 +8,40 @@
 
 #import "GTFSDB.h"
 
-@interface GTFSDB ()
+static GTFSDB *sharedGTFSDBSingleton;
+static FMDatabaseQueue *queue;
 
-@property FMDatabaseQueue *queue;
-@property NSString *databaseName;
-@property NSString *databasePath;
+
+@interface GTFSDB ()
 
 @end
 
+
 @implementation GTFSDB
+
++ (void)initialize
+{
+    static BOOL initialized = NO;
+    if(!initialized)
+    {
+        initialized = YES;
+        sharedGTFSDBSingleton = [[GTFSDB alloc] init];
+    }
+}
 
 - (id)init
 {
     self = [super init];
-    NSLog(@"Init GTFS");
+    NSLog(@"Init GTFSDB");
     if (self) {
-        self.ready = NO;
+        NSString *databaseName  = @"gtfs_austin";;
+        NSString *databasePath = [[NSBundle mainBundle] pathForResource:databaseName ofType:@"db"];
         
-        self.databaseName = @"gtfs_austin";
-        self.databasePath = [[NSBundle mainBundle] pathForResource:self.databaseName ofType:@"db"];
+        queue = [FMDatabaseQueue databaseQueueWithPath:databasePath];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
-            self.queue = [FMDatabaseQueue databaseQueueWithPath:self.databasePath];
+        [self addDistanceFunction];
         
-            [self addDistanceFunction];
-        
-            self.ready = YES;
-            NSLog(@"Database ready");
-        });
+        NSLog(@"Database ready");
     }
     return self;
 }
@@ -44,7 +50,7 @@
 
 - (void)logSchema
 {
-    [self.queue inDatabase:^(FMDatabase *db) {
+    [queue inDatabase:^(FMDatabase *db) {
         FMResultSet *results = [db executeQuery:@"SELECT rootpage, name, sql FROM sqlite_master ORDER BY name;"];
         NSLog(@"tables: %@ %@ %d %@", results, [results resultDictionary], results.columnCount, [results columnNameForIndex:0]);
         for (id column in [results columnNameToIndexMap]) {
@@ -60,7 +66,7 @@
 // Distance in kilometers
 - (void)addDistanceFunction
 {
-    [self.queue inDatabase:^(FMDatabase *db) {
+    [queue inDatabase:^(FMDatabase *db) {
         // See http://daveaddey.com/?p=71
         [db makeFunctionNamed:@"distance" maximumArguments:4 withBlock:^(sqlite3_context *context, int argc, sqlite3_value **argv) {
             // check that we have four arguments (lat1, lon1, lat2, lon2)
@@ -87,7 +93,161 @@
 
 #pragma mark - Queries
 
-- (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(GTFSDirection)directionId
++ (NSString *)queryWithFormat:(NSArray *)statements, ...
+{
+    va_list args;
+    va_start(args, statements);
+
+    NSMutableString *format = [[NSMutableString alloc]  init];
+    for (NSString *statement in statements) {
+        [format appendString:@"\n"];
+        [format appendString:statement];
+    }
+    
+    NSString *formattedQuery = [[NSString alloc] initWithFormat:format arguments:args];
+
+    va_end(args);
+    return formattedQuery;
+}
+
++ (NSDictionary *)routeWithId:(NSString *)routeId
+{
+    NSString *query = [self queryWithFormat:@[@"SELECT *",
+                                              @"FROM routes",
+                                              @"WHERE route_id = '%@'"],
+                       routeId];
+
+    NSDictionary *__block data = [[NSDictionary alloc] init];
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery:query];
+        [rs next];
+        data = [rs resultDictionary];
+        while([rs next]) ;
+    }];
+ 
+    return data;
+}
+
++ (NSMutableArray *)routes
+{
+    NSString *query = [self queryWithFormat:@[@"SELECT route_id",
+                                              @"FROM routes"
+                                              ]];
+    NSMutableArray *__block data = [[NSMutableArray alloc] init];
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        NSLog(@"Executing query %@", query);
+
+        FMResultSet *rs = [db executeQuery:query];
+        while([rs next]) {
+            [data addObject:[rs resultDictionary]];
+        }
+    }];
+    
+    return data;
+}
+
++ (NSMutableArray *)tripsForRoute:(NSString *)routeId
+{
+    /* FIXME: This query returns multiple shapes for 550 and 392.
+     * This may be because CapMetro doesn't support hour precision.
+     * 550 on saturday has two real shapes, there isn't a way to convert that back to the time of day for which it is valid.
+     * So instead, the safe choice seems to be to choose the shape with the most points.
+     * So, only return the direction 0 and 1 trips with the highest shape count.
+     */
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    NSString *day = [[dateFormatter stringFromDate:[NSDate date]] lowercaseString];
+    NSString *query = [self queryWithFormat:@[@"SELECT shapes.shape_id, count(*) as shapes_count, *",
+                                              @"FROM shapes,",
+                                              @"(",
+                                              @"    SELECT * FROM trips, calendar",
+                                              @"    WHERE route_id = %@",
+                                              @"    AND calendar.service_id = trips.service_id",
+                                              @"    AND calendar.%@ = 1",
+                                              @"    GROUP BY shape_id",
+                                              @") as trips",
+                                              @"WHERE shapes.shape_id = trips.shape_id",
+                                              @"GROUP BY shapes.shape_id",
+                                              @"ORDER BY shapes_count DESC"],
+                       routeId,
+                       day];
+    
+    NSDictionary *__block maxDirection0 = nil;
+    NSDictionary *__block maxDirection1 = nil;
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        NSLog(@"Executing query %@", query);
+        
+        FMResultSet *rs = [db executeQuery:query];
+        while([rs next]) {
+            NSDictionary *trip = [rs resultDictionary];
+            if ([trip[@"direction_id"] intValue] == 0 && (!maxDirection0 || trip[@"shapes_count"] > maxDirection0[@"shapes_count"])) {
+                maxDirection0 = trip;
+            }
+            if ([trip[@"direction_id"] intValue] == 1 && (!maxDirection1 || trip[@"shapes_count"] > maxDirection1[@"shapes_count"])) {
+                maxDirection1 = trip;
+            }
+        }
+    }];
+
+    
+    return [@[maxDirection0, maxDirection1] mutableCopy];
+}
+
++ (NSMutableArray *)shapeWithId:(NSString *)shapeId
+{
+    NSString *query = [self queryWithFormat:@[@"SELECT * FROM shapes",
+                                              @"WHERE shape_id = %@"],
+                       shapeId];
+    
+    NSMutableArray *__block data = [[NSMutableArray alloc] init];
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        NSLog(@"Executing query %@", query);
+        
+        FMResultSet *rs = [db executeQuery:query];
+        while([rs next]) {
+            [data addObject:[rs resultDictionary]];
+        }
+    }];
+    
+    return data;
+}
+
++ (NSMutableArray *)routesNearLocation:(CLLocation *)location
+{
+    NSString *query = [self queryWithFormat:@[@"SELECT route_id, ledistance",
+                                              @"FROM trips, ",
+                                              @"( SELECT trip_id, distance(stop_lat, stop_lon, %f, %f) as \"ledistance\"",
+                                              @"  FROM stops, stop_times",
+                                              @"  WHERE stop_times.stop_id = stops.stop_id",
+                                              @"  GROUP BY trip_id",
+                                              @") AS nearby_trips",
+                                              @"WHERE trips.trip_id = nearby_trips.trip_id",
+                                              @"GROUP BY route_id",
+                                              @"ORDER BY CAST(route_id AS INTEGER)"],
+                       location.coordinate.latitude,
+                       location.coordinate.longitude];
+
+    NSMutableArray *__block data = [[NSMutableArray alloc] init];
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        NSLog(@"Executing query %@", query);
+        FMResultSet *rs = [db executeQuery:query];
+
+        while([rs next]) {
+            [data addObject:[rs resultDictionary]];
+        }
+    }];
+    
+    NSLog(@"Loaded %d routes near location", (int)[data count]);
+    return data;
+};
+
++ (NSMutableArray *)locationsForRoutes:(NSArray *)routes nearLocation:(CLLocation *)location inDirection:(GTFSDirection)directionId
 {
     NSString *query = [NSString stringWithFormat:
         @"\n SELECT unique_stops.route_id, unique_stops.trip_id, unique_stops.trip_headsign, unique_stops.stop_id, stop_name, "
@@ -115,7 +275,7 @@
     
     NSMutableArray * __block data = [[NSMutableArray alloc] init];
 
-    [self.queue inDatabase:^(FMDatabase *db) {
+    [queue inDatabase:^(FMDatabase *db) {
         NSLog(@"Executing query %@", query);
         FMResultSet *rs = [db executeQuery:query];
 
@@ -150,7 +310,6 @@
     }];
 }
 
-
 - (void)sortStopsByStopSequence:(NSMutableArray *)stops
 {
     [stops sortUsingComparator:^NSComparisonResult(CAPStop* stop1, CAPStop* stop2) {
@@ -160,6 +319,5 @@
         return (NSComparisonResult)NSOrderedSame;
     }];
 }
-
 
 @end

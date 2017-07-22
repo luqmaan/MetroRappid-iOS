@@ -7,10 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CAPTripRealtime.h"
+//#import "CAPTripRealtime.h"
+#import "CAPShape.h"
 
 @interface CAPTrip : NSObject
 
+@property CAPShape *shape;
+
+// gtfs
+@property NSString *blockId;
+@property NSString *directionId;
+@property NSString *routeId;
+@property NSString *serviceId;
+@property NSString *shapeId;
+@property NSString *tripHeadsign;
+@property NSString *tripId;
+@property NSString *tripShortName;
+@property NSString *tripType;
+@property (nonatomic, assign) NSInteger bikesAllowed;
+@property (nonatomic, assign) NSInteger wheelchairAccessible;
+
+// nextbus
 @property NSString *route;
 @property NSString *publicRoute;
 @property NSString *sign;
@@ -21,7 +38,6 @@
 @property NSString *serviceType;
 @property NSString *routeType;
 @property NSString *tripTime; // FIXME: Use NSDate
-@property NSString *tripId;
 @property NSString *skedTripId;
 @property NSString *adherence;
 @property NSDate *estimatedDate;
@@ -31,8 +47,9 @@
 @property NSString *atisStopId;
 @property NSString *stopId;
 
-@property CAPTripRealtime *realtime;
+//@property CAPTripRealtime *realtime;
 
+- (void)updateWithGTFS:(NSDictionary *)data;
 - (void)updateWithNextBusAPI:(NSDictionary *)data;
 
 @end
