@@ -1,13 +1,17 @@
 ### :warning: See [metrorappid.com](http://metrorappid.com) :warning:
 
-#### This project is being deprecated in favor of [metrorappid.com](http://metrorappid.com) / https://github.com/luqmaan/GhettoRappid. A webapp that works well on the desktop, iOS and Android is much easier to maintain and develop for.
+#### This project is deprecated in favor of [metrorappid.com](http://metrorappid.com) / https://github.com/luqmaan/GhettoRappid. A webapp that works well on the desktop, iOS and Android is much easier to maintain and develop for.
 
 
 
 MetroRappid [![Build Status](https://travis-ci.org/luqmaan/MetroRappid-iOS.svg?branch=dev)](https://travis-ci.org/luqmaan/MetroRappid-iOS)
 ==
 
-Fast realtime arrival info for Austin's MetroRapid bus. http://metrorappid.com/
+Fast realtime arrival info for Austin's MetroRapid bus.
+
+![image](https://user-images.githubusercontent.com/1275831/28501200-8a68aed2-6f9c-11e7-8105-df03d138600d.png) ![image](https://user-images.githubusercontent.com/1275831/28501202-8d3fcd70-6f9c-11e7-8bd9-b95a7dd2d64a.png) ![image](https://user-images.githubusercontent.com/1275831/28501203-8fbcb7d4-6f9c-11e7-8d9f-6fd1483977da.png) <img src="https://user-images.githubusercontent.com/1275831/28501210-c691ee6e-6f9c-11e7-92d4-2958e7e5295b.png" width="300" />
+
+
 
 An attempt at reverse engineering and speeding up the CapMetro app for my use case: view the MetroRapid realtime arrivals *quickly*.
 
